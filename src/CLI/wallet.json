@@ -1,0 +1,38 @@
+{
+ "WalletName": "default",
+ "MnemonicEncoded": "5f462056ed161ba0-5836b0c913a2cdd4b8242aea-9a1ff9aad91d2829b226889c30f5f22e484c4fb7cfa8e0450b9570ed93bd4d1e6b26ac5b926d45ba1b3946980400efc1b8db8ebf4ffa1243a9b97a93ebc20ac77087bc1da2819b33362c540388c0cd4cd702247d0e8d3424f0f0db02bb1407f7d30a64e7148c6f",
+ "Accounts": [
+  {
+   "Id": 0,
+   "PubKey": "0x6d3279d7fea969d75F30CB68c4BA52675eFdec90",
+   "PrivKeyEncoded": "0518e7b66ccd41b2-fdbf6a34445518b18dcc5cde-7071d2cdfeb9d7ee7dd70baa21d22a267e9ff5bfe7f091799b0b4bfa381a1843f2d4c37eef14927fcf3b517711a3f06960d79e7a5212b717deec5138f56e2ecdfa5049569ad28d5fdb84c9012b23985d7dfd5c2cebc6",
+   "LastBalance": "0"
+  },
+  {
+   "Id": 1,
+   "PubKey": "0x563927c6d3E8D2849E4C62ECC8975f4d38f4909A",
+   "PrivKeyEncoded": "8f3a8f5a7680af89-54c5b785f52b6c286be94837-ec075e131f9b38f7c9e9c1228cf72cd96b5dd17e2b13b7dfe07bee7195444294a7c8e334ca68619bebbdb1efb466958669dc3d4682d035d9e7a61ea37a2fa5d92481aa1fad4442a86d17ca468c9ef7b40d906e401a9f",
+   "LastBalance": "0"
+  },
+  {
+   "Id": 2,
+   "PubKey": "0x824190E671279F27880C16b4fc869c20e686Fecf",
+   "PrivKeyEncoded": "90173c00d5a478c4-afd559235ce85ccfcb79eb46-31d331d936d9ab7dae3658dfece0fe1df40dbd4136dba66830345b234e0510924bf7fb631878ccde0e152f17f086af6f6c5907aec83832d8c401bdf380db6df96d1fbb16f223d50caac84d42225138f8fa92667ea3a9",
+   "LastBalance": "0"
+  },
+  {
+   "Id": 3,
+   "PubKey": "0x8ac58571D85e0A95C230a0dc7844E1ffDB6fE7dd",
+   "PrivKeyEncoded": "78503c0f14a8fbb6-a649bb456fa76fb806503544-14ef9d81a0b9b8d0fcf7d6696dc64572b5185bb23865935b3c555cc42ecf0b133647d396163e42ee73573ba248c56b8302cb5d6475e4644ca9451799913b4267d17b0a86be6668332a85fd88c103f1bdf1eba3f0ec88",
+   "LastBalance": "0"
+  },
+  {
+   "Id": 4,
+   "PubKey": "0x88Fd3c74C92326003AAfF0B8d7F80FaF555dceF5",
+   "PrivKeyEncoded": "28d860daa2e8e796-6958cf5f094e41d7964e0fd3-0a5365881de75e744c6484a95c1119ce4b1ef3949d551475e5df117e45eee4a3a94377f6665cfd8847751802937fc5559dc32f9445d2cf7d526eab2f26aca84685bbbbfd6c8d4d74f31fa22059adb5652f6afb1fe1b5",
+   "LastBalance": "0"
+  }
+ ],
+ "PasswordHash": "e475e0dee738719f7851cf20480c52078b25ce3b",
+ "Initialized": true
+}
