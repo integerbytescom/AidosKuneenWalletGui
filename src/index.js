@@ -39,7 +39,10 @@ app.on('ready', () => {
   ipcMain.handle("createWalletFromMnemonic", createWalletFromMnemonic);
   ipcMain.handle("balance", balance);
   ipcMain.handle("updatebalance", updateBalance);
-  ipcMain.handle("listwalletaddr", listWalletAddress)
+  ipcMain.handle("listwalletaddress", listWalletAddress);
+  ipcMain.handle("stake", stake);
+  ipcMain.handle("unstake", unstake);
+  ipcMain.handle("stakedbalance", stakedBalance);
   createWindow()
 });
 
@@ -192,6 +195,39 @@ const loadMetamaskMnemonics = async (evt, password) => {
 const migrate = async (evt, old, xNew) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command migrate ${old} ${xNew}`))
+    console.log(stdout)
+    return stdout
+  } catch (e) {
+    writeLog(e)
+    console.log(e)
+  }
+}
+
+const stake = async (evt, way, mempas, from, amount) => {
+  try {
+    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command stake ${way} ${mempas} ${from} ${amount}`))
+    console.log(stdout)
+    return stdout
+  } catch (e) {
+    writeLog(e)
+    console.log(e)
+  }
+}
+
+const unstake = async (evt, gas, mempas, from, amount) => {
+  try {
+    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command unstake ${gas} ${mempas} ${from} ${amount}`))
+    console.log(stdout)
+    return stdout
+  } catch (e) {
+    writeLog(e)
+    console.log(e)
+  }
+}
+
+const stakedBalance = async (evt, ...addrs) => {
+  try {
+    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command stakedbalance ${addrs}`))
     console.log(stdout)
     return stdout
   } catch (e) {

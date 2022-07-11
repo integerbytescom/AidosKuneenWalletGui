@@ -7,5 +7,8 @@ contextBridge.exposeInMainWorld("walletAPI", {
     createWalletFromMnemonic: (seed, password) => ipcRenderer.invoke("createWalletFromMnemonic", seed, password),
     balance: (address) => ipcRenderer.invoke("balance", address),
     updateBalance: () => ipcRenderer.invoke("updatebalance"),
-    listWalletAddress: (mempass, numAddr) => ipcRenderer.invoke("listwalletaddr", mempass, numAddr)
+    listWalletAddress: (mempass, numAddr) => ipcRenderer.invoke("listwalletaddress", mempass, numAddr),
+    stake: (way, mempas, from, amount) => ipcRenderer.invoke("stake", way, mempas, from, amount),
+    unstake: (gas, mempas, from, amount) => ipcRenderer.invoke("unstake", gas, mempas, from, amount),
+    stakedBalance: (...addrs) => ipcRenderer.invoke("stakedbalance", ...addrs),
 })
