@@ -39,11 +39,16 @@ app.on('ready', () => {
   ipcMain.handle("createWalletFromMnemonic", createWalletFromMnemonic);
   ipcMain.handle("balance", balance);
   ipcMain.handle("updatebalance", updateBalance);
+  ipcMain.handle("send", send);
+  ipcMain.handle("checkPassword", checkPassword);
+  ipcMain.handle("addAddress", addAddress)
   ipcMain.handle("listwalletaddress", listWalletAddress);
   ipcMain.handle("stake", stake);
   ipcMain.handle("unstake", unstake);
   ipcMain.handle("stakedbalance", stakedBalance);
   ipcMain.handle("multisend", multisend);
+  ipcMain.handle("txInfo", txInfo);
+  ipcMain.handle("mifrate", migrate)
   createWindow()
 });
 
