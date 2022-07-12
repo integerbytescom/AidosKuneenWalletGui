@@ -18,4 +18,4 @@ contextBridge.exposeInMainWorld("walletAPI", {
     txInfo: (txId) => ipcRenderer.invoke("txInfo", txId),
     loadMetamaskMnemonics: (password) => ipcRenderer.invoke("loadMetamaskMnemonics", password),
     migrate: (old, xNew) => ipcRenderer.invoke("migrate", old, xNew)
-})
+});

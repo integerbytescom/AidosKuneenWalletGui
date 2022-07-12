@@ -5,7 +5,14 @@ const util = require('util')
 const exec = util.promisify(require("child_process").exec)
 const fs = require('fs')
 
-//process.env.NODE_ENV = "production"
+process.env.NODE_ENV = "production"
+
+const plm = process.platform;
+const prefix = {
+  linux: "./CLI/adk command",
+  darwin: "/CLI/adk command",
+  win32: "/CLI/adkWin.exe command"
+}
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
@@ -22,7 +29,6 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
-
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
@@ -77,7 +83,7 @@ const writeLog = (err) => {
 
 const ping = async () => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, "./CLI/adk command ping"))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} ping`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -94,7 +100,7 @@ const ping = async () => {
 const createWalletNew = async (evt, password) => {
   try {
     console.log(password);
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command createWalletNew ${password}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} createWalletNew ${password}`))
     return stdout;
   } catch (e) {
     writeLog(e)
@@ -110,7 +116,7 @@ const createWalletNew = async (evt, password) => {
 const createWalletFromMnemonic = async (evt, seed, password) => {
   try {
     console.log(seed, password)
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command createWalletFromMnemonic ${seed} ${password}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} createWalletFromMnemonic ${seed} ${password}`))
     console.log(stdout)
     return stdout
   } catch(e) {
@@ -127,7 +133,7 @@ const createWalletFromMnemonic = async (evt, seed, password) => {
 const balance = async (evt, address) => {
   try {
     console.log(address)
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command balance ${address}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} balance ${address}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -144,7 +150,7 @@ const balance = async (evt, address) => {
 const send = async (evt, way, mempas, from, to, amount) => {
   try {
     console.log(way, mempas, from, to, amount)
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command send ${way} ${mempas} ${from} ${to} ${amount}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
     console.log(stdout)
   } catch(e) {
     writeLog(e)
@@ -159,7 +165,7 @@ const send = async (evt, way, mempas, from, to, amount) => {
 
 const updateBalance = async (evt) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command updatebalance`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} updatebalance`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -175,7 +181,7 @@ const updateBalance = async (evt) => {
 
 const listWalletAddress = async (evt, mempas, numAddr) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command listwalletaddr ${mempas} ${numAddr}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} listwalletaddr ${mempas} ${numAddr}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -191,7 +197,7 @@ const listWalletAddress = async (evt, mempas, numAddr) => {
 
 const addAddress = async (evt, password) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command addaddress ${password}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} addaddress ${password}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -207,7 +213,7 @@ const addAddress = async (evt, password) => {
 
 const checkPassword = async (evt, password) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command checkpassword ${password}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} checkpassword ${password}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -223,7 +229,7 @@ const checkPassword = async (evt, password) => {
 
 const txInfo = async (evt, txId) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command txinfo ${txId}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} txinfo ${txId}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -239,7 +245,7 @@ const txInfo = async (evt, txId) => {
 
 const loadMetamaskMnemonics = async (evt, password) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command loadMetamaskMnemonics ${password}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} loadMetamaskMnemonics ${password}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -255,7 +261,7 @@ const loadMetamaskMnemonics = async (evt, password) => {
 
 const migrate = async (evt, old, xNew) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command migrate ${old} ${xNew}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} migrate ${old} ${xNew}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -271,7 +277,7 @@ const migrate = async (evt, old, xNew) => {
 
 const stake = async (evt, way, mempas, from, amount) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command stake ${way} ${mempas} ${from} ${amount}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} stake ${way} ${mempas} ${from} ${amount}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -287,7 +293,7 @@ const stake = async (evt, way, mempas, from, amount) => {
 
 const unstake = async (evt, gas, mempas, from, amount) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command unstake ${gas} ${mempas} ${from} ${amount}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} unstake ${gas} ${mempas} ${from} ${amount}`))
     console.log(stdout)
     return stdout
   } catch (e) {
@@ -303,7 +309,7 @@ const unstake = async (evt, gas, mempas, from, amount) => {
 
 const stakedBalance = async (evt, ...addrs) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `./CLI/adk command stakedbalance ${addrs}`))
+    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} stakedbalance ${addrs}`))
     console.log(stdout)
     return stdout
   } catch (e) {
