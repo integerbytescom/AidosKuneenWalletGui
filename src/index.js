@@ -5,7 +5,7 @@ const util = require('util')
 const exec = util.promisify(require("child_process").exec)
 const fs = require('fs')
 
-process.env.NODE_ENV = "production"
+//process.env.NODE_ENV = "production"
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
@@ -24,7 +24,7 @@ const createWindow = () => {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
