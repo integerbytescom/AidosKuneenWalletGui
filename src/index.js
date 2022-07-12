@@ -13,7 +13,7 @@ const prefix = {
   darwin: "/CLI/adk command",
   win32: "/CLI/adkWin.exe command"
 }
-
+console.log(plm)
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 if (require('electron-squirrel-startup')) {
