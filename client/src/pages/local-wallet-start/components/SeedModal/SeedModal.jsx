@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Modal,Button} from "react-bootstrap";
 import PasswordModal from "../PasswordModal/PasswordModal";
 
+
 const SeedModal = (props) => {
 
     const [modalPass,setModalPass] = useState(false);

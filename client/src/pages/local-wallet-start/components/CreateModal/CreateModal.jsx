@@ -7,7 +7,6 @@ const CreateModal = (props) => {
 
     //modal seed state
     const [modalSeed, setModalSeed] = useState(false);
-
     //password state
     const [password,setPassword] = useState('')
     const [passwordCopy,setPasswordCopy] = useState('')
