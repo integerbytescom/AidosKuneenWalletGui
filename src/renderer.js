@@ -1,17 +1,14 @@
 "use strict";
 const form = document.getElementById("form")
-const view = document.getElementById("view")
+const way = document.getElementById("way")
 const pass = document.getElementById("pass")
-const mem = document.getElementById("mnemonic")
-const upd = document.getElementById("update")
+const to = document.getElementById("to")
+const amount = document.getElementById("amount")
+//const btn = document.getElementById("btn")
+const res = document.getElementById("res")
 
 form.addEventListener("submit", async (evt) => {
     evt.preventDefault()
-    const resp = await globalThis.walletAPI.balance(pass.value)
-    view.innerHTML = resp
-})
-
-upd.addEventListener("click", async (evt) => {
-    const resp = await globalThis.walletAPI.updateBalance(pass.value)
-    view.innerHTML = resp
+    const resp = await globalThis.walletAPI.multisend(way.value, pass.value, to.value, amount.value)
+    res.innerHTML = JSON.parse(resp).msg
 })

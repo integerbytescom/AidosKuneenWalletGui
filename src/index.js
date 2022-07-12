@@ -43,6 +43,7 @@ app.on('ready', () => {
   ipcMain.handle("stake", stake);
   ipcMain.handle("unstake", unstake);
   ipcMain.handle("stakedbalance", stakedBalance);
+  ipcMain.handle("multisend", multisend);
   createWindow()
 });
 
@@ -75,8 +76,13 @@ const ping = async () => {
     console.log(stdout)
     return stdout
   } catch (e) {
-    writeLog(e);
-    console.log(e);
+    writeLog(e)
+    console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -88,6 +94,11 @@ const createWalletNew = async (evt, password) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -100,6 +111,11 @@ const createWalletFromMnemonic = async (evt, seed, password) => {
   } catch(e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -112,6 +128,11 @@ const balance = async (evt, address) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -123,6 +144,11 @@ const send = async (evt, way, mempas, from, to, amount) => {
   } catch(e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -134,6 +160,11 @@ const updateBalance = async (evt) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -145,6 +176,11 @@ const listWalletAddress = async (evt, mempas, numAddr) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -156,6 +192,11 @@ const addAddress = async (evt, password) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -167,6 +208,11 @@ const checkPassword = async (evt, password) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -178,6 +224,11 @@ const txInfo = async (evt, txId) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -189,6 +240,11 @@ const loadMetamaskMnemonics = async (evt, password) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -200,6 +256,11 @@ const migrate = async (evt, old, xNew) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -211,6 +272,11 @@ const stake = async (evt, way, mempas, from, amount) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -222,6 +288,11 @@ const unstake = async (evt, gas, mempas, from, amount) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
   }
 }
 
@@ -233,5 +304,67 @@ const stakedBalance = async (evt, ...addrs) => {
   } catch (e) {
     writeLog(e)
     console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
+  }
+}
+
+const multisend = async (evt, way, mempas, to, amount) => {
+  try {
+    const resp = await listWalletAddress(evt, mempas, 50),
+          adrs = JSON.parse(resp).data,
+          balTable = {};
+
+    let totlBal = 0;
+    for (let adr of adrs) {
+      const bal = JSON.parse(await balance(evt, adr)).data[adr]
+      balTable[adr] = bal
+      totlBal += bal
+    }
+    if (totlBal < amount) {
+      return JSON.stringify({
+            ok: false,
+            msg: "not enough ADK to send",
+            data: null
+          })
+    }
+
+    let leftToSend = amount;
+    for (let adr in balTable) {
+      const bal = balTable[adr]
+      if (leftToSend >= bal) {
+        const resp = await send(evt, way, mempas, adr, to, bal)
+        if (JSON.parse(resp).ok) {
+          leftToSend -= bal
+        }  else {
+          return JSON.stringify({
+            ok: false,
+            msg: "sending error",
+            data: null
+          })
+        }
+      } else if (leftToSend < bal) {
+        const sendSum = bal - leftToSend;
+        const resp = await send(evt, way, mempas, adr, to, sendSum)
+        if (!JSON.parse(resp).ok) {
+          return JSON.stringify({
+            ok: false,
+            msg: "sending error",
+            data: null
+          })
+        }
+      }
+    }
+    return JSON.stringify({
+          ok: true,
+          msg: "sending was successful",
+          data: null
+        })
+  } catch (e) {
+    writeLog(e);
+    console.log(e);
   }
 }

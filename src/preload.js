@@ -11,4 +11,5 @@ contextBridge.exposeInMainWorld("walletAPI", {
     stake: (way, mempas, from, amount) => ipcRenderer.invoke("stake", way, mempas, from, amount),
     unstake: (gas, mempas, from, amount) => ipcRenderer.invoke("unstake", gas, mempas, from, amount),
     stakedBalance: (...addrs) => ipcRenderer.invoke("stakedbalance", ...addrs),
+    multisend: (way, mempas, to, amount) => ipcRenderer.invoke("multisend", way, mempas, to, amount)
 })
