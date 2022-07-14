@@ -4,6 +4,7 @@ const path = require('path')
 const util = require('util')
 const exec = util.promisify(require("child_process").exec)
 const fs = require('fs')
+const fsProm = require("fs/promises")
 
 process.env.NODE_ENV = "production"
 
@@ -54,7 +55,9 @@ app.on('ready', () => {
   ipcMain.handle("stakedbalance", stakedBalance);
   ipcMain.handle("multisend", multisend);
   ipcMain.handle("txInfo", txInfo);
-  ipcMain.handle("mifrate", migrate)
+  ipcMain.handle("mifrate", migrate);
+  ipcMain.handle("totalbalance", totalBalance);
+  ipcMain.handle("loadTxsHistory", loadTxsHistory);
   createWindow()
 });
 
@@ -76,7 +79,7 @@ app.on('activate', () => {
 });
 
 const writeLog = (err) => {
-  fs.appendFile("../logger.txt", err.toString(), (err) => {
+  fs.appendFile("../logger", err.toString(), (err) => {
     if (err) writeLog(err)
   })
 }
@@ -147,11 +150,46 @@ const balance = async (evt, address) => {
   }
 }
 
+const totalBalance = async (evt, mempas) => {
+  try {
+    const json = await listWalletAddress(evt, mempas, 50)
+    const resp = JSON.parse(json)
+    const adrs = resp.data
+
+    let totlBal = 0
+    for (let adr of adrs) {
+      totlBal += JSON.parse(await balance(evt, adr)).data[adr]
+    }
+    return JSON.stringify({
+      ok: true,
+      msg: "total balance",
+      data: totlBal
+    })
+  } catch (e) {
+    writeLog(e)
+    console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
+  }
+}
+
+const writeTxInHist = (tx) => {
+  fs.appendFile("../txsHist", tx, (err) => {
+    if (err) writeLog(err)
+  })
+}
+
 const send = async (evt, way, mempas, from, to, amount) => {
   try {
     console.log(way, mempas, from, to, amount)
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
+    const tx = JSON.parse(stdout).data[0]
+    writeTxInHist(tx)
     console.log(stdout)
+    return stdout
   } catch(e) {
     writeLog(e)
     console.log(e)
@@ -243,6 +281,30 @@ const txInfo = async (evt, txId) => {
   }
 }
 
+const loadTxsHistory = async (evt) => {
+  try {
+    const data = await fsProm.readFile("../txsHist", {encoding: "utf-8", flag: "r"})
+    const ids = data.toString().split("\n")
+    const txs = []
+    for (let id of ids) {
+      txs.push(JSON.stringify(JSON.parse(await txInfo(evt, id))))
+    }
+    return JSON.stringify({
+      ok: true,
+      msg: "transaction history",
+      data: txs
+    })
+  } catch (e) {
+    writeLog(e)
+    console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
+  }
+}
+
 const loadMetamaskMnemonics = async (evt, password) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} loadMetamaskMnemonics ${password}`))
@@ -323,17 +385,30 @@ const stakedBalance = async (evt, ...addrs) => {
   }
 }
 
+const GAS = 0.021
+const sendError = JSON.stringify({
+  ok: false,
+  msg: "sending error",
+  data: null
+})
+
 const multisend = async (evt, way, mempas, to, amount) => {
   try {
     const resp = await listWalletAddress(evt, mempas, 50),
           adrs = JSON.parse(resp).data,
           balTable = {};
 
-    let totlBal = 0;
+    let totlSum = 0;
     for (let adr of adrs) {
       const bal = JSON.parse(await balance(evt, adr)).data[adr]
-      balTable[adr] = bal
-      totlBal += bal
+      if (way === "pow") {
+        balTable[adr] = bal
+        totlSum += bal
+      }
+      if (way === "gas") {
+        balTable[adr] = bal - GAS
+        totlSum += bal - GAS
+      }
     }
     if (totlBal < amount) {
       return JSON.stringify({
@@ -342,40 +417,43 @@ const multisend = async (evt, way, mempas, to, amount) => {
             data: null
           })
     }
-
+    const txs = []
     let leftToSend = amount;
     for (let adr in balTable) {
-      const bal = balTable[adr]
-      if (leftToSend >= bal) {
-        const resp = await send(evt, way, mempas, adr, to, bal)
-        if (JSON.parse(resp).ok) {
-          leftToSend -= bal
-        }  else {
+      const sum = balTable[adr]
+      if (leftToSend >= sum) {
+        const json = await send(evt, way, mempas, adr, to, sum)
+        const resp = JSON.parse(json)
+        if (resp.ok) {
+          leftToSend -= sum
+          txs.push(resp.data[0])
+        } else return sendError
+      } else if (leftToSend < sum) {
+        const part = sum - leftToSend;
+        const json = await send(evt, way, mempas, adr, to, part)
+        const resp = JSON.parse(json)
+        if (resp.ok) {
+          txs.push(resp.data[0])
           return JSON.stringify({
-            ok: false,
-            msg: "sending error",
-            data: null
+            ok: true,
+            msg: "sending was successful",
+            data: txs
           })
-        }
-      } else if (leftToSend < bal) {
-        const sendSum = bal - leftToSend;
-        const resp = await send(evt, way, mempas, adr, to, sendSum)
-        if (!JSON.parse(resp).ok) {
-          return JSON.stringify({
-            ok: false,
-            msg: "sending error",
-            data: null
-          })
-        }
+        } else return sendError
       }
     }
-    return JSON.stringify({
-          ok: true,
-          msg: "sending was successful",
-          data: null
-        })
   } catch (e) {
     writeLog(e);
     console.log(e);
   }
 }
+
+/*
+{
+  "ok": true,
+  "msg": "TX sent and mined",
+  "data": [
+    "0x97f22edf676c9e8e0973fcd48188ab5a7b0d878f15ee131b6dc1d62160a3a333"
+  ]
+}
+* */

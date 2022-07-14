@@ -17,5 +17,7 @@ contextBridge.exposeInMainWorld("walletAPI", {
     multisend: (way, mempas, to, amount) => ipcRenderer.invoke("multisend", way, mempas, to, amount),
     txInfo: (txId) => ipcRenderer.invoke("txInfo", txId),
     loadMetamaskMnemonics: (password) => ipcRenderer.invoke("loadMetamaskMnemonics", password),
-    migrate: (old, xNew) => ipcRenderer.invoke("migrate", old, xNew)
+    migrate: (old, xNew) => ipcRenderer.invoke("migrate", old, xNew),
+    totalBalance: (mempas) => ipcRenderer.invoke("totalbalance", mempas),
+    loadTxsHistory: () => ipcRenderer.invoke("loadTxsHistory"),
 });
