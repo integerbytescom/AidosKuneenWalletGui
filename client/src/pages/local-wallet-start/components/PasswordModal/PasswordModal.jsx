@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './PasswordModal.css';
-import {Modal, Button, Form} from "react-bootstrap";
+import {Modal, Button, Form, Alert} from "react-bootstrap";
 import {useNavigate} from 'react-router-dom';
 
 //global value for pass
@@ -10,7 +10,12 @@ const PasswordModal = (props) => {
 
     const navigate = useNavigate();
 
+    //password state
     const [lastPass,setLastPass] = useState('')
+
+    //error and alert states
+    const [error,setError] = useState('')
+    const [alertDisplay,setAlertDisplay] = useState('none')
 
     const handleSubmitPassword = (e) => {
         e.preventDefault()
@@ -18,7 +23,8 @@ const PasswordModal = (props) => {
             passGLOBAL = lastPass;
             navigate('/transfer');
         }else {
-            alert('Bad password');
+            setError('Invalid password');
+            setAlertDisplay('block')
         }
     }
 
@@ -44,6 +50,11 @@ const PasswordModal = (props) => {
                             onChange={event => setLastPass(event.target.value)}
                         />
                     </Form.Group>
+
+                    <Alert style={{display:`${alertDisplay}`}} variant="danger">
+                        {error}
+                    </Alert>
+
                     <Button type={"submit"}>ENTER</Button>
                 </Form>
             </Modal.Body>

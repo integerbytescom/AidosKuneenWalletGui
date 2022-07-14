@@ -4,6 +4,7 @@ import Router from "./Router";
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css';
 import {HashRouter} from "react-router-dom";
+import 'animate.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

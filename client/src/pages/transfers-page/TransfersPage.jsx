@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 import './TransfersPage.css';
 import {passGLOBAL} from "../local-wallet-start/components/PasswordModal/PasswordModal";
 import ModalTransfer from "./components/ModalTransfer/ModalTransfer";
-
+import {Link} from "react-router-dom";
 
 
 const TransfersPage = () => {
@@ -21,7 +21,7 @@ const TransfersPage = () => {
         <>
         <div className='transfer-page'>
             <div className="header-tp">
-                <Button variant={"dark"}>Back</Button>
+                <Link to='/lwstart' >Back</Link>
                 <div className="right-container-tp">
                     <Button variant={"primary"}>reboot</Button>
                     <Button variant={"secondary"}>settings</Button>
