@@ -55,9 +55,10 @@ app.on('ready', () => {
   ipcMain.handle("stakedbalance", stakedBalance);
   ipcMain.handle("multisend", multisend);
   ipcMain.handle("txInfo", txInfo);
-  ipcMain.handle("mifrate", migrate);
+  ipcMain.handle("migrate", migrate);
   ipcMain.handle("totalbalance", totalBalance);
   ipcMain.handle("loadTxsHistory", loadTxsHistory);
+  ipcMain.handle("loadMetamaskMnemonics", loadMetamaskMnemonics)
   createWindow()
 });
 
