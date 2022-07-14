@@ -1,17 +1,24 @@
 import React, {useState} from 'react';
 import './PasswordModal.css';
 import {Modal, Button, Form} from "react-bootstrap";
+import {useNavigate} from 'react-router-dom';
+
+//global value for pass
+export let passGLOBAL = '';
 
 const PasswordModal = (props) => {
+
+    const navigate = useNavigate();
 
     const [lastPass,setLastPass] = useState('')
 
     const handleSubmitPassword = (e) => {
         e.preventDefault()
         if (lastPass === props.password){
-            console.log('yahoooo its good')
+            passGLOBAL = lastPass;
+            navigate('/transfer');
         }else {
-            console.log('noooo its bad pass')
+            alert('Bad password');
         }
     }
 

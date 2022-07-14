@@ -1,0 +1,35 @@
+
+/*header*/
+.header-tp{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.header-tp .right-container-tp{
+    display: flex;
+}
+.header-tp button{
+    margin: 0 10px;
+}
+
+/*menu*/
+.menu-tp{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.bal-stack-tp{
+    margin-right: 20px;
+    display: flex;
+}
+.bal-stack-tp .balance-tp{
+    margin-right: 20px;
+}
+
+.send-rec-tp{
+    display: flex;
+    align-items: center;
+}
+.send-rec-tp button{
+    margin: 0 10px;
+}
