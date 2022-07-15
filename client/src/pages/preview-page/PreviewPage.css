@@ -5,12 +5,14 @@
 
 /*img*/
 .treug-right-img{
+    height: 100vh;
     position: absolute;
-    right: 0;
+    right: -50px;
     top: 0;
     z-index: -2;
 }
 .shape-left-img{
+    width: 40%;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -18,21 +20,24 @@
 }
 .aid-img{
     position: absolute;
-    left: 0;
-    top: 20%;
+    left: -2.5%;
+    bottom: 40%;
     z-index: -1;
+    /*background: red;*/
 }
 .kun-img{
     position: absolute;
-    right: 0;
-    bottom: 35%;
+    right: -1%;
+    bottom: 33%;
     z-index: -1;
+    /*background: green;*/
 }
 .kun-stipes-img{
     position: absolute;
-    right: 0;
-    bottom: 37%;
+    right: -2%;
+    bottom: 35%;
     z-index: -2;
+    /*background: blue;*/
 }
 
 /*buttom*/
@@ -57,4 +62,65 @@
     color: var(--color-white)
 }
 
-/*animations*/
+/*MEDIA*/
+
+/*width*/
+@media screen and (min-width: 1150px){
+    .aid-img{
+        left: auto;
+        right: 50%;
+    }
+    .kun-img{
+        right: auto;
+        left: 30%;
+    }
+    .kun-stipes-img{
+        right: auto;
+        left: 30.7%;
+    }
+    .start-link{
+        right: auto;
+        left: 65%;
+    }
+}
+@media screen and (min-width: 1520px){
+    .kun-img{
+        right: auto;
+        left: 45%;
+    }
+    .kun-stipes-img{
+        right: auto;
+        left: 45.7%;
+    }
+}
+
+/*!*height*!*/
+@media screen and (min-height: 1000px){
+    .aid-img{
+        bottom: 43%;
+    }
+    .kun-img{
+        bottom: 37%;
+    }
+    .kun-stipes-img{
+        bottom: 38%;
+    }
+    .start-link{
+        bottom: 25%;
+    }
+}
+@media screen and (max-height: 650px){
+    .aid-img{
+        bottom: 36%;
+    }
+    .kun-img{
+        bottom: 27%;
+    }
+    .kun-stipes-img{
+        bottom: 29%;
+    }
+    .start-link{
+        bottom: 10%;
+    }
+}
+

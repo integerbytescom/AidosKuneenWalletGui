@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './PasswordModal.css';
-import {Modal, Button, Form, Alert} from "react-bootstrap";
+import {Modal, Form} from "react-bootstrap";
 import {useNavigate} from 'react-router-dom';
 
 //global value for pass
@@ -16,6 +16,7 @@ const PasswordModal = (props) => {
     //error and alert states
     const [error,setError] = useState('')
     const [alertDisplay,setAlertDisplay] = useState('none')
+    const [invalidBadPass,setInvalidBadPass] = useState('')
 
     const handleSubmitPassword = (e) => {
         e.preventDefault()
@@ -23,44 +24,44 @@ const PasswordModal = (props) => {
             passGLOBAL = lastPass;
             navigate('/transfer');
         }else {
+            setLastPass('')
             setError('Invalid password');
+            setInvalidBadPass('invalid')
             setAlertDisplay('block')
         }
     }
 
     return (
         <Modal
+            className={`password-modal`}
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <h3 className={`modal-title`}>
                     Enter Password
-                </Modal.Title>
+                </h3>
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmitPassword}>
                     <Form.Group className="mb-3" controlId="formBasicPasswordAgain">
-                        <Form.Label>pass</Form.Label>
                         <Form.Control
+                            className={`modal-input ${invalidBadPass}`}
                             type="password"
-                            placeholder="insert again"
+                            placeholder="INSERT AGAIN"
                             onChange={event => setLastPass(event.target.value)}
                         />
                     </Form.Group>
 
-                    <Alert style={{display:`${alertDisplay}`}} variant="danger">
+                    <p className={`error-modal`} style={{display:`${alertDisplay}`}}>
                         {error}
-                    </Alert>
+                    </p>
 
-                    <Button type={"submit"}>ENTER</Button>
+                    <button className={`modal-button`} type={"submit"}>ENTER</button>
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 };

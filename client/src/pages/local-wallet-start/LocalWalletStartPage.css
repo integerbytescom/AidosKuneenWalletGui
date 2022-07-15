@@ -2,6 +2,7 @@
     background: linear-gradient(0deg, rgba(202, 228, 222, 0.2), rgba(202, 228, 222, 0.2)), #FFFFFF;
 }
 .shape-lw{
+    width: 70%;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -14,12 +15,13 @@
 }
 
 .lw-start-page-content{
-    width: 60%;
+    max-width: 660px;
     display: flex;
     flex-wrap: wrap;
     position: absolute;
-    top: 12%;
+    top: 20%;
     left: 30%;
+    /*background: rgba(10, 83, 190, 0.16);*/
 }
 .lw-start-page-content h2{
     font-weight: 800;
@@ -41,7 +43,7 @@
 .create-lw, .recover-lw{
     display: flex;
     width: 300px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 15px 25px;
     border-radius: 50px;
     text-decoration: none;
@@ -65,4 +67,38 @@
 }
 .recover-lw:hover{
     color: #004034;
+}
+
+
+/*MEDIA*/
+
+/*width*/
+@media screen and (max-width: 1050px){
+    .lw-start-page-content{
+        max-width: 600px;
+        left: 20%;
+    }
+    .lw-start-page-content p{
+        font-size: 14px;
+    }
+    .create-lw, .recover-lw{
+        margin-top: 15px;
+    }
+}
+
+/*height*/
+@media screen and (min-height: 800px){
+    .lw-start-page-content{
+        top: 30%;
+    }
+}
+@media screen and (min-height: 1100px){
+    .lw-start-page-content{
+        top: 37%;
+    }
+}
+@media screen and (max-height: 650px){
+    .lw-start-page-content{
+        top: 10%;
+    }
 }

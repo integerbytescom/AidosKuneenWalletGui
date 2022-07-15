@@ -39,9 +39,10 @@ const PreviewPage = () => {
 
             <img className={`treug-right-img ${anFadeOutS}`} src="./images/preview-page/treug-right.svg" alt=""/>
             <img className={`shape-left-img ${anFadeOutS}`} src="./images/preview-page/shape-left.svg" alt=""/>
+
             <img className={`aid-img ${anFadeLeftOutS}`} src="./images/preview-page/aid.svg" alt=""/>
             <img className={`kun-img ${anFadeRightOutS}`} src="./images/preview-page/kun.svg" alt=""/>
-            <img className={`kun-stipes-img ${anFadeOut2sS}`} src="./images/preview-page/kun-stipes.svg" alt=""/>
+            <img className={`kun-stipes-img ${anFadeOut2sS}`} src="./images/preview-page/kun-stripes.svg" alt=""/>
 
             <a
                 onClick={handleStart}

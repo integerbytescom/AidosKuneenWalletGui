@@ -1,4 +1,5 @@
 .right-lines-ch{
+    width: 35%;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -9,6 +10,12 @@
     position: absolute;
     bottom: 0;
     left: 0;
+}
+.circles-ch{
+    height: 90%;
+}
+.helmet-ch{
+    height: 75%;
 }
 
 .lw-start{
@@ -34,9 +41,21 @@
     justify-content: space-between;
     align-items: center;
     transition: .3s;
+    cursor: pointer;
 }
 .lw-start:hover, .mm-start:hover{
     border: 1px solid #007867;
     color: #007867;
     background: rgba(240, 240, 240, 0.7);
+}
+
+
+/*MEDIA*/
+@media screen and (max-height: 550px){
+    .lw-start{
+        top: 33%;
+    }
+    .mm-start{
+        bottom: 33%;
+    }
 }

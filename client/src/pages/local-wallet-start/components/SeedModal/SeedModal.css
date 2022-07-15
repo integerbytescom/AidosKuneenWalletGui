@@ -11,3 +11,10 @@
     font-size: 14px;
     color: #8A8A8A;
 }
+
+.seed-modal .alert-success {
+    background: #F0FBF9;
+    border: none;
+    color: #529a8d;
+    margin-bottom: 20px;
+}

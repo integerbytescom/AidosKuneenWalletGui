@@ -37,14 +37,14 @@ const ChoosePage = () => {
                     className={`lw-start ${anFadeRight1500msS}`}
                     onClick={(e) => chooseLink(e,'/lwstart')}
                 >
-                    LOCAL WALLET <img src="./images/choose-page/arrow-left.svg" alt=""/>
+                    Local wallet <img src="./images/choose-page/arrow-left.svg" alt=""/>
                 </a>
 
                 <a
                     className={`mm-start ${anFadeRight1sS}`}
                     onClick={(e) => chooseLink(e,'/lwstart')}
                     >
-                    METAMASK <img src="./images/choose-page/arrow-left.svg" alt=""/>
+                    Metamask Wallet <img src="./images/choose-page/arrow-left.svg" alt=""/>
                 </a>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Modal,Alert} from "react-bootstrap";
 import PasswordModal from "../PasswordModal/PasswordModal";
+import './SeedModal.css';
 
 
 const SeedModal = (props) => {
@@ -31,15 +32,14 @@ const SeedModal = (props) => {
                 <Alert variant={`success`}>
                     {props.passphrase}
                 </Alert>
-            </Modal.Body>
-            <Modal.Footer>
+
                 <button
                     className={`modal-button`}
                     onClick={handleSeed}
                 >
                     I HAVE STORED THIS IN A SAFE PLACE
                 </button>
-            </Modal.Footer>
+            </Modal.Body>
 
         </Modal>
 
