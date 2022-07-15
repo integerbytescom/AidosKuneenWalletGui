@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Modal,Button,Form,Alert} from "react-bootstrap";
-// import {useNavigate} from "react-router-dom";
 import SeedModal from "../SeedModal/SeedModal";
+import './CreateModal.css';
 
 const CreateModal = (props) => {
 
@@ -16,11 +16,18 @@ const CreateModal = (props) => {
     const [error,setError] = useState('')
     const [alertDisplay,setAlertDisplay] = useState('none')
 
+    //invalid input state
+    const [invalidMinChar,setInvalidMinCha] = useState('')
+    const [invalidBadPass,setInvalidBadPass] = useState('')
+
     const handleCreateNewWallet = async (e) => {
         e.preventDefault()
+        setInvalidMinCha('')
+        setInvalidBadPass('')
         if(password.length < 8){
-            setError('minimum password length 8 characters')
+            setError('Password is too short. Min 8 char.')
             setAlertDisplay('block')
+            setInvalidMinCha('invalid')
             setPassword('')
             setPasswordCopy('')
         }else {
@@ -36,8 +43,9 @@ const CreateModal = (props) => {
                     alert('error')
                 }
             }else {
-                setError('passwords not matched')
+                setError('Passwords not matched')
                 setAlertDisplay('block')
+                setInvalidBadPass('invalid')
                 setPassword('')
                 setPasswordCopy('')
             }
@@ -51,47 +59,43 @@ const CreateModal = (props) => {
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
+            className={`create-modal`}
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
+                <h3 className={`modal-title`}>
                     Create new wallet
-                </Modal.Title>
+                </h3>
             </Modal.Header>
 
             <Modal.Body>
                 <Form onSubmit={handleCreateNewWallet}>
                     <Form.Group className="mb-3">
-                        <Form.Label>creat password</Form.Label>
                         <Form.Control
-                            type="text"
-                            placeholder="creat password"
+                            className={`modal-input ${invalidMinChar}`}
+                            type="password"
+                            placeholder="CREATE PASSWORD"
                             value={password}
                             onChange={event => setPassword(event.target.value)}
                         />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>insert again</Form.Label>
                         <Form.Control
-                            type="text"
-                            placeholder="insert again"
+                            className={`modal-input ${invalidBadPass}`}
+                            type="password"
+                            placeholder="INSERT AGAIN"
                             value={passwordCopy}
                             onChange={event => setPasswordCopy(event.target.value)}
                         />
                     </Form.Group>
 
-                    <Alert style={{display:`${alertDisplay}`}} variant="danger">
+                    <p className={'error-modal'} style={{display:`${alertDisplay}`}} variant="danger">
                         {error}
-                    </Alert>
+                    </p>
 
-                    <Button type={"submit"}>ENTER</Button>
+                    <button className={`modal-button`} type={"submit"}>ENTER</button>
                 </Form>
             </Modal.Body>
-
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
-
 
         </Modal>
 

@@ -1,0 +1,13 @@
+.seed-modal .modal-content{
+    border-radius: 0;
+    border: none;
+    padding: 0 30px 10px;
+}
+.seed-modal .modal-content .modal-header{
+    padding-top: 25px;
+    border-bottom: none;
+}
+.seed-modal p{
+    font-size: 14px;
+    color: #8A8A8A;
+}

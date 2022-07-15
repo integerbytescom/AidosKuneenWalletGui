@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Modal,Button} from "react-bootstrap";
+import {Modal,Alert} from "react-bootstrap";
 import PasswordModal from "../PasswordModal/PasswordModal";
 
 
@@ -15,26 +15,30 @@ const SeedModal = (props) => {
     return (
         <>
         <Modal
+            className={`seed-modal`}
             {...props}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Seed
-                </Modal.Title>
+                <h3 className={`modal-title`}>
+                    Your seed
+                </h3>
             </Modal.Header>
             <Modal.Body>
-                {props.passphrase}<br />
-                {/*{props.password}*/}
+                <p>Your mnemonic seed. Don’t share it with anyone.</p>
+                <Alert variant={`success`}>
+                    {props.passphrase}
+                </Alert>
             </Modal.Body>
             <Modal.Footer>
-                <Button
+                <button
+                    className={`modal-button`}
                     onClick={handleSeed}
                 >
-                    i have stored this seed in a safe place
-                </Button>
+                    I HAVE STORED THIS IN A SAFE PLACE
+                </button>
             </Modal.Footer>
 
         </Modal>
