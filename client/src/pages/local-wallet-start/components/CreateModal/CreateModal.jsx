@@ -73,7 +73,7 @@ const CreateModal = (props) => {
                         <Form.Control
                             className={`modal-input ${invalidMinChar}`}
                             type="password"
-                            placeholder="CREATE PASSWORD"
+                            placeholder="Create password"
                             value={password}
                             onChange={event => setPassword(event.target.value)}
                         />
@@ -83,7 +83,7 @@ const CreateModal = (props) => {
                         <Form.Control
                             className={`modal-input ${invalidBadPass}`}
                             type="password"
-                            placeholder="INSERT AGAIN"
+                            placeholder="Insert again"
                             value={passwordCopy}
                             onChange={event => setPasswordCopy(event.target.value)}
                         />

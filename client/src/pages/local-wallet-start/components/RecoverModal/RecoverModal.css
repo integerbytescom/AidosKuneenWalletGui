@@ -1,0 +1,9 @@
+.recover-modal .modal-content{
+    border-radius: 7px;
+    border: none;
+    padding: 0 30px 10px;
+}
+.recover-modal .modal-content .modal-header{
+    padding-top: 25px;
+    border-bottom: none;
+}

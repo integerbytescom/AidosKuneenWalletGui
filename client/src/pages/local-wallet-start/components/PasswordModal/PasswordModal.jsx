@@ -50,7 +50,7 @@ const PasswordModal = (props) => {
                         <Form.Control
                             className={`modal-input ${invalidBadPass}`}
                             type="password"
-                            placeholder="INSERT AGAIN"
+                            placeholder="Insert again"
                             onChange={event => setLastPass(event.target.value)}
                         />
                     </Form.Group>

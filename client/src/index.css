@@ -35,6 +35,7 @@ h3.modal-title{
 
 /*input for all modals*/
 .modal-input{
+    border-radius: 5px;
     margin-top: 5px;
     padding: 12px 15px;
     border: 1px solid #9F9F9F;
