@@ -1,5 +1,6 @@
 :root{
     --color-white:#FFF;
+    --bg-dark:#12131F;
 }
 
 body{
@@ -24,48 +25,4 @@ button,a{
     justify-content: center;
     align-items: center;
     overflow: hidden;
-}
-
-/*h3 for all modals*/
-h3.modal-title{
-    font-weight: 800;
-    font-size: 28px;
-    color: #434343;
-}
-
-/*input for all modals*/
-.modal-input{
-    border-radius: 5px;
-    margin-top: 5px;
-    padding: 12px 15px;
-    border: 1px solid #9F9F9F;
-}
-.modal-input:focus{
-    border: 1px solid #007867;
-    box-shadow: none;
-}
-.modal-input.invalid{
-    border: 1px solid #D70000;
-}
-
-/*button for all modals*/
-.modal-button{
-    background: none;
-    border: none;
-    color: #007867;
-    font-weight: 700;
-    transition: .3s;
-}
-.modal-button:hover,
-.modal-button:active,
-.modal-button:focus{
-    opacity: .8;
-}
-
-/*error modal p*/
-p.error-modal{
-    margin-top: -10px;
-    font-weight: 500;
-    font-size: 18px;
-    color: #D70000;
 }
