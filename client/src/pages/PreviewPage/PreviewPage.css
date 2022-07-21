@@ -1,0 +1,94 @@
+.preview-page .block-container{
+    background-color: var(--bg-dark);
+}
+
+/*waves and shadow images*/
+.waves-preview{
+    position: absolute;
+    width: 100%;
+    top: -5%;
+    left: 0;
+    z-index: 1;
+}
+.shadow-waves-preview{
+    position: absolute;
+    width: 100%;
+    top: 5%;
+    z-index: 1;
+}
+
+/*wallet and his shadow images*/
+.wallet-preview{
+    position: absolute;
+    top: 25%;
+    z-index: 2;
+}
+
+.shadow-preview{
+    position: absolute;
+    top: -5%;
+    left: 29%;
+    z-index: 1;
+}
+
+.wallet-shadow-container{
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+
+/*animations*/
+.shadow-preview.shd{
+    animation: shd 10s infinite;
+    transform: rotate(-10deg);
+}
+.shadow-preview.shd1{
+    animation: shd1 10s infinite;
+    transform: rotate(10deg);
+}
+
+@keyframes shd {
+    0% {
+        opacity:1;
+    }
+    50%{
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+@keyframes shd1 {
+    0% {
+        opacity:0;
+    }
+    50%{
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+
+/* link */
+.link-preview{
+    position: absolute;
+    bottom: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: 300;
+    width: 180px;
+    padding: 10px 20px;
+    z-index: 2;
+    background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
+    border-radius: 79px;
+    transition: .3s;
+}
+.link-preview:hover{
+    color: var(--color-white);
+    padding-right: 10px;
+}
+
