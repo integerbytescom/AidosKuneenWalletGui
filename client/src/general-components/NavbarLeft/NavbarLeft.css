@@ -1,0 +1,65 @@
+.navbar-left{
+    width: 160px;
+    height: 100vh;
+    z-index: 100;
+    position: absolute;
+    background: var(--bg-nav-left);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+    padding: 25px 0 15px;
+}
+
+.navbar-left header{
+    width: 100%;
+    display: inherit;
+    justify-content: inherit;
+    flex-wrap: inherit;
+}
+
+.navbar-left header .logo{
+    width: 90%;
+    padding-bottom:25px;
+    border-bottom: 1px solid #43444E;
+    display: inherit;
+    justify-content: inherit;
+}
+
+.ai-logo{
+    margin-right: 15px;
+}
+
+.navbar-left header .menu{
+    margin-top: 10px;
+    display: inherit;
+    flex-wrap: inherit;
+}
+.navbar-left header .menu a,
+.navbar-left footer a{
+    width: 100%;
+    font-size: 15px;
+    color: var(--color-white);
+    text-decoration: none;
+    padding: 10px 0 10px 25px;
+    display: flex;
+    align-content: center;
+    transition: .3s;
+    opacity: .6;
+}
+.navbar-left header .menu a img,
+.navbar-left footer a img{
+    margin-right: 12px;
+ }
+
+.navbar-left header .menu a:hover,
+.navbar-left footer a:hover{
+    opacity: 1;
+    background: #312f2f;
+}
+
+.navbar-left footer{
+    width: 100%;
+    display: inherit;
+    flex-wrap: inherit;
+}

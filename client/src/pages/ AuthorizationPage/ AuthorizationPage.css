@@ -1,0 +1,45 @@
+.authorization-page .block-container{
+    background-color: var(--bg-dark);
+}
+
+.waves-auth{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.auth-content{
+    position: absolute;
+    top: 24%;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.auth-content img{
+    margin-right: 100px;
+}
+.auth-content .buttons-container{
+    width: 175px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.auth-content .buttons-container button{
+    width: inherit;
+    margin-top: 15px;
+    padding: 8px 0;
+    border: none;
+    font-size: 14px;
+    color: var(--color-white);
+    background: var(--bg-nav-left);
+    border-radius: 50px;
+    transition: .3s;
+}
+.auth-content .buttons-container button.blue{
+    background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
+}
+.auth-content .buttons-container button:hover{
+    opacity: .7;
+}
