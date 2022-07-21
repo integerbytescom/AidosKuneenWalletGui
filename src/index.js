@@ -5,6 +5,9 @@ const util = require('util')
 const exec = util.promisify(require("child_process").exec)
 const fs = require('fs')
 const fsProm = require("fs/promises")
+const cc = require("cryptocompare")
+const fetch = require("node-fetch");
+global.fetch = require("node-fetch")
 
 process.env.NODE_ENV = "production"
 
@@ -60,7 +63,9 @@ app.on('ready', () => {
   ipcMain.handle("migrate", migrate);
   ipcMain.handle("totalbalance", totalBalance);
   ipcMain.handle("loadTxsHistory", loadTxsHistory);
-  ipcMain.handle("loadMetamaskMnemonics", loadMetamaskMnemonics)
+  ipcMain.handle("loadMetamaskMnemonics", loadMetamaskMnemonics);
+  ipcMain.handle("getHistoricalDataForADK", getHistoricalDataForADK);
+  ipcMain.handle("getAdkPrices",getAdkPrices);
   createWindow()
 });
 
@@ -449,6 +454,35 @@ const multisend = async (evt, way, mempas, to, amount) => {
     writeLog(e);
     console.log(e);
   }
+}
+
+// Далее идут взаимодействия с внешними API
+cc.setApiKey("a825a2d13195e4c2ddf536fd2e16ab8516d961e56b5b526d04cf6b4342d1dcd1")
+
+const getAdkPrices = async () => {
+  return await cc.price("ADK", ["USD", "EUR", "RUB", "AED", "UAH", "BYN"])
+}
+
+const getHistoricalDataForADK = async () => {
+  const date = new Date(),
+      year = date.getFullYear(),
+      month = date.getMonth(),
+      day = date.getDay();
+  const now = +(new Date((Date.UTC(year, month, day))).getTime()).toString().slice(0, 10)
+  const monthAgo = new Date(now - 86400*30).getTime()
+  const resp = await fetch(`https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=1706&convertId=2781&timeStart=${monthAgo}&timeEnd=${now}`, {
+    method: "get",
+    headers: {
+      "User-Agent": "PostmanRuntime/7.29.0",
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate, br"
+    }
+  })
+  const data = (await resp.json())
+      .data
+      .quotes
+      .map( (day) => day.quote.open)
+  return data
 }
 
 /*

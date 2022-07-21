@@ -42,7 +42,9 @@
     }
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "cryptocompare": "^1.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.64",
