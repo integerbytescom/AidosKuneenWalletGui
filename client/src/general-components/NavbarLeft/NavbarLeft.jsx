@@ -1,11 +1,11 @@
 import React from 'react';
 import './NavbarLeft.css';
 import {Link} from 'react-router-dom';
-import {anFadeLeft} from "../../animations";
+import {anFadeLeft2s} from "../../animations";
 
 const NavbarLeft = () => {
     return (
-        <nav className={`navbar-left ${anFadeLeft}`}>
+        <nav className={`navbar-left ${anFadeLeft2s}`}>
             <header>
                 <div className="logo">
                     <img className={'ai-logo'} src="./images/navbar-left/logo.svg" alt=""/>
