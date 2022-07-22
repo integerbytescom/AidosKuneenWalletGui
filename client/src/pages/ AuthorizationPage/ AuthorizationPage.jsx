@@ -1,15 +1,24 @@
 import React,{useState} from 'react';
 import './ AuthorizationPage.css';
-import {anFade1s, anFadeSlow} from "../../animations";
+import {anFade1s, anFadeOut, anFadeSlow} from "../../animations";
+import {useNavigate} from "react-router-dom";
 
 const AuthorizationPage = () => {
+
+    const navigate = useNavigate()
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fade1s,setFade1s] = useState(anFade1s)
 
-    //кошелек
-    //кнопки
-    //меню
+    const handleCreate = () => {
+        setFadeSlow(anFadeOut)
+        setFade1s(anFadeOut)
+        setTimeout(() => navigatePage('/createWallet'),1000)
+    }
+
+    const navigatePage = (url) => {
+        navigate(url)
+    }
 
     return (
         <>
@@ -22,7 +31,7 @@ const AuthorizationPage = () => {
                     <img className={`card-auth ${fadeSlow}`} src="./images/auth-page/card2.png" alt={``}/>
 
                     <div className={`buttons-container ${fade1s}`}>
-                        <button className={`blue`}>Create wallet</button>
+                        <button className={`blue`} onClick={handleCreate}>Create wallet</button>
                         <button>Enter Seed</button>
                         <button>Connect MetaMask</button>
                     </div>
