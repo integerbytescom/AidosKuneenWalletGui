@@ -1,11 +1,12 @@
 :root{
     --color-white: rgba(255, 255, 255, 0.65);
-    --bg-dark:#12131F;
-    --bg-nav-left:#1F2028;
+    --bg-dark: #12131F;
+    --bg-nav-left: #090A1C;
 }
 
 body{
     overflow: hidden;
+    background: var(--bg-dark);
 }
 
 *{
@@ -13,6 +14,11 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+h2{
+    color: var(--color-white);
+    font-size: 18px;
 }
 
 button,a{
