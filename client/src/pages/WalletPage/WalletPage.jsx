@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './WalletPage.css';
-import {anFade, anFade1s} from "../../animations";
+import {anFade, anFade1s, anFadeUp} from "../../animations";
+import LatestTransactions from "./components/LatestTransactions/LatestTransactions";
 
 const WalletPage = () => {
 
@@ -25,6 +26,7 @@ const WalletPage = () => {
                     </div>
                 </div>
 
+                <LatestTransactions />
             </div>
         </div>
     );

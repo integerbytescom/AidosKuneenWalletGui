@@ -1,5 +1,5 @@
 :root{
-    --color-white: rgba(255, 255, 255, 0.65);
+    --color-white: rgb(255, 255, 255);
     --bg-dark: #12131F;
     --bg-nav-left: #090A1C;
 }
