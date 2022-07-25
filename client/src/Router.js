@@ -8,6 +8,7 @@ import ShowSeedPage from "./pages/ShowSeedPage/ShowSeedPage";
 import ConfirmSeed from "./pages/ConfirmSeed/ConfirmSeed";
 import ConfirmPassword from "./pages/ConfimPassword/ConfimPassword";
 import WalletPage from "./pages/WalletPage/WalletPage";
+import Send from "./pages/WalletPage/components/Send/Send";
 
 
 const Router = () => {
@@ -25,6 +26,7 @@ const Router = () => {
                 <Route path='/confirmSeed' element={ <ConfirmSeed /> } />
                 <Route path='/confirmPass' element={ <ConfirmPassword /> } />
                 <Route path='/wallet' element={ <WalletPage /> } />
+                <Route path='/send' element={ <Send /> } />
             </Routes>
         </div>
     );

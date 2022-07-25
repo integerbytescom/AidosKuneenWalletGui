@@ -1,15 +1,27 @@
 import React, {useState} from 'react';
 import './WalletPage.css';
-import {anFade, anFade1s, anFadeUp} from "../../animations";
+import {anFade, anFade1s, anFadeOut} from "../../animations";
 import LatestTransactions from "./components/LatestTransactions/LatestTransactions";
+import {useNavigate} from "react-router-dom";
 
 const WalletPage = () => {
 
+    const [fadeExit,setFadeExit] = useState('')
     const [fade,setFade] = useState(anFade)
     const [fade1s,setFade1s] = useState(anFade1s)
 
+    const navigate = useNavigate()
+
+    const handleCloseWallet = (url) =>{
+        setFadeExit(anFadeOut)
+        setTimeout(() => navigateRoute(url),1000)
+    }
+    const navigateRoute = (url) =>{
+        navigate(url)
+    }
+
     return (
-        <div className={`wallet-page`}>
+        <div className={`wallet-page ${fadeExit}`}>
             <div className={`block-container`}>
                 <img className={`wal-waves-shd ${fade}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
 
@@ -21,7 +33,7 @@ const WalletPage = () => {
                     </div>
 
                     <div className="butt-container">
-                        <button>Send</button>
+                        <button onClick={() => handleCloseWallet('/send')}>Send</button>
                         <button>Receive</button>
                     </div>
                 </div>

@@ -36,6 +36,10 @@
 }
 
 /*container for buttons*/
+.butt-container button a{
+    text-decoration: none;
+    color: inherit;
+}
 .butt-container button{
     width: 165px;
     font-size: 13px;
