@@ -18,7 +18,7 @@ const NavbarLeft = () => {
                 </div>
 
                 {/*wallet page check*/}
-                {path === '/wallet' || path === '/send'?
+                {path.startsWith('/wallet')?
                     <div className={`nav-bal-stack ${fade}`}>
                         <div>
                             <p>Total balance</p>
@@ -44,7 +44,7 @@ const NavbarLeft = () => {
                 <Link to={`/auth`}><img src="./images/navbar-left/settings.svg" alt=""/> Settings</Link>
 
                 {/*wallet page check*/}
-                {path === '/wallet' || path === '/send'?
+                {path.startsWith('/wallet')?
                     <div className={`logout-but-cont ${fade}`}>
                         <hr/>
                         <Link to={`/auth`}> <img src="./images/navbar-left/log-out.svg" alt=""/> Log out</Link>

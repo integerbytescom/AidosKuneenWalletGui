@@ -107,33 +107,40 @@
     margin-right: 50px;
 }
 
-.latest-transactions footer{
+.latest-transactions footer,
+.receive footer{
     padding: 15px 0 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.latest-transactions footer p{
+.latest-transactions footer p,
+.receive footer p{
     color: #A9A9A9;
     font-size: 12px;
     margin: 0;
     padding: 0;
 }
 
-.latest-transactions footer button {
+.latest-transactions footer button,
+.receive footer button{
     cursor: pointer;
     background: none;
     border: none;
 }
-.latest-transactions footer button.left{
+.latest-transactions footer button.left,
+.receive footer button.left{
     margin-right: 10px;
 }
-.latest-transactions footer button.left img{
+.latest-transactions footer button.left img,
+.receive footer button.left img{
     transform: rotate(180deg);
 }
-.latest-transactions footer button.right{
+.latest-transactions footer button.right,
+.receive footer button.right img{
     margin-left: 10px;
 }
-.latest-transactions footer button:disabled{
+.latest-transactions footer button:disabled,
+.receive footer button:disabled{
     opacity: .3;
 }

@@ -33,8 +33,8 @@ const WalletPage = () => {
                     </div>
 
                     <div className="butt-container">
-                        <button onClick={() => handleCloseWallet('/send')}>Send</button>
-                        <button>Receive</button>
+                        <button onClick={() => handleCloseWallet('/wallet/send')}>Send</button>
+                        <button onClick={() => handleCloseWallet('/wallet/receive')}>Receive</button>
                     </div>
                 </div>
 

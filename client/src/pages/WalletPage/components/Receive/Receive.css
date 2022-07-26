@@ -1,0 +1,79 @@
+.rec-container{
+    width: 350px;
+    position: absolute;
+    top: 12%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.rec-container img{
+    margin-bottom: 40px;
+}
+
+.rec-code-container{
+    width: 100%;
+    padding: 3px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #3b3b3b;
+}
+.rec-code-container .code p{
+    color: #04CA73;
+    font-size: 13px;
+    margin: -2px 0 0 0;
+    padding: 0;
+}
+.rec-code-container .copy img{
+    margin: -5px 0 0 0;
+}
+
+.rec-button-container{
+    margin-top: 20px;
+}
+.rec-button-container button{
+    font-size: 11px;
+    margin: 0 10px;
+    background: none;
+    border: none;
+    color: var(--color-white);
+    opacity: .6;
+    transition: .3s;
+}
+.rec-button-container button:hover{
+    opacity: 1;
+}
+
+.rec-transactions{
+    width: calc(100% - 160px);
+    height: 60vh;
+    padding: 0 20px;
+    position: absolute;
+    bottom: 0;
+    left: 160px;
+}
+/*header*/
+.rec-transactions header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.rec-transactions header h3{
+    margin-left: 10px;
+    font-weight: 400;
+    color: var(--color-white);
+    font-size: 16px;
+}
+.rec-transactions header h2{
+    color: #04CA73;
+    font-weight: 300;
+    font-size: 30px;
+}
+
+.rec-transactions footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-right: 40px;
+}

@@ -21,11 +21,11 @@ const Send = () => {
         <div className={`send ${fade}`}>
 
             <button onClick={handleCloseSend} className={`close-button`}>
-                <img src="./images/x.svg" alt=""/>
+                <img src="./images/x.svg" alt="close"/>
             </button>
 
             <div className="send-content">
-                <img src="./images/wallet-page/logoKrug.svg" alt=""/>
+                <img src="./images/wallet-page/logoKrug.svg" alt="logoAidos"/>
 
                 <form className="form-create-pass">
                     <div className="container-cp-inp">

@@ -9,6 +9,9 @@ import ConfirmSeed from "./pages/ConfirmSeed/ConfirmSeed";
 import ConfirmPassword from "./pages/ConfimPassword/ConfimPassword";
 import WalletPage from "./pages/WalletPage/WalletPage";
 import Send from "./pages/WalletPage/components/Send/Send";
+import Receive from "./pages/WalletPage/components/Receive/Receive";
+import RecoverSeed from "./pages/RecoverSeed/RecoverSeed";
+import CreatePassword from "./pages/CreatePassword/CreatePassword";
 
 
 const Router = () => {
@@ -25,8 +28,11 @@ const Router = () => {
                 <Route path='/showSeed' element={ <ShowSeedPage /> } />
                 <Route path='/confirmSeed' element={ <ConfirmSeed /> } />
                 <Route path='/confirmPass' element={ <ConfirmPassword /> } />
+                <Route path='/recoverSeed' element={ <RecoverSeed /> } />
+                <Route path='/createPass' element={ <CreatePassword /> } />
                 <Route path='/wallet' element={ <WalletPage /> } />
-                <Route path='/send' element={ <Send /> } />
+                <Route path='/wallet/send' element={ <Send /> } />
+                <Route path='/wallet/receive' element={ <Receive /> } />
             </Routes>
         </div>
     );
