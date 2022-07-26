@@ -7,7 +7,7 @@ const AuthorizationPage = () => {
 
     const navigate = useNavigate()
 
-    const [user] = useState(true)
+    const [user] = useState(false)
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fade1s,setFade1s] = useState(anFade1s)

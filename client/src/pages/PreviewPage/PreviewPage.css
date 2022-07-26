@@ -80,6 +80,7 @@
     text-decoration: none;
     color: var(--color-white);
     font-weight: 300;
+    font-size: 13px;
     width: 180px;
     padding: 10px 20px;
     z-index: 2;

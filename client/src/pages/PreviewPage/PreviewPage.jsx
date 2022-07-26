@@ -29,7 +29,7 @@ const PreviewPage = () => {
                 <img className={`waves-preview ${fadeSlow}`} src="./images/preview-page/waves.svg" alt="waves"/>
                 <img className={`shadow-waves-preview`} src="./images/preview-page/shadow-waves.svg" alt="waves"/>
 
-                <img className={`wallet-preview ${fade1s}`} src="./images/preview-page/wallet.svg" alt="wallet"/>
+                <img className={`wallet-preview ${fade1s}`} src="./images/preview-page/wallet.png" alt="wallet"/>
                 {/*shadow wallet*/}
                 <div className={`wallet-shadow-container ${fade2sSlow}`}>
                     <img className={`shadow-preview shd`} src="./images/preview-page/shadows-wallet/shadow.svg" alt={``}/>

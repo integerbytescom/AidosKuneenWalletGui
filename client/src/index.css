@@ -26,6 +26,8 @@ h2{
 
 button,a{
     cursor: pointer;
+    font-size: 13px;
+    font-weight: 300;
 }
 
 .block-container{

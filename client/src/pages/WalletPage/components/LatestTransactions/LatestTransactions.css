@@ -6,7 +6,7 @@
     height: 95vh;
     background: var(--bg-dark);
     z-index: 10;
-    transition: .3s;
+    transition-duration: 0.4s
 }
 .latest-transactions.hide{
     bottom: -50vh;
@@ -87,7 +87,7 @@
     margin: 0;
 }
 .transactions .trans-container h2.red{
-    color: #E36363;
+    color: #FF9F9F;
 }
 .transactions .trans-container h2.green{
     color: #04CA73;

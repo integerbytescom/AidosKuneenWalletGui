@@ -38,7 +38,7 @@ const CreateWalletPage = () => {
                 </div>
 
                 <div className={`form-pass-container ${fadeLeft}`}>
-                    <h2>Create new wallet</h2>
+                    <h2>Create password</h2>
                     <form className="form-create-pass">
                         <div className="container-cp-inp">
                             <input type="password" placeholder={`create password`} />

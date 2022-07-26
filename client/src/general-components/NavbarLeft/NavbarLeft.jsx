@@ -34,7 +34,7 @@ const NavbarLeft = () => {
 
                 <div className="menu">
                     <Link to={`/auth`}><img src="./images/navbar-left/credit-card.svg" alt=""/> Wallet</Link>
-                    <Link to={`/auth`}><img src="./images/navbar-left/database.svg" alt=""/> Portfolio</Link>
+                    <Link to={`/auth`}><img src="./images/navbar-left/database.svg" alt=""/> Overview</Link>
                     <Link to={`/auth`}><img src="./images/navbar-left/edit-3.svg" alt=""/> About us</Link>
                     <Link to={`/auth`}><img src="./images/navbar-left/book.svg" alt=""/> F.A.Q.</Link>
                 </div>
