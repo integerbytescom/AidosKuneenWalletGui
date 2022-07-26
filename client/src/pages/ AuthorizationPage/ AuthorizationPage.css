@@ -43,11 +43,11 @@
 }
 .auth-content .buttons-container button:hover{
     background: #3c4348;
-    box-shadow: 0 0 10px #3c4348;
+    opacity: .7;
 }
 .auth-content .buttons-container button.blue:hover{
+    opacity: .7;
     background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
-    box-shadow: 0 0 10px #0086FB;
 }
 
 .hr-or{
