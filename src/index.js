@@ -62,7 +62,7 @@ app.on('ready', () => {
   ipcMain.handle("totalbalance", totalBalance);
   ipcMain.handle("loadTxsHistory", loadTxsHistory);
   ipcMain.handle("loadMetamaskMnemonics", loadMetamaskMnemonics);
-  ipcMain.handle("getHistoricalDataForADK", getHistoricalDataForADK);
+  ipcMain.handle("getHistoricalDataForCoin", getHistoricalDataForCoin);
   ipcMain.handle("getAdkPrices",getAdkPrices);
   createWindow()
 });
@@ -423,12 +423,15 @@ const multisend = async (evt, way, mempas, to, amount) => {
             data: null
           })
     }
+
+    const mainAdr = Object.values(balTable)[0]
+
     const txs = []
     let leftToSend = amount;
     for (let adr in balTable) {
       const sum = balTable[adr]
       if (leftToSend >= sum) {
-        const json = await send(evt, way, mempas, adr, to, sum)
+        const json = await send(evt, way, mempas, adr, mainAdr, sum)
         const resp = JSON.parse(json)
         if (resp.ok) {
           leftToSend -= sum
@@ -436,18 +439,15 @@ const multisend = async (evt, way, mempas, to, amount) => {
         } else return sendError
       } else if (leftToSend < sum) {
         const part = sum - leftToSend;
-        const json = await send(evt, way, mempas, adr, to, part)
+        const json = await send(evt, way, mempas, adr, mainAdr, part)
         const resp = JSON.parse(json)
         if (resp.ok) {
           txs.push(resp.data[0])
-          return JSON.stringify({
-            ok: true,
-            msg: "sending was successful",
-            data: txs
-          })
         } else return sendError
       }
     }
+    const result = await send(evt, way, mempas, mainAdr, to, amount)
+    return result
   } catch (e) {
     writeLog(e);
     console.log(e);
@@ -461,14 +461,23 @@ const getAdkPrices = async () => {
   return await cc.price("ADK", ["USD", "EUR", "RUB", "AED", "UAH", "BYN"])
 }
 
-const getHistoricalDataForADK = async () => {
+const getHistoricalDataForCoin = async (ticket) => {
+  const tickets = {
+    ADK: 1706,
+    ETH: 1027,
+    BTC: 1,
+    BNB: 1839,
+    SOL: 5426,
+    DOGE: 74,
+    DOT: 6636
+  }
   const date = new Date(),
       year = date.getFullYear(),
       month = date.getMonth(),
       day = date.getDay();
   const now = +(new Date((Date.UTC(year, month, day))).getTime()).toString().slice(0, 10)
   const monthAgo = new Date(now - 86400*30).getTime()
-  const resp = await fetch(`https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=1706&convertId=2781&timeStart=${monthAgo}&timeEnd=${now}`, {
+  const resp = await fetch(`https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=${tickets[ticket]}&convertId=2781&timeStart=${monthAgo}&timeEnd=${now}`, {
     method: "get",
     headers: {
       "User-Agent": "PostmanRuntime/7.29.0",
@@ -482,6 +491,8 @@ const getHistoricalDataForADK = async () => {
       .map( (day) => day.quote.open)
   return data
 }
+
+
 
 /*
 {
