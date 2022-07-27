@@ -13,6 +13,7 @@ import Receive from "./pages/WalletPage/components/Receive/Receive";
 import RecoverSeed from "./pages/RecoverSeed/RecoverSeed";
 import CreatePassword from "./pages/CreatePassword/CreatePassword";
 import Overview from "./pages/WalletPage/components/Overview/Overview";
+import Staking from "./pages/WalletPage/components/Staking/Staking";
 
 
 const Router = () => {
@@ -35,6 +36,7 @@ const Router = () => {
                 <Route path='/wallet/send' element={ <Send /> } />
                 <Route path='/wallet/receive' element={ <Receive /> } />
                 <Route path='/wallet/overview' element={ <Overview /> } />
+                <Route path='/wallet/staking' element={ <Staking /> } />
             </Routes>
         </div>
     );

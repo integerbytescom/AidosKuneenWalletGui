@@ -1,0 +1,56 @@
+.graph-container{
+    position: absolute;
+    left: 200px;
+    top: 30%;
+}
+.value-change{
+    position: absolute;
+    left: 220px;
+    top: 15%;
+    display: flex;
+}
+.buttons-date{
+    position: absolute;
+    left: 220px;
+    bottom: 20%;
+    display: flex;
+}
+.buttons-date button{
+    color: var(--color-white-opac-3);
+    background: var(--color-white-opac-1);
+    padding: 3px 18px;
+    margin-right: 10px;
+    border: none;
+    transition: .3s;
+}
+.buttons-date button:hover{
+    color: var(--color-white-opac-7);
+    background: var(--color-white-opac-2);
+}
+
+.value-change .change{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-left: 20px;
+}
+.value-change .dollar h2{
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0;
+}
+.value-change .dollar p,
+.value-change .change p{
+    color: #FFFFFF;
+    opacity: 0.8;
+    font-size: 12px;
+    font-weight: 300;
+}
+.value-change .change h3{
+    width: 100%;
+    color: var(--color-green-04c);
+    opacity: 0.8;
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0;
+}

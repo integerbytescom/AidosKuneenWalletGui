@@ -1,13 +1,9 @@
-import React, {useState} from 'react';
-import './WalletPage.css';
-import LatestTransactions from "./components/LatestTransactions/LatestTransactions";
-import WalletBalance from "./components/WalletBalance/WalletBalance";
+import React,{useState} from 'react';
+import WalletBalance from "../WalletBalance/WalletBalance";
+import LatestTransactions from "../LatestTransactions/LatestTransactions";
 import {useLocation} from "react-router-dom";
 
-const WalletPage = () => {
-
-    const path = useLocation().pathname;
-    console.log(path,'PATHHHH')
+const Staking = () => {
 
     const [fadeExit,setFadeExit] = useState('')
 
@@ -22,4 +18,4 @@ const WalletPage = () => {
     );
 };
 
-export default WalletPage;
+export default Staking;
