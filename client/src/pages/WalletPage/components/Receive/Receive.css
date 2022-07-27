@@ -1,5 +1,5 @@
 .rec-container{
-    width: 350px;
+    width: 360px;
     position: absolute;
     top: 12%;
     display: flex;
@@ -22,11 +22,11 @@
 .rec-code-container .code p{
     color: #04CA73;
     font-size: 13px;
-    margin: -2px 0 0 0;
+    margin: 0 0 0 0;
     padding: 0;
 }
 .rec-code-container .copy img{
-    margin: -5px 0 0 0;
+    margin: -4px 0 0 5px;
 }
 
 .rec-button-container{
