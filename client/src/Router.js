@@ -12,6 +12,7 @@ import Send from "./pages/WalletPage/components/Send/Send";
 import Receive from "./pages/WalletPage/components/Receive/Receive";
 import RecoverSeed from "./pages/RecoverSeed/RecoverSeed";
 import CreatePassword from "./pages/CreatePassword/CreatePassword";
+import Overview from "./pages/WalletPage/components/Overview/Overview";
 
 
 const Router = () => {
@@ -33,6 +34,7 @@ const Router = () => {
                 <Route path='/wallet' element={ <WalletPage /> } />
                 <Route path='/wallet/send' element={ <Send /> } />
                 <Route path='/wallet/receive' element={ <Receive /> } />
+                <Route path='/wallet/overview' element={ <Overview /> } />
             </Routes>
         </div>
     );
