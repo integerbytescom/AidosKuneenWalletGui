@@ -1,0 +1,146 @@
+.latest-transactions{
+    position: absolute;
+    right: 0;
+    padding: 0 20px;
+    width: calc(100% - 160px);/*menu width*/
+    height: 95vh;
+    background: var(--bg-dark);
+    z-index: 10;
+    transition-duration: 0.4s
+}
+.latest-transactions.hide{
+    bottom: -50vh;
+}
+.latest-transactions.show{
+    bottom: 0;
+}
+
+/*header with buttons*/
+.latest-transactions header{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+}
+.latest-transactions header h3{
+    font-size: 16px;
+    color: var(--color-white);
+    margin: 0;
+}
+.latest-transactions header p{
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--color-white);
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-white);
+    transition: .3s;
+    margin: 0;
+}
+.latest-transactions header p:hover{
+    border-bottom: 1px solid #22F297;
+}
+
+
+/*block with buttons sto page all sent receive*/
+.latest-transactions .set-page{
+    display: flex;
+}
+.latest-transactions .set-page p{
+    opacity: .2;
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--color-white);
+    cursor: pointer;
+    border-bottom: 1px solid var(--color-white);
+    transition: .3s;
+}
+.latest-transactions .set-page p.active{
+    opacity: 1;
+}
+.latest-transactions .set-page p.last{
+    width: 90%;
+}
+
+.transactions{
+    width: 100%;
+    height: 77%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.transactions .trans-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 7px 14px;
+}
+.transactions .trans-container p{
+    font-weight: 300;
+    margin: 0;
+    font-size: 11px;
+    color: var(--color-white);
+    opacity: .7;
+}
+.transactions .trans-container h2{
+    font-weight: 300;
+    font-size: 15px;
+    margin: 0;
+}
+.transactions .trans-container h2.red{
+    color: #FF9F9F;
+}
+.transactions .trans-container h2.green{
+    color: #04CA73;
+}
+
+.transactions .trans-container:nth-child(odd){
+    background: #1B1C26;
+}
+.transactions .trans-container .from-to,
+.transactions .trans-container .dollar-adk{
+    display: flex;
+    align-items: center;
+}
+
+.transactions .trans-container .dollar,
+.transactions .trans-container .from{
+    margin-right: 50px;
+}
+
+.latest-transactions footer,
+.receive footer{
+    padding: 15px 0 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.latest-transactions footer p,
+.receive footer p{
+    color: #A9A9A9;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.latest-transactions footer button,
+.receive footer button{
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+.latest-transactions footer button.left,
+.receive footer button.left{
+    margin-right: 10px;
+}
+.latest-transactions footer button.left img,
+.receive footer button.left img{
+    transform: rotate(180deg);
+}
+.latest-transactions footer button.right,
+.receive footer button.right img{
+    margin-left: 10px;
+}
+.latest-transactions footer button:disabled,
+.receive footer button:disabled{
+    opacity: .3;
+}

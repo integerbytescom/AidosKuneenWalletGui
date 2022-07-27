@@ -1,0 +1,84 @@
+.create-wallet-page .block-container{
+    background-color: var(--bg-dark);
+}
+
+.close-button{
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: none;
+    border: none;
+}
+
+/*dots*/
+.dots-create{
+    position: absolute;
+    top: 20%;
+    display: flex;
+}
+.dots-create .dot{
+    width: 5px;
+    height: 5px;
+    background: #3A3A3A;
+    border-radius: 5px;
+    margin: 0 12px;
+}
+.dots-create .dot.active{
+    background: #04CA73;
+}
+
+/*form container*/
+.form-pass-container{
+    position: absolute;
+    top: 34%;
+}
+
+.form-pass-container h2{
+    color: var(--color-white);
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/*form*/
+.form-create-pass{
+    width: 160px;
+}
+
+/*inputs*/
+.container-cp-inp {
+    position: relative;
+    margin-bottom: 10px;
+}
+.container-cp-inp input {
+    display: block;
+    color: #9d959d;
+    font-size: 12px;
+    width: 100%;
+    padding:5px 0 0 0;
+    line-height: 30px;
+    background: none;
+    border-width: 0;
+    border-bottom: 1px solid #4F4F4F;
+    transition: all 0.2s ease;
+}
+.container-cp-inp input:focus {
+    outline: 0;
+    border-color: #04CA73;
+}
+
+/*button*/
+.form-create-pass button{
+    width: inherit;
+    margin-top: 15px;
+    padding: 6px 0;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-white);
+    background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
+    border-radius: 50px;
+    transition: .3s;
+}
+.form-create-pass button:hover{
+    opacity: .6;
+}

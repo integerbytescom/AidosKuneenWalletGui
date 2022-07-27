@@ -1,0 +1,76 @@
+.authorization-page .block-container{
+    background-color: var(--bg-dark);
+}
+
+.waves-auth{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.auth-content{
+    position: absolute;
+    top: 24%;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+.auth-content img{
+    margin-right: 100px;
+}
+.auth-content .buttons-container{
+    padding:10px;
+    width: 185px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.auth-content .buttons-container button{
+    width: inherit;
+    margin-top: 15px;
+    padding: 6px 0;
+    font-weight: 300;
+    border: none;
+    font-size: 13px;
+    color: #D2D3D4;
+    background: #202129;
+    border-radius: 50px;
+    transition: .3s;
+}
+.auth-content .buttons-container button.blue{
+    background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
+}
+.auth-content .buttons-container button:hover{
+    background: #3c4348;
+    opacity: .7;
+}
+.auth-content .buttons-container button.blue:hover{
+    opacity: .7;
+    background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
+}
+
+.hr-or{
+    width: 100%;
+    height: auto;
+    margin: 40px 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hr-or hr{
+    width: 40%;
+    background: var(--color-white);
+    height: 1px;
+    opacity: .3;
+    margin: 0;
+}
+.hr-or p{
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--color-white);
+    opacity: .3;
+    margin: -4px 0 0 0;
+    padding: 0;
+}
