@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeSlow} from "../../animations";
 
-const ConfirmPassword = () => {
+const ConfirmPassword = (props) => {
 
     const navigate = useNavigate()
 
@@ -28,21 +28,31 @@ const ConfirmPassword = () => {
                     <img src="./images/x.svg" alt=""/>
                 </button>
 
-                <div className={`dots-create ${fadeSlow}`}>
-                    <div className="dot active"></div>
-                    <div className="dot active"></div>
-                    <div className="dot active"></div>
-                    <div className="dot active"></div>
-                </div>
+                {props.path === 'mm'?'':
+                    <div className={`dots-create ${fadeSlow}`}>
+                        <div className="dot active"></div>
+                        <div className="dot active"></div>
+                        <div className="dot active"></div>
+                        <div className="dot active"></div>
+                    </div>
+                }
 
                 <div className={`form-pass-container ${fadeLeft}`}>
-                    <h2>Enter password</h2>
+                    {
+                        props.path === 'mm'?
+                            <h2>MetaMask password</h2>:
+                            <h2>Enter password</h2>
+                    }
                     <form className="form-create-pass">
                         <div className="container-cp-inp">
                             <input type="password" placeholder={`enter password`} />
                         </div>
 
-                        <button className={'dark'} onClick={event => handleConfirmPass('/wallet',event)}>Continue</button>
+                        {
+                            props.path === 'mm'?
+                                <button onClick={event => handleConfirmPass('/wallet',event)}>Enter</button>:
+                                <button className={'dark'} onClick={event => handleConfirmPass('/wallet',event)}>Continue</button>
+                        }
                     </form>
                 </div>
 

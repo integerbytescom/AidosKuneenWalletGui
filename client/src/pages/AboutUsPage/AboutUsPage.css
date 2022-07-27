@@ -1,0 +1,12 @@
+.about-us-page{
+    position: absolute;
+    width: calc(100% - 160px);
+    height: 100vh;
+    left: 160px;
+    overflow-y: scroll;
+}
+
+.waves-about{
+    position: absolute;
+    top: 20%;
+}

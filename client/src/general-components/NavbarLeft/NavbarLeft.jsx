@@ -46,7 +46,7 @@ const NavbarLeft = () => {
                         <img src="./images/navbar-left/database.svg" alt=""/>
                         Overview
                     </Link>
-                    <Link to={`/wallet`} className={path==='/aboutUs'?'active':''}>
+                    <Link to={`/wallet/aboutUs`} className={path==='/aboutUs'?'active':''}>
                         <img src="./images/navbar-left/edit-3.svg" alt=""/>
                         About us
                     </Link>

@@ -7,7 +7,7 @@ const AuthorizationPage = () => {
 
     const navigate = useNavigate()
 
-    const [user] = useState(false)
+    const [user] = useState(true)
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fade1s,setFade1s] = useState(anFade1s)
@@ -48,12 +48,12 @@ const AuthorizationPage = () => {
                                     <hr/>
                                 </div>
                                 <button onClick={() => handleCreate('/recoverSeed')}>Enter Seed</button>
-                                <button>Connect MetaMask</button>
+                                <button onClick={() => handleCreate('/connectMM/confirmPassword')}>Connect MetaMask</button>
                             </>:
                             <>
                                 <button className={`blue`} onClick={() => handleCreate('/createWallet')}>Create wallet</button>
                                 <button onClick={() => handleCreate('/recoverSeed')}>Enter Seed</button>
-                                <button>Connect MetaMask</button>
+                                <button onClick={() => handleCreate('/connectMM/confirmPassword')}>Connect MetaMask</button>
                             </>
                         }
                     </div>
