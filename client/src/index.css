@@ -7,7 +7,9 @@
     --color-blue:#38A2FF;
     --color-green: #22F297;
     --color-green-04c: #04CA73;
+    --color-white-opac-8: rgba(255, 255, 255, 0.8);
     --color-white-opac-7: rgba(255, 255, 255, 0.7);
+    --color-white-opac-6: rgba(255, 255, 255, 0.6);
     --color-white-opac-5: rgba(255, 255, 255, 0.5);
     --color-white-opac-3: rgba(255, 255, 255, 0.3);
     --color-white-opac-2: rgba(255, 255, 255, 0.2);

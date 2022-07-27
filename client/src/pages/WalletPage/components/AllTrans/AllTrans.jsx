@@ -14,7 +14,7 @@ const AllTrans = (props) => {
                         </div>
                         <div className="to">
                             <p style={{opacity:1,fontWeight:600}}>To</p>
-                            <p>{trans.to}</p>
+                            <p className={props.blueClass}>{trans.to}</p>
                         </div>
                     </div>
 
@@ -24,8 +24,8 @@ const AllTrans = (props) => {
                         </div>
                         <div className="adk">
                             {trans.adk.startsWith('+')?
-                                <h2 className={'green'}>{trans.adk}</h2>:
-                                <h2 className={'red'}>{trans.adk}</h2>
+                                <h2 className={`green ${props.blueClass}`}>{trans.adk}</h2>:
+                                <h2 className={`red ${props.blueClass}`}>{trans.adk}</h2>
                             }
                         </div>
                     </div>

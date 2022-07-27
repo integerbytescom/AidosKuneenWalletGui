@@ -1,10 +1,13 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import './LatestTransactions.css';
 import TransData from "./TransData";
 import AllTrans from "../AllTrans/AllTrans";
 import {anFade2s} from "../../../../animations";
 
-const LatestTransactions = () => {
+const LatestTransactions = (props) => {
+
+    //for classes blue color
+    const [blueClass,setBlueClass] = useState('')
 
     const [fade2s,setFade2s] = useState(anFade2s)
 
@@ -30,6 +33,14 @@ const LatestTransactions = () => {
     const prevPage = () => setCurrentPage(prev => prev - 1)
     const nextPage = () => setCurrentPage(prev => prev + 1)
 
+    useEffect(() => {
+        if (props.path === '/wallet'){
+            setBlueClass('')
+        }else {
+            setBlueClass('blue')
+        }
+    })
+
     return (
         <>
             <div className={`latest-transactions ${showTrans} ${fade2s}`}>
@@ -37,13 +48,14 @@ const LatestTransactions = () => {
                     <h3>Latest transactions</h3>
                     {
                         showTrans==='hide'?
-                            <p onClick={handleShow}>Show all</p>:
-                            <p onClick={handleClose}>Hide all</p>
+                            <p className={blueClass} onClick={handleShow}>Show all</p>:
+                            <p className={blueClass} onClick={handleClose}>Hide all</p>
                     }
                 </header>
 
                 {
                     showTrans==='hide'?'':
+                        props.path !== '/wallet'?'':
                         <div className="set-page">
                             <p className={`active`}>All</p>
                             <p>Sent</p>
@@ -54,6 +66,7 @@ const LatestTransactions = () => {
 
                 <div className="transactions">
                     <AllTrans
+                        blueClass={blueClass}
                         transactionsOnePage={transactionsOnePage}
                         countriesAmount={transactionsAmount}
                         totalCountries={transactions.length}

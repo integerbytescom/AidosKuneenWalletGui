@@ -37,6 +37,8 @@ const Router = () => {
                 <Route path='/wallet/receive' element={ <Receive /> } />
                 <Route path='/wallet/overview' element={ <Overview /> } />
                 <Route path='/wallet/staking' element={ <Staking /> } />
+                <Route path='/wallet/stake' element={ <Send blue={'blue'} /> } />
+                <Route path='/wallet/unstake' element={ <Send blue={'blue'} /> } />
             </Routes>
         </div>
     );

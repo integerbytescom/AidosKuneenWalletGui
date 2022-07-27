@@ -11,16 +11,18 @@
 }
 .bal-container h1{
     width: 100%;
-    color: #22F297;
+    color: var(--color-green);
     font-weight: 400;
     font-size: 30px;
     text-align: center;
 }
+.bal-container h1.blue{
+    color: var(--color-blue);
+}
 .bal-container h3{
     font-weight: 400;
     font-size: 18px;
-    color: #FFFFFF;
-    opacity: 0.6;
+    color: var(--color-white-opac-6);
 }
 
 /*container for buttons*/
@@ -34,10 +36,13 @@
     border-radius: 30px;
     padding: 5px 0;
     background: none;
-    color: var(--color-white);
-    border: 1px solid #04CA73;
+    color: var(--color-white-opac-8);
+    border: 1px solid var(--color-green);
     margin: 0 7px;
     transition: .3s;
+}
+.butt-container button.blue{
+    border: 1px solid var(--color-blue);
 }
 .butt-container button:hover{
     background: var(--bg-dark);

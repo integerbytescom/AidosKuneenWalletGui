@@ -48,6 +48,7 @@
     transition: .3s;
     opacity: .6;
 }
+
 .navbar-left header .menu a img,
 .navbar-left footer a img{
     margin-right: 12px;
@@ -57,7 +58,11 @@
 .navbar-left header .menu a:hover,
 .navbar-left footer a:hover,
 .navbar-left header .menu a:hover img,
-.navbar-left footer a:hover img{
+.navbar-left footer a:hover img,
+.navbar-left header .menu a.active,
+.navbar-left footer a.active,
+.navbar-left header .menu a.active img,
+.navbar-left footer a.active img {
     opacity: 1;
     background: #24252F;
 }

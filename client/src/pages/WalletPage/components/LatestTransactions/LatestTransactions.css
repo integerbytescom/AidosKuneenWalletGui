@@ -9,7 +9,7 @@
     transition-duration: 0.4s
 }
 .latest-transactions.hide{
-    bottom: -50vh;
+    bottom: -65vh;
 }
 .latest-transactions.show{
     bottom: 0;
@@ -36,7 +36,10 @@
     margin: 0;
 }
 .latest-transactions header p:hover{
-    border-bottom: 1px solid #22F297;
+    border-bottom: 1px solid var(--color-green);
+}
+.latest-transactions header p.blue:hover{
+    border-bottom: 1px solid var(--color-blue);
 }
 
 
@@ -91,6 +94,12 @@
 }
 .transactions .trans-container h2.green{
     color: #04CA73;
+}
+.transactions .trans-container h2.red.blue{
+    color: var(--color-blue);
+}
+.transactions .trans-container h2.green.blue{
+    color: var(--color-white);
 }
 
 .transactions .trans-container:nth-child(odd){

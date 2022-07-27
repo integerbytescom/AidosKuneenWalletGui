@@ -34,23 +34,44 @@ const NavbarLeft = () => {
                     :''}
 
                 <div className="menu">
-                    <Link to={`/wallet`}><img src="./images/navbar-left/credit-card.svg" alt=""/> Wallet</Link>
-                    <Link to={`/wallet/staking`}><img src="./images/navbar-left/briefcase.svg" alt=""/> Staking</Link>
-                    <Link to={`/wallet/overview`}><img src="./images/navbar-left/database.svg" alt=""/> Overview</Link>
-                    <Link to={`/wallet`}><img src="./images/navbar-left/edit-3.svg" alt=""/> About us</Link>
-                    <Link to={`/wallet`}><img src="./images/navbar-left/book.svg" alt=""/> F.A.Q.</Link>
+                    <Link  to={`/wallet`} className={path==='/wallet'?'active':''}>
+                        <img src="./images/navbar-left/credit-card.svg" alt=""/>
+                        Wallet
+                    </Link>
+                    <Link to={`/wallet/staking`} className={path==='/wallet/staking'?'active':''}>
+                        <img src="./images/navbar-left/briefcase.svg" alt=""/>
+                        Staking
+                    </Link>
+                    <Link to={`/wallet/overview`} className={path==='/wallet/overview'?'active':''}>
+                        <img src="./images/navbar-left/database.svg" alt=""/>
+                        Overview
+                    </Link>
+                    <Link to={`/wallet`} className={path==='/aboutUs'?'active':''}>
+                        <img src="./images/navbar-left/edit-3.svg" alt=""/>
+                        About us
+                    </Link>
+                    <Link to={`/wallet`} className={path==='/faq'?'active':''}>
+                        <img src="./images/navbar-left/book.svg" alt=""/>
+                        F.A.Q.
+                    </Link>
                 </div>
             </header>
 
             <footer>
-                <Link to={`/auth`}><img src="./images/navbar-left/settings.svg" alt=""/> Settings</Link>
+                <Link className={path==='/settings'?'active':''} to={`/settings`}>
+                    <img src="./images/navbar-left/settings.svg" alt=""/>
+                    Settings
+                </Link>
 
                 {/*wallet page check*/}
                 {path.startsWith('/wallet')?
                     <div className={`logout-but-cont ${fade}`}>
                         <hr/>
-                        <Link to={`/auth`}> <img src="./images/navbar-left/log-out.svg" alt=""/> Log out</Link>
-                    </div> :''
+                        <Link className={path==='/auth'?'active':''} to={`/auth`}>
+                            <img src="./images/navbar-left/log-out.svg" alt=""/>
+                            Log out
+                        </Link>
+                    </div>:''
                 }
             </footer>
         </nav>

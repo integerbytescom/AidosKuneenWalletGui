@@ -12,6 +12,9 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+.send-content.blue{
+    width: 40%;
+}
 
 .send-content img{
     margin-bottom: 40px;
@@ -26,12 +29,20 @@
 }
 .send-content form .container-cp-inp.adk-value .but-container{
     width: 30%;
-    border-bottom: 1px solid #04CA73;
+    border-bottom: 1px solid var(--color-green);
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
+.send-content.blue form .container-cp-inp.adk-value .but-container{
+    width: 55%;
+}
+.send-content form .container-cp-inp.adk-value .but-container.blue{
+    border-bottom: 1px solid var(--color-blue);
+}
+
 .send-content form .container-cp-inp.adk-value .but-container .all-send{
+    max-width: 50px;
     color: var(--color-white);
     background: none;
     font-size: 10px;
@@ -48,14 +59,25 @@
     margin: 0;
     font-size: 18px;
     font-weight: 300;
-    color: #04CA73;
+    color: var(--color-green);
 }
+.send-content form .container-cp-inp.adk-value .but-container.blue h3{
+    color: var(--color-blue);
+}
+
 .send-content form .container-cp-inp.adk-value input{
     width: 70%;
     font-weight: 300;
     font-size: 18px;
-    color: #04CA73;
-    border-bottom: 1px solid #04CA73;
+    color: var(--color-green);
+    border-bottom: 1px solid var(--color-green);
+}
+.send-content.blue form .container-cp-inp.adk-value input{
+    width: 45%;
+}
+.send-content form .container-cp-inp.adk-value input.blue{
+    color: var(--color-blue);
+    border-bottom: 1px solid var(--color-blue);
 }
 
 .container-usd{
