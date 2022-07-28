@@ -458,6 +458,63 @@ const multisend = async (evt, way, mempas, to, amount) => {
   }
 }
 
+// const stake = async (evt, way, mempas, from, amount) =>
+const multistake = async (evt, way, mempas, amount) => {
+  try {
+    const resp = await listWalletAddress(evt, mempas, 50),
+        adrs = JSON.parse(resp).data,
+        balTable = {};
+
+    let totlSum = 0;
+    for (let adr of adrs) {
+      const bal = JSON.parse(await balance(evt, adr)).data[adr]
+      if (way === "pow") {
+        balTable[adr] = bal
+        totlSum += bal
+      }
+      if (way === "gas") {
+        balTable[adr] = bal - GAS
+        totlSum += bal - GAS
+      }
+    }
+    if (totlBal < amount) {
+      return JSON.stringify({
+        ok: false,
+        msg: "not enough ADK to send",
+        data: null
+      })
+    }
+
+    const mainAdr = Object.values(balTable)[0]
+
+    const txs = []
+    let leftToSend = amount;
+    for (let adr in balTable) {
+      const sum = balTable[adr]
+      if (leftToSend >= sum) {
+        const json = await send(evt, way, mempas, adr, mainAdr, sum)
+        const resp = JSON.parse(json)
+        if (resp.ok) {
+          leftToSend -= sum
+          txs.push(resp.data[0])
+        } else return sendError
+      } else if (leftToSend < sum) {
+        const part = sum - leftToSend;
+        const json = await send(evt, way, mempas, adr, mainAdr, part)
+        const resp = JSON.parse(json)
+        if (resp.ok) {
+          txs.push(resp.data[0])
+        } else return sendError
+      }
+    }
+    const result = await stake(evt, way, mempas, mainAdr, amount)
+    return result
+  } catch (e) {
+    writeLog(e);
+    console.log(e);
+  }
+}
+
 // Далее идут взаимодействия с внешними API
 cc.setApiKey("a825a2d13195e4c2ddf536fd2e16ab8516d961e56b5b526d04cf6b4342d1dcd1")
 
