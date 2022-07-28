@@ -68,6 +68,7 @@ app.on('ready', () => {
   ipcMain.handle("loadMetamaskMnemonics", loadMetamaskMnemonics);
   ipcMain.handle("getHistoricalDataForCoin", getHistoricalDataForCoin);
   ipcMain.handle("getAdkPrices",getAdkPrices);
+  ipcMain.handle("multistake", multistake)
   createWindow()
 });
 
@@ -458,7 +459,7 @@ const multisend = async (evt, way, mempas, to, amount) => {
   }
 }
 
-// const stake = async (evt, way, mempas, from, amount) =>
+
 const multistake = async (evt, way, mempas, amount) => {
   try {
     const resp = await listWalletAddress(evt, mempas, 50),
