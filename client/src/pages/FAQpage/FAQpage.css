@@ -1,0 +1,29 @@
+.faq-page{
+    position: absolute;
+    left: 160px;
+    width: calc(100% - 160px);
+    height: 100vh;
+    padding: 50px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.faq-page h1{
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    font-size: 30px;
+    color: var(--color-white);
+}
+
+.faq-page .video-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.faq-page .video-container iframe{
+    margin: 10px 20px;
+    width: 280px;
+    height: 200px;
+}

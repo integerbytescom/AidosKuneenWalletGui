@@ -15,6 +15,7 @@ import CreatePassword from "./pages/CreatePassword/CreatePassword";
 import Overview from "./pages/WalletPage/components/Overview/Overview";
 import Staking from "./pages/WalletPage/components/Staking/Staking";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
+import FAQpage from "./pages/FAQpage/FAQpage";
 
 
 const Router = () => {
@@ -42,6 +43,7 @@ const Router = () => {
                 <Route path='/wallet/unstake' element={ <Send blue={'blue'} /> } />
                 <Route path='/wallet/aboutUs' element={ <AboutUsPage /> } />
                 <Route path='/connectMM/confirmPassword' element={ <ConfirmPassword path={'mm'} /> } />
+                <Route path='/wallet/FAQ' element={ <FAQpage /> } />
             </Routes>
         </div>
     );

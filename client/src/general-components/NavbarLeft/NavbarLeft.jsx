@@ -46,11 +46,11 @@ const NavbarLeft = () => {
                         <img src="./images/navbar-left/database.svg" alt=""/>
                         Overview
                     </Link>
-                    <Link to={`/wallet/aboutUs`} className={path==='/aboutUs'?'active':''}>
+                    <Link to={`/wallet/aboutUs`} className={path==='/wallet/aboutUs'?'active':''}>
                         <img src="./images/navbar-left/edit-3.svg" alt=""/>
                         About us
                     </Link>
-                    <Link to={`/wallet`} className={path==='/faq'?'active':''}>
+                    <Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ'?'active':''}>
                         <img src="./images/navbar-left/book.svg" alt=""/>
                         F.A.Q.
                     </Link>
