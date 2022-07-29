@@ -1,0 +1,61 @@
+.calc-content{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 200px;
+    height: auto;
+}
+
+.calc-content img.dollar{
+    margin-bottom: 50px;
+}
+
+/*input*/
+.calc-content input{
+    font-size: 20px;
+    color: var(--color-green);
+    margin-bottom: 15px;
+}
+.calc-content input:focus{
+    border-color: #3A3A3A;
+}
+
+/*select*/
+.calc-content select{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--color-white-opac-8);
+}
+.calc-content select option{
+    background-color: var(--bg-dark);
+    min-height: 3.5em;
+    border: none;
+    outline: none;
+    color: var(--color-white-opac-8);
+    transition: .3s;
+}
+.calc-content select option:active,
+.calc-content select option:hover{
+    background-color: #3A3A3A;
+}
+
+.calc-content .money-container{
+    width: 100%;
+    margin-bottom: 30px;
+    padding:18px;
+    background: #1F1F28;
+    border-radius: 12px;
+    text-align: center;
+}
+.calc-content .money-container h2{
+    font-weight: 300;
+    margin: 0;
+}
+
+.calc-content button{
+    width: 100%;
+}

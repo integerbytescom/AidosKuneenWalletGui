@@ -1,3 +1,14 @@
+.fon-wallet-bal{
+    width: 100%;
+}
+
+.container-top-wallet{
+    position: absolute;
+    top: 25%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 /*container for balance*/
 .bal-container{
     width: 100%;
@@ -12,38 +23,11 @@
 .bal-container h1{
     width: 100%;
     color: var(--color-green);
-    font-weight: 400;
-    font-size: 30px;
     text-align: center;
 }
 .bal-container h1.blue{
     color: var(--color-blue);
 }
-.bal-container h3{
-    font-weight: 400;
-    font-size: 18px;
+.bal-container h2{
     color: var(--color-white-opac-6);
-}
-
-/*container for buttons*/
-.butt-container button a{
-    text-decoration: none;
-    color: inherit;
-}
-.butt-container button{
-    width: 165px;
-    font-size: 13px;
-    border-radius: 30px;
-    padding: 5px 0;
-    background: none;
-    color: var(--color-white-opac-8);
-    border: 1px solid var(--color-green);
-    margin: 0 7px;
-    transition: .3s;
-}
-.butt-container button.blue{
-    border: 1px solid var(--color-blue);
-}
-.butt-container button:hover{
-    background: var(--bg-dark);
 }

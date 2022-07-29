@@ -22,8 +22,7 @@ const ConfirmSeed = () => {
     }
 
     return (
-        <div className={`confirm-seed-page`}>
-            <div className={`block-container`}>
+            <div className={`block-container menu`}>
 
                 <button onClick={event => handleConfirmSeed('/auth',event)} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
@@ -36,19 +35,16 @@ const ConfirmSeed = () => {
                     <div className="dot"></div>
                 </div>
 
-                <div className={`form-pass-container ${fadeLeft}`}>
+                <div className={`conf-seed-container ${fadeLeft}`}>
                     <h2>Enter your seed</h2>
                     <form className="form-create-pass">
-                        <div className="container-cp-inp">
-                            <input type="password" placeholder={`enter seed`} />
-                        </div>
-
-                        <button className={'dark'} onClick={event => handleConfirmSeed('/confirmPass',event)}>Continue</button>
+                        <input className={`input-gray`} type="password" placeholder={`enter seed`} />
+                        <br />
+                        <button className={'gray-button'} onClick={event => handleConfirmSeed('/confirmPass',event)}>Continue</button>
                     </form>
                 </div>
 
             </div>
-        </div>
     );
 };
 

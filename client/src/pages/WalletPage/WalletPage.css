@@ -1,11 +1,9 @@
-.wal-waves-shd{
+.border-button.stack-show{
+    text-align: center;
+    text-decoration: none;
     position: absolute;
-    width: 100%;
-}
-.wallet-page .container-top-wallet{
-    position: absolute;
-    top: 20%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    top: 20px;
+    right: 10px;
+    z-index: 10;
+    border-color: var(--color-blue);
 }

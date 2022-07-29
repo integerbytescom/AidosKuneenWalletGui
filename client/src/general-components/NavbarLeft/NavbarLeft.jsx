@@ -38,9 +38,9 @@ const NavbarLeft = () => {
                         <img src="./images/navbar-left/credit-card.svg" alt=""/>
                         Wallet
                     </Link>
-                    <Link to={`/wallet/staking`} className={path==='/wallet/staking'?'active':''}>
-                        <img src="./images/navbar-left/briefcase.svg" alt=""/>
-                        Staking
+                    <Link to={`/wallet/calc`} className={path==='/wallet/calc'?'active':''}>
+                        <img src="./images/navbar-left/dollar-sign.svg" alt=""/>
+                        Calculator
                     </Link>
                     <Link to={`/wallet/overview`} className={path==='/wallet/overview'?'active':''}>
                         <img src="./images/navbar-left/database.svg" alt=""/>
@@ -51,14 +51,14 @@ const NavbarLeft = () => {
                         About us
                     </Link>
                     <Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ'?'active':''}>
-                        <img src="./images/navbar-left/book.svg" alt=""/>
-                        F.A.Q.
+                        <img src="./images/navbar-left/support.svg" alt=""/>
+                        Support
                     </Link>
                 </div>
             </header>
 
             <footer>
-                <Link className={path==='/settings'?'active':''} to={`/settings`}>
+                <Link className={path==='/wallet/settings'?'active':''} to={`/wallet/settings`}>
                     <img src="./images/navbar-left/settings.svg" alt=""/>
                     Settings
                 </Link>

@@ -1,48 +1,43 @@
-.send{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .send-content{
-    width: 30%;
+    width: 35%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 .send-content.blue{
-    width: 40%;
+    width: 50%;
 }
 
 .send-content img{
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 
 .send-content form{
     width: 100%;
 }
 
-.send-content form .container-cp-inp.adk-value{
+.send-content form .adk-value{
     display: flex;
 }
-.send-content form .container-cp-inp.adk-value .but-container{
+.send-content form input.send{
+    margin-bottom: 20px;
+}
+.send-content form .adk-value .but-container{
     width: 30%;
     border-bottom: 1px solid var(--color-green);
     display: flex;
     justify-content: flex-end;
     align-items: center;
 }
-.send-content.blue form .container-cp-inp.adk-value .but-container{
+.send-content.blue form .adk-value .but-container{
     width: 55%;
 }
-.send-content form .container-cp-inp.adk-value .but-container.blue{
+.send-content form .adk-value .but-container.blue{
     border-bottom: 1px solid var(--color-blue);
 }
 
-.send-content form .container-cp-inp.adk-value .but-container .all-send{
-    max-width: 50px;
+.send-content form .adk-value .but-container .all-send{
+    width: 40px;
     color: var(--color-white);
     background: none;
     font-size: 10px;
@@ -51,31 +46,39 @@
     padding: 0;
     margin:0 10px 1px 0;
     opacity: .5;
+    transition: .3s;
 }
-.send-content form .container-cp-inp.adk-value .but-container .all-send:hover{
+.send-content form .adk-value .but-container .all-send:hover{
     opacity: 1;
 }
-.send-content form .container-cp-inp.adk-value .but-container h3{
+.send-content form .adk-value .but-container h3{
     margin: 0;
     font-size: 18px;
     font-weight: 300;
     color: var(--color-green);
 }
-.send-content form .container-cp-inp.adk-value .but-container.blue h3{
+.send-content form .adk-value .but-container.blue h3{
     color: var(--color-blue);
 }
 
-.send-content form .container-cp-inp.adk-value input{
+.send-content form .adk-value input{
     width: 70%;
     font-weight: 300;
     font-size: 18px;
     color: var(--color-green);
     border-bottom: 1px solid var(--color-green);
 }
-.send-content.blue form .container-cp-inp.adk-value input{
+.send-content form .adk-value input::placeholder{
+    font-weight: 400;
+    color: var(--color-green);
+}
+.send-content.blue form .adk-value input::placeholder{
+    color: var(--color-blue);
+}
+.send-content.blue form .adk-value input{
     width: 45%;
 }
-.send-content form .container-cp-inp.adk-value input.blue{
+.send-content form .adk-value input.blue{
     color: var(--color-blue);
     border-bottom: 1px solid var(--color-blue);
 }
@@ -87,17 +90,15 @@
     justify-content: space-between;
 }
 .container-usd h3{
-    color: var(--color-white);
     font-weight: 300;
     font-size: 18px;
-    margin-top: -3px;
+    margin-top: 5px;
 }
 
-.form-create-pass p{
+.send-content form p{
     margin: 15px 0;
     font-weight: 400;
-    font-size: 11px;
-    color: #04CA73;
+    color: var(--color-green-04c);
 }
 
 
@@ -111,7 +112,7 @@
     color: var(--color-white);
     margin-left: 5px;
     font-weight: 300;
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .radio-p input[type='radio'] {
@@ -151,7 +152,7 @@
     visibility: visible;
 }
 
-.form-create-pass .butt-container{
+.send-content form .butt-container{
     margin-top: 30px;
     display: flex;
     justify-content: center;

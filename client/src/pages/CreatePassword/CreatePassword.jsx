@@ -22,30 +22,24 @@ const CreatePassword = () => {
     }
 
     return (
-        <div className={`create-password`}>
-            <div className={`block-container`}>
+            <div className={`block-container menu`}>
                 <button onClick={event => handleCreatePass('/auth',event)} className={`close-button ${fade}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>
 
-                <div className={`form-pass-container ${fadeLeft}`}>
+                <div className={`create-pass-container ${fadeLeft}`}>
                     <h2>Create password</h2>
                     <form className="form-create-pass">
-                        <div className="container-cp-inp">
-                            <input type="password" placeholder={`create password`} />
-                        </div>
+                        <input className={`input-gray`} type="password" placeholder={`create password`} />
 
-                        <div className="container-cp-inp">
-                            <input type="password" placeholder={`insert again`} />
-                        </div>
+                        <input className={`input-gray`} type="password" placeholder={`insert again`} />
 
-                        <button className={'dark'} onClick={event => handleCreatePass('/wallet',event)}>
+                        <button className={'blue-button'} onClick={event => handleCreatePass('/wallet',event)}>
                             Create
                         </button>
                     </form>
                 </div>
             </div>
-        </div>
     );
 };
 

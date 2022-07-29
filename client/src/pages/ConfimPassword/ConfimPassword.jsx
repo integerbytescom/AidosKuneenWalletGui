@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeSlow} from "../../animations";
+import './ConsfirmPassword.css';
 
 const ConfirmPassword = (props) => {
 
@@ -21,8 +22,7 @@ const ConfirmPassword = (props) => {
     }
 
     return (
-        <div className={`confirm-password-page`}>
-            <div className={`block-container`}>
+            <div className={`block-container menu`}>
 
                 <button onClick={event => handleConfirmPass('/auth',event)} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
@@ -37,27 +37,24 @@ const ConfirmPassword = (props) => {
                     </div>
                 }
 
-                <div className={`form-pass-container ${fadeLeft}`}>
+                <div className={`conf-pass-container ${fadeLeft}`}>
                     {
                         props.path === 'mm'?
                             <h2>MetaMask password</h2>:
                             <h2>Enter password</h2>
                     }
-                    <form className="form-create-pass">
-                        <div className="container-cp-inp">
-                            <input type="password" placeholder={`enter password`} />
-                        </div>
+                    <form>
+                        <input className={`input-gray`} type="password" placeholder={`enter password`} />
 
                         {
                             props.path === 'mm'?
-                                <button onClick={event => handleConfirmPass('/wallet',event)}>Enter</button>:
-                                <button className={'dark'} onClick={event => handleConfirmPass('/wallet',event)}>Continue</button>
+                                <button className={'blue-button'} onClick={event => handleConfirmPass('/wallet',event)}>Enter</button>:
+                                <button className={'gray-button'} onClick={event => handleConfirmPass('/wallet',event)}>Continue</button>
                         }
                     </form>
                 </div>
 
             </div>
-        </div>
     );
 };
 

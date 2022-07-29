@@ -1,9 +1,8 @@
 .latest-transactions{
     position: absolute;
     right: 0;
-    padding: 0 20px;
-    width: calc(100% - 160px);/*menu width*/
-    height: 95vh;
+    padding: 5% 20px 0;
+    height: 100vh;
     background: var(--bg-dark);
     z-index: 10;
     transition-duration: 0.4s
@@ -22,14 +21,10 @@
     padding-bottom: 8px;
 }
 .latest-transactions header h3{
-    font-size: 16px;
-    color: var(--color-white);
     margin: 0;
 }
 .latest-transactions header p{
     font-weight: 500;
-    font-size: 12px;
-    color: var(--color-white);
     cursor: pointer;
     border-bottom: 1px solid var(--color-white);
     transition: .3s;
@@ -51,7 +46,6 @@
     opacity: .2;
     padding: 5px 10px;
     font-weight: 500;
-    font-size: 12px;
     color: var(--color-white);
     cursor: pointer;
     border-bottom: 1px solid var(--color-white);
@@ -84,21 +78,21 @@
     color: var(--color-white);
     opacity: .7;
 }
-.transactions .trans-container h2{
+.transactions .trans-container h3{
     font-weight: 300;
     font-size: 15px;
     margin: 0;
 }
-.transactions .trans-container h2.red{
-    color: #FF9F9F;
+.transactions .trans-container h3.red{
+    color: var(--color-red);
 }
-.transactions .trans-container h2.green{
-    color: #04CA73;
+.transactions .trans-container h3.green{
+    color: var(--color-green-04c);
 }
-.transactions .trans-container h2.red.blue{
+.transactions .trans-container h3.red.blue{
     color: var(--color-blue);
 }
-.transactions .trans-container h2.green.blue{
+.transactions .trans-container h3.green.blue{
     color: var(--color-white);
 }
 

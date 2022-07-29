@@ -7,12 +7,13 @@ const AuthorizationPage = () => {
 
     const navigate = useNavigate()
 
-    const [user] = useState(true)
+    const [user] = useState(false)
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fade1s,setFade1s] = useState(anFade1s)
 
-    const handleCreate = (url) => {
+    const handleCreate = (url,e) => {
+        e.preventDefault()
         setFadeSlow(anFadeOut)
         setFade1s(anFadeOut)
         setTimeout(() => navigatePage(url),1000)
@@ -23,12 +24,10 @@ const AuthorizationPage = () => {
     }
 
     return (
-        <>
-        <div className={`authorization-page`}>
-            <div className={`block-container`}>
+            <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves`}>
+                <div className={`block-container menu`}>
 
-                <img className={`waves-auth ${fadeSlow}`} src="./images/auth-page/waves.svg" alt={``}/>
-
+                    {/*auth container start*/}
                 <div className={`auth-content`}>
                     <img className={`card-auth ${fadeSlow}`} src="./images/auth-page/card2.png" alt={``}/>
 
@@ -36,33 +35,31 @@ const AuthorizationPage = () => {
                         {user?
                             <>
                                 <form className="form-create-pass">
-                                    <div className="container-cp-inp">
-                                        <input type="password" placeholder={`enter password`} />
-                                    </div>
-
-                                    <button className={`blue`} onClick={() => handleCreate('/wallet')}>Login</button>
+                                    <input className={'input-gray'} type="password" placeholder={`enter password`} />
+                                    <button className={`blue-button`} onClick={event => handleCreate('/wallet',event)}>Login</button>
                                 </form>
                                 <div className={'hr-or'}>
                                     <hr/>
                                     <p>or</p>
                                     <hr/>
                                 </div>
-                                <button onClick={() => handleCreate('/recoverSeed')}>Enter Seed</button>
-                                <button onClick={() => handleCreate('/connectMM/confirmPassword')}>Connect MetaMask</button>
-                            </>:
+                                <button className={`gray-button`} onClick={event => handleCreate('/recoverSeed',event)}>Enter Seed</button>
+                                <button className={`gray-button`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
+                            </>
+                            :
                             <>
-                                <button className={`blue`} onClick={() => handleCreate('/createWallet')}>Create wallet</button>
-                                <button onClick={() => handleCreate('/recoverSeed')}>Enter Seed</button>
-                                <button onClick={() => handleCreate('/connectMM/confirmPassword')}>Connect MetaMask</button>
+                                <button className={`blue-button`} onClick={event => handleCreate('/createWallet',event)}>Create wallet</button>
+                                <button className={`gray-button`} onClick={event => handleCreate('/recoverSeed',event)}>Enter Seed</button>
+                                <button className={`gray-button`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
                             </>
                         }
                     </div>
 
                 </div>
+                    {/*auth container end*/}
 
+                </div>
             </div>
-        </div>
-        </>
     );
 };
 

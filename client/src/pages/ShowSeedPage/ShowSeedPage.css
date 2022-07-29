@@ -1,17 +1,17 @@
-.show-seed-page .block-container{
-    background-color: var(--bg-dark);
+.seed-first-show{
+    width: 350px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.h2-seed{
-    width: 320px;
-    position: absolute;
-    top:31%;
+.seed-first-show h2{
+    width: 100%;
+    margin-bottom: 30px;
 }
 
 /*seed container*/
 .seed-container{
-    position: absolute;
-    width: 320px;
+    width: 100%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
@@ -22,7 +22,7 @@
     background: linear-gradient(90deg, #0086FB 0%, #04CA73 100%);
 }
 .seed-container .seed-text{
-    background: #010213;
+    background: var(--bg-black);
     padding: 15px 20px;
 }
 .seed-container .seed-text p{
@@ -31,22 +31,9 @@
     color: var(--color-white);
 }
 
-.but-seed-container{
-    width: 320px;
-    position: absolute;
-    top: 62%;
-}
-
-/*button bottom*/
-.seed-success{
-    border: none;
-    padding: 6px 30px;
-    font-size: 14px;
-    background: #23242C;
-    border-radius: 30px;
-    color: var(--color-white);
-    transition: .3s;
-}
-.seed-success:hover{
-    background: #373841;
+/*button*/
+.seed-first-show button{
+    width: 280px;
+    margin-top: 30px;
+    padding: 8px 0;
 }

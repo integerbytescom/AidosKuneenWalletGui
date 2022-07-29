@@ -1,4 +1,13 @@
-.form-create-pass button.dark{
-    font-weight: 400;
-    background: #23242C;
+.conf-seed-container{}
+
+.conf-seed-container h2{
+    margin-bottom: 30px;
+}
+
+.conf-seed-container form{
+    width: 200px;
+}
+.conf-seed-container form button{
+    margin-top: 10px;
+    padding: 8px 0;
 }

@@ -39,7 +39,7 @@ const Receive = () => {
     const nextPage = () => setCurrentPage(prev => prev + 1)
 
     return (
-        <div className={`receive ${fade}`}>
+        <div className={`block-container menu receive ${fade}`}>
 
             <button onClick={handleCloseReceive} className={`close-button`}>
                 <img src="./images/x.svg" alt="close"/>

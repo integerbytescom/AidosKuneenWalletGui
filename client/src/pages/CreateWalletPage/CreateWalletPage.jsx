@@ -23,8 +23,7 @@ const CreateWalletPage = () => {
     }
 
     return (
-        <div className={`create-wallet-page`}>
-            <div className={`block-container`}>
+            <div className={`block-container menu`}>
                 
                 <button onClick={event => handleRoute('/auth',event)} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
@@ -37,22 +36,17 @@ const CreateWalletPage = () => {
                     <div className="dot"></div>
                 </div>
 
-                <div className={`form-pass-container ${fadeLeft}`}>
+                <div className={`form-create-wallet-container ${fadeLeft}`}>
                     <h2>Create password</h2>
-                    <form className="form-create-pass">
-                        <div className="container-cp-inp">
-                            <input type="password" placeholder={`create password`} />
-                        </div>
-                        <div className="container-cp-inp">
-                            <input type="password" placeholder={`insert again`} />
-                        </div>
+                    <form>
+                        <input className={`input-gray`} type="password" placeholder={`create password`} />
+                        <input className={`input-gray`} type="password" placeholder={`insert again`} />
 
-                        <button onClick={(event) => handleRoute('/showSeed',event)}>Create</button>
+                        <button className={`blue-button`} onClick={(event) => handleRoute('/showSeed',event)}>Create</button>
                     </form>
                 </div>
 
             </div>
-        </div>
     );
 };
 

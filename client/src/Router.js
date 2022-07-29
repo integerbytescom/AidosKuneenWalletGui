@@ -16,6 +16,9 @@ import Overview from "./pages/WalletPage/components/Overview/Overview";
 import Staking from "./pages/WalletPage/components/Staking/Staking";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import FAQpage from "./pages/FAQpage/FAQpage";
+import CalculatorPage from "./pages/CalculatorPage/CalculatorPage";
+import FormHelp from "./pages/FAQpage/components/FormHelp/FormHelp";
+import Settings from "./pages/Settings/Settings";
 
 
 const Router = () => {
@@ -42,8 +45,11 @@ const Router = () => {
                 <Route path='/wallet/stake' element={ <Send blue={'blue'} /> } />
                 <Route path='/wallet/unstake' element={ <Send blue={'blue'} /> } />
                 <Route path='/wallet/aboutUs' element={ <AboutUsPage /> } />
+                <Route path='/wallet/calc' element={ <CalculatorPage /> } />
                 <Route path='/connectMM/confirmPassword' element={ <ConfirmPassword path={'mm'} /> } />
                 <Route path='/wallet/FAQ' element={ <FAQpage /> } />
+                <Route path='/wallet/form' element={ <FormHelp /> } />
+                <Route path='/wallet/settings' element={ <Settings /> } />
             </Routes>
         </div>
     );

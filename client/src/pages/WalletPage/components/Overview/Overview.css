@@ -1,18 +1,18 @@
+.block-container.menu.overview{
+    justify-content: start;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
 .graph-container{
-    position: absolute;
-    left: 200px;
-    top: 30%;
+    margin-left: 30px;
 }
 .value-change{
-    position: absolute;
-    left: 220px;
-    top: 15%;
+    margin: 0 0 40px 60px;
     display: flex;
 }
 .buttons-date{
-    position: absolute;
-    left: 220px;
-    bottom: 20%;
+    margin: 30px 0 0 60px;
     display: flex;
 }
 .buttons-date button{
@@ -35,15 +35,12 @@
     margin-left: 20px;
 }
 .value-change .dollar h2{
-    font-weight: 400;
-    font-size: 20px;
+    font-size: 22px;
     margin: 0;
 }
 .value-change .dollar p,
 .value-change .change p{
-    color: #FFFFFF;
     opacity: 0.8;
-    font-size: 12px;
     font-weight: 300;
 }
 .value-change .change h3{

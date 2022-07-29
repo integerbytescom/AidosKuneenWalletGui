@@ -20,12 +20,12 @@ const AllTrans = (props) => {
 
                     <div className="dollar-adk">
                         <div className="dollar">
-                            <h2>+ 587 $</h2>
+                            <h3>+ 587 $</h3>
                         </div>
                         <div className="adk">
                             {trans.adk.startsWith('+')?
-                                <h2 className={`green ${props.blueClass}`}>{trans.adk}</h2>:
-                                <h2 className={`red ${props.blueClass}`}>{trans.adk}</h2>
+                                <h3 className={`green ${props.blueClass}`}>{trans.adk}</h3>:
+                                <h3 className={`red ${props.blueClass}`}>{trans.adk}</h3>
                             }
                         </div>
                     </div>

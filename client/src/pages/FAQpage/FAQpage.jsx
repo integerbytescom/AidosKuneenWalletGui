@@ -1,16 +1,27 @@
 import React, {useState} from 'react';
 import './FAQpage.css';
-import {anFade} from "../../animations";
+import {anFade, anFadeOut} from "../../animations";
+import {useNavigate} from "react-router-dom";
 
 const FAQpage = () => {
 
-    const [fade,unFade] = useState(anFade)
+    const navigate = useNavigate()
+
+    const [fade,setFade] = useState(anFade)
+
+    const handleOpenForm = () =>{
+        setFade(anFadeOut)
+        setTimeout(routeForm,800)
+    }
+    const routeForm = () =>{
+        navigate('/wallet/form')
+    }
 
     const arrVideos = ['FpECoxsAKc8','38bWstAwpew','nIE0mIzzNHo','ttjXBwLdLv8','BVHHyH3G1Os'];
 
     return (
-        <div className={`faq-page ${fade}`}>
-            <h1>F.A.Q.</h1>
+        <div className={`block-container menu faq-page ${fade}`}>
+            <h1>Aidos Kuneen Help Videos</h1>
             <div className="video-container">
                 {arrVideos.map(url => (
                     <iframe
@@ -21,8 +32,8 @@ const FAQpage = () => {
                         title="Embedded youtube"
                     />
                 ))}
-
             </div>
+            <p className={'faq-bottom-text'}>Остались вопросы - <button onClick={handleOpenForm}>напишите нам</button></p>
         </div>
     );
 };

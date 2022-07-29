@@ -22,7 +22,7 @@ const Send = (props) => {
     }
 
     return (
-        <div className={`send ${fade}`}>
+        <div className={`block-container menu ${fade}`}>
 
             <button onClick={handleCloseSend} className={`close-button`}>
                 <img src="./images/x.svg" alt="close"/>
@@ -38,8 +38,8 @@ const Send = (props) => {
                 {
                     props.blue ?
                         <form className="form-create-pass blue">
-                            <div className="container-cp-inp adk-value">
-                                <input className='blue' type="number" defaultValue={`0.00`} />
+                            <div className="adk-value">
+                                <input className='input-gray blue' type="number" placeholder={`0.00`} />
                                 <div className="but-container blue">
                                     <button className={'all-send'}>All</button>
                                     <h3>ADK / 2414,455.43 ADK</h3>
@@ -52,16 +52,15 @@ const Send = (props) => {
 
 
                             <div className="butt-container">
-                                <button className={'blue'}>Stake</button>
+                                <button className={'border-button blue'}>Stake</button>
                             </div>
                         </form>
                         :
-                        <form className="form-create-pass">
-                            <div className="container-cp-inp">
-                                <input type="text" placeholder={`send to (0x address / receiver`} />
-                            </div>
-                            <div className="container-cp-inp adk-value">
-                                <input type="number" defaultValue={`0.00`} />
+                        <form>
+                            <input className={`input-gray send`} type="text" placeholder={`send to (0x address / receiver`} />
+
+                            <div className="adk-value">
+                                <input className={`input-gray`} type="number" placeholder={'0.00'} />
                                 <div className="but-container">
                                     <button className={'all-send'}>All</button>
                                     <h3>ADK</h3>
@@ -84,7 +83,7 @@ const Send = (props) => {
                             </p>
 
                             <div className="butt-container">
-                                <button>Send</button>
+                                <button className={`border-button`}>Send</button>
                             </div>
                         </form>
                 }

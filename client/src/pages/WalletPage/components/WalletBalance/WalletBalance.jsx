@@ -33,8 +33,8 @@ const WalletBalance = (props) => {
         <>
             {
                 blueClass === 'blue'?
-                    <img className={`wal-waves-shd ${fade}`} src="./images/wallet-page/waves-shd-blue.svg" alt=""/>:
-                    <img className={`wal-waves-shd ${blueClass} ${fade}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+                    <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/waves-shd-blue.svg" alt=""/>:
+                    <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
             }
 
             <div className={`container-top-wallet ${fade1s}`}>
@@ -45,19 +45,19 @@ const WalletBalance = (props) => {
                             <img src="./images/wallet-page/logoKrug.svg" alt=""/>
                     }
                     <h1 className={blueClass}>140,043.24 ADK</h1>
-                    <h3 className={blueClass}>356 $</h3>
+                    <h2 className={blueClass}>356 $</h2>
                 </div>
 
                 <div className="butt-container">
                     {
                         blueClass === 'blue'?
                             <>
-                                <button className={blueClass} onClick={() => handleCloseWallet('/wallet/stake')}>Stake</button>
-                                <button className={blueClass} onClick={() => handleCloseWallet('/wallet/unstake')}>Unstake</button>
+                                <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/stake')}>Stake</button>
+                                <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/unstake')}>Unstake</button>
                             </>:
                             <>
-                                <button className={blueClass} onClick={() => handleCloseWallet('/wallet/send')}>Send</button>
-                                <button className={blueClass} onClick={() => handleCloseWallet('/wallet/receive')}>Receive</button>
+                                <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/send')}>Send</button>
+                                <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/receive')}>Receive</button>
                             </>
                     }
                 </div>

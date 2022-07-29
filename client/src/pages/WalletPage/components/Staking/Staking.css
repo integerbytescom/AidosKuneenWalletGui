@@ -1,0 +1,8 @@
+.border-button.balance-show{
+    text-align: center;
+    text-decoration: none;
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 10;
+}

@@ -1,22 +1,3 @@
-.preview-page .block-container{
-    background-color: var(--bg-dark);
-}
-
-/*waves and shadow images*/
-.waves-preview{
-    position: absolute;
-    width: 100%;
-    top: -5%;
-    left: 0;
-    z-index: 1;
-}
-.shadow-waves-preview{
-    position: absolute;
-    width: 100%;
-    top: 5%;
-    z-index: 1;
-}
-
 /*wallet and his shadow images*/
 .wallet-preview{
     position: absolute;
@@ -24,18 +5,17 @@
     z-index: 2;
 }
 
+/*shadows for wallet*/
+.wallet-shadow-container{
+    z-index: 1;
+}
 .shadow-preview{
     position: absolute;
-    top: -5%;
+    top: -4%;
     left: 29%;
     z-index: 1;
 }
 
-.wallet-shadow-container{
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-}
 
 /*animations*/
 .shadow-preview.shd{
@@ -70,27 +50,10 @@
     }
 }
 
-/* link */
-.link-preview{
+/*special styles for button  */
+.preview-page .blue-button{
     position: absolute;
     bottom: 20%;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    color: var(--color-white);
-    font-weight: 300;
-    font-size: 13px;
-    width: 180px;
-    padding: 10px 20px;
-    z-index: 2;
-    background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
-    border: none;
-    border-radius: 79px;
-    transition: .3s;
-}
-.link-preview:hover{
-    color: var(--color-white);
-    padding-right: 10px;
 }
 

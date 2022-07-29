@@ -1,7 +1,12 @@
-.recover-seed .form-create-pass{
+.rec-seed-form-container{}
+
+.rec-seed-form-container h2{
+    margin-bottom: 30px;
+}
+.rec-seed-form-container form{
     width: 400px;
 }
-.recover-seed .form-create-pass button{
-    max-width: 60%;
-    background: linear-gradient(91.82deg, #0086FB 20.48%, #36A5FF 93.75%);
+.rec-seed-form-container form button{
+    padding: 8px 0;
+    margin-top: 30px;
 }

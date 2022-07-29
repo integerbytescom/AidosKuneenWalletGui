@@ -22,26 +22,22 @@ const RecoverSeed = () => {
     }
 
     return (
-        <div className={`recover-seed`}>
-            <div className={`block-container`}>
+            <div className={`block-container menu`}>
                 <button onClick={event => handleRecoverSeed('/auth',event)} className={`close-button ${fade}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>
 
-                <div className={`form-pass-container ${fadeLeft}`}>
+                <div className={`rec-seed-form-container ${fadeLeft}`}>
                     <h2>Recover from seed</h2>
-                    <form className="form-create-pass">
-                        <div className="container-cp-inp">
-                            <input type="password" placeholder={`enter 12/24 mnemonic seed words `} />
-                        </div>
+                    <form>
+                        <input className={`input-gray`} type="password" placeholder={`enter 12/24 mnemonic seed words `} />
 
-                        <button className={'dark'} onClick={event => handleRecoverSeed('/createPass',event)}>
+                        <button className={'blue-button'} onClick={event => handleRecoverSeed('/createPass',event)}>
                             Enter seed words
                         </button>
                     </form>
                 </div>
             </div>
-        </div>
     );
 };
 
