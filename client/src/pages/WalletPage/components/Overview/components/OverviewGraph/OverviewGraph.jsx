@@ -25,7 +25,7 @@ const OverviewGraph = (props) => {
             <CartesianGrid stroke="var(--color-white-opac-3)" vertical={false} />
             <XAxis dataKey="day" />
             <YAxis />
-            <Tooltip />
+            {/*<Tooltip />*/}
             <Area type="monotone" dataKey="adk" stroke="var(--color-green)" fillOpacity={1} fill="url(#colorUv)" />
         </AreaChart>
     );

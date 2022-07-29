@@ -65,12 +65,10 @@
     padding: 50px 0 30px;
 }
 .about-us-page footer a{
-    padding: 0 10px 0 0;
+    padding: 0 15px 0 0;
     transition: .3s;
-}
-.about-us-page footer .pad{
-    padding-right: 0;
+    opacity: .5;
 }
 .about-us-page footer a:hover{
-    opacity: .5;
+    opacity: 1;
 }

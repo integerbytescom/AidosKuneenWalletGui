@@ -20,6 +20,16 @@ const Receive = () => {
         navigate(url)
     }
 
+    //copy onclick
+    const [grayColor,setGrayColor] = useState('')
+    const handleCopy = () =>{
+        setGrayColor('gray')
+        setTimeout(handleChangeColor,1000)
+    }
+    const handleChangeColor = () =>{
+        setGrayColor('')
+    }
+
     //state with all transactions
     const recTrans = TransData.filter(trans => trans.adk.startsWith('+'))
     const [transactions,setTransactions] = useState(recTrans)
@@ -52,10 +62,10 @@ const Receive = () => {
 
                     <div className={`rec-code-container`}>
                         <div className="code">
-                            <p>bc1qvxd05umvv3ens9mkdydts363xeef75q4nsrxf3</p>
+                            <p className={grayColor}>bc1qvxd05umvv3ens9mkdydts363xeef75q4nsrxf3</p>
                         </div>
                         <div className="copy">
-                            <img src="./images/receive/copy.svg" alt="copy"/>
+                            <img onClick={handleCopy} src="./images/receive/copy.svg" alt="copy"/>
                         </div>
                     </div>
 

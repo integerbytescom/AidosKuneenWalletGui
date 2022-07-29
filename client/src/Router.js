@@ -19,6 +19,7 @@ import FAQpage from "./pages/FAQpage/FAQpage";
 import CalculatorPage from "./pages/CalculatorPage/CalculatorPage";
 import FormHelp from "./pages/FAQpage/components/FormHelp/FormHelp";
 import Settings from "./pages/Settings/Settings";
+import LoadPage from "./pages/LoadPage/LoadPage";
 
 
 const Router = () => {
@@ -50,6 +51,7 @@ const Router = () => {
                 <Route path='/wallet/FAQ' element={ <FAQpage /> } />
                 <Route path='/wallet/form' element={ <FormHelp /> } />
                 <Route path='/wallet/settings' element={ <Settings /> } />
+                <Route path='/loadPage' element={ <LoadPage /> } />
             </Routes>
         </div>
     );

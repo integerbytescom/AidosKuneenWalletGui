@@ -34,7 +34,7 @@ const NavbarLeft = () => {
                     :''}
 
                 <div className="menu">
-                    <Link  to={`/wallet`} className={path==='/wallet'?'active':''}>
+                    <Link  to={`/wallet`} className={path==='/wallet' || path==='/wallet/send' || path==='/wallet/receive'?'active':''}>
                         <img src="./images/navbar-left/credit-card.svg" alt=""/>
                         Wallet
                     </Link>

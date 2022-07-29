@@ -69,25 +69,25 @@ const AboutUsPage = () => {
 
             <footer>
                 <Link to={'/'}>
-                    <img src="./images/about-us/media/1.svg" alt=""/>
+                    <img src="./images/about-us/media/m.svg" alt=""/>
                 </Link>
                 <Link to={'/'}>
-                    <img src="./images/about-us/media/2.svg" alt=""/>
+                    <img src="./images/about-us/media/in.svg" alt=""/>
                 </Link>
                 <Link to={'/'}>
-                    <img src="./images/about-us/media/3.svg" alt=""/>
+                    <img src="./images/about-us/media/twitter.svg" alt=""/>
                 </Link>
                 <Link to={'/'}>
-                    <img src="./images/about-us/media/4.svg" alt=""/>
-                </Link>
-                <Link className={'pad'} to={'/'}>
-                    <img src="./images/about-us/media/5.svg" alt=""/>
+                    <img src="./images/about-us/media/github.svg" alt=""/>
                 </Link>
                 <Link to={'/'}>
-                    <img src="./images/about-us/media/6.svg" alt=""/>
+                    <img src="./images/about-us/media/youtube.svg" alt=""/>
                 </Link>
                 <Link to={'/'}>
-                    <img src="./images/about-us/media/7.svg" alt=""/>
+                    <img src="./images/about-us/media/facebook.svg" alt=""/>
+                </Link>
+                <Link to={'/'}>
+                    <img src="./images/about-us/media/robot.svg" alt=""/>
                 </Link>
             </footer>
 

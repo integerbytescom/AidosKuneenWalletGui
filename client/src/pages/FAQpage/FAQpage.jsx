@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './FAQpage.css';
-import {anFade, anFadeOut} from "../../animations";
+import {anFade, anFade1s, anFadeOut} from "../../animations";
 import {useNavigate} from "react-router-dom";
 
 const FAQpage = () => {
@@ -22,7 +22,7 @@ const FAQpage = () => {
     return (
         <div className={`block-container menu faq-page ${fade}`}>
             <h1>Aidos Kuneen Help Videos</h1>
-            <div className="video-container">
+            <div className={`video-container ${anFade1s}`}>
                 {arrVideos.map(url => (
                     <iframe
                         key={url}
@@ -33,7 +33,7 @@ const FAQpage = () => {
                     />
                 ))}
             </div>
-            <p className={'faq-bottom-text'}>Остались вопросы - <button onClick={handleOpenForm}>напишите нам</button></p>
+            <p className={'faq-bottom-text'}>Have questions? - <button onClick={handleOpenForm}>Write to us</button></p>
         </div>
     );
 };

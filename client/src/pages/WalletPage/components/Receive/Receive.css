@@ -24,9 +24,18 @@
     font-size: 13px;
     margin: 0 0 0 0;
     padding: 0;
+    transition: .3s;
+}
+.rec-code-container .code p.gray{
+    color: var(--color-white-opac-5);
 }
 .rec-code-container .copy img{
+    opacity: .4;
     margin: -4px 0 0 5px;
+    transition: .3s;
+}
+.rec-code-container .copy img:hover{
+    opacity: 1;
 }
 
 .rec-button-container{
