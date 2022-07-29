@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: var(--color-white);
+    color: var(--color-white-opac-7);
     width: 180px;
     padding: 10px 20px;
     z-index: 2;
@@ -11,6 +11,10 @@
     border: none;
     border-radius: 30px;
     transition: .3s;
+}
+.blue-button:hover{
+    box-shadow: inset 20px 20px 20px 20px var(--color-white-opac-1);
+    color: var(--color-white);
 }
 
 /*gray button*/

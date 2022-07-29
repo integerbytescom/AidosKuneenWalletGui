@@ -1,14 +1,14 @@
 import React,{useState} from 'react';
 import './ConfirmSeed.css';
 import {useNavigate} from "react-router-dom";
-import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeSlow} from "../../animations";
+import { anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 
 const ConfirmSeed = () => {
 
     const navigate = useNavigate()
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
-    const [fadeLeft,setFadeLeft] = useState(anFadeLeft)
+    const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
     const handleConfirmSeed = (url,event) =>{
         event.preventDefault()

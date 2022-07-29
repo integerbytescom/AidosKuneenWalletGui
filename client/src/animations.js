@@ -15,6 +15,10 @@ export const anFadeLeft2s = anOn + 'animate__fadeInLeft ' + anDel2s;
 //fade left
 export const anFadeLeft = anOn + 'animate__fadeInLeft ';
 
+//fade right
+export const anFadeRight = anOn + 'animate__fadeInRight ';
+export const anFadeRightOut = anOn + 'animate__fadeInRightOut ';
+
 //fade up
 export const anFadeUp = anOn + 'animate__fadeInUp ';
 
@@ -26,4 +30,4 @@ export const anFadeUp = anOn + 'animate__fadeInUp ';
 export const anFadeOut = anOn + 'animate__fadeOut ';
 
 //fade right
-export const anFadeLeftOut = anOn + 'animate__fadeOutRight ';
+export const anFadeLeftOut = anOn + 'animate__fadeOutLeft ';

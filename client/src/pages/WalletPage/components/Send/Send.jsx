@@ -39,7 +39,7 @@ const Send = (props) => {
                     props.blue ?
                         <form className="form-create-pass blue">
                             <div className="adk-value">
-                                <input className='input-gray blue' type="number" placeholder={`0.00`} />
+                                <input className='input-gray blue' type="text" placeholder={`0.00`} />
                                 <div className="but-container blue">
                                     <button className={'all-send'}>All</button>
                                     <h3>ADK / 2414,455.43 ADK</h3>
@@ -60,7 +60,7 @@ const Send = (props) => {
                             <input className={`input-gray send`} type="text" placeholder={`send to (0x address / receiver`} />
 
                             <div className="adk-value">
-                                <input className={`input-gray`} type="number" placeholder={'0.00'} />
+                                <input className={`input-gray`} type="text" placeholder={'0.00'} />
                                 <div className="but-container">
                                     <button className={'all-send'}>All</button>
                                     <h3>ADK</h3>

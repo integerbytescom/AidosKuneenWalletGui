@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import './ShowSeedPage.css';
-import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeSlow} from "../../animations";
+import {anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import {useNavigate} from "react-router-dom";
 
 const ShowSeedPage = () => {
@@ -8,7 +8,7 @@ const ShowSeedPage = () => {
     const navigate = useNavigate()
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
-    const [fadeLeft,setFadeLeft] = useState(anFadeLeft)
+    const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
     const handleSuccessSeed = (url) =>{
         setFadeSlow(anFadeOut)

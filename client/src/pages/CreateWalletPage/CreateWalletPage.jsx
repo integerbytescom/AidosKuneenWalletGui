@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import './CreateWalletPage.css';
 import {useNavigate} from 'react-router-dom';
-import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeSlow} from "../../animations";
+import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 
 const CreateWalletPage = () => {
 
     const navigate = useNavigate()
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
-    const [fadeLeft,setFadeLeft] = useState(anFadeLeft)
+    const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
 
     const handleRoute = (url,event) =>{

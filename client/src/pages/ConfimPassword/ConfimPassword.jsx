@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeSlow} from "../../animations";
+import { anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import './ConsfirmPassword.css';
 
 const ConfirmPassword = (props) => {
@@ -8,7 +8,7 @@ const ConfirmPassword = (props) => {
     const navigate = useNavigate()
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
-    const [fadeLeft,setFadeLeft] = useState(anFadeLeft)
+    const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
     const handleConfirmPass = (url,event) =>{
         event.preventDefault()

@@ -24,7 +24,7 @@ const AuthorizationPage = () => {
     }
 
     return (
-            <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves`}>
+            <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves ${fadeSlow}`}>
                 <div className={`block-container menu`}>
 
                     {/*auth container start*/}

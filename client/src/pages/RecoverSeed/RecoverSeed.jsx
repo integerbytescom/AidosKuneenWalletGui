@@ -1,14 +1,14 @@
 import React,{useState} from 'react';
 import './RecoverSeed.css';
 import {useNavigate} from "react-router-dom";
-import {anFade, anFadeLeft, anFadeLeftOut, anFadeOut} from "../../animations";
+import {anFade, anFadeLeftOut, anFadeOut, anFadeRight} from "../../animations";
 
 const RecoverSeed = () => {
 
     const navigate = useNavigate()
 
     const [fade,setFade] = useState(anFade)
-    const [fadeLeft,setFadeLeft] = useState(anFadeLeft)
+    const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
     const handleRecoverSeed = (url,event) =>{
         event.preventDefault()

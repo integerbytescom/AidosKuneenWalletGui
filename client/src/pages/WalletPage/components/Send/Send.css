@@ -111,8 +111,9 @@
 .radio-p label{
     color: var(--color-white);
     margin-left: 5px;
+    margin-bottom: -1px;
     font-weight: 300;
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .radio-p input[type='radio'] {
@@ -124,6 +125,10 @@
     -moz-appearance: none;
     appearance: none;
     outline: none;
+    border: 1px solid var(--color-white-opac-5);
+}
+.radio-p input[type='radio']:checked{
+    border: 1px solid var(--color-white);
 }
 
 .radio-p input[type='radio']::before {
@@ -144,8 +149,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 10px;
-    height: 10px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background-color: var(--color-white);
     transform: translate(-50%, -50%);
