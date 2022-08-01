@@ -21,7 +21,7 @@ const ShowSeedPage = () => {
     }
 
     return (
-            <div className={`block-container menu`}>
+            <div className={`block-container`}>
 
                 <button onClick={event => handleSuccessSeed('/auth',event)} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
@@ -31,11 +31,13 @@ const ShowSeedPage = () => {
                     <div className="dot active"></div>
                     <div className="dot active"></div>
                     <div className="dot"></div>
-                    <div className="dot"></div>
                 </div>
 
                 <div className={`seed-first-show ${fadeLeft}`}>
-                    <h2 className={`h2-seed`}>Your mnemonic seed<br />Don’t share it with anyone</h2>
+                    <h2 className={`h2-seed`}>
+                        Your Seed<br />
+                        <span>Don't Share it with Anyone and Store it offline </span>
+                    </h2>
 
                     <div className={`seed-container`}>
                         <header />
@@ -44,10 +46,11 @@ const ShowSeedPage = () => {
                         </div>
                     </div>
 
-                    <button
-                        onClick={() => handleSuccessSeed('/confirmSeed')}
-                        className={`gray-button`}
-                    >I have stored this seed in a safe place</button>
+                    <form className="form-create-pass">
+                        <input className={`input-gray`} type="text" placeholder={`enter seed`} />
+                        <br />
+                        <button onClick={() => handleSuccessSeed('/confirmPass')} className={'gray-button'}>Finish</button>
+                    </form>
                 </div>
 
             </div>

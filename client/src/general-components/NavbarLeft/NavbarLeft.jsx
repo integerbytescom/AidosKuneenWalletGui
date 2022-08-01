@@ -8,9 +8,9 @@ const NavbarLeft = () => {
     const navigate = useNavigate();
     const path = useLocation().pathname;
 
-    const [fade,setFade] = useState(anFade)
-
     return (
+        <>
+        {path.startsWith('/wallet')?
         <nav className={`navbar-left ${anFadeLeft2s}`}>
             <header>
                 <div className="logo">
@@ -18,20 +18,19 @@ const NavbarLeft = () => {
                     <img className={'ak-logo'} src="./images/navbar-left/ak.svg" alt=""/>
                 </div>
 
-                {/*wallet page check*/}
-                {path.startsWith('/wallet')?
-                    <div className={`nav-bal-stack ${fade}`}>
-                        <div>
-                            <p>Total balance</p>
-                            <h5 className={`green`}>140,043.24</h5>
-                        </div>
-                        <hr/>
-                        <div>
-                            <p>Total staked</p>
-                            <h5>15,425.64</h5>
-                        </div>
+
+                <div className={`nav-bal-stack`}>
+                    <div>
+                        <p>Total balance</p>
+                        <h5 className={`green`}>140,043.24</h5>
                     </div>
-                    :''}
+                    <hr/>
+                    <div>
+                        <p>Total staked</p>
+                        <h5>15,425.64</h5>
+                    </div>
+                </div>
+
 
                 <div className="menu">
                     <Link  to={`/wallet`} className={path==='/wallet' || path==='/wallet/send' || path==='/wallet/receive'?'active':''}>
@@ -63,18 +62,17 @@ const NavbarLeft = () => {
                     Settings
                 </Link>
 
-                {/*wallet page check*/}
-                {path.startsWith('/wallet')?
-                    <div className={`logout-but-cont ${fade}`}>
-                        <hr/>
-                        <Link className={path==='/auth'?'active':''} to={`/auth`}>
-                            <img src="./images/navbar-left/log-out.svg" alt=""/>
-                            Log out
-                        </Link>
-                    </div>:''
-                }
+
+                <div className={`logout-but-cont`}>
+                    <hr/>
+                    <Link className={path==='/auth'?'active':''} to={`/auth`}>
+                        <img src="./images/navbar-left/log-out.svg" alt=""/>
+                        Log out
+                    </Link>
+                </div>
             </footer>
-        </nav>
+
+        </nav> :''}</>
     );
 };
 

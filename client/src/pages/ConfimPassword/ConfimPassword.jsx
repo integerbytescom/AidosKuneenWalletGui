@@ -22,7 +22,7 @@ const ConfirmPassword = (props) => {
     }
 
     return (
-            <div className={`block-container menu`}>
+            <div className={`block-container`}>
 
                 <button onClick={event => handleConfirmPass('/auth',event)} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
@@ -33,23 +33,25 @@ const ConfirmPassword = (props) => {
                         <div className="dot active"></div>
                         <div className="dot active"></div>
                         <div className="dot active"></div>
-                        <div className="dot active"></div>
                     </div>
                 }
 
                 <div className={`conf-pass-container ${fadeLeft}`}>
                     {
                         props.path === 'mm'?
-                            <h2>MetaMask password</h2>:
-                            <h2>Enter password</h2>
+                            <h2 className={'left'}>MetaMask password</h2>:
+                            <h2>Local wallet successfully created</h2>
                     }
                     <form>
-                        <input className={`input-gray`} type="password" placeholder={`enter password`} />
-
                         {
                             props.path === 'mm'?
-                                <button className={'blue-button'} onClick={event => handleConfirmPass('/wallet',event)}>Enter</button>:
-                                <button className={'gray-button'} onClick={event => handleConfirmPass('/wallet',event)}>Continue</button>
+                                <>
+                                <input className={`input-gray`} type="password" placeholder={`enter password`} />
+                                <button className={'blue-button left'} onClick={event => handleConfirmPass('/wallet',event)}>Enter</button>
+                                </>:
+                                <button className={`blue-button`} onClick={event => handleConfirmPass('/auth',event)} >
+                                    Start <img src="./images/preview-page/arrow.svg" alt="arrow"/>
+                                </button>
                         }
                     </form>
                 </div>

@@ -18,9 +18,23 @@
 /*form*/
 .form-create-wallet-container form{
     width: 180px;
+    margin: auto;
 }
 .form-create-wallet-container form input{
     margin-top: 15px;
+}
+.form-create-wallet-container form .pass-first{
+    position: relative;
+    display: flex;
+}
+.form-create-wallet-container form .pass-first div{
+    border-bottom: 1px solid var(--color-white-opac-3);
+}
+.form-create-wallet-container form .pass-first img{
+    width: 20px;
+    cursor: pointer;
+    opacity: .5;
+    margin-bottom: -35px;
 }
 .form-create-wallet-container form button{
     margin-top: 35px;

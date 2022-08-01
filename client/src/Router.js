@@ -1,11 +1,10 @@
 import React from 'react';
-import {Route, Routes, useLocation} from "react-router-dom";
+import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import PreviewPage from "./pages/PreviewPage/PreviewPage";
 import AuthorizationPage from "./pages/ AuthorizationPage/ AuthorizationPage";
 import NavbarLeft from "./general-components/NavbarLeft/NavbarLeft";
 import CreateWalletPage from "./pages/CreateWalletPage/CreateWalletPage";
 import ShowSeedPage from "./pages/ShowSeedPage/ShowSeedPage";
-import ConfirmSeed from "./pages/ConfirmSeed/ConfirmSeed";
 import ConfirmPassword from "./pages/ConfimPassword/ConfimPassword";
 import WalletPage from "./pages/WalletPage/WalletPage";
 import Send from "./pages/WalletPage/components/Send/Send";
@@ -19,22 +18,33 @@ import FAQpage from "./pages/FAQpage/FAQpage";
 import CalculatorPage from "./pages/CalculatorPage/CalculatorPage";
 import FormHelp from "./pages/FAQpage/components/FormHelp/FormHelp";
 import Settings from "./pages/Settings/Settings";
-import LoadPage from "./pages/LoadPage/LoadPage";
+import LoadPage from "./general-components/LoadPage/LoadPage";
+import { useIdleTimer } from 'react-idle-timer'
 
 
 const Router = () => {
 
     const path = useLocation().pathname;
+    const navigate = useNavigate()
+
+    //timer or check inaction user
+    const handleOnIdle = () => {
+        navigate('/loadPage')
+    }
+    const { getRemainingTime, getLastActiveTime } = useIdleTimer({
+        timeout: 1000 * 300,
+        onIdle: handleOnIdle,
+        debounce: 200
+    })
 
     return (
-        <div>
+        <>
             {path==='/'?'':<NavbarLeft />}
             <Routes>
                 <Route path='/' element={ <PreviewPage /> } />
                 <Route path='/auth' element={ <AuthorizationPage /> } />
                 <Route path='/createWallet' element={ <CreateWalletPage /> } />
                 <Route path='/showSeed' element={ <ShowSeedPage /> } />
-                <Route path='/confirmSeed' element={ <ConfirmSeed /> } />
                 <Route path='/confirmPass' element={ <ConfirmPassword /> } />
                 <Route path='/recoverSeed' element={ <RecoverSeed /> } />
                 <Route path='/createPass' element={ <CreatePassword /> } />
@@ -53,7 +63,7 @@ const Router = () => {
                 <Route path='/wallet/settings' element={ <Settings /> } />
                 <Route path='/loadPage' element={ <LoadPage /> } />
             </Routes>
-        </div>
+        </>
     );
 };
 

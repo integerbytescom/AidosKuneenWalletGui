@@ -22,7 +22,7 @@ const RecoverSeed = () => {
     }
 
     return (
-            <div className={`block-container menu`}>
+            <div className={`block-container`}>
                 <button onClick={event => handleRecoverSeed('/auth',event)} className={`close-button ${fade}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>

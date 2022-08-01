@@ -2,13 +2,20 @@
     width: auto;
     height: auto;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.img-auth-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -30px;
 }
 
 /*card image*/
 img.card-auth{
-    margin-right: 70px;
-    margin-left: -50px;
+    margin-right: 50px;
 }
 
 /*buttons container*/
@@ -20,7 +27,7 @@ img.card-auth{
 }
 /*buttons spec styles*/
 .auth-content .buttons-container button{
-    width: inherit;
+    width: 100%;
     font-weight: 300;
     margin-top: 12px;
     padding: 8px 0;

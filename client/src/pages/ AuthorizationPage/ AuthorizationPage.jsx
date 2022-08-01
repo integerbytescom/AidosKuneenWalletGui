@@ -25,11 +25,12 @@ const AuthorizationPage = () => {
 
     return (
             <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves ${fadeSlow}`}>
-                <div className={`block-container menu`}>
 
                     {/*auth container start*/}
                 <div className={`auth-content`}>
-                    <img className={`card-auth ${fadeSlow}`} src="./images/auth-page/card2.png" alt={``}/>
+                    <div className="img-auth-container">
+                        <img className={`card-auth ${fadeSlow}`} src="./images/auth-page/card2.png" alt={``}/>
+                    </div>
 
                     <div className={`buttons-container ${fade1s}`}>
                         {user?
@@ -58,7 +59,6 @@ const AuthorizationPage = () => {
                 </div>
                     {/*auth container end*/}
 
-                </div>
             </div>
     );
 };

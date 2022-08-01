@@ -1,45 +1,18 @@
-import React,{useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './LoadPage.css';
 import {useNavigate} from "react-router-dom";
-import {anFade, anFadeOut} from "../../animations";
+import {anFadeOut, anFadeSlow} from "../../animations";
 import {Area, AreaChart, CartesianGrid, XAxis, YAxis} from "recharts";
-
+import loadData from "./LoadData";
 const LoadPage = () => {
-
-    const data = [
-        {
-            day: "",
-            adk: 900,
-        },
-        {
-            day: "Jun, 19",
-            adk: 100,
-        },
-        {
-            day: "Jun, 27",
-            adk: 760,
-        },
-        {
-            day: "Jul, 6",
-            adk: 220,
-        },
-        {
-            day: "Jul, 12",
-            adk: 320,
-        },
-        {
-            day: "",
-            adk: 1000,
-        },
-    ];
 
     const navigate = useNavigate()
 
-    const [fade,setFade] = useState(anFade)
+    const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
 
     const handleConfirmSeed = (url,event) =>{
         event.preventDefault()
-        setFade(anFadeOut)
+        setFadeSlow(anFadeOut)
         setTimeout(() => navigateRoute(url),1000)
     }
 
@@ -47,37 +20,46 @@ const LoadPage = () => {
         navigate(url)
     }
 
+    //change monetka func
+    const [monetka,setMonetka] = useState(0);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setMonetka(monetka => monetka>=loadData.length-1? 0 : monetka + 1);
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <div className={`block-container load-page ${fade}`}>
-            <button onClick={event => handleConfirmSeed('/auth',event)} className={`close-button ${fade}`}>
+        <div className={`block-container load-page ${fadeSlow}`}>
+            <button onClick={event => handleConfirmSeed('/auth',event)} className={`close-button ${fadeSlow}`}>
                 <img src="./images/x.svg" alt=""/>
             </button>
 
             <header>
                 <div className="monetka">
-                    <img src="./images/load-page/bitc.svg" alt=""/>
+                    <img src={loadData[monetka].img} alt=""/>
                     <span>
-                        <h1 className="name">Bitcoin</h1>
-                        <h3 className="sokr">BTC</h3>
+                        <h1 className="name">{loadData[monetka].nazv}</h1>
+                        <h3 className="sokr">{loadData[monetka].nazvKratko}</h3>
                     </span>
                 </div>
 
                 <div className="about-changes">
                     <div className="a-c-container">
                         <p>Price</p>
-                        <h2>$22,342.456</h2>
+                        <h2>{loadData[monetka].price}</h2>
                     </div>
                     <div className="a-c-container">
                         <p>24h change</p>
-                        <h2 className={`color`}>+4,53%</h2>
+                        <h2 className={`color`}>{loadData[monetka].change}</h2>
                     </div>
                     <div className="a-c-container">
                         <p>Market cap</p>
-                        <h2>$453B</h2>
+                        <h2>{loadData[monetka].cap}</h2>
                     </div>
                     <div className="a-c-container">
                         <p>24h vol</p>
-                        <h2>$45.3B</h2>
+                        <h2>{loadData[monetka].vol}</h2>
                     </div>
                 </div>
             </header>
@@ -86,7 +68,7 @@ const LoadPage = () => {
                     className={`graph-overview`}
                     width={950}
                     height={250}
-                    data={data}
+                    data={loadData[monetka].dataGraph}
                     margin={{
                         top: 0,
                         right: 0,
