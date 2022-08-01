@@ -41,7 +41,7 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -531,7 +531,10 @@ const getHistoricalDataForCoin = async (ticket) => {
     BNB: 1839,
     SOL: 5426,
     DOGE: 74,
-    DOT: 6636
+    DOT: 6636,
+    ADA: 2010,
+    MATIC: 3890,
+    AVAX: 5805
   }
   const date = new Date(),
       year = date.getFullYear(),

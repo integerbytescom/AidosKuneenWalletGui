@@ -3,13 +3,13 @@ import './CreateWalletPage.css';
 import {useNavigate} from 'react-router-dom';
 import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 
+
 const CreateWalletPage = () => {
 
     const navigate = useNavigate()
 
-    const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
-    const [fadeLeft,setFadeLeft] = useState(anFadeRight)
-
+    const [fadeSlow, setFadeSlow] = useState(anFadeSlow)
+    const [fadeLeft, setFadeLeft] = useState(anFadeRight)
 
     const handleRoute = (url,event) =>{
         event.preventDefault()
@@ -18,13 +18,13 @@ const CreateWalletPage = () => {
         setTimeout(() => navigatePage(url),1000)
     }
 
-    const navigatePage = (url) =>{
+    const navigatePage = (url) => {
         navigate(url)
     }
 
     return (
             <div className={`block-container menu`}>
-                
+
                 <button onClick={event => handleRoute('/auth',event)} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>
