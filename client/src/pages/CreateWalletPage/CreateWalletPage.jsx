@@ -4,6 +4,12 @@ import {useNavigate} from 'react-router-dom';
 import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import Errors from "../../general-components/Errors/Errors";
 
+export let GLOBAL_PASS;
+export let GLOBAL_ADRESS;
+export let GLOBAL_SEED;
+export let GLOBAL_USER = false;
+
+
 const CreateWalletPage = () => {
 
     const navigate = useNavigate()
@@ -19,8 +25,7 @@ const CreateWalletPage = () => {
     //errors
     const [error,setError] = useState('no errors')
 
-
-    const handleRoute = (url,event) =>{
+    const handleRoute = async (url,event) =>{
         // window.walletAPI.createWalletNew()
         event.preventDefault()
         if (pass.length<8){
@@ -32,7 +37,18 @@ const CreateWalletPage = () => {
             setPass('')
             setPassCopy('')
         }else {
-            window.walletAPI.createWalletNew(pass)
+            let dataUser = JSON.parse(await window.walletAPI.createWalletNew(pass));
+            window.localStorage.setItem('password', pass);
+            window.localStorage.setItem('adress', dataUser.data[0]);
+            window.localStorage.setItem('seed', dataUser.data[1]);
+            window.localStorage.setItem('user', true);
+            GLOBAL_PASS = pass;
+            GLOBAL_ADRESS = dataUser.data[0];
+            GLOBAL_SEED = dataUser.data[1];
+            GLOBAL_USER = true;
+            setFadeSlow(anFadeOut)
+            setFadeLeft(anFadeLeftOut)
+            setTimeout(() => navigatePage(url),1000)
         }
         // setFadeSlow(anFadeOut)
         // setFadeLeft(anFadeLeftOut)

@@ -7,6 +7,7 @@ const WalletBalance = (props) => {
 
     const [blueClass,setBlueClass] = useState('')
 
+    const [balance,setBalance] = useState(null)
 
     const [fade,setFade] = useState(anFade)
     const [fade1s,setFade1s] = useState(anFade1s)
@@ -22,12 +23,20 @@ const WalletBalance = (props) => {
     }
 
     useEffect(() => {
+
+        const showBalance = async () =>{
+            const adress = localStorage.getItem('adress')
+            const balance = JSON.parse(await window.walletAPI.balance(adress))
+            setBalance(balance.data[adress])
+        }
+        showBalance()
+
         if (props.path === '/wallet'){
             setBlueClass('')
         }else {
             setBlueClass('blue')
         }
-    })
+    },[])
 
     return (
         <>
@@ -44,7 +53,7 @@ const WalletBalance = (props) => {
                             <img src="./images/wallet-page/logoKrugBlue.svg" alt=""/>:
                             <img src="./images/wallet-page/logoKrug.svg" alt=""/>
                     }
-                    <h1 className={blueClass}>140,043.24 ADK</h1>
+                    <h1 className={blueClass}>{balance} ADK</h1>
                     <h2 className={blueClass}>356 $</h2>
                 </div>
 
