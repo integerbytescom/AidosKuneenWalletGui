@@ -68,7 +68,8 @@ app.on('ready', () => {
   ipcMain.handle("loadMetamaskMnemonics", loadMetamaskMnemonics);
   ipcMain.handle("getHistoricalDataForCoin", getHistoricalDataForCoin);
   ipcMain.handle("getAdkPrices",getAdkPrices);
-  ipcMain.handle("multistake", multistake)
+  ipcMain.handle("multistake", multistake);
+  ipcMain.handle("totaStake", totaStake);
   createWindow()
 });
 
@@ -98,7 +99,6 @@ const writeLog = (err) => {
 const ping = async () => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} ping`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -113,7 +113,6 @@ const ping = async () => {
 
 const createWalletNew = async (evt, password) => {
   try {
-    console.log(password);
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} createWalletNew ${password}`))
     return stdout;
   } catch (e) {
@@ -129,9 +128,7 @@ const createWalletNew = async (evt, password) => {
 
 const createWalletFromMnemonic = async (evt, seed, password) => {
   try {
-    console.log(seed, password)
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} createWalletFromMnemonic ${seed} ${password}`))
-    console.log(stdout)
     return stdout
   } catch(e) {
     writeLog(e)
@@ -146,9 +143,7 @@ const createWalletFromMnemonic = async (evt, seed, password) => {
 
 const balance = async (evt, address) => {
   try {
-    console.log(address)
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} balance ${address}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -187,6 +182,33 @@ const totalBalance = async (evt, mempas) => {
   }
 }
 
+const totaStake = async (evt, mempas) => {
+  try {
+    const json = await listWalletAddress(evt, mempas, 50)
+    const resp = JSON.parse(json)
+    const adrs = resp.data
+
+    let totlBal = 0
+    for (let adr of adrs) {
+      totlBal += JSON.parse(await stakedBalance(evt, adr)).data[adr]
+    }
+
+    return JSON.stringify({
+      ok: true,
+      msg: "total balance",
+      data: totlBal
+    })
+  } catch (e) {
+    writeLog(e)
+    console.log(e)
+    return JSON.stringify({
+      ok: false,
+      msg: "error",
+      data: null
+    })
+  }
+}
+
 const writeTxInHist = (tx) => {
   fs.appendFile("../txsHist", tx, (err) => {
     if (err) writeLog(err)
@@ -195,11 +217,9 @@ const writeTxInHist = (tx) => {
 
 const send = async (evt, way, mempas, from, to, amount) => {
   try {
-    console.log(way, mempas, from, to, amount)
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
     const tx = JSON.parse(stdout).data[0]
     writeTxInHist(tx)
-    console.log(stdout)
     return stdout
   } catch(e) {
     writeLog(e)
@@ -215,7 +235,6 @@ const send = async (evt, way, mempas, from, to, amount) => {
 const updateBalance = async (evt) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} updatebalance`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -231,7 +250,6 @@ const updateBalance = async (evt) => {
 const listWalletAddress = async (evt, mempas, numAddr) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} listwalletaddr ${mempas} ${numAddr}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -247,7 +265,6 @@ const listWalletAddress = async (evt, mempas, numAddr) => {
 const addAddress = async (evt, password) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} addaddress ${password}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -263,7 +280,6 @@ const addAddress = async (evt, password) => {
 const checkPassword = async (evt, password) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} checkpassword ${password}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -279,7 +295,6 @@ const checkPassword = async (evt, password) => {
 const txInfo = async (evt, txId) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} txinfo ${txId}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -319,7 +334,6 @@ const loadTxsHistory = async (evt) => {
 const loadMetamaskMnemonics = async (evt, password) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} loadMetamaskMnemonics ${password}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -335,7 +349,6 @@ const loadMetamaskMnemonics = async (evt, password) => {
 const migrate = async (evt, old, xNew) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} migrate ${old} ${xNew}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -351,7 +364,6 @@ const migrate = async (evt, old, xNew) => {
 const stake = async (evt, way, mempas, from, amount) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} stake ${way} ${mempas} ${from} ${amount}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -367,7 +379,6 @@ const stake = async (evt, way, mempas, from, amount) => {
 const unstake = async (evt, gas, mempas, from, amount) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} unstake ${gas} ${mempas} ${from} ${amount}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
@@ -383,7 +394,6 @@ const unstake = async (evt, gas, mempas, from, amount) => {
 const stakedBalance = async (evt, ...addrs) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} stakedbalance ${addrs}`))
-    console.log(stdout)
     return stdout
   } catch (e) {
     writeLog(e)
