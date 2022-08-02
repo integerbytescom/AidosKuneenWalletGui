@@ -164,6 +164,7 @@ const totalBalance = async (evt, mempas) => {
 
     let totlBal = 0
     for (let adr in adrs) {
+      console.log(JSON.parse(await balance(evt, adr)).data[adr])
       totlBal += JSON.parse(await balance(evt, adr)).data[adr]
     }
     return JSON.stringify({
