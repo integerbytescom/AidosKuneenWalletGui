@@ -2,14 +2,13 @@ import React,{useState} from 'react';
 import './ AuthorizationPage.css';
 import {anFade1s, anFadeOut, anFadeSlow} from "../../animations";
 import {useNavigate} from "react-router-dom";
-import {GLOBAL_PASS, GLOBAL_USER} from "../CreateWalletPage/CreateWalletPage";
 import Errors from "../../general-components/Errors/Errors";
 
 const AuthorizationPage = () => {
 
     const navigate = useNavigate()
 
-    const [error,setError] = useState('no errors')
+    const [error,setError] = useState('')
 
     const [user] = useState(window.localStorage.getItem('user'))
 
@@ -21,13 +20,18 @@ const AuthorizationPage = () => {
     const handleCreate = (url,e) => {
         e.preventDefault()
         if (userPass !== window.localStorage.getItem('password')){
-            setError('Пароль не подходит')
+            setErrorFun('Пароль не подходит')
             setUserPass('')
         }else {
             setFadeSlow(anFadeOut)
             setFade1s(anFadeOut)
             setTimeout(() => navigatePage(url),1000)
         }
+    }
+
+    const setErrorFun = (text) =>{
+        setError(text)
+        setTimeout(() => setError(''),3000)
     }
 
     const handleCreateNoPass = (url,e) => {
@@ -44,7 +48,7 @@ const AuthorizationPage = () => {
     return (
             <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves ${fadeSlow}`}>
 
-                <Errors error={error} />
+                {error===''?'':<Errors error={error} />}
 
                     {/*auth container start*/}
                 <div className={`auth-content`}>

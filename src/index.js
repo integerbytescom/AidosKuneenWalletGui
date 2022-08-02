@@ -157,13 +157,13 @@ const balance = async (evt, address) => {
 }
 
 const totalBalance = async (evt, mempas) => {
+  console.log(mempas)
   try {
     const json = await listWalletAddress(evt, mempas, 50)
     const resp = JSON.parse(json)
     const adrs = resp.data
-
     let totlBal = 0
-    for (let adr in adrs) {
+    for (let adr of adrs) {
       console.log(JSON.parse(await balance(evt, adr)).data[adr])
       totlBal += JSON.parse(await balance(evt, adr)).data[adr]
     }
@@ -248,8 +248,9 @@ const updateBalance = async (evt) => {
   }
 }
 
-const listWalletAddress = async (evt, mempas, numAddr) => {
+const listWalletAddress = async (evt, mempas, numAddr=50) => {
   try {
+    console.log(mempas)
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} listwalletaddr ${mempas} ${numAddr}`))
     return stdout
   } catch (e) {

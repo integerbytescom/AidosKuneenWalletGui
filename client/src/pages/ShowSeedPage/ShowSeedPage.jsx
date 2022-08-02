@@ -9,7 +9,7 @@ const ShowSeedPage = () => {
 
     const navigate = useNavigate()
 
-    const [error,setError] = useState('no errors')
+    const [error,setError] = useState('')
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fadeLeft,setFadeLeft] = useState(anFadeRight)
@@ -19,12 +19,17 @@ const ShowSeedPage = () => {
     const handleSuccessSeed = (event,url) =>{
         event.preventDefault()
         if (seedInp !== GLOBAL_SEED){
-            setError('SEED не совпадает')
+            setErrorFun('SEED не совпадает')
         }else{
             setFadeSlow(anFadeOut)
             setFadeLeft(anFadeLeftOut)
             setTimeout(() => navigateRoute(url),1000)
         }
+    }
+
+    const setErrorFun = (text) =>{
+        setError(text)
+        setTimeout(() => setError(''),3000)
     }
 
     const navigateRoute = (url) =>{
@@ -33,9 +38,10 @@ const ShowSeedPage = () => {
 
     return (
             <div className={`block-container`}>
-                <Errors error={error} />
 
-                <button onClick={event => handleSuccessSeed(event,'/auth')} className={`close-button ${fadeSlow}`}>
+                {error!==''?<Errors error={error} />:''}
+
+                <button onClick={() => navigateRoute('/auth')} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>
 

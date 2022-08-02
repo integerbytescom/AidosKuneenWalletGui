@@ -23,17 +23,17 @@ const CreateWalletPage = () => {
     const [passCopy,setPassCopy] = useState('')
 
     //errors
-    const [error,setError] = useState('no errors')
+    const [error,setError] = useState('')
 
     const handleRoute = async (url,event) =>{
         // window.walletAPI.createWalletNew()
         event.preventDefault()
         if (pass.length<8){
-            setError('Длинна пароля должны быть не менее 8 символов')
+            setErrorFun('Длинна пароля должны быть не менее 8 символов')
             setPass('')
             setPassCopy('')
         }else if (pass !== passCopy){
-            setError('Пароли не совпадают')
+            setErrorFun('Пароли не совпадают')
             setPass('')
             setPassCopy('')
         }else {
@@ -55,6 +55,11 @@ const CreateWalletPage = () => {
         // setTimeout(() => navigatePage(url),1000)
     }
 
+    const setErrorFun = (text) =>{
+        setError(text)
+        setTimeout(() => setError(''),3000)
+    }
+
     const [passShow,setPassShow] = useState(false)
     const handleShowPass = () =>{
         setPassShow(!passShow)
@@ -67,7 +72,7 @@ const CreateWalletPage = () => {
     return (
             <div className={`block-container`}>
                 
-                <button onClick={event => handleRoute('/auth',event)} className={`close-button ${fadeSlow}`}>
+                <button onClick={() => navigatePage('/auth')} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>
 
@@ -78,13 +83,13 @@ const CreateWalletPage = () => {
                 </div>
 
                 <div className={`form-create-wallet-container ${fadeLeft}`}>
-                    <h2>Enter Password at least eight characters</h2>
+                    <h2>Enter Password</h2>
                     <form>
                         <div className="pass-first">
                             <input
                                 className={`input-gray`}
                                 type={passShow?'text':'password'}
-                                placeholder={`create password`}
+                                placeholder={`password min .8 ch.`}
                                 value={pass}
                                 onChange={event => setPass(event.target.value)}
                             />
@@ -103,7 +108,7 @@ const CreateWalletPage = () => {
                     </form>
                 </div>
 
-                <Errors error={error} />
+                {error===''?'':<Errors error={error} />}
 
             </div>
     );

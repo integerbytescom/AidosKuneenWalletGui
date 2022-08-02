@@ -10,7 +10,10 @@ const RecoverSeed = () => {
     const [fade,setFade] = useState(anFade)
     const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
+    const [seedInp,setSeedInp] = useState('')
+
     const handleRecoverSeed = (url,event) =>{
+        window.localStorage.setItem('seedMnemonic',seedInp)
         event.preventDefault()
         setFade(anFadeOut)
         setFadeLeft(anFadeLeftOut)
@@ -23,14 +26,26 @@ const RecoverSeed = () => {
 
     return (
             <div className={`block-container`}>
-                <button onClick={event => handleRecoverSeed('/auth',event)} className={`close-button ${fade}`}>
+                <button onClick={() => navigateRoute('/auth')} className={`close-button ${fade}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>
+
+                <div className={`dots-create ${fade}`}>
+                    <div className="dot active"></div>
+                    <div className="dot"></div>
+                    <div className="dot"></div>
+                </div>
 
                 <div className={`rec-seed-form-container ${fadeLeft}`}>
                     <h2>Recover from seed</h2>
                     <form>
-                        <input className={`input-gray`} type="password" placeholder={`enter 12/24 mnemonic seed words `} />
+                        <input
+                            className={`input-gray`}
+                            type="text"
+                            placeholder={`enter 12/24 mnemonic seed words `}
+                            value={seedInp}
+                            onChange={event => setSeedInp(event.target.value)}
+                        />
 
                         <button className={'blue-button'} onClick={event => handleRecoverSeed('/createPass',event)}>
                             Enter seed words

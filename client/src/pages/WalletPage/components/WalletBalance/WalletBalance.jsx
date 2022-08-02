@@ -9,6 +9,8 @@ const WalletBalance = (props) => {
 
     const [balance,setBalance] = useState(null)
 
+    const [usdValue,setUsdValue] = useState(null)
+
     const [fade,setFade] = useState(anFade)
     const [fade1s,setFade1s] = useState(anFade1s)
 
@@ -27,9 +29,16 @@ const WalletBalance = (props) => {
         const showBalance = async () =>{
             const adress = localStorage.getItem('adress')
             const balance = JSON.parse(await window.walletAPI.balance(adress))
-            setBalance(balance.data[adress])
+            console.log(balance)
+            setBalance(balance.data[adress]/1000000000000000000)
         }
         showBalance()
+        const showValuesADK = async () =>{
+            const values = await window.walletAPI.getAdkPrices()
+            setUsdValue(values.USD)
+            console.log(values.USD)
+        }
+        showValuesADK()
 
         if (props.path === '/wallet'){
             setBlueClass('')
@@ -54,7 +63,7 @@ const WalletBalance = (props) => {
                             <img src="./images/wallet-page/logoKrug.svg" alt=""/>
                     }
                     <h1 className={blueClass}>{balance} ADK</h1>
-                    <h2 className={blueClass}>356 $</h2>
+                    <h2 className={blueClass}>{balance * usdValue} $</h2>
                 </div>
 
                 <div className="butt-container">

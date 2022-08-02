@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './NavbarLeft.css';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {anFade, anFadeLeft2s} from "../../animations";
@@ -7,6 +7,29 @@ const NavbarLeft = () => {
 
     const navigate = useNavigate();
     const path = useLocation().pathname;
+
+    const [totalBal,setTotalBal] = useState(null)
+    const [totalStake,setTotalStake] = useState(null)
+
+    useEffect(() =>{
+        const getTotalBalance = async () =>{
+            // const seed = `"${localStorage.getItem('seed')}"`
+            // const totalBalance = await JSON.parse(await window.walletAPI.totalBalance(seed));
+            // const totalStake = await JSON.parse(await window.walletAPI.totaStake(seed));
+            // console.log(totalBalance)
+            // console.log(totalStake)
+            // setTotalBal(totalBalance.data)
+            // setTotalStake(totalStake.data)
+            const adress = localStorage.getItem('adress')
+            const totalBalance = JSON.parse(await window.walletAPI.balance(adress))
+            const totalStacked = JSON.parse(await window.walletAPI.stakedBalance(adress))
+            console.log(totalBalance)
+            console.log(totalStacked);
+            setTotalBal(totalBalance.data[adress]/1000000000000000000)
+            setTotalStake(totalStacked.data[adress][0])
+        }
+        getTotalBalance()
+    },[])
 
     return (
         <>
@@ -22,12 +45,12 @@ const NavbarLeft = () => {
                 <div className={`nav-bal-stack`}>
                     <div>
                         <p>Total balance</p>
-                        <h5 className={`green`}>140,043.24</h5>
+                        <h5 className={`green`}>{totalBal?totalBal:0}</h5>
                     </div>
                     <hr/>
                     <div>
                         <p>Total staked</p>
-                        <h5>15,425.64</h5>
+                        <h5>{totalStake?totalStake:0}</h5>
                     </div>
                 </div>
 

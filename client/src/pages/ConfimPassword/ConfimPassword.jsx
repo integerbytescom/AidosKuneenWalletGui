@@ -24,7 +24,7 @@ const ConfirmPassword = (props) => {
     return (
             <div className={`block-container`}>
 
-                <button onClick={event => handleConfirmPass('/auth',event)} className={`close-button ${fadeSlow}`}>
+                <button onClick={() => navigateRoute('/auth')} className={`close-button ${fadeSlow}`}>
                     <img src="./images/x.svg" alt=""/>
                 </button>
 
@@ -40,7 +40,10 @@ const ConfirmPassword = (props) => {
                     {
                         props.path === 'mm'?
                             <h2 className={'left'}>MetaMask password</h2>:
-                            <h2>Local wallet successfully created</h2>
+                            <>
+                                <h2>Congratulations!</h2>
+                                <p>Your wallet has been successfully created!</p>
+                            </>
                     }
                     <form>
                         {
