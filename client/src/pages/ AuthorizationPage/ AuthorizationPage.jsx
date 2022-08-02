@@ -2,17 +2,35 @@ import React,{useState} from 'react';
 import './ AuthorizationPage.css';
 import {anFade1s, anFadeOut, anFadeSlow} from "../../animations";
 import {useNavigate} from "react-router-dom";
+import {GLOBAL_PASS, GLOBAL_USER} from "../CreateWalletPage/CreateWalletPage";
+import Errors from "../../general-components/Errors/Errors";
 
 const AuthorizationPage = () => {
 
     const navigate = useNavigate()
 
-    const [user] = useState(false)
+    const [error,setError] = useState('no errors')
+
+    const [user] = useState(window.localStorage.getItem('user'))
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fade1s,setFade1s] = useState(anFade1s)
 
+    const [userPass,setUserPass] = useState('')
+
     const handleCreate = (url,e) => {
+        e.preventDefault()
+        if (userPass !== window.localStorage.getItem('password')){
+            setError('Пароль не подходит')
+            setUserPass('')
+        }else {
+            setFadeSlow(anFadeOut)
+            setFade1s(anFadeOut)
+            setTimeout(() => navigatePage(url),1000)
+        }
+    }
+
+    const handleCreateNoPass = (url,e) => {
         e.preventDefault()
         setFadeSlow(anFadeOut)
         setFade1s(anFadeOut)
@@ -26,6 +44,8 @@ const AuthorizationPage = () => {
     return (
             <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves ${fadeSlow}`}>
 
+                <Errors error={error} />
+
                     {/*auth container start*/}
                 <div className={`auth-content`}>
                     <div className="img-auth-container">
@@ -36,7 +56,13 @@ const AuthorizationPage = () => {
                         {user?
                             <>
                                 <form className="form-create-pass">
-                                    <input className={'input-gray'} type="password" placeholder={`enter password`} />
+                                    <input
+                                        className={'input-gray'}
+                                        type="password"
+                                        placeholder={`enter password`}
+                                        value={userPass}
+                                        onChange={event => setUserPass(event.target.value)}
+                                    />
                                     <button className={`blue-button`} onClick={event => handleCreate('/wallet',event)}>Login</button>
                                 </form>
                                 <div className={'hr-or'}>
@@ -44,13 +70,13 @@ const AuthorizationPage = () => {
                                     <p>or</p>
                                     <hr/>
                                 </div>
-                                <button className={`gray-button`} onClick={event => handleCreate('/recoverSeed',event)}>Enter Seed</button>
+                                <button className={`gray-button`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
                                 <button className={`gray-button`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
                             </>
                             :
                             <>
-                                <button className={`blue-button`} onClick={event => handleCreate('/createWallet',event)}>Create wallet</button>
-                                <button className={`gray-button`} onClick={event => handleCreate('/recoverSeed',event)}>Enter Seed</button>
+                                <button className={`blue-button`} onClick={event => handleCreateNoPass('/createWallet',event)}>Create wallet</button>
+                                <button className={`gray-button`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
                                 <button className={`gray-button`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
                             </>
                         }
