@@ -85,7 +85,7 @@ const CreatePassword = () => {
                             onChange={event => setPassCopy(event.target.value)}
                         />
 
-                        <button className={'blue-button'} onClick={event => handleCreatePass('/wallet',event)}>
+                        <button className={'blue-button'} onClick={event => handleCreatePass('/localWalletSuccess',event)}>
                             Create
                         </button>
                     </form>

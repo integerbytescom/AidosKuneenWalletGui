@@ -20,6 +20,7 @@ import FormHelp from "./pages/FAQpage/components/FormHelp/FormHelp";
 import Settings from "./pages/Settings/Settings";
 import LoadPage from "./general-components/LoadPage/LoadPage";
 import { useIdleTimer } from 'react-idle-timer'
+import WalletSuccess from "./pages/WalletSuccess/WalletSuccess";
 
 
 const Router = () => {
@@ -62,6 +63,7 @@ const Router = () => {
                 <Route path='/wallet/form' element={ <FormHelp /> } />
                 <Route path='/wallet/settings' element={ <Settings /> } />
                 <Route path='/loadPage' element={ <LoadPage /> } />
+                <Route path='/localWalletSuccess' element={ <WalletSuccess /> } />
             </Routes>
         </>
     );
