@@ -192,7 +192,7 @@ const totaStake = async (evt, mempas) => {
     for (let adr in adrs) {
       totlBal += JSON.parse(await stakedBalance(evt, adr)).data[adr]
     }
-
+    console.log(totlBal)
     return JSON.stringify({
       ok: true,
       msg: "total balance",
