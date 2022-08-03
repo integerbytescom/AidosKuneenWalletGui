@@ -157,15 +157,13 @@ const balance = async (evt, address) => {
 }
 
 const totalBalance = async (evt, mempas) => {
-  console.log(mempas)
   try {
     const json = await listWalletAddress(evt, mempas, 50)
     const resp = JSON.parse(json)
     const adrs = resp.data
     let totlBal = 0
     for (let adr of adrs) {
-      console.log(JSON.parse(await balance(evt, adr)).data[adr])
-      totlBal += JSON.parse(await balance(evt, adr)).data[adr]
+      totlBal += +(JSON.parse(await balance(evt, adr)).data[adr])
     }
     return JSON.stringify({
       ok: true,
@@ -191,7 +189,7 @@ const totaStake = async (evt, mempas) => {
 
     let totlBal = 0
     for (let adr in adrs) {
-      totlBal += JSON.parse(await stakedBalance(evt, adr)).data[adr]
+      totlBal += +(JSON.parse(await stakedBalance(evt, adr)).data[adr])
     }
     console.log(totlBal)
     return JSON.stringify({
@@ -211,17 +209,17 @@ const totaStake = async (evt, mempas) => {
 }
 
 const writeTxInHist = (tx) => {
-  fs.appendFile("../txsHist", tx, (err) => {
-    if (err) writeLog(err)
-  })
+  fs.appendFileSync("../txsHist", tx)
 }
 
 const send = async (evt, way, mempas, from, to, amount) => {
+  console.log(`${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`)
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
-    console.log(stdout)
-    const tx = JSON.parse(stdout).data[0]
-    writeTxInHist(tx)
+    const resp = JSON.parse(stdout)
+    if (resp.data) {
+      writeTxInHist(resp.data[0])
+    }
     return stdout
   } catch(e) {
     writeLog(e)
