@@ -62,7 +62,7 @@ const Receive = () => {
 
                     <div className={`rec-code-container`}>
                         <div className="code">
-                            <p className={grayColor}>bc1qvxd05umvv3ens9mkdydts363xeef75q4nsrxf3</p>
+                            <p className={grayColor}>{window.localStorage.getItem('adress')}</p>
                         </div>
                         <div className="copy">
                             <img onClick={handleCopy} src="./images/receive/copy.svg" alt="copy"/>

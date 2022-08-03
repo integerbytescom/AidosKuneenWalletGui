@@ -22,3 +22,8 @@
     outline: 0;
     border-color: var(--color-green);
 }
+
+/*textarea*/
+textarea.input-gray{
+    font-size: 13px;
+}

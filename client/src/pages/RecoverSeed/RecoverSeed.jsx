@@ -39,9 +39,10 @@ const RecoverSeed = () => {
                 <div className={`rec-seed-form-container ${fadeLeft}`}>
                     <h2>Recover from seed</h2>
                     <form>
-                        <input
+                        <textarea
+                            rows="3"
+                            style={{resize: 'none'}}
                             className={`input-gray`}
-                            type="text"
                             placeholder={`enter 12/24 mnemonic seed words `}
                             value={seedInp}
                             onChange={event => setSeedInp(event.target.value)}

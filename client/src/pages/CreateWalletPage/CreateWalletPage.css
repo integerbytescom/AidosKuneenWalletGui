@@ -1,7 +1,7 @@
 /*dots*/
 .dots-create{
     position: absolute;
-    top: 25%;
+    top: 15%;
     display: flex;
 }
 .dots-create .dot{

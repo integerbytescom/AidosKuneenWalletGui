@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './CreatePassword.css';
+import '../CreateWalletPage/CreateWalletPage.css';
 import {useNavigate} from "react-router-dom";
 import {anFade, anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import Errors from "../../general-components/Errors/Errors";
@@ -32,6 +33,7 @@ const CreatePassword = () => {
                 window.localStorage.setItem('adress',adress)
                 window.localStorage.setItem('seed',seed)
                 window.localStorage.setItem('password',pass)
+                window.localStorage.setItem('user',true)
                 setFade(anFadeOut)
                 setFadeSlow(anFadeOut)
                 setFadeLeft(anFadeLeftOut)
@@ -45,6 +47,11 @@ const CreatePassword = () => {
     const setErrorFun = (text) =>{
         setError(text)
         setTimeout(() => setError(''),3000)
+    }
+
+    const [passShow,setPassShow] = useState(false)
+    const handleShowPass = () =>{
+        setPassShow(!passShow)
     }
 
     const navigateRoute = (url) =>{
@@ -66,16 +73,20 @@ const CreatePassword = () => {
                     <div className="dot"></div>
                 </div>
 
-                <div className={`create-pass-container ${fadeLeft}`}>
+                <div className={`form-create-wallet-container ${fadeLeft}`}>
                     <h2>Create password</h2>
-                    <form className="form-create-pass">
-                        <input
-                            className={`input-gray`}
-                            type="password"
-                            placeholder={`create password`}
-                            value={pass}
-                            onChange={event => setPass(event.target.value)}
-                        />
+                    <form>
+
+                        <div className="pass-first">
+                            <input
+                                className={`input-gray`}
+                                type={passShow?'text':'password'}
+                                placeholder={`password min .8 ch.`}
+                                value={pass}
+                                onChange={event => setPass(event.target.value)}
+                            />
+                            <div><img onClick={handleShowPass} src="./images/eye.svg" alt=""/></div>
+                        </div>
 
                         <input
                             className={`input-gray`}
