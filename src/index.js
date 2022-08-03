@@ -213,7 +213,6 @@ const writeTxInHist = (tx) => {
 }
 
 const send = async (evt, way, mempas, from, to, amount) => {
-  console.log(`${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`)
   try {
     console.log("command start")
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
@@ -409,7 +408,6 @@ const stakedBalance = async (evt, ...addrs) => {
   }
 }
 
-const GAS = 0.021
 const GAS = 0.021
 const sendError = JSON.stringify({
   ok: false,
