@@ -10,6 +10,7 @@ const fetch = require("node-fetch");
 global.fetch = require("node-fetch")
 
 process.env.NODE_ENV = "production"
+app.disableHardwareAcceleration()
 
 const plm = process.platform;
 const prefix = {
