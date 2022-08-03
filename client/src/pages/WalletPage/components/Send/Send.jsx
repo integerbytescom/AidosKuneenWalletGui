@@ -12,7 +12,7 @@ const Send = (props) => {
 
     // states for inputs
     const [to,setTo] = useState('')
-    const [adkValue,setAdkValue] = useState('')
+    const [adkValue,setAdkValue] = useState(null)
     const [checkValue,setCheckValue] = useState(1)
     console.log(checkValue,'checkValue')
 
@@ -42,7 +42,7 @@ const Send = (props) => {
 
     const handleSend = async (e) =>{
         e.preventDefault()
-        if (to.length !== 42){
+        if (to.length < 40 || to.length > 45){
             setErrorFun('Введите правильный адрес')
         }else if(adkValue > getBalance){
             setErrorFun('У вас нет столько денег')
@@ -50,7 +50,12 @@ const Send = (props) => {
             const way = checkValue===1?'gas':'pow';
             const mempas = await getFromLS('seed');
             const from = await getFromLS('adress');
-            await window.walletAPI.send(way,mempas,from,to,adkValue)
+            console.log(way);
+            console.log(mempas);
+            console.log(from);
+            console.log(to);
+            console.log(adkValue);
+            await window.walletAPI.send(way,`"${mempas}"`,from,to,adkValue)
         }
     }
 

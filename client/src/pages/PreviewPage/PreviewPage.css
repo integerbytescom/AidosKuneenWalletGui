@@ -1,62 +1,15 @@
-/*wallet and his shadow images*/
-.wallet-preview{
+video {
     position: absolute;
-    top: 25%;
-    z-index: 2;
+    top: 0;
+    left: 0;
 }
-
-/*shadows for wallet*/
-.wallet-shadow-container{
-    z-index: 1;
+.video-wrapper {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.shadow-preview{
-    position: absolute;
-    top: -4%;
-    left: 29%;
-    z-index: 1;
-}
-
-
-/*animations*/
-.shadow-preview.shd{
-    animation: shd 10s infinite;
-    transform: rotate(-10deg);
-}
-.shadow-preview.shd1{
-    animation: shd1 10s infinite;
-    transform: rotate(10deg);
-}
-
-@keyframes shd {
-    0% {
-        opacity:1;
-    }
-    50%{
-        opacity:0;
-    }
-    100% {
-        opacity:1;
-    }
-}
-@keyframes shd1 {
-    0% {
-        opacity:0;
-    }
-    50%{
-        opacity:1;
-    }
-    100% {
-        opacity:0;
-    }
-}
-
-/*special styles for button  */
-.preview-page .blue-button{
-    position: absolute;
-    bottom: 20%;
-    justify-content: space-between;
-}
-.preview-page .blue-button:hover{
-    padding-right: 12px;
-}
-
