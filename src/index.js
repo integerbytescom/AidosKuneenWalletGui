@@ -219,6 +219,7 @@ const writeTxInHist = (tx) => {
 const send = async (evt, way, mempas, from, to, amount) => {
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
+    console.log(stdout)
     const tx = JSON.parse(stdout).data[0]
     writeTxInHist(tx)
     return stdout
