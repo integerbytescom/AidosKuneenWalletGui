@@ -45,6 +45,7 @@
     "cryptocompare": "^1.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "node-fetch": "^2.6.7",
+    "qrcode": "^1.5.1",
     "recharts": "^2.1.13"
   },
   "devDependencies": {

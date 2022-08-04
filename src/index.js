@@ -7,7 +7,9 @@ const fs = require('fs')
 const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
 const fetch = require("node-fetch");
+const QR = require("qrcode")
 global.fetch = require("node-fetch")
+
 
 process.env.NODE_ENV = "production"
 app.disableHardwareAcceleration()
@@ -71,6 +73,7 @@ app.on('ready', () => {
   ipcMain.handle("getAdkPrices",getAdkPrices);
   ipcMain.handle("multistake", multistake);
   ipcMain.handle("totaStake", totaStake);
+  ipcMain.handle("getQR", getQR)
   createWindow()
 });
 
@@ -366,7 +369,7 @@ const migrate = async (evt, old, xNew) => {
 
 const stake = async (evt, way, mempas, from, amount) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} stake ${way} ${mempas} ${from} ${amount}`))
+    const { stdout, stderr } = await exec(path.join(__dirname, `${prefix[plm]} stake ${way} ${mempas} ${from} ${amount}`))
     return stdout
   } catch (e) {
     writeLog(e)
@@ -381,7 +384,7 @@ const stake = async (evt, way, mempas, from, amount) => {
 
 const unstake = async (evt, gas, mempas, from, amount) => {
   try {
-    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} unstake ${gas} ${mempas} ${from} ${amount}`))
+    const { stdout, stderr } = await exec(path.join(__dirname, `${prefix[plm]} unstake ${gas} ${mempas} ${from} ${amount}`))
     return stdout
   } catch (e) {
     writeLog(e)
@@ -424,7 +427,7 @@ const multisend = async (evt, way, mempas, to, amount) => {
 
     let totlSum = 0;
     for (let adr of adrs) {
-      const bal = JSON.parse(await balance(evt, adr)).data[adr]
+      const bal = +JSON.parse(await balance(evt, adr)).data[adr]
       if (way === "pow") {
         balTable[adr] = bal
         totlSum += bal
@@ -481,7 +484,7 @@ const multistake = async (evt, way, mempas, amount) => {
 
     let totlSum = 0;
     for (let adr of adrs) {
-      const bal = JSON.parse(await balance(evt, adr)).data[adr]
+      const bal = +JSON.parse(await balance(evt, adr)).data[adr]
       if (way === "pow") {
         balTable[adr] = bal
         totlSum += bal
@@ -504,7 +507,7 @@ const multistake = async (evt, way, mempas, amount) => {
     const txs = []
     let leftToSend = amount;
     for (let adr in balTable) {
-      const sum = balTable[adr]
+      const sum = +balTable[adr]
       if (leftToSend >= sum) {
         const json = await send(evt, way, mempas, adr, mainAdr, sum)
         const resp = JSON.parse(json)
@@ -568,6 +571,15 @@ const getHistoricalDataForCoin = async (ticket) => {
       .quotes
       .map( (day) => day.quote.open)
   return data
+}
+
+const getQR = async (value) => {
+  try {
+    const link = await QR.toDataURL(value)
+    return link
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 
