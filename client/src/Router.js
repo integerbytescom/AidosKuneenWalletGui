@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
-import PreviewPage from "./pages/PreviewPage/PreviewPage";
 import AuthorizationPage from "./pages/ AuthorizationPage/ AuthorizationPage";
 import NavbarLeft from "./general-components/NavbarLeft/NavbarLeft";
 import CreateWalletPage from "./pages/CreateWalletPage/CreateWalletPage";
@@ -11,16 +10,15 @@ import Send from "./pages/WalletPage/components/Send/Send";
 import Receive from "./pages/WalletPage/components/Receive/Receive";
 import RecoverSeed from "./pages/RecoverSeed/RecoverSeed";
 import CreatePassword from "./pages/CreatePassword/CreatePassword";
-import Overview from "./pages/WalletPage/components/Overview/Overview";
 import Staking from "./pages/WalletPage/components/Staking/Staking";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import FAQpage from "./pages/FAQpage/FAQpage";
-import CalculatorPage from "./pages/CalculatorPage/CalculatorPage";
 import FormHelp from "./pages/FAQpage/components/FormHelp/FormHelp";
 import Settings from "./pages/Settings/Settings";
 import LoadPage from "./general-components/LoadPage/LoadPage";
 import { useIdleTimer } from 'react-idle-timer'
 import WalletSuccess from "./pages/WalletSuccess/WalletSuccess";
+import FileForm from "./pages/AboutUsPage/components/FileForm/FileForm";
 
 
 const Router = () => {
@@ -42,8 +40,7 @@ const Router = () => {
         <>
             {path==='/'?'':<NavbarLeft />}
             <Routes>
-                <Route path='/' element={ <PreviewPage /> } />
-                <Route path='/auth' element={ <AuthorizationPage /> } />
+                <Route path='/' element={ <AuthorizationPage /> } />
                 <Route path='/createWallet' element={ <CreateWalletPage /> } />
                 <Route path='/showSeed' element={ <ShowSeedPage /> } />
                 <Route path='/confirmPass' element={ <ConfirmPassword /> } />
@@ -62,6 +59,7 @@ const Router = () => {
                 <Route path='/wallet/settings' element={ <Settings /> } />
                 <Route path='/loadPage' element={ <LoadPage /> } />
                 <Route path='/localWalletSuccess' element={ <WalletSuccess /> } />
+                <Route path='/wallet/fileForm' element={ <FileForm /> } />
             </Routes>
         </>
     );

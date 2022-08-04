@@ -36,11 +36,17 @@
 
 /*close button*/
 .close-button{
+    color: var(--color-white);
+    font-size: 14px;
     position: absolute;
     top: 12px;
     right: 15px;
     background: none;
     border: none;
+    transition: .3s;
+}
+.close-button:hover{
+    color: var(--color-white-opac-5);
 }
 
 /* button border */

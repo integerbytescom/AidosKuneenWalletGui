@@ -11,31 +11,55 @@
     color: var(--color-white);
 }
 
-.faq-page .video-container{
+.faq-page .faqs-container{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
-.faq-page .video-container iframe{
-    margin: 10px 20px;
-    width: 280px;
-    height: 180px;
+
+/*accordeon*/
+.faq-page .accordion{
+    width:100%;
+}
+.accordion-item{
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: 3px solid rgba(255, 0, 0, 0) !important;
+}
+.accordion-item .accordion-button{
+    color: var(--color-white);
+    background-color: #1E1F29;
+}
+.accordion-body{
+    color: var(--color-white-opac-7);
+    background-color: #1E1F29;
+    font-weight: 200;
+    font-size: 14px;
+}
+.faq-page .accordion-button:not(.collapsed){
+    color: var(--color-white);
+    background-color: #1E1F29;
+    box-shadow: none;
+    border-bottom: 1px solid var(--color-white-opac-1);
+}
+.accordion-button::after{
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAxNzIgMTcyIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwxNzJ2LTE3MmgxNzJ2MTcyeiIgZmlsbD0ibm9uZSI+PC9wYXRoPjxnIGZpbGw9IiNmZmZmZmYiPjxwYXRoIGQ9Ik0xMjMuNDkwNjMsNjMuMDIxODhsLTM3LjQ5MDYzLDM3LjQ5MDYzbC0zNy40OTA2MiwtMzcuNDkwNjJjLTEuNjEyNSwtMS42MTI1IC00LjE2NTYyLC0xLjYxMjUgLTUuNjQzNzUsMGMtMS42MTI1LDEuNjEyNSAtMS42MTI1LDQuMTY1NjIgMCw1LjY0Mzc1bDQwLjMxMjUsNDAuMzEyNWMwLjgwNjI1LDAuODA2MjUgMS44ODEyNSwxLjIwOTM4IDIuODIxODcsMS4yMDkzOGMwLjk0MDYyLDAgMi4wMTU2MywtMC40MDMxMyAyLjgyMTg3LC0xLjIwOTM4bDQwLjMxMjUsLTQwLjMxMjVjMS42MTI1LC0xLjYxMjUgMS42MTI1LC00LjE2NTYzIDAsLTUuNjQzNzVjLTEuNjEyNSwtMS42MTI1IC00LjAzMTI1LC0xLjYxMjUgLTUuNjQzNzUsMHoiPjwvcGF0aD48L2c+PC9nPjwvc3ZnPg==") !important;
 }
 
 .faq-bottom-text{
     position: absolute;
     bottom: 15px;
-    font-weight: 400;
-    font-size: 14px;
 }
-.faq-bottom-text button{
-    color: var(--color-green);
+.faq-bottom-text a{
     font-weight: 400;
     font-size: 14px;
-    background: none;
-    border: none;
+    color: var(--color-white);
+    text-decoration: none;
     transition: .3s;
 }
-.faq-bottom-text button:hover{
-    color: var(--color-white);
+.faq-bottom-text a:first-child{
+    margin-right: 15px;
+}
+.faq-bottom-text a:hover,
+.faq-bottom-text a.active{
+    color: var(--color-white-opac-6);
 }

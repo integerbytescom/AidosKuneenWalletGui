@@ -74,7 +74,7 @@ const WalletBalance = (props) => {
                             </>:
                             <>
                                 <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/send')}>Send</button>
-                                <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/receive')}>Receive</button>
+                                <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/receive')}>Deposit</button>
                             </>
                     }
                 </div>

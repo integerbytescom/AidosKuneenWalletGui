@@ -69,7 +69,7 @@ const Send = (props) => {
             {error!==''?<Errors error={error} />:''}
 
             <button onClick={handleCloseSend} className={`close-button`}>
-                <img src="./images/x.svg" alt="close"/>
+                Cancel
             </button>
 
             <div className={`send-content ${props.blue}`}>

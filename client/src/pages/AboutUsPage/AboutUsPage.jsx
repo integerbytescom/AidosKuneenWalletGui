@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import './AboutUsPage.css';
 import {anFade, anFade1s} from "../../animations";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 const AboutUsPage = () => {
+
+    const path = useLocation().pathname;
 
     const [fade,setFade] = useState(anFade)
     const [fade1s,setFade1s] = useState(anFade1s)
@@ -12,6 +14,11 @@ const AboutUsPage = () => {
         <div className={`about-us-page ${fade}`}>
 
             <img className={`waves-about ${fade1s}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+
+            <span className={'links-top-about'}>
+                <Link to={'/wallet/aboutUs'} className={path==='/wallet/aboutUs'?'active':''}>Information</Link>
+                <Link to={'/wallet/fileForm'} className={path==='/wallet/form'?'active':''}>Bugs</Link>
+            </span>
             
             <div className="container-info">
                 <div className="info left">
@@ -65,31 +72,32 @@ const AboutUsPage = () => {
                         No Technology: IMesh ( DAG ) Application fields: Finance, Internet of Things, Smart contracts
                     </p>
                 </div>
+
+                <footer>
+                    <Link to={'/'}>
+                        <img src="./images/about-us/media/m.svg" alt=""/>
+                    </Link>
+                    <Link to={'/'}>
+                        <img src="./images/about-us/media/in.svg" alt=""/>
+                    </Link>
+                    <Link to={'/'}>
+                        <img src="./images/about-us/media/twitter.svg" alt=""/>
+                    </Link>
+                    <Link to={'/'}>
+                        <img src="./images/about-us/media/github.svg" alt=""/>
+                    </Link>
+                    <Link to={'/'}>
+                        <img src="./images/about-us/media/youtube.svg" alt=""/>
+                    </Link>
+                    <Link to={'/'}>
+                        <img src="./images/about-us/media/facebook.svg" alt=""/>
+                    </Link>
+                    <Link to={'/'}>
+                        <img src="./images/about-us/media/robot.svg" alt=""/>
+                    </Link>
+                </footer>
             </div>
 
-            <footer>
-                <Link to={'/'}>
-                    <img src="./images/about-us/media/m.svg" alt=""/>
-                </Link>
-                <Link to={'/'}>
-                    <img src="./images/about-us/media/in.svg" alt=""/>
-                </Link>
-                <Link to={'/'}>
-                    <img src="./images/about-us/media/twitter.svg" alt=""/>
-                </Link>
-                <Link to={'/'}>
-                    <img src="./images/about-us/media/github.svg" alt=""/>
-                </Link>
-                <Link to={'/'}>
-                    <img src="./images/about-us/media/youtube.svg" alt=""/>
-                </Link>
-                <Link to={'/'}>
-                    <img src="./images/about-us/media/facebook.svg" alt=""/>
-                </Link>
-                <Link to={'/'}>
-                    <img src="./images/about-us/media/robot.svg" alt=""/>
-                </Link>
-            </footer>
 
         </div>
     );

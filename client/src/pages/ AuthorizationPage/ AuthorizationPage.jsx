@@ -1,6 +1,6 @@
-import React,{useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './ AuthorizationPage.css';
-import {anFade1s, anFadeOut, anFadeSlow} from "../../animations";
+import {anFade, anFade1s, anFadeOut, anFadeSlow} from "../../animations";
 import {useNavigate} from "react-router-dom";
 import Errors from "../../general-components/Errors/Errors";
 
@@ -8,12 +8,15 @@ const AuthorizationPage = () => {
 
     const navigate = useNavigate()
 
+    const [display,setDisplay] = useState('display')
+
     const [error,setError] = useState('')
 
     const [user] = useState(window.localStorage.getItem('user'))
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fade1s,setFade1s] = useState(anFade1s)
+    const [fadeVideo,setFadeVideo] = useState('')
 
     const [userPass,setUserPass] = useState('')
 
@@ -41,11 +44,29 @@ const AuthorizationPage = () => {
         setTimeout(() => navigatePage(url),1000)
     }
 
+    const closeVideo = () =>{
+        setDisplay('none')
+        setFadeVideo(anFadeOut)
+    }
+    useEffect(() =>{
+        setTimeout(() => setDisplay('none'),16800)
+    })
+
     const navigatePage = (url) => {
         navigate(url)
     }
 
     return (
+        <>
+        <div onClick={closeVideo} style={{display:display}} className={`video-wrapper`}>
+            <video playsInline autoPlay muted loop>
+                <source
+                    src="./videos/1.webm"
+                    type="video/webm"
+                />
+            </video>
+        </div>
+
             <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves ${fadeSlow}`}>
 
                 {error===''?'':<Errors error={error} />}
@@ -90,6 +111,7 @@ const AuthorizationPage = () => {
                     {/*auth container end*/}
 
             </div>
+        </>
     );
 };
 

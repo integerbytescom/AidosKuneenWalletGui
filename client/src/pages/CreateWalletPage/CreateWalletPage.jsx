@@ -72,8 +72,8 @@ const CreateWalletPage = () => {
     return (
             <div className={`block-container`}>
                 
-                <button onClick={() => navigatePage('/auth')} className={`close-button ${fadeSlow}`}>
-                    <img src="./images/x.svg" alt=""/>
+                <button onClick={() => navigatePage('/')} className={`close-button ${fadeSlow}`}>
+                    Cancel
                 </button>
 
                 <div className={`dots-create ${fadeSlow}`}>

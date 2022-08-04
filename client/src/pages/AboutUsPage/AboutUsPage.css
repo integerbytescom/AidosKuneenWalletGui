@@ -22,6 +22,32 @@
     top: 20%;
 }
 
+.links-top-about{
+    width: 100%;
+    position: absolute;
+    top: 25px;
+    display: flex;
+    justify-content: center;
+}
+.links-top-about a{
+    transition: .3s;
+    text-decoration: none;
+    color: var(--color-white);
+}
+.links-top-about a:first-child{
+    margin-right: 15px;
+}
+.links-top-about a.active,
+.links-top-about a:hover{
+    color: var(--color-white-opac-5);
+}
+
+.about-us-page .container-info{
+    /*background: red;*/
+    position: absolute;
+    top: 40px;
+}
+
 .about-us-page .container-info .info{
     width: 90%;
     margin: auto;

@@ -24,8 +24,8 @@ const ConfirmPassword = (props) => {
     return (
             <div className={`block-container`}>
 
-                <button onClick={() => navigateRoute('/auth')} className={`close-button ${fadeSlow}`}>
-                    <img src="./images/x.svg" alt=""/>
+                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow}`}>
+                    Cancel
                 </button>
 
                 {props.path === 'mm'?'':
@@ -52,7 +52,7 @@ const ConfirmPassword = (props) => {
                                 <input className={`input-gray`} type="password" placeholder={`enter password`} />
                                 <button className={'blue-button left'} onClick={event => handleConfirmPass('/wallet',event)}>Enter</button>
                                 </>:
-                                <button className={`blue-button`} onClick={event => handleConfirmPass('/auth',event)} >
+                                <button className={`blue-button`} onClick={event => handleConfirmPass('/',event)} >
                                     Start <img src="./images/preview-page/arrow.svg" alt="arrow"/>
                                 </button>
                         }

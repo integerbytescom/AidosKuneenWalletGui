@@ -52,7 +52,7 @@ const Receive = () => {
         <div className={`block-container menu receive ${fade}`}>
 
             <button onClick={handleCloseReceive} className={`close-button`}>
-                <img src="./images/x.svg" alt="close"/>
+                Cancel
             </button>
 
             <div className={`block-container`}>

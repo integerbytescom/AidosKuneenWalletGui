@@ -44,8 +44,8 @@ const ShowSeedPage = () => {
 
                 {error!==''?<Errors error={error} />:''}
 
-                <button onClick={() => navigateRoute('/auth')} className={`close-button ${fadeSlow}`}>
-                    <img src="./images/x.svg" alt=""/>
+                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow}`}>
+                    Cancel
                 </button>
 
                 <div className={`dots-create ${fadeSlow}`}>

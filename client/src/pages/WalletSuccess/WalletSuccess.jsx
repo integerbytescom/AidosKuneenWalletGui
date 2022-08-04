@@ -24,8 +24,8 @@ const WalletSuccess = (props) => {
     return (
         <div className={`block-container wallet-success`}>
 
-            <button onClick={() => navigateRoute('/auth')} className={`close-button ${fadeSlow}`}>
-                <img src="./images/x.svg" alt=""/>
+            <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow}`}>
+                Cancel
             </button>
 
             {props.path === 'mm'?'':
@@ -41,7 +41,7 @@ const WalletSuccess = (props) => {
                 <h2>Congratulations!</h2>
                 <p>Your wallet is successfully restored by SEED</p>
 
-                <button className={`blue-button`} onClick={event => handleConfirmPass('/auth',event)} >
+                <button className={`blue-button`} onClick={event => handleConfirmPass('/',event)} >
                     Start <img src="./images/preview-page/arrow.svg" alt="arrow"/>
                 </button>
             </div>

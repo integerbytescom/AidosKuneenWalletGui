@@ -31,8 +31,8 @@ const LoadPage = () => {
 
     return (
         <div className={`block-container load-page ${fadeSlow}`}>
-            <button onClick={event => handleConfirmSeed('/auth',event)} className={`close-button ${fadeSlow}`}>
-                <img src="./images/x.svg" alt=""/>
+            <button onClick={event => handleConfirmSeed('/',event)} className={`close-button ${fadeSlow}`}>
+                Cancel
             </button>
 
             <header>

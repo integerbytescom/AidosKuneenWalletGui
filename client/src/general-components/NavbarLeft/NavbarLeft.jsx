@@ -60,11 +60,11 @@ const NavbarLeft = () => {
                         <img src="./images/navbar-left/credit-card.svg" alt=""/>
                         Wallet
                     </Link>
-                    <Link to={`/wallet/aboutUs`} className={path==='/wallet/aboutUs'?'active':''}>
+                    <Link to={`/wallet/aboutUs`} className={path==='/wallet/aboutUs' || path==='/wallet/fileForm'?'active':''}>
                         <img src="./images/navbar-left/edit-3.svg" alt=""/>
                         About us
                     </Link>
-                    <Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ'?'active':''}>
+                    <Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ' || path==='/wallet/form'?'active':''}>
                         <img src="./images/navbar-left/support.svg" alt=""/>
                         Support
                     </Link>
@@ -80,7 +80,7 @@ const NavbarLeft = () => {
 
                 <div className={`logout-but-cont`}>
                     <hr/>
-                    <Link className={path==='/auth'?'active':''} to={`/auth`}>
+                    <Link className={path==='/'?'active':''} to={`/`}>
                         <img src="./images/navbar-left/log-out.svg" alt=""/>
                         Log out
                     </Link>

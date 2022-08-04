@@ -63,8 +63,8 @@ const CreatePassword = () => {
 
                 {error!==''?<Errors error={error} />:''}
 
-                <button onClick={() => navigateRoute('/auth')} className={`close-button ${fade}`}>
-                    <img src="./images/x.svg" alt=""/>
+                <button onClick={() => navigateRoute('/')} className={`close-button ${fade}`}>
+                    Cancel
                 </button>
 
                 <div className={`dots-create ${fadeSlow}`}>
