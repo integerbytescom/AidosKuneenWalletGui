@@ -6,13 +6,9 @@ const PreviewPage = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        setTimeout(navigateAuth,17000)
-    },[])
-
-    const navigateAuth = () => {
-        navigate('/auth')
-    }
+    useEffect(() =>{
+        setTimeout(() => navigate('/auth'),17000);
+    })
 
     return (
         <div className={`block-container preview-page`}>
@@ -20,7 +16,8 @@ const PreviewPage = () => {
                 <video playsInline autoPlay muted loop>
                     <source
                         src="./videos/1.webm"
-                        type="video/webm" />
+                        type="video/webm"
+                    />
                 </video>
             </Link>
         </div>

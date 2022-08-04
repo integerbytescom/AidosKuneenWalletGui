@@ -60,14 +60,6 @@ const NavbarLeft = () => {
                         <img src="./images/navbar-left/credit-card.svg" alt=""/>
                         Wallet
                     </Link>
-                    <Link to={`/wallet/calc`} className={path==='/wallet/calc'?'active':''}>
-                        <img src="./images/navbar-left/dollar-sign.svg" alt=""/>
-                        Calculator
-                    </Link>
-                    <Link to={`/wallet/overview`} className={path==='/wallet/overview'?'active':''}>
-                        <img src="./images/navbar-left/database.svg" alt=""/>
-                        Overview
-                    </Link>
                     <Link to={`/wallet/aboutUs`} className={path==='/wallet/aboutUs'?'active':''}>
                         <img src="./images/navbar-left/edit-3.svg" alt=""/>
                         About us

@@ -3,6 +3,8 @@ import WalletBalance from "../WalletBalance/WalletBalance";
 import LatestTransactions from "../LatestTransactions/LatestTransactions";
 import {Link, useLocation} from "react-router-dom";
 import './Staking.css';
+import Overview from "../Overview/Overview";
+import CalculatorPage from "../../../CalculatorPage/CalculatorPage";
 
 const Staking = () => {
 
@@ -16,6 +18,11 @@ const Staking = () => {
                 <Link to={'/wallet'} className="border-button balance-show">Balance</Link>
 
                 <WalletBalance setFadeExit={setFadeExit} path={path} />
+
+                <div className="body-wallet">
+                    <Overview />
+                    <CalculatorPage />
+                </div>
 
                 <LatestTransactions path={path} />
             </div>

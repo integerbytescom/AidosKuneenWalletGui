@@ -48,7 +48,7 @@ const WalletBalance = (props) => {
     },[])
 
     return (
-        <>
+        <div className={`wallet-balance`}>
             {
                 blueClass === 'blue'?
                     <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/waves-shd-blue.svg" alt=""/>:
@@ -62,11 +62,10 @@ const WalletBalance = (props) => {
                             <img src="./images/wallet-page/logoKrugBlue.svg" alt=""/>:
                             <img src="./images/wallet-page/logoKrug.svg" alt=""/>
                     }
-                    <h1 className={blueClass}>{balance} ADK</h1>
-                    <h2 className={blueClass}>{balance * usdValue} $</h2>
+                    <img src="./images/wallet-page/wallet.svg" alt=""/>
                 </div>
 
-                <div className="butt-container">
+                <div className="butt-container-wallet">
                     {
                         blueClass === 'blue'?
                             <>
@@ -80,7 +79,12 @@ const WalletBalance = (props) => {
                     }
                 </div>
             </div>
-        </>
+
+            <div className="balance">
+                <h1 className={blueClass}>{balance}<span>ADK</span></h1>
+                <h2 className={blueClass}>{balance * usdValue} $</h2>
+            </div>
+        </div>
     );
 };
 

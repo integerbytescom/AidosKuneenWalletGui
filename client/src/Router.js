@@ -52,12 +52,10 @@ const Router = () => {
                 <Route path='/wallet' element={ <WalletPage /> } />
                 <Route path='/wallet/send' element={ <Send /> } />
                 <Route path='/wallet/receive' element={ <Receive /> } />
-                <Route path='/wallet/overview' element={ <Overview /> } />
                 <Route path='/wallet/staking' element={ <Staking /> } />
                 <Route path='/wallet/stake' element={ <Send blue={'blue'} /> } />
                 <Route path='/wallet/unstake' element={ <Send blue={'blue'} /> } />
                 <Route path='/wallet/aboutUs' element={ <AboutUsPage /> } />
-                <Route path='/wallet/calc' element={ <CalculatorPage /> } />
                 <Route path='/connectMM/confirmPassword' element={ <ConfirmPassword path={'mm'} /> } />
                 <Route path='/wallet/FAQ' element={ <FAQpage /> } />
                 <Route path='/wallet/form' element={ <FormHelp /> } />

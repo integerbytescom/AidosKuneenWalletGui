@@ -1,20 +1,27 @@
-.calc-content{
+.calculator{
+    width: 260px;
+    height: 45vh;
     display: flex;
     justify-content: center;
+    background: #1B1C26;
+}
+.calc-content{
+    display: flex;
     flex-wrap: wrap;
+    align-content: space-evenly;
     width: 200px;
     height: auto;
 }
 
 .calc-content img.dollar{
-    margin-bottom: 50px;
+    margin: auto;
 }
 
 /*input*/
 .calc-content input{
-    font-size: 20px;
+    font-size: 17px;
     color: var(--color-green);
-    margin-bottom: 15px;
+    margin-bottom: -35px;
 }
 .calc-content input:focus{
     border-color: #3A3A3A;
@@ -23,7 +30,6 @@
 /*select*/
 .calc-content select{
     width: 100%;
-    margin-bottom: 20px;
     padding: 0;
     background: none;
     border: none;
@@ -44,6 +50,7 @@
 }
 
 .calc-content .money-container{
+    display: none;
     width: 100%;
     margin-bottom: 30px;
     padding:18px;
@@ -57,5 +64,9 @@
 }
 
 .calc-content button{
-    width: 100%;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 12px;
+    color: var(--color-white);
 }

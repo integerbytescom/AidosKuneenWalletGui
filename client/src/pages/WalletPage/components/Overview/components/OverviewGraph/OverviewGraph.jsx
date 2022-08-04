@@ -6,8 +6,8 @@ const OverviewGraph = (props) => {
     return (
         <AreaChart
             className={`graph-overview`}
-            width={950}
-            height={250}
+            width={670}
+            height={200}
             data={props.data}
             margin={{
                 top: 0,
