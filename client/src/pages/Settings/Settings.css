@@ -1,0 +1,38 @@
+.block-container.menu.settings{
+    align-content: start;
+    flex-wrap: wrap;
+}
+.container-setting{
+    width: 95%;
+    margin-top: 20px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    background: #1B1C26;
+    border-radius: 3px;
+}
+
+.container-setting .content-settings h3{
+    font-size: 16px;
+    margin: 0;
+}
+
+.container-setting .content-settings{
+    margin-left: 25px;
+}
+.container-setting .content-settings span{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+.container-setting .content-settings span input{
+    accent-color: rgba(255, 255, 255, 0.1);
+    height: 15px;
+    width: 15px;
+}
+.container-setting .content-settings span input:checked{
+    background: red;
+}
+.container-setting .content-settings span p{
+    margin: 1px 0 0 10px;
+}

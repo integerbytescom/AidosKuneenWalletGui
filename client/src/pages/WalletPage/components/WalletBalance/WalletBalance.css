@@ -1,0 +1,69 @@
+.wallet-balance{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 50vh;
+}
+
+.container-top-wallet{
+    width: 100%;
+    height: 9vh;
+    padding: 0 10px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/*container for balance*/
+.bal-container{
+    display: flex;
+    justify-content: center;
+}
+.bal-container img{
+    margin: 10px 0 0 10px;
+}
+
+.butt-container-wallet{
+    padding-top: 15px;
+    margin-right: 0;
+}
+
+.balance{
+    position: absolute;
+    padding: 0 10px;
+    top: 8vh;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 7.5vh;
+}
+.balance h1{
+    margin: 0 0 0 10px;
+    color: var(--color-green);
+    text-align: center;
+}
+.balance h1 span{
+    color: inherit;
+    margin-left: 3px;
+    font-size: 20px;
+    font-weight: 200;
+}
+.balance h1.blue{
+    color: var(--color-blue);
+}
+.balance h2{
+    font-size: 18px;
+    font-weight: 300;
+    margin: 0 0 3px 20px;
+    color: var(--color-white-opac-6);
+}
+
+.fon-wallet-bal{
+    position: absolute;
+    top: 0;
+    min-width: 100%;
+}
