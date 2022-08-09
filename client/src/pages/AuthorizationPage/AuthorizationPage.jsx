@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import './ AuthorizationPage.css';
+import './AuthorizationPage.css';
 import {anFade, anFade1s, anFadeOut, anFadeSlow} from "../../animations";
 import {useNavigate} from "react-router-dom";
 import Errors from "../../general-components/Errors/Errors";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const AuthorizationPage = () => {
 
@@ -57,6 +58,8 @@ const AuthorizationPage = () => {
         navigate(url)
     }
 
+    console.log(checkLightTheme(),'checkLightTheme')
+
     return (
         <>
             {window.sessionStorage.getItem('userVideo')?'':
@@ -70,7 +73,10 @@ const AuthorizationPage = () => {
                 </div>
             }
 
-            <div style={{backgroundImage:`url('./images/auth-page/waves.svg')`}} className={`block-container bottom-waves ${fadeSlow}`}>
+            <div
+                style={{backgroundImage:`url('./images/auth-page/waves.svg')`}}
+                className={`block-container bottom-waves ${fadeSlow} ${checkLightTheme()}`}
+            >
 
                 {error===''?'':<Errors error={error} />}
 
@@ -85,7 +91,7 @@ const AuthorizationPage = () => {
                             <>
                                 <form className="form-create-pass">
                                     <input
-                                        className={'input-gray'}
+                                        className={`input-gray ${checkLightTheme()}`}
                                         type="password"
                                         placeholder={`enter password`}
                                         value={userPass}
@@ -93,19 +99,19 @@ const AuthorizationPage = () => {
                                     />
                                     <button className={`blue-button`} onClick={event => handleCreate('/wallet',event)}>Login</button>
                                 </form>
-                                <div className={'hr-or'}>
+                                <div className={`hr-or ${checkLightTheme()}`}>
                                     <hr/>
                                     <p>or</p>
                                     <hr/>
                                 </div>
-                                <button className={`gray-button`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
-                                <button className={`gray-button`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
                             </>
                             :
                             <>
                                 <button className={`blue-button`} onClick={event => handleCreateNoPass('/createWallet',event)}>Create wallet</button>
-                                <button className={`gray-button`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
-                                <button className={`gray-button`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
                             </>
                         }
                     </div>

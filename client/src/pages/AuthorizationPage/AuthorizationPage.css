@@ -48,12 +48,18 @@ img.card-auth{
     height: 1px;
     margin: 0;
 }
+.hr-or.light hr{
+    background: var(--bg-dark);
+}
 .hr-or p{
     font-size: 14px;
     font-weight: 200;
     color: var(--color-white-opac-3);
     margin: -4px 0 0 0;
     padding: 0;
+}
+.hr-or.light p{
+    color: var(--bg-dark);
 }
 
 /*video*/

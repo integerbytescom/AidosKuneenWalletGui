@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
-import AuthorizationPage from "./pages/ AuthorizationPage/ AuthorizationPage";
+import AuthorizationPage from "./pages/AuthorizationPage/AuthorizationPage";
 import NavbarLeft from "./general-components/NavbarLeft/NavbarLeft";
 import CreateWalletPage from "./pages/CreateWalletPage/CreateWalletPage";
 import ShowSeedPage from "./pages/ShowSeedPage/ShowSeedPage";
@@ -30,11 +30,22 @@ const Router = () => {
     const handleOnIdle = () => {
         navigate('/loadPage')
     }
+    const [lsSecur] = useState(window.localStorage.getItem('security') === 'true');
     const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-        timeout: 1000 * 300,
+        timeout: lsSecur?(1000 * 60 * 15):(9999 * 9999 * 9999 * 9999),
         onIdle: handleOnIdle,
         debounce: 200
     })
+
+    useEffect(() => {
+        const getSecure = () =>{
+            const lsNow = window.localStorage.getItem('security')
+            if (lsNow === null){
+                window.localStorage.setItem('security',true)
+            }
+        }
+        getSecure()
+    },[])
 
     return (
         <>

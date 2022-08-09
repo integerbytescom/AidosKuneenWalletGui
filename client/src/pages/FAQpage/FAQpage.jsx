@@ -3,6 +3,7 @@ import './FAQpage.css';
 import {anFade} from "../../animations";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import {Accordion} from "react-bootstrap";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const FAQpage = () => {
 
@@ -45,19 +46,19 @@ const FAQpage = () => {
     ]
 
     return (
-        <div className={`block-container menu faq-page ${fade}`}>
+        <div className={`block-container menu faq-page ${fade} ${checkLightTheme()}`}>
             <h1>Aidos Kuneen Help questions</h1>
             <div className={`faqs-container ${fade}`}>
                 <Accordion defaultActiveKey={dataAccord[0].id}>
                     {dataAccord.map(item =>(
-                        <Accordion.Item eventKey={item.id}>
+                        <Accordion.Item className={checkLightTheme()} eventKey={item.id}>
                             <Accordion.Header>{item.title}</Accordion.Header>
                             <Accordion.Body>{item.text}</Accordion.Body>
                         </Accordion.Item>
                     ))}
                 </Accordion>
             </div>
-            <div className={'faq-bottom-text'}>
+            <div className={`faq-bottom-text ${checkLightTheme()}`}>
                 <Link to={'/wallet/FAQ'} className={path==='/wallet/FAQ'?'active':''}>Questions</Link>
                 <Link to={'/wallet/form'} className={path==='/wallet/form'?'active':''}>Feedback form</Link>
             </div>

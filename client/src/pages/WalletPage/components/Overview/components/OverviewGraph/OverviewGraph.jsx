@@ -3,6 +3,7 @@ import './OverviewGraph.css';
 import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
 
 const OverviewGraph = (props) => {
+
     return (
         <AreaChart
             className={`graph-overview`}

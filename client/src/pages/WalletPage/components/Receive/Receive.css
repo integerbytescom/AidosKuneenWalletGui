@@ -1,14 +1,22 @@
 .rec-container{
     width: 390px;
     position: absolute;
-    top: 15%;
+    top: 7%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.rec-container img{
+.rec-container img.logoAidos{
+    display: none;
     margin-bottom: 40px;
+}
+
+.qr-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .rec-code-container{
@@ -18,6 +26,9 @@
     justify-content: space-between;
     align-items: center;
     background: rgba(255, 255, 255, 0.15);
+}
+.rec-code-container.light{
+    background: #dadada;
 }
 .rec-code-container .code p{
     color: var(--color-green-04c);
@@ -47,8 +58,11 @@
     background: none;
     border: none;
     color: var(--color-white);
-    opacity: .6;
+    opacity: .7;
     transition: .3s;
+}
+.rec-button-container.light button{
+    color: var(--bg-dark);
 }
 .rec-button-container button:hover{
     opacity: 1;

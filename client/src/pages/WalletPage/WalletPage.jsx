@@ -6,6 +6,7 @@ import {Link, useLocation} from "react-router-dom";
 import CalculatorPage from "../CalculatorPage/CalculatorPage";
 import Overview from "./components/Overview/Overview";
 import {anFade, anFade1s} from "../../animations";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const WalletPage = () => {
 
@@ -24,8 +25,11 @@ const WalletPage = () => {
     })
 
     return (
-            <div className={`block-container ${fadeExit}`}>
-                <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+            <div className={`block-container ${fadeExit} ${checkLightTheme()}`}>
+                {checkLightTheme()?
+                    <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/fon-wallet-bg.svg" alt=""/>:
+                    <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+                }
                 <div className={`block-container menu`}>
 
                     <WalletBalance setFadeExit={setFadeExit} path={path} />

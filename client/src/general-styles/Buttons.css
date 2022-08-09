@@ -29,9 +29,16 @@
     background: var(--color-white-opac-1);
     transition: .3s;
 }
+.gray-button.light{
+    background: var(--bg-dark);
+}
 .gray-button:hover{
     color: var(--color-white);
     background: var(--color-white-opac-2);
+}
+.gray-button.light:hover{
+    background: var(--bg-dark);
+    opacity: .7;
 }
 
 /*close button*/
@@ -45,8 +52,14 @@
     border: none;
     transition: .3s;
 }
+.close-button.light{
+    color: var(--bg-dark);
+}
 .close-button:hover{
     color: var(--color-white-opac-5);
+}
+.close-button.light:hover{
+    color: var(--color-green);
 }
 
 /* button border */

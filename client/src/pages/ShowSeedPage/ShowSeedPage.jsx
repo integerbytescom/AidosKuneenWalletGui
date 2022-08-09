@@ -4,6 +4,7 @@ import {anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animation
 import {useNavigate} from "react-router-dom";
 import {GLOBAL_SEED} from "../CreateWalletPage/CreateWalletPage";
 import Errors from "../../general-components/Errors/Errors";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const ShowSeedPage = () => {
 
@@ -40,11 +41,11 @@ const ShowSeedPage = () => {
     }
 
     return (
-            <div className={`block-container`}>
+            <div className={`block-container ${checkLightTheme()}`}>
 
                 {error!==''?<Errors error={error} />:''}
 
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow}`}>
+                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow} ${checkLightTheme()}`}>
                     Cancel
                 </button>
 
@@ -55,7 +56,7 @@ const ShowSeedPage = () => {
                 </div>
 
                 <div className={`seed-first-show ${fadeLeft}`}>
-                    <h2 className={`h2-seed`}>
+                    <h2 className={`h2-seed ${checkLightTheme()}`}>
                         Your Seed<br />
                         <span>Don't Share it with Anyone and Store it offline </span>
                     </h2>
@@ -71,7 +72,7 @@ const ShowSeedPage = () => {
                         <textarea
                             rows="2"
                             style={{resize: 'none'}}
-                            className={`input-gray`}
+                            className={`input-gray ${checkLightTheme()}`}
                             placeholder={`enter seed`}
                             value={seedInp}
                             onChange={event => setSeedInp(event.target.value)}
@@ -79,13 +80,16 @@ const ShowSeedPage = () => {
                         <textarea
                             rows="2"
                             style={{resize: 'none'}}
-                            className={`input-gray`}
+                            className={`input-gray ${checkLightTheme()}`}
                             placeholder={`enter seed`}
                             value={seedInpCopy}
                             onChange={event => setSeedInpCopy(event.target.value)}
                         />
                         <br />
-                        <button onClick={event => handleSuccessSeed(event,'/confirmPass')} className={'gray-button'}>Finish</button>
+                        <button
+                            onClick={event => handleSuccessSeed(event,'/confirmPass')}
+                            className={`gray-button ${checkLightTheme()}`}
+                        >Finish</button>
                     </form>
                 </div>
 

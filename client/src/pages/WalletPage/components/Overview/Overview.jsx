@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './Overview.css';
 import OverviewGraph from "./components/OverviewGraph/OverviewGraph";
 import {anFade} from "../../../../animations";
+import {checkLightTheme} from "../../../../lightThemeCheck";
 
 const data = [
     {
@@ -35,8 +36,8 @@ const Overview = () => {
     const [fade,setFade] = useState(anFade)
 
     return (
-        <div className={`overview`}>
-            <div className="value-change">
+        <div className={`overview ${checkLightTheme()}`}>
+            <div className={`value-change ${checkLightTheme()}`}>
                 <h2>645$</h2>
                 <h3>+0.065%</h3>
             </div>

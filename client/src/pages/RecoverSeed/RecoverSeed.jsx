@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import './RecoverSeed.css';
 import {useNavigate} from "react-router-dom";
 import {anFade, anFadeLeftOut, anFadeOut, anFadeRight} from "../../animations";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const RecoverSeed = () => {
 
@@ -25,8 +26,8 @@ const RecoverSeed = () => {
     }
 
     return (
-            <div className={`block-container`}>
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fade}`}>
+            <div className={`block-container ${checkLightTheme()}`}>
+                <button onClick={() => navigateRoute('/')} className={`close-button ${fade} ${checkLightTheme()}`}>
                     Cancel
                 </button>
 
@@ -37,12 +38,12 @@ const RecoverSeed = () => {
                 </div>
 
                 <div className={`rec-seed-form-container ${fadeLeft}`}>
-                    <h2>Recover from seed</h2>
+                    <h2 className={checkLightTheme()}>Recover from seed</h2>
                     <form>
                         <textarea
                             rows="3"
                             style={{resize: 'none'}}
-                            className={`input-gray`}
+                            className={`input-gray ${checkLightTheme()}`}
                             placeholder={`enter 12/24 mnemonic seed words `}
                             value={seedInp}
                             onChange={event => setSeedInp(event.target.value)}

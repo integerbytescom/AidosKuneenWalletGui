@@ -48,6 +48,10 @@
     opacity: .5;
     transition: .3s;
 }
+.send-content form .adk-value.light .but-container .all-send{
+    color: var(--bg-dark);
+    border: 1px solid var(--bg-dark);
+}
 .send-content form .adk-value .but-container .all-send:hover{
     opacity: 1;
 }
@@ -115,6 +119,9 @@
     font-weight: 300;
     font-size: 12px;
 }
+.radio-p.light label{
+    color: var(--bg-dark);
+}
 
 .radio-p input[type='radio'] {
     position: relative;
@@ -130,6 +137,9 @@
 .radio-p input[type='radio']:checked{
     border: 1px solid var(--color-white);
 }
+.radio-p.light input[type='radio']{
+    border: 1px solid var(--bg-dark);
+}
 
 .radio-p input[type='radio']::before {
     content: '';
@@ -142,6 +152,9 @@
     transform: translate(-50%, -50%);
     background: none;
     border: 1px solid var(--color-white);
+}
+.radio-p.light input[type='radio']::before{
+    border: 1px solid var(--bg-dark);
 }
 
 .radio-p input[type='radio']:checked::after {
@@ -156,9 +169,15 @@
     transform: translate(-50%, -50%);
     visibility: visible;
 }
+.radio-p.light input[type='radio']:checked::after{
+    background-color: var(--bg-dark);
+}
 
 .send-content form .butt-container{
     margin-top: 30px;
     display: flex;
     justify-content: center;
+}
+.send-content form .butt-container button.light{
+    color: var(--bg-dark);
 }

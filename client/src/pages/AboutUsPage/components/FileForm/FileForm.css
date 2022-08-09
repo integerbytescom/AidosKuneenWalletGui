@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     transition: .3s;
+    max-width: 50%;
 }
 .input-file-span:hover{
     opacity: .6;
@@ -27,6 +28,9 @@
     font-weight: 400;
     font-size: 14px;
     transition: .3s;
+}
+.custom-file-input.light::before{
+    color: var(--bg-dark);
 }
 input[type='file'] {
     color: transparent;

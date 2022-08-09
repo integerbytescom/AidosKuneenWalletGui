@@ -6,6 +6,7 @@ import './Staking.css';
 import Overview from "../Overview/Overview";
 import CalculatorPage from "../../../CalculatorPage/CalculatorPage";
 import {anFade, anFade1s} from "../../../../animations";
+import {checkLightTheme} from "../../../../lightThemeCheck";
 
 const Staking = () => {
 
@@ -13,9 +14,12 @@ const Staking = () => {
     const [fadeExit,setFadeExit] = useState('')
 
     return (
-        <div className={`block-container ${fadeExit}`}>
+        <div className={`block-container ${fadeExit} ${checkLightTheme()}`}>
             <div className={`block-container menu`}>
-                <img className={`fon-wallet-bal ${anFade}`} src="./images/wallet-page/waves-shd-blue.svg" alt=""/>
+                {checkLightTheme()?
+                    <img className={`fon-wallet-bal ${anFade}`} src="./images/wallet-page/fon-wal-bb.svg" alt=""/>:
+                    <img className={`fon-wallet-bal ${anFade}`} src="./images/wallet-page/waves-shd-blue.svg" alt=""/>
+                }
 
                 <WalletBalance setFadeExit={setFadeExit} path={path} />
 

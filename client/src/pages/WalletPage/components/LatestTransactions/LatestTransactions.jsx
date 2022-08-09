@@ -3,6 +3,7 @@ import './LatestTransactions.css';
 import TransData from "./TransData";
 import AllTrans from "../AllTrans/AllTrans";
 import {anFadeUp} from "../../../../animations";
+import {checkLightTheme} from "../../../../lightThemeCheck";
 
 const LatestTransactions = (props) => {
 
@@ -41,7 +42,7 @@ const LatestTransactions = (props) => {
 
     return (
         <>
-            <div className={`latest-transactions ${showTrans} ${anFadeUp}`}>
+            <div className={`latest-transactions ${showTrans} ${anFadeUp} ${checkLightTheme()}`}>
                 <header>
                     <h3>Latest transactions</h3>
                     {
@@ -62,7 +63,7 @@ const LatestTransactions = (props) => {
                         </div>
                 }
 
-                <div className="transactions">
+                <div className={`transactions ${checkLightTheme()}`}>
                     <AllTrans
                         blueClass={blueClass}
                         transactionsOnePage={transactionsOnePage}
@@ -74,11 +75,17 @@ const LatestTransactions = (props) => {
 
                 <footer>
                     <button className={`left`} disabled={currentPage===1} onClick={prevPage}>
-                        <img src="./images/arrow-right.svg" alt=""/>
+                        {checkLightTheme()?
+                            <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                            <img src="./images/arrow-right.svg" alt=""/>
+                        }
                     </button>
                     <p>{currentPage} / {pageAmount}</p>
                     <button className={`right`} disabled={currentPage===pageAmount} onClick={nextPage}>
-                        <img src="./images/arrow-right.svg" alt=""/>
+                        {checkLightTheme()?
+                            <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                            <img src="./images/arrow-right.svg" alt=""/>
+                        }
                     </button>
                 </footer>
             </div>

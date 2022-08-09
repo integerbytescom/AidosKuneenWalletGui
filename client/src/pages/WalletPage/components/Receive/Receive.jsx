@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import './Receive.css';
 import {useNavigate} from "react-router-dom";
-import {anFade, anFadeOut} from "../../../../animations";
+import {anFade, anFade1s, anFadeOut} from "../../../../animations";
 import TransData from "../LatestTransactions/TransData";
 import ReceiveTrans from "../ReceiveTrans/ReceiveTrans";
+import QRCodeSVG from "qrcode.react";
+import {checkLightTheme} from "../../../../lightThemeCheck";
 
 const Receive = () => {
 
     const navigate = useNavigate()
 
-    const [qrCode,setQrCode] = useState('')
-
     const [fade,setFade] = useState(anFade)
-    // const [fade1s,setFade1s] = useState(anFade1s)
+    const [fade1s,setFade1s] = useState(anFade1s)
 
     const handleCloseReceive = () =>{
         setFade(anFadeOut)
@@ -24,7 +24,8 @@ const Receive = () => {
 
     //copy onclick
     const [grayColor,setGrayColor] = useState('')
-    const handleCopy = () =>{
+    const handleCopy = async (adress) =>{
+        await navigator.clipboard.writeText(adress)
         setGrayColor('gray')
         setTimeout(handleChangeColor,1000)
     }
@@ -50,15 +51,6 @@ const Receive = () => {
     const prevPage = () => setCurrentPage(prev => prev - 1)
     const nextPage = () => setCurrentPage(prev => prev + 1)
 
-    useEffect(() =>{
-        const getQrCode = async () =>{
-            const getAdress = window.localStorage.getItem('adress');
-            const qr = await window.walletAPI.getQR(getAdress)
-            console.log(qr)
-        }
-        getQrCode()
-    },[])
-
     return (
         <div className={`block-container menu receive ${fade}`}>
 
@@ -66,21 +58,36 @@ const Receive = () => {
                 Cancel
             </button>
 
-            <div className={`block-container`}>
+            <div className={`block-container ${checkLightTheme()}`}>
 
                 <div className="rec-container">
-                    <img src="./images/wallet-page/logoKrug.svg" alt="logoAidos"/>
+                    <img className={'logoAidos'} src="./images/wallet-page/logoKrug.svg" alt="logoAidos"/>
 
-                    <div className={`rec-code-container`}>
+                    <div className={`qr-container ${fade1s}`}>
+                        <QRCodeSVG
+                            size={90}
+                            bgColor={"rgba(255, 255, 255, 0)"}
+                            fgColor={checkLightTheme()?"rgba(24,24,24,0.8)":"rgba(255, 255, 255, 0.8)"}
+                            className={'qr-code'}
+                            value={window.localStorage.getItem('adress')}
+                        />
+                    </div>
+
+                    <div className={`rec-code-container ${checkLightTheme()}`}>
+
                         <div className="code">
                             <p className={grayColor}>{window.localStorage.getItem('adress')}</p>
                         </div>
                         <div className="copy">
-                            <img onClick={handleCopy} src="./images/receive/copy.svg" alt="copy"/>
+                            <img
+                                onClick={() => handleCopy(window.localStorage.getItem('adress'))}
+                                src={checkLightTheme()?"./images/receive/copy-bl.svg":"./images/receive/copy.svg"}
+                                alt="copy"
+                            />
                         </div>
                     </div>
 
-                    <div className="rec-button-container">
+                    <div className={`rec-button-container ${checkLightTheme()}`}>
                         <button>Create New Address</button>
                     </div>
                 </div>
@@ -97,11 +104,17 @@ const Receive = () => {
 
                     <footer>
                         <button className={`left`} disabled={currentPage===1} onClick={prevPage}>
-                            <img src="./images/arrow-right.svg" alt=""/>
+                            {checkLightTheme()?
+                                <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                                <img src="./images/arrow-right.svg" alt=""/>
+                            }
                         </button>
                         <p>{currentPage} / {pageAmount}</p>
                         <button className={`right`} disabled={currentPage===pageAmount} onClick={nextPage}>
-                            <img src="./images/arrow-right.svg" alt=""/>
+                            {checkLightTheme()?
+                                <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                                <img src="./images/arrow-right.svg" alt=""/>
+                            }
                         </button>
                     </footer>
                 </div>

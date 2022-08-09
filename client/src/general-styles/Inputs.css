@@ -10,13 +10,24 @@
     transition: .3s;
     cursor: pointer;
 }
+.input-gray.light{
+    color: var(--bg-dark);
+    border-bottom: 1px solid var(--bg-dark);
+}
 .input-gray::placeholder{
     font-weight: 200;
     color: var(--color-white-opac-5);
     transition: .3s;
 }
+.input-gray.light::placeholder{
+    color: var(--bg-dark);
+}
 .input-gray:hover::placeholder{
     color: var(--color-white-opac-8);
+}
+.input-gray.light:hover::placeholder{
+    color: var(--bg-dark);
+    opacity: .5;
 }
 .input-gray:focus {
     outline: 0;

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './WalletBalance.css';
 import {anFadeDown, anFadeOut} from "../../../../animations";
 import {useNavigate} from "react-router-dom";
+import {checkLightTheme} from "../../../../lightThemeCheck";
 
 const WalletBalance = (props) => {
 
@@ -50,7 +51,7 @@ const WalletBalance = (props) => {
         <div className={`wallet-balance ${fadeDown}`}>
 
             <div className={`container-top-wallet`}>
-                <div className="bal-container">
+                <div className={`bal-container ${checkLightTheme()}`}>
                     {
                         blueClass === 'blue'?
                             <img src="./images/wallet-page/logoKrugBlue.svg" alt=""/>:
@@ -58,8 +59,14 @@ const WalletBalance = (props) => {
                     }
                     <img src="./images/wallet-page/lisa.svg" alt=""/>
                 </div>
+            </div>
 
-                <div className="butt-container-wallet">
+            <div className={`balance ${checkLightTheme()}`}>
+                <div className={'money-container'}>
+                    <h1 className={blueClass}>{balance}<span>ADK</span></h1>
+                    <h2 className={blueClass}>{balance * usdValue} $</h2>
+                </div>
+                <div className={`butt-container-wallet ${checkLightTheme()}`}>
                     {
                         blueClass === 'blue'?
                             <>
@@ -72,11 +79,6 @@ const WalletBalance = (props) => {
                             </>
                     }
                 </div>
-            </div>
-
-            <div className="balance">
-                <h1 className={blueClass}>{balance}<span>ADK</span></h1>
-                <h2 className={blueClass}>{balance * usdValue} $</h2>
             </div>
         </div>
     );

@@ -3,6 +3,9 @@ import './Send.css';
 import {anFadeOut, anFade} from "../../../../animations";
 import {useNavigate} from "react-router-dom";
 import Errors from "../../../../general-components/Errors/Errors";
+import ModalConfirm from "./modalsSend/ModalConfirm/ModalConfirm";
+import ModalClose from "./modalsSend/ModalClose/ModalClose";
+import {checkLightTheme} from "../../../../lightThemeCheck";
 
 const Send = (props) => {
 
@@ -10,8 +13,14 @@ const Send = (props) => {
 
     const [fade,setFade] = useState(anFade)
 
+    //modals
+    const [modalConfirm,setModalConfirm] = useState(false)
+    const [modalClose,setModalClose] = useState(false)
+
     // states for inputs
     const [to,setTo] = useState('')
+    const [mempasState,setMempasState] = useState('')
+    const [fromState,setFromState] = useState('')
     const [adkValue,setAdkValue] = useState(null)
     const [checkValue,setCheckValue] = useState(0)
     console.log(checkValue,'checkValue')
@@ -23,12 +32,7 @@ const Send = (props) => {
     }
 
     const handleCloseSend = () =>{
-        setFade(anFadeOut)
-        if (props.blue){
-            setTimeout(() => navigateRoute('/wallet/staking'),1000)
-        }else {
-            setTimeout(() => navigateRoute('/wallet'),1000)
-        }
+        setModalClose(true)
     }
 
     const getBalance = async () =>{
@@ -36,39 +40,52 @@ const Send = (props) => {
         const balance = JSON.parse(await window.walletAPI.balance(adress))
         return balance.data[adress]/1000000000000000000
     }
-    const getFromLS = async (value) =>{
-        return localStorage.getItem(value)
-    }
 
     const handleSend = async (e) =>{
         e.preventDefault()
-        if (to.length < 40 || to.length > 45){
+        if (to.length !== 42){
             setErrorFun('Введите правильный адрес')
         }else if(adkValue > getBalance){
             setErrorFun('У вас нет столько денег')
-        }else{
-            const way = checkValue===1?'gas':'pow';
-            const mempas = await getFromLS('seed');
-            const from = await getFromLS('adress');
-            console.log(way);
-            console.log(mempas);
-            console.log(from);
-            console.log(to);
-            console.log(adkValue);
-            await window.walletAPI.send(way,`"${mempas}"`,from,to,adkValue)
+        }else if(checkValue === 0){
+            setErrorFun('Выберите способ отправки')
+        }
+        else {
+            const openModalConsfirm = async () =>{
+                await setMempasState(localStorage.getItem('seed'))
+                await setFromState(localStorage.getItem('adress'))
+                setModalConfirm(true)
+            }
+            openModalConsfirm()
         }
     }
 
-    const navigateRoute = (url) =>{
-        navigate(url)
+    const setAllADK = async (e) =>{
+        e.preventDefault()
+        const value = await getBalance()
+        setAdkValue(value)
     }
 
     return (
-        <div className={`block-container menu ${fade}`}>
+        <div className={`block-container menu ${fade} ${checkLightTheme()}`}>
 
             {error!==''?<Errors error={error} />:''}
+            <ModalConfirm
+                show={modalConfirm}
+                onHide={() => setModalConfirm(false)}
+                way={checkValue===1?'gas':'pow'}
+                mempas={mempasState}
+                from={fromState}
+                to={to}
+                adkValue={adkValue}
+            />
+            <ModalClose
+                show={modalClose}
+                onHide={() => setModalClose(false)}
+                blue={props.blue}
+            />
 
-            <button onClick={handleCloseSend} className={`close-button`}>
+            <button onClick={handleCloseSend} className={`close-button ${checkLightTheme()}`}>
                 Cancel
             </button>
 
@@ -83,9 +100,9 @@ const Send = (props) => {
                     props.blue ?
                         <form className="form-create-pass blue">
                             <div className="adk-value">
-                                <input className='input-gray blue' type="text" placeholder={`0.00`} />
+                                <input className={`input-gray blue ${checkLightTheme()}`} type="text" placeholder={`0.00`} />
                                 <div className="but-container blue">
-                                    <button className={'all-send'}>All</button>
+                                    <button onClick={setAllADK} className={'all-send'}>All</button>
                                     <h3>ADK / 2414,455.43 ADK</h3>
                                 </div>
                             </div>
@@ -102,23 +119,23 @@ const Send = (props) => {
                         :
                         <form onSubmit={handleSend}>
                             <input
-                                className={`input-gray send`}
+                                className={`input-gray send ${checkLightTheme()}`}
                                 type="text"
                                 placeholder={`Enter Address`}
                                 value={to}
                                 onChange={event => setTo(event.target.value)}
                             />
 
-                            <div className="adk-value">
+                            <div className={`adk-value ${checkLightTheme()}`}>
                                 <input
-                                    className={`input-gray`}
+                                    className={`input-gray ${checkLightTheme()}`}
                                     type="text"
                                     placeholder={''}
                                     value={adkValue}
                                     onChange={event => setAdkValue(event.target.value)}
                                 />
                                 <div className="but-container">
-                                    <button className={'all-send'}>All</button>
+                                    <button onClick={setAllADK} className={'all-send'}>All</button>
                                     <h3>ADK</h3>
                                 </div>
                             </div>
@@ -128,18 +145,18 @@ const Send = (props) => {
                                     <p>Fees: 0 ADK</p>:''
                             }
 
-                            <p className={'radio-p'}>
+                            <p className={`radio-p ${checkLightTheme()}`}>
                                 <input type="radio" checked={checkValue === 1} onChange={() => setCheckValue(1)} />
                                 <label htmlFor="answer1">Pay GAS "Fastest"</label>
                             </p>
 
-                            <p className={'radio-p'}>
+                            <p className={`radio-p ${checkLightTheme()}`}>
                                 <input type="radio" checked={checkValue === 2} onChange={() => setCheckValue(2)} />
                                 <label htmlFor="answer2">Do POW</label>
                             </p>
 
                             <div className="butt-container">
-                                <button onClick={handleSend} className={`border-button`}>Send</button>
+                                <button onClick={handleSend} className={`border-button ${checkLightTheme()}`}>Send</button>
                             </div>
                         </form>
                 }

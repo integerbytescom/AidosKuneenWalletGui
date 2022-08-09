@@ -1,30 +1,69 @@
 import React, {useState} from 'react';
-import {anFade} from "../../animations";
 import './CalculatorPage.css';
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const CalculatorPage = () => {
 
-    const [fade,setFade] = useState(anFade)
+    const [adkValue,setAdkValue] = useState(null)
+    const [moneyValue,setMoneyValue] = useState(null)
+    const [selectValue,setSelectValue] = useState("USD")
+
+    const getBalance = async () =>{
+        const adress = localStorage.getItem('adress')
+        const balance = JSON.parse(await window.walletAPI.balance(adress))
+        return balance.data[adress]/1000000000000000000
+    }
+
+    const setAllADK = async (e) =>{
+        e.preventDefault()
+        const value = await getBalance()
+        setAdkValue(value)
+    }
+
+    const showValuesADK = async (e) =>{
+        e.preventDefault()
+        return await window.walletAPI.getAdkPrices()
+    }
+
+    const handleCalculate = async (e) =>{
+        e.preventDefault()
+        const value = await showValuesADK(e);
+        setMoneyValue(value[selectValue] * adkValue)
+    }
+
 
     return (
-        <div className={`calculator`}>
+        <div className={`calculator ${checkLightTheme()}`}>
             <div className="calc-content">
                 <img className={'dollar'} src="./images/calculator/dollar.svg" alt=""/>
 
-                <>
-                <input type="text" className="input-gray" placeholder={'0.00'}/>
-                <select>
+                <form className={`form-calc`} onSubmit={handleCalculate}>
+                    <div className={'calc-inp-but-container'}>
+                        <input
+                            className={`input-gray ${checkLightTheme()}`}
+                            placeholder={'0.00'}
+                            value={adkValue}
+                            onChange={(e) => setAdkValue(e.target.value)}
+                        />
+                        <div className={`but-container ${checkLightTheme()}`}>
+                            <button onClick={setAllADK}>All</button>
+                        </div>
+                    </div>
+
+                <select className={checkLightTheme()} value={selectValue} onChange={event => setSelectValue(event.target.value)}>
                     <option value={"USD"}>Dollars</option>
                     <option value={"RUB"}>Rubles</option>
                     <option value={"EUR"}>Euros</option>
                 </select>
-                </>
 
-                <div className="money-container">
-                    <h2>342,433.43 $</h2>
-                </div>
+                    {moneyValue?
+                        <div className={`money-container ${checkLightTheme()}`}>
+                            <h2>{moneyValue}</h2>
+                        </div>:''
+                    }
 
-                <button>Count up</button>
+                <button className={`calc-sub ${checkLightTheme()}`} type={"submit"}>Count up</button>
+                </form>
             </div>
         </div>
     );

@@ -12,6 +12,10 @@
     font-size: 15px;
     font-weight: 200;
 }
+.seed-first-show h2.light,
+.seed-first-show h2.light span{
+    color: var(--bg-dark);
+}
 
 /*seed container*/
 .seed-container{

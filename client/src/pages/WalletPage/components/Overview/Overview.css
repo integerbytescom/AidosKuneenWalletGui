@@ -7,6 +7,9 @@
     flex-wrap: wrap;
     background: #1B1C26;
 }
+.overview.light{
+    background: var(--bg-light);
+}
 
 .graph-container{
     position: absolute;
@@ -24,6 +27,9 @@
     width: 65px;
     font-size: 22px;
     margin: 0 10px 0 0;
+}
+.value-change.light h2{
+    color: var(--bg-dark);
 }
 .value-change h3{
     width: 100%;

@@ -16,6 +16,9 @@
 }
 
 /*form*/
+.form-create-wallet-container h2.light{
+    color: var(--bg-dark);
+}
 .form-create-wallet-container form{
     width: 180px;
     margin: auto;
@@ -29,6 +32,9 @@
 }
 .form-create-wallet-container form .pass-first div{
     border-bottom: 1px solid var(--color-white-opac-3);
+}
+.form-create-wallet-container form .pass-first div.light{
+    border-bottom: 1px solid var(--bg-dark);
 }
 .form-create-wallet-container form .pass-first img{
     width: 20px;

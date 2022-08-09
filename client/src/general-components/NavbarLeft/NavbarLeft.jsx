@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './NavbarLeft.css';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {anFade, anFadeLeft, anFadeLeft2s} from "../../animations";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const NavbarLeft = () => {
 
@@ -21,11 +22,12 @@ const NavbarLeft = () => {
             // setTotalBal(totalBalance.data)
             // setTotalStake(totalStake.data)
             const adress = localStorage.getItem('adress')
-            const totalBalance = JSON.parse(await window.walletAPI.balance(adress))
+            const seed = localStorage.getItem('seed')
+            const totalBalance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`))
             const totalStacked = JSON.parse(await window.walletAPI.stakedBalance(adress))
             // console.log(totalBalance);
             // console.log(totalStacked);
-            setTotalBal(totalBalance.data[adress]/1000000000000000000)
+            setTotalBal(totalBalance.data/1000000000000000000)
             setTotalStake(totalStacked.data[adress][0])
         }
         getTotalBalance()
@@ -34,7 +36,7 @@ const NavbarLeft = () => {
     return (
         <>
         {path.startsWith('/wallet')?
-        <nav className={`navbar-left ${anFadeLeft}`}>
+        <nav className={`navbar-left ${anFadeLeft} ${checkLightTheme()}`}>
             <header>
                 <div className="logo">
                     <img width={30} className={'ai-logo'} src="./images/navbar-left/logo.svg" alt=""/>
@@ -42,12 +44,12 @@ const NavbarLeft = () => {
                 </div>
 
 
-                <div className={`nav-bal-stack`}>
+                <div className={`nav-bal-stack ${checkLightTheme()}`}>
                     <div>
                         <p>Total balance</p>
                         <h5 className={`green`}>{totalBal?totalBal:0}</h5>
                     </div>
-                    <hr/>
+                    <hr className={checkLightTheme()}/>
                     <div>
                         <p>Total staked</p>
                         <h5>{totalStake?totalStake:0}</h5>
@@ -57,19 +59,31 @@ const NavbarLeft = () => {
 
                 <div className="menu">
                     <Link  to={`/wallet`} className={path==='/wallet' || path==='/wallet/send' || path==='/wallet/receive'?'active':''}>
-                        <img src="./images/navbar-left/credit-card.svg" alt=""/>
+                        {checkLightTheme()?
+                            <img src="./images/navbar-left/black-icons/credit-card.svg" alt=""/>:
+                            <img src="./images/navbar-left/credit-card.svg" alt=""/>
+                        }
                         Wallet
                     </Link>
                     <Link  to={`/wallet/staking`} className={path==='/wallet/staking' || path==='/wallet/stake' || path==='/wallet/unstake' ?'active':''}>
-                        <img src="./images/navbar-left/briefcase.svg" alt=""/>
+                        {checkLightTheme()?
+                            <img src="./images/navbar-left/black-icons/briefcase.svg" alt=""/>:
+                            <img src="./images/navbar-left/briefcase.svg" alt=""/>
+                        }
                         Staking
                     </Link>
                     <Link to={`/wallet/aboutUs`} className={path==='/wallet/aboutUs' || path==='/wallet/fileForm'?'active':''}>
-                        <img src="./images/navbar-left/edit-3.svg" alt=""/>
+                        {checkLightTheme()?
+                            <img src="./images/navbar-left/black-icons/edit-3.svg" alt=""/>:
+                            <img src="./images/navbar-left/edit-3.svg" alt=""/>
+                        }
                         About us
                     </Link>
                     <Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ' || path==='/wallet/form'?'active':''}>
-                        <img src="./images/navbar-left/support.svg" alt=""/>
+                        {checkLightTheme()?
+                            <img src="./images/navbar-left/black-icons/support.svg" alt=""/>:
+                            <img src="./images/navbar-left/support.svg" alt=""/>
+                        }
                         Support
                     </Link>
                 </div>
@@ -77,15 +91,21 @@ const NavbarLeft = () => {
 
             <footer>
                 <Link className={path==='/wallet/settings'?'active':''} to={`/wallet/settings`}>
-                    <img src="./images/navbar-left/settings.svg" alt=""/>
+                    {checkLightTheme()?
+                        <img src="./images/navbar-left/black-icons/settings.svg" alt=""/>:
+                        <img src="./images/navbar-left/settings.svg" alt=""/>
+                    }
                     Settings
                 </Link>
 
 
                 <div className={`logout-but-cont`}>
-                    <hr/>
+                    <hr className={checkLightTheme()}/>
                     <Link className={path==='/'?'active':''} to={`/`}>
-                        <img src="./images/navbar-left/log-out.svg" alt=""/>
+                        {checkLightTheme()?
+                            <img src="./images/navbar-left/black-icons/log-out.svg" alt=""/>:
+                            <img src="./images/navbar-left/log-out.svg" alt=""/>
+                        }
                         Log out
                     </Link>
                 </div>

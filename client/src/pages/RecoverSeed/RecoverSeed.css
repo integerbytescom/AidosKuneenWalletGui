@@ -3,6 +3,9 @@
 .rec-seed-form-container h2{
     margin-bottom: 30px;
 }
+.rec-seed-form-container h2.light{
+    color: var(--bg-dark);
+}
 .rec-seed-form-container form{
     width: 400px;
 }

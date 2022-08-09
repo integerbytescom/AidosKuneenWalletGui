@@ -3,6 +3,7 @@ import './CreateWalletPage.css';
 import {useNavigate} from 'react-router-dom';
 import {anFadeLeft, anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import Errors from "../../general-components/Errors/Errors";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 export let GLOBAL_PASS;
 export let GLOBAL_ADRESS;
@@ -70,9 +71,9 @@ const CreateWalletPage = () => {
     }
 
     return (
-            <div className={`block-container`}>
+            <div className={`block-container ${checkLightTheme()}`}>
                 
-                <button onClick={() => navigatePage('/')} className={`close-button ${fadeSlow}`}>
+                <button onClick={() => navigatePage('/')} className={`close-button ${fadeSlow} ${checkLightTheme()}`}>
                     Cancel
                 </button>
 
@@ -83,21 +84,27 @@ const CreateWalletPage = () => {
                 </div>
 
                 <div className={`form-create-wallet-container ${fadeLeft}`}>
-                    <h2>Enter Password</h2>
+                    <h2 className={`${checkLightTheme()}`}>Enter Password</h2>
                     <form>
                         <div className="pass-first">
                             <input
-                                className={`input-gray`}
+                                className={`input-gray ${checkLightTheme()}`}
                                 type={passShow?'text':'password'}
                                 placeholder={`password min .8 ch.`}
                                 value={pass}
                                 onChange={event => setPass(event.target.value)}
                             />
-                            <div><img onClick={handleShowPass} src="./images/eye.svg" alt=""/></div>
+                            <div className={checkLightTheme()}>
+                                <img
+                                    onClick={handleShowPass}
+                                    src={checkLightTheme()?"./images/eye-dark.svg":"./images/eye.svg"}
+                                    alt="eye"
+                                />
+                            </div>
                         </div>
 
                         <input
-                            className={`input-gray`}
+                            className={`input-gray ${checkLightTheme()}`}
                             type="password"
                             placeholder={`Repeat your Password`}
                             value={passCopy}

@@ -4,6 +4,7 @@ import '../CreateWalletPage/CreateWalletPage.css';
 import {useNavigate} from "react-router-dom";
 import {anFade, anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import Errors from "../../general-components/Errors/Errors";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const CreatePassword = () => {
 
@@ -59,11 +60,11 @@ const CreatePassword = () => {
     }
 
     return (
-            <div className={`block-container`}>
+            <div className={`block-container ${checkLightTheme()}`}>
 
                 {error!==''?<Errors error={error} />:''}
 
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fade}`}>
+                <button onClick={() => navigateRoute('/')} className={`close-button ${fade} ${checkLightTheme()}`}>
                     Cancel
                 </button>
 
@@ -74,12 +75,12 @@ const CreatePassword = () => {
                 </div>
 
                 <div className={`form-create-wallet-container ${fadeLeft}`}>
-                    <h2>Create password</h2>
+                    <h2 className={checkLightTheme()}>Create password</h2>
                     <form>
 
                         <div className="pass-first">
                             <input
-                                className={`input-gray`}
+                                className={`input-gray ${checkLightTheme()}`}
                                 type={passShow?'text':'password'}
                                 placeholder={`password min .8 ch.`}
                                 value={pass}
@@ -89,7 +90,7 @@ const CreatePassword = () => {
                         </div>
 
                         <input
-                            className={`input-gray`}
+                            className={`input-gray ${checkLightTheme()}`}
                             type="password"
                             placeholder={`insert again`}
                             value={passCopy}

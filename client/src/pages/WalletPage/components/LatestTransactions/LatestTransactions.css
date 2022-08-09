@@ -7,6 +7,9 @@
     z-index: 10;
     transition-duration: 0.4s
 }
+.latest-transactions.light{
+    background: var(--bg-light);
+}
 .latest-transactions.hide{
     bottom: -63vh;
 }
@@ -23,6 +26,10 @@
 .latest-transactions header h3{
     margin: 0;
 }
+.latest-transactions.light header h3,
+.latest-transactions.light header p{
+    color: var(--bg-dark);
+}
 .latest-transactions header p{
     font-weight: 500;
     cursor: pointer;
@@ -32,6 +39,9 @@
 }
 .latest-transactions header p:hover{
     border-bottom: 1px solid var(--color-white);
+}
+.latest-transactions.light header p:hover{
+    border-bottom: 1px solid var(--bg-dark);
 }
 
 
@@ -47,6 +57,10 @@
     cursor: pointer;
     border-bottom: 1px solid var(--color-white);
     transition: .3s;
+}
+.latest-transactions.light .set-page p{
+    color: var(--bg-dark);
+    border-bottom: 1px solid var(--bg-dark);
 }
 .latest-transactions .set-page p.active{
     opacity: 1;
@@ -75,6 +89,9 @@
     color: var(--color-white);
     opacity: .5;
 }
+.transactions.light .trans-container p{
+    color: var(--bg-dark);
+}
 .transactions .trans-container h3{
     font-weight: 300;
     font-size: 15px;
@@ -92,10 +109,17 @@
 .transactions .trans-container h3.green.blue{
     color: var(--color-white);
 }
+.transactions.light .trans-container h3.green.blue{
+    color: var(--bg-dark);
+}
 
 .transactions .trans-container:nth-child(odd){
     background: #1B1C26;
 }
+.transactions.light .trans-container:nth-child(odd){
+    background: #dadada;
+}
+
 .transactions .trans-container .from-to,
 .transactions .trans-container .dollar-adk{
     display: flex;

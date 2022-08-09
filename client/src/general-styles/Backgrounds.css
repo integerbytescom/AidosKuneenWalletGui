@@ -8,6 +8,9 @@
     overflow: hidden;
     /*background: rgba(0, 255, 42, 0.07);*/
 }
+.block-container.light{
+    background: var(--bg-light);
+}
 .block-container.top-waves{
     background-position: 0 -30px;
     background-size: 100%;

@@ -1,0 +1,7 @@
+.settings-modal.confirm p span{
+    color: var(--color-green);
+    font-weight: 400;
+}
+.settings-modal.confirm p{
+    font-weight: 300;
+}

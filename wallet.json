@@ -1,14 +1,14 @@
 {
  "WalletName": "default",
- "MnemonicEncoded": "beca73768ea29d1f-c91d5521dff6905aef9c949f-545f4edc81f8ab435d7e4fbcc176abd318035ebb96e365b65718f584f87bff94384f5d4ac6e850be69d4db1fd65dec953157c43ca254b7cdf7645567ff49e249a08563b4403abe70f5e1f5b12f59ab8e51afc7731a7ef52685bd97f5",
+ "MnemonicEncoded": "",
  "Accounts": [
   {
-   "Id": 0,
-   "PubKey": "0x1AA7d82e6c80635037826E6dd43eeb7Ea8ecE9De",
-   "PrivKeyEncoded": "34f89f3cd901297c-b66bd8d55c8d60c778bcdbf3-4eabbbea55e7e5255dfe8e7c0b041388bd240ef0886e20638f5f65a03d0a318d0761f26b417902f0b881bed86285a1ae17e3c66d775c6831784637f8820c02a3ff9308b0e52da864c78c876667e1c864c84138cc8728",
+   "Id": -1,
+   "PubKey": "",
+   "PrivKeyEncoded": "",
    "LastBalance": ""
   }
  ],
- "PasswordHash": "686e8bc1691bcc1f33a91aefa3f54af43b7603c0",
- "Initialized": true
+ "PasswordHash": "",
+ "Initialized": false
 }

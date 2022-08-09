@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './AboutUsPage.css';
 import {anFade, anFade1s} from "../../animations";
 import {Link, useLocation} from "react-router-dom";
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const AboutUsPage = () => {
 
@@ -11,11 +12,14 @@ const AboutUsPage = () => {
     const [fade1s,setFade1s] = useState(anFade1s)
 
     return (
-        <div className={`about-us-page ${fade}`}>
+        <div className={`about-us-page ${fade} ${checkLightTheme()}`}>
 
-            <img className={`waves-about ${fade1s}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+            {checkLightTheme()?
+                <img className={`waves-about ${checkLightTheme()} ${fade1s}`} src="./images/wallet-page/fon-wallet-bg.svg" alt=""/>:
+                <img className={`waves-about ${fade1s}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+            }
 
-            <span className={'links-top-about'}>
+            <span className={`links-top-about ${checkLightTheme()}`}>
                 <Link to={'/wallet/aboutUs'} className={path==='/wallet/aboutUs'?'active':''}>Information</Link>
                 <Link to={'/wallet/fileForm'} className={path==='/wallet/form'?'active':''}>Bugs</Link>
             </span>
@@ -74,27 +78,27 @@ const AboutUsPage = () => {
                 </div>
 
                 <footer>
-                    <Link to={'/'}>
+                    <a target="_blank" rel="noreferrer" href={`https://medium.com/@aidoskuneen`}>
                         <img src="./images/about-us/media/m.svg" alt=""/>
-                    </Link>
-                    <Link to={'/'}>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href={`https://www.linkedin.com/company/aidos-kuneen/`}>
                         <img src="./images/about-us/media/in.svg" alt=""/>
-                    </Link>
-                    <Link to={'/'}>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href={`https://twitter.com/aidos_kuneen`}>
                         <img src="./images/about-us/media/twitter.svg" alt=""/>
-                    </Link>
-                    <Link to={'/'}>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href={`https://github.com/AidosKuneen/`}>
                         <img src="./images/about-us/media/github.svg" alt=""/>
-                    </Link>
-                    <Link to={'/'}>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href={`https://www.youtube.com/channel/UCaR6V9HKQ0dR4aqiLqly1Vg`}>
                         <img src="./images/about-us/media/youtube.svg" alt=""/>
-                    </Link>
-                    <Link to={'/'}>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href={`https://www.facebook.com/Aidos-Kuneen-101400758353414`}>
                         <img src="./images/about-us/media/facebook.svg" alt=""/>
-                    </Link>
-                    <Link to={'/'}>
+                    </a>
+                    <a target="_blank" rel="noreferrer" href={`https://www.reddit.com/user/AidosKuneenOfficial`}>
                         <img src="./images/about-us/media/robot.svg" alt=""/>
-                    </Link>
+                    </a>
                 </footer>
             </div>
 

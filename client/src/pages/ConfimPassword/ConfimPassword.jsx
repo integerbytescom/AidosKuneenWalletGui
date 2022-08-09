@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import { anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import './ConsfirmPassword.css';
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const ConfirmPassword = (props) => {
 
@@ -22,9 +23,9 @@ const ConfirmPassword = (props) => {
     }
 
     return (
-            <div className={`block-container`}>
+            <div className={`block-container ${checkLightTheme()}`}>
 
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow}`}>
+                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow} ${checkLightTheme()}`}>
                     Cancel
                 </button>
 
@@ -39,17 +40,17 @@ const ConfirmPassword = (props) => {
                 <div className={`conf-pass-container ${fadeLeft}`}>
                     {
                         props.path === 'mm'?
-                            <h2 className={'left'}>MetaMask password</h2>:
+                            <h2 className={`left ${checkLightTheme()}`}>MetaMask password</h2>:
                             <>
-                                <h2>Congratulations!</h2>
-                                <p>Your wallet has been successfully created!</p>
+                                <h2 className={checkLightTheme()}>Congratulations!</h2>
+                                <p className={checkLightTheme()}>Your wallet has been successfully created!</p>
                             </>
                     }
                     <form>
                         {
                             props.path === 'mm'?
                                 <>
-                                <input className={`input-gray`} type="password" placeholder={`enter password`} />
+                                <input className={`input-gray ${checkLightTheme()}`} type="password" placeholder={`enter password`} />
                                 <button className={'blue-button left'} onClick={event => handleConfirmPass('/wallet',event)}>Enter</button>
                                 </>:
                                 <button className={`blue-button`} onClick={event => handleConfirmPass('/',event)} >

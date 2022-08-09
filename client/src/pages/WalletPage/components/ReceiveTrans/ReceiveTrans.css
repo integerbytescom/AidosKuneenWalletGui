@@ -8,8 +8,14 @@
     transition: .3s;
     cursor: pointer;
 }
+.rec-trans-container.light{
+    color: var(--bg-dark);
+}
 .rec-trans-container:hover{
     background: rgba(52, 53, 54, 0.76);
+}
+.rec-trans-container.light:hover{
+    background: var(--color-white);
 }
 
 .rec-trans-container span{
@@ -22,6 +28,9 @@
     font-size: 12px;
     opacity: .6;
     margin: 0;
+}
+.rec-trans-container.light p{
+    color: var(--bg-dark);
 }
 .rec-trans-container .copy-address{
     opacity: .6;
@@ -41,4 +50,7 @@
     font-size: 16px;
     font-weight: 300;
     margin: 0;
+}
+.rec-trans-container.light .adk{
+    color: var(--bg-dark);
 }
