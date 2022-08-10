@@ -4,6 +4,7 @@ import {anFade, anFade1s, anFadeOut, anFadeSlow} from "../../animations";
 import {useNavigate} from "react-router-dom";
 import Errors from "../../general-components/Errors/Errors";
 import {checkLightTheme} from "../../lightThemeCheck";
+import {bgImageCheck} from "../../bgImageCheck";
 
 const AuthorizationPage = () => {
 
@@ -58,8 +59,6 @@ const AuthorizationPage = () => {
         navigate(url)
     }
 
-    console.log(checkLightTheme(),'checkLightTheme')
-
     return (
         <>
             {window.sessionStorage.getItem('userVideo')?'':
@@ -74,7 +73,13 @@ const AuthorizationPage = () => {
             }
 
             <div
-                style={{backgroundImage:`url('./images/auth-page/waves.svg')`}}
+                style={
+                bgImageCheck() === 'lines'?
+                {backgroundImage:`url('./images/auth-page/waves.svg')`}:
+                    bgImageCheck() === 'gradient'?
+                        {backgroundImage:`url('./images/bgs/grdient-bg-bottom.svg')`,backgroundPosition:'0 150px'}:
+                        {backgroundImage:`url('./images/bgs/honeycomb-bottom.svg')`}
+                }
                 className={`block-container bottom-waves ${fadeSlow} ${checkLightTheme()}`}
             >
 

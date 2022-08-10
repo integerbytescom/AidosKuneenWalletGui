@@ -2,6 +2,7 @@ import React from 'react';
 import {Modal} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import './ModalClose.css';
+import {checkLightTheme} from "../../../../../../lightThemeCheck";
 
 const ModalClose = (props) => {
 
@@ -17,7 +18,7 @@ const ModalClose = (props) => {
             onHide={props.onHide}
             // size="lg"
             aria-labelledby="contained-modal-title-vcenter"
-            className={`settings-modal close`}
+            className={`settings-modal close ${checkLightTheme()}`}
             centered
         >
             <Modal.Header closeButton>
@@ -29,8 +30,8 @@ const ModalClose = (props) => {
                 </p>
             </Modal.Body>
             <Modal.Footer>
-                <button className={'border-button'} onClick={handleOut}>Да</button>
-                <button className={'gray-button modal-close'} onClick={props.onHide}>Отменить</button>
+                <button className={`border-button ${checkLightTheme()}`} onClick={handleOut}>Да</button>
+                <button className={`gray-button modal-close ${checkLightTheme()}`} onClick={props.onHide}>Отменить</button>
             </Modal.Footer>
         </Modal>
     );

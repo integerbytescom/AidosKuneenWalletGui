@@ -7,6 +7,8 @@ import CalculatorPage from "../CalculatorPage/CalculatorPage";
 import Overview from "./components/Overview/Overview";
 import {anFade, anFade1s} from "../../animations";
 import {checkLightTheme} from "../../lightThemeCheck";
+import {bgImageCheck} from "../../bgImageCheck";
+import Hints from "../../general-components/Hints/Hints";
 
 const WalletPage = () => {
 
@@ -27,9 +29,31 @@ const WalletPage = () => {
     return (
             <div className={`block-container ${fadeExit} ${checkLightTheme()}`}>
                 {checkLightTheme()?
-                    <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/fon-wallet-bg.svg" alt=""/>:
-                    <img className={`fon-wallet-bal ${fade}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+                    <img
+                        className={`fon-wallet-bal ${fade}`}
+                        // src="./images/wallet-page/fon-wallet-bg.svg"
+                        src={bgImageCheck()==='lines'?
+                            "./images/wallet-page/fon-wallet-bg.svg":
+                            bgImageCheck()==='gradient'?
+                                "./images/bgs/grdient-bg-top.svg":
+                                "./images/bgs/honeycomb-top.svg"
+                        }
+                        alt=""
+                    />:
+
+                    <img
+                        className={`fon-wallet-bal ${fade}`}
+                        // src="./images/wallet-page/waves-shd.svg"
+                        src={bgImageCheck()==='lines'?
+                            "./images/wallet-page/waves-shd.svg":
+                            bgImageCheck()==='gradient'?
+                                "./images/bgs/grdient-bg-top.svg":
+                                "./images/bgs/honeycomb-top.svg"
+                        }
+                        alt=""
+                    />
                 }
+                <Hints />
                 <div className={`block-container menu`}>
 
                     <WalletBalance setFadeExit={setFadeExit} path={path} />

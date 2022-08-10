@@ -1,30 +1,38 @@
 import React, {useState} from 'react';
 import {Modal, Spinner} from "react-bootstrap";
 import './ModalConfirm.css'
+import {useNavigate} from "react-router-dom";
+import {checkLightTheme} from "../../../../../../lightThemeCheck";
 
 const ModalConfirm = (props) => {
+
+    const navigate = useNavigate()
 
     const [display,setDisplay] = useState(false)
     const [displayText,setDisplayText] = useState(true)
     const [message,setMessage] = useState(false)
+    const [spinnerDisplay,setSpinnerDisplay] = useState('block')
 
     const handleSend = async () =>{
         setDisplay(true)
         const trans = JSON.parse(await window.walletAPI.send(props.way,`"${props.mempas}"`,props.from,props.to,props.adkValue))
+        console.log(trans.ok,'TRANS OK')
+        console.log(trans,'TRANS')
         if (trans.ok === true){
             setMessage('Отправлено')
+            await window.walletAPI.updateBalance()
+            setSpinnerDisplay('none')
             setDisplayText(false)
-            setTimeout(props.onHide(),20000)
         }else {
             alert('Произошла ошибка попробуйте позже')
         }
     }
 
-    console.log(props.way)
-    console.log(props.mempas)
-    console.log(props.from)
-    console.log(props.to)
-    console.log(props.adkValue)
+    // console.log(props.way)
+    // console.log(props.mempas)
+    // console.log(props.from)
+    // console.log(props.to)
+    // console.log(props.adkValue)
 
     return (
         <Modal
@@ -47,9 +55,12 @@ const ModalConfirm = (props) => {
                         на адрес
                         <span> {props.to} </span>?
                     </p>:
-                    <p>{message}</p>
+                    <div className={'send-success'}>
+                        <p>{message}</p>
+                        <button onClick={() => navigate(`/wallet`)} className={`border-button ${checkLightTheme()}`}>Ok</button>
+                    </div>
                 }
-                {display===false?'':<Spinner style={{marginTop:10}} animation="grow" variant="light" />}
+                {display===false?'':<Spinner style={{marginTop:10,display:spinnerDisplay}} animation="grow" variant="light" />}
             </Modal.Body>
             <Modal.Footer style={{alignItems:'flex-end'}}>
                 {display===false?

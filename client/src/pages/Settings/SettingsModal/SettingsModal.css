@@ -3,6 +3,10 @@
     background: #24252F;
     border: none;
 }
+.settings-modal.light div.modal-content{
+    background: var(--color-white);
+}
+
 .settings-modal .modal-header,
 .settings-modal .modal-footer{
     border: none;
@@ -17,9 +21,19 @@
 .settings-modal .modal-footer button{
     margin-bottom: 10px;
 }
+.settings-modal.light .modal-footer button{
+    color: var(--bg-dark);
+}
+.settings-modal.light .modal-footer button.gray-button{
+    color: var(--color-white-opac-8);
+}
 .settings-modal .modal-footer button:hover{
     border: 1px solid var(--color-white);
     background: none;
+}
+.settings-modal.light .modal-footer button.border-button:hover{
+    border: 1px solid var(--bg-black);
+    color: var(--bg-black);
 }
 
 .settings-modal p{
@@ -28,4 +42,7 @@
     font-weight: 500;
     font-size: 16px;
     color: var(--color-white);
+}
+.settings-modal.light p{
+    color: var(--bg-dark);
 }

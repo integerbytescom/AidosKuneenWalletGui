@@ -45,6 +45,13 @@ const Router = () => {
             }
         }
         getSecure()
+        const getHints = () =>{
+            const lsNow = window.localStorage.getItem('hints')
+            if (lsNow === null){
+                window.localStorage.setItem('hints',true)
+            }
+        }
+        getHints()
     },[])
 
     return (

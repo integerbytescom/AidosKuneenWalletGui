@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root{
+    --error-bg: #FF4343;
     --color-white: rgb(255, 255, 255);
     --bg-black:#010213;
     --bg-dark: #12131F;

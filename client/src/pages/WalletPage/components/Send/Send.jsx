@@ -106,14 +106,14 @@ const Send = (props) => {
                                     <h3>ADK / 2414,455.43 ADK</h3>
                                 </div>
                             </div>
-                            <div className="container-usd blue">
+                            <div className={`container-usd blue ${checkLightTheme()}`}>
                                 <h3>0,00</h3>
                                 <h3>USD / 543,342.34 USD</h3>
                             </div>
 
 
                             <div className="butt-container">
-                                <button className={'border-button blue'}>Stake</button>
+                                <button className={`border-button blue ${checkLightTheme()}`}>Stake</button>
                             </div>
                         </form>
                         :

@@ -5,3 +5,14 @@
 .settings-modal.confirm p{
     font-weight: 300;
 }
+
+.send-success{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.send-success p{
+    width: 100%;
+    text-align: center;
+}

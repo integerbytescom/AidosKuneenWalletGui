@@ -3,6 +3,7 @@ import './AboutUsPage.css';
 import {anFade, anFade1s} from "../../animations";
 import {Link, useLocation} from "react-router-dom";
 import {checkLightTheme} from "../../lightThemeCheck";
+import {bgImageCheck} from "../../bgImageCheck";
 
 const AboutUsPage = () => {
 
@@ -15,8 +16,28 @@ const AboutUsPage = () => {
         <div className={`about-us-page ${fade} ${checkLightTheme()}`}>
 
             {checkLightTheme()?
-                <img className={`waves-about ${checkLightTheme()} ${fade1s}`} src="./images/wallet-page/fon-wallet-bg.svg" alt=""/>:
-                <img className={`waves-about ${fade1s}`} src="./images/wallet-page/waves-shd.svg" alt=""/>
+                <img
+                    className={`waves-about ${checkLightTheme()} ${fade1s}`}
+                    // src="./images/wallet-page/fon-wallet-bg.svg"
+                    src={bgImageCheck()==='lines'?
+                        "./images/wallet-page/fon-wallet-bg.svg":
+                        bgImageCheck()==='gradient'?
+                            "":
+                            "./images/bgs/honeycomb-center.svg"
+                    }
+                    alt=""
+                />:
+                <img
+                    className={`waves-about ${fade1s}`}
+                    // src="./images/wallet-page/waves-shd.svg"
+                    src={bgImageCheck()==='lines'?
+                        "./images/wallet-page/waves-shd.svg":
+                        bgImageCheck()==='gradient'?
+                            "":
+                            "./images/bgs/honeycomb-center.svg"
+                    }
+                    alt=""
+                />
             }
 
             <span className={`links-top-about ${checkLightTheme()}`}>

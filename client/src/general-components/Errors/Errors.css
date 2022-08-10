@@ -1,6 +1,12 @@
 .alert.errors-block{
     margin: 0;
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 15px;
+    top: 15px;
+    border: none;
+    background: var(--error-bg);
+    color: var(--color-white);
+    font-size: 12px;
+    padding: 10px 20px;
+    font-weight: 500;
 }

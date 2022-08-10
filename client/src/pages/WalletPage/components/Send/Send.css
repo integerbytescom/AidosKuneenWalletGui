@@ -98,6 +98,9 @@
     font-size: 18px;
     margin-top: 5px;
 }
+.container-usd.light h3{
+    color: var(--bg-dark);
+}
 
 .send-content form p{
     margin: 15px 0;

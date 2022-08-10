@@ -1,3 +1,4 @@
+.settings-modal.close.light{}
 .settings-modal.close .modal-footer{
     align-items: flex-end;
 }
@@ -9,4 +10,8 @@
     border: none;
     color: var(--color-white);
     background: var(--color-white-opac-2);
+}
+.settings-modal.light .gray-button:hover.modal-close:hover,
+.settings-modal.light .gray-button:hover.modal-close:active{
+    background: var(--bg-dark);
 }

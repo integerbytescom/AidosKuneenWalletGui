@@ -3,18 +3,18 @@
     right: 0;
     padding: 5% 20px 0;
     height: 100vh;
-    background: var(--bg-dark);
     z-index: 10;
     transition-duration: 0.4s
-}
-.latest-transactions.light{
-    background: var(--bg-light);
 }
 .latest-transactions.hide{
     bottom: -63vh;
 }
 .latest-transactions.show{
     bottom: 0;
+    background: var(--bg-dark);
+}
+.latest-transactions.light.show{
+    background: var(--bg-light);
 }
 
 /*header with buttons*/

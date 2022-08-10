@@ -11,14 +11,34 @@
     background: #1B1C26;
     border-radius: 3px;
 }
+.container-setting.light{
+    background: #dadada;
+}
 
 .container-setting .content-settings h3{
     font-size: 16px;
     margin: 0;
 }
+.container-setting.light .content-settings h3{
+    color: var(--bg-dark);
+}
 
 .container-setting .content-settings{
     margin-left: 25px;
+}
+.container-setting .content-settings.select-image{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+.container-setting .content-settings.select-image h3{
+    width: 100%;
+}
+.container-setting .content-settings.select-image div{
+    display: flex;
+}
+.container-setting .content-settings.select-image div span{
+    margin-right: 30px;
 }
 .container-setting .content-settings span{
     margin-top: 10px;
@@ -30,9 +50,9 @@
     height: 15px;
     width: 15px;
 }
-.container-setting .content-settings span input:checked{
-    background: red;
-}
 .container-setting .content-settings span p{
     margin: 1px 0 0 10px;
+}
+.container-setting.light .content-settings span p{
+    color: var(--bg-dark);
 }

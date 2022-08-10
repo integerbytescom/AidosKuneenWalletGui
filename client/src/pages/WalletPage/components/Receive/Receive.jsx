@@ -54,7 +54,7 @@ const Receive = () => {
     return (
         <div className={`block-container menu receive ${fade}`}>
 
-            <button onClick={handleCloseReceive} className={`close-button`}>
+            <button onClick={handleCloseReceive} className={`close-button ${checkLightTheme()}`}>
                 Cancel
             </button>
 

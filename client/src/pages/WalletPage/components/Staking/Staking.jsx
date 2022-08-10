@@ -7,6 +7,7 @@ import Overview from "../Overview/Overview";
 import CalculatorPage from "../../../CalculatorPage/CalculatorPage";
 import {anFade, anFade1s} from "../../../../animations";
 import {checkLightTheme} from "../../../../lightThemeCheck";
+import {bgImageCheck} from "../../../../bgImageCheck";
 
 const Staking = () => {
 
@@ -17,8 +18,28 @@ const Staking = () => {
         <div className={`block-container ${fadeExit} ${checkLightTheme()}`}>
             <div className={`block-container menu`}>
                 {checkLightTheme()?
-                    <img className={`fon-wallet-bal ${anFade}`} src="./images/wallet-page/fon-wal-bb.svg" alt=""/>:
-                    <img className={`fon-wallet-bal ${anFade}`} src="./images/wallet-page/waves-shd-blue.svg" alt=""/>
+                    <img
+                        className={`fon-wallet-bal ${anFade}`}
+                        // src="./images/wallet-page/fon-wal-bb.svg"
+                        src={bgImageCheck()==='lines'?
+                            "./images/wallet-page/fon-wal-bb.svg":
+                            bgImageCheck()==='gradient'?
+                                "./images/bgs/grdient-bg-top.svg":
+                                "./images/bgs/honeycomb-top.svg"
+                        }
+                        alt=""
+                    />:
+                    <img
+                        className={`fon-wallet-bal ${anFade}`}
+                        // src="./images/wallet-page/waves-shd-blue.svg"
+                        src={bgImageCheck()==='lines'?
+                            "./images/wallet-page/waves-shd-blue.svg":
+                            bgImageCheck()==='gradient'?
+                                "./images/bgs/grdient-bg-top.svg":
+                                "./images/bgs/honeycomb-top.svg"
+                        }
+                        alt=""
+                    />
                 }
 
                 <WalletBalance setFadeExit={setFadeExit} path={path} />

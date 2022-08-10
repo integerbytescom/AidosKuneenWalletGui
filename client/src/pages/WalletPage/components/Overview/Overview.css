@@ -5,10 +5,10 @@
     justify-content: start;
     align-content: center;
     flex-wrap: wrap;
-    background: #1B1C26;
+    background: rgba(27, 28, 38, 0.4);
 }
 .overview.light{
-    background: var(--bg-light);
+    background: rgba(255, 255, 255, 0.4);
 }
 
 .graph-container{
