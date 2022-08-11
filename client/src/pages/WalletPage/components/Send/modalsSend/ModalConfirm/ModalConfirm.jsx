@@ -3,6 +3,7 @@ import {Modal, Spinner} from "react-bootstrap";
 import './ModalConfirm.css'
 import {useNavigate} from "react-router-dom";
 import {checkLightTheme} from "../../../../../../lightThemeCheck";
+import sendTrans from "../../../../../../sendTrans";
 
 const ModalConfirm = (props) => {
 
@@ -16,11 +17,18 @@ const ModalConfirm = (props) => {
     const handleSend = async () =>{
         setDisplay(true)
         const trans = JSON.parse(await window.walletAPI.send(props.way,`"${props.mempas}"`,props.from,props.to,props.adkValue))
-        console.log(trans.ok,'TRANS OK')
         console.log(trans,'TRANS')
         if (trans.ok === true){
+            let dataTransSend = await sendTrans('send')
+            if (dataTransSend[0]===null){
+                dataTransSend = [{from: props.from, to:props.to, adk: `- ${props.adkValue}`, status: 'Confirmed'}]
+            }else {
+                dataTransSend.push({from: props.from, to:props.to, adk: `- ${props.adkValue}`, status: 'Confirmed'})
+            }
+            window.localStorage.setItem('send',JSON.stringify(dataTransSend))
             setMessage('Отправлено')
             await window.walletAPI.updateBalance()
+            console.log(trans,'TRANS')
             setSpinnerDisplay('none')
             setDisplayText(false)
         }else {
@@ -56,7 +64,7 @@ const ModalConfirm = (props) => {
                         <span> {props.to} </span>?
                     </p>:
                     <div className={'send-success'}>
-                        <p>{message}</p>
+                        <p style={{marginBottom:'30px'}}>{message}</p>
                         <button onClick={() => navigate(`/wallet`)} className={`border-button ${checkLightTheme()}`}>Ok</button>
                     </div>
                 }

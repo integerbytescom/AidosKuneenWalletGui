@@ -2,6 +2,7 @@
     position: absolute;
     right: 0;
     padding: 5% 20px 0;
+    width: 100%;
     height: 100vh;
     z-index: 10;
     transition-duration: 0.4s
@@ -74,9 +75,11 @@
     height: 77%;
     display: flex;
     flex-wrap: wrap;
+    align-content: flex-start;
 }
 .transactions .trans-container{
     width: 100%;
+    max-height: 65px;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -103,6 +106,9 @@
 .transactions .trans-container h3.green{
     color: var(--color-green-04c);
 }
+.transactions .trans-container h3.blue{
+    color: var(--color-blue);
+}
 .transactions .trans-container h3.red.blue{
     color: var(--color-blue);
 }
@@ -127,10 +133,10 @@
     align-items: center;
 }
 .transactions .trans-container .from-to{
-    width: 40%;
+    width: 65%;
 }
 .transactions .trans-container .dollar-adk{
-    width: 25%;
+    width: 20%;
 }
 
 .transactions .trans-container .dollar,

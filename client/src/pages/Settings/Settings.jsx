@@ -18,7 +18,8 @@ const Settings = () => {
     const [secur,setSecur] = useState('')
     //for background image
     const [bgImage,setBgImage] = useState(bgImageCheck())
-
+    //for hints
+    const [hints,setHints] = useState('')
     //for light theme
     const [lightTheme,setLightTheme] = useState(checkLightTheme())
 
@@ -39,8 +40,15 @@ const Settings = () => {
         setBgImage(bgImageCheck)
     }
 
+    const changeHints = (value) =>{
+        console.log(value)
+        setHints(value)
+        window.localStorage.setItem('hints',value)
+    }
+
     useEffect(() =>{
         setSecur(window.localStorage.getItem('security')==='true')
+        setHints(window.localStorage.getItem('hints')==='true')
     },[])
 
     return (
@@ -77,6 +85,8 @@ const Settings = () => {
                     <span>
                         <input
                             type="checkbox"
+                            checked={hints}
+                            onChange={() => changeHints(!hints)}
                         />
                         <p>Show hints</p>
                     </span>

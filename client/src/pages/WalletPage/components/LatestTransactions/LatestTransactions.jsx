@@ -74,19 +74,24 @@ const LatestTransactions = (props) => {
                 </div>
 
                 <footer>
-                    <button className={`left`} disabled={currentPage===1} onClick={prevPage}>
-                        {checkLightTheme()?
-                            <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
-                            <img src="./images/arrow-right.svg" alt=""/>
-                        }
-                    </button>
-                    <p>{currentPage} / {pageAmount}</p>
-                    <button className={`right`} disabled={currentPage===pageAmount} onClick={nextPage}>
-                        {checkLightTheme()?
-                            <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
-                            <img src="./images/arrow-right.svg" alt=""/>
-                        }
-                    </button>
+                    {
+                        pageAmount!==0?
+                            <>
+                                <button className={`left`} disabled={currentPage===1} onClick={prevPage}>
+                                    {checkLightTheme()?
+                                        <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                                        <img src="./images/arrow-right.svg" alt=""/>
+                                    }
+                                </button>
+                                <p>{currentPage} / {pageAmount}</p>
+                                <button className={`right`} disabled={currentPage===pageAmount} onClick={nextPage}>
+                                    {checkLightTheme()?
+                                        <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                                        <img src="./images/arrow-right.svg" alt=""/>
+                                    }
+                                </button>
+                            </>:''
+                    }
                 </footer>
             </div>
         </>

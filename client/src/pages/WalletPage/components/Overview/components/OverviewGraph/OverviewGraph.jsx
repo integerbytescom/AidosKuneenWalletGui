@@ -1,8 +1,18 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './OverviewGraph.css';
 import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
 
 const OverviewGraph = (props) => {
+
+    // useEffect(() =>{
+    //     const getDataForCoin = async () =>{
+    //         const data = JSON.parse(await window.walletAPI.getHistoricalDataForCoin('ADK'));
+    //         const data2 = JSON.parse(await window.walletAPI.getAdkPrices());
+    //         console.log(data);
+    //         console.log(data2);
+    //     }
+    //     getDataForCoin()
+    // },[])
 
     return (
         <AreaChart

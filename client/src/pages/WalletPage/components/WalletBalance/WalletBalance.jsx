@@ -10,6 +10,8 @@ const WalletBalance = (props) => {
 
     const [balance,setBalance] = useState(null)
 
+    const [balanceStake,setBalanceStake] = useState(null)
+
     const [usdValue,setUsdValue] = useState(null)
 
     const [fadeDown,setFadeDown] = useState(anFadeDown)
@@ -29,14 +31,23 @@ const WalletBalance = (props) => {
         const showBalance = async () =>{
             const adress = localStorage.getItem('adress')
             const balance = JSON.parse(await window.walletAPI.balance(adress))
-            console.log(balance)
+            // console.log(balance)
             setBalance(balance.data[adress]/1000000000000000000)
         }
         showBalance()
+
+        const showBalanceStake = async () =>{
+            const adress = localStorage.getItem('adress')
+            const balance = JSON.parse(await window.walletAPI.stakedBalance(adress))
+            console.log(balance.data[adress].substr(0, 17)/1000000000000000000)
+            setBalanceStake(balance.data[adress].substr(0, 17)/1000000000000000000)
+        }
+        showBalanceStake()
+
         const showValuesADK = async () =>{
             const values = await window.walletAPI.getAdkPrices()
             setUsdValue(values.USD)
-            console.log(values.USD)
+            // console.log(values.USD)
         }
         showValuesADK()
 
@@ -62,10 +73,17 @@ const WalletBalance = (props) => {
             </div>
 
             <div className={`balance ${checkLightTheme()}`}>
-                <div className={'money-container'}>
-                    <h1 className={blueClass}>{balance}<span>ADK</span></h1>
-                    <h2 className={blueClass}>{balance * usdValue} $</h2>
-                </div>
+                {
+                    blueClass === 'blue'?
+                        <div className={'money-container'}>
+                            <h1 className={blueClass}>{balanceStake}<span>ADK</span></h1>
+                            <h2 className={blueClass}>{balanceStake * usdValue} $</h2>
+                        </div>:
+                        <div className={'money-container'}>
+                            <h1 className={blueClass}>{balance}<span>ADK</span></h1>
+                            <h2 className={blueClass}>{balance * usdValue} $</h2>
+                        </div>
+                }
                 <div className={`butt-container-wallet ${checkLightTheme()}`}>
                     {
                         blueClass === 'blue'?

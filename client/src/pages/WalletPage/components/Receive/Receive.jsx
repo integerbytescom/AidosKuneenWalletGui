@@ -93,7 +93,7 @@ const Receive = () => {
                 </div>
 
 
-                <div className="rec-transactions">
+                <div className={`rec-transactions ${checkLightTheme()}`}>
                     <header>
                         <h3>Addresses</h3>
                     </header>

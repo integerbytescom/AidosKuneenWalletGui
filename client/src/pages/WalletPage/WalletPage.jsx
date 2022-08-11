@@ -9,6 +9,7 @@ import {anFade, anFade1s} from "../../animations";
 import {checkLightTheme} from "../../lightThemeCheck";
 import {bgImageCheck} from "../../bgImageCheck";
 import Hints from "../../general-components/Hints/Hints";
+import sendTrans from "../../sendTrans";
 
 const WalletPage = () => {
 
@@ -25,6 +26,7 @@ const WalletPage = () => {
             setBlueClass('')
         }
     })
+    console.log(sendTrans('send'))
 
     return (
             <div className={`block-container ${fadeExit} ${checkLightTheme()}`}>
@@ -53,7 +55,13 @@ const WalletPage = () => {
                         alt=""
                     />
                 }
-                <Hints />
+
+                {/*HINTS*/}
+                {
+                    window.localStorage.getItem('hints')==='true'?
+                        <Hints />:''
+                }
+
                 <div className={`block-container menu`}>
 
                     <WalletBalance setFadeExit={setFadeExit} path={path} />

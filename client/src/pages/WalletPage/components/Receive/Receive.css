@@ -87,6 +87,9 @@
     color: var(--color-white);
     font-size: 16px;
 }
+.rec-transactions.light header h3{
+    color: var(--bg-dark);
+}
 .rec-transactions header h2{
     color: #04CA73;
     font-weight: 300;

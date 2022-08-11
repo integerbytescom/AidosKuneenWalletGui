@@ -28,6 +28,11 @@ const Hints = () => {
         nextMessage(0)
     },[])
 
+    const offHints = () =>{
+        window.localStorage.setItem('hints',false)
+        setShowHints(false)
+    }
+
     return (
         <Alert show={showHints} className={`hints-block ${anFade2sSlow}`} variant={`info`}>
            <div className="content">
@@ -35,7 +40,7 @@ const Hints = () => {
                 <p className={`message`}>
                     {mess}
                 </p>
-               <button>Don't show hints</button>
+               <button onClick={offHints}>Don't show hints</button>
            </div>
         </Alert>
     );

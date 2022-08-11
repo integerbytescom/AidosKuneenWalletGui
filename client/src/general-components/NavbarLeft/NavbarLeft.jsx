@@ -22,6 +22,7 @@ const NavbarLeft = () => {
             // setTotalBal(totalBalance.data)
             // setTotalStake(totalStake.data)
             setTotalBal('Load...')
+            setTotalStake('Load...')
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
             const totalBalance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`))
@@ -29,8 +30,7 @@ const NavbarLeft = () => {
             // console.log(totalBalance);
             // console.log(totalStacked);
             setTotalBal(totalBalance.data/1000000000000000000)
-            setTotalStake(totalStacked.data[adress][0])
-            console.log(typeof totalBalance)
+            setTotalStake(totalStacked.data[adress].substr(0, 17)/1000000000000000000)
         }
         getTotalBalance()
     },[])

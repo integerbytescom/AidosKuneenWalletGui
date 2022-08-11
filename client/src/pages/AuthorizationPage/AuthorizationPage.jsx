@@ -110,13 +110,13 @@ const AuthorizationPage = () => {
                                     <hr/>
                                 </div>
                                 <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
-                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => setErrorFun('Пока что недоступно')}>Connect MetaMask</button>
                             </>
                             :
                             <>
                                 <button className={`blue-button`} onClick={event => handleCreateNoPass('/createWallet',event)}>Create wallet</button>
                                 <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
-                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreate('/connectMM/confirmPassword',event)}>Connect MetaMask</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => setErrorFun('Пока что недоступно')}>Connect MetaMask</button>
                             </>
                         }
                     </div>
