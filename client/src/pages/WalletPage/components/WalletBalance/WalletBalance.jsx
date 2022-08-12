@@ -76,7 +76,7 @@ const WalletBalance = (props) => {
                 {
                     blueClass === 'blue'?
                         <div className={'money-container'}>
-                            <h1 className={blueClass}>{balanceStake}<span>ADK</span></h1>
+                            <h1 className={blueClass}>{balanceStake}<span className={blueClass}>ADK</span></h1>
                             <h2 className={blueClass}>{balanceStake * usdValue} $</h2>
                         </div>:
                         <div className={'money-container'}>

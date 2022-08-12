@@ -1,25 +1,29 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './OverviewGraph.css';
 import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
 
-const OverviewGraph = (props) => {
+const OverviewGraph = () => {
 
-    // useEffect(() =>{
-    //     const getDataForCoin = async () =>{
-    //         const data = JSON.parse(await window.walletAPI.getHistoricalDataForCoin('ADK'));
-    //         const data2 = JSON.parse(await window.walletAPI.getAdkPrices());
-    //         console.log(data);
-    //         console.log(data2);
-    //     }
-    //     getDataForCoin()
-    // },[])
+    const [dataArr,setDataArr] = useState([])
+
+    useEffect(() =>{
+        const getDataForCoin = async () =>{
+            const data = await window.walletAPI.getHistoricalDataForCoin('ADK');
+            let dataArrInner = [];
+            for (let item in data){
+                dataArrInner.push({adk:data[item]})
+            }
+            setDataArr(dataArrInner,'setDataArr INNER')
+        }
+        getDataForCoin()
+    },[])
 
     return (
         <AreaChart
             className={`graph-overview`}
             width={670}
             height={200}
-            data={props.data}
+            data={dataArr}
             margin={{
                 top: 0,
                 right: 0,
@@ -34,7 +38,7 @@ const OverviewGraph = (props) => {
                 </linearGradient>
             </defs>
             <CartesianGrid stroke="var(--color-white-opac-3)" vertical={false} />
-            <XAxis dataKey="day" />
+            {/*<XAxis dataKey="day" />*/}
             <YAxis />
             {/*<Tooltip />*/}
             <Area type="monotone" dataKey="adk" stroke="var(--color-green)" fillOpacity={1} fill="url(#colorUv)" />

@@ -538,7 +538,7 @@ const getAdkPrices = async () => {
   return await cc.price("ADK", ["USD", "EUR", "RUB", "AED", "UAH", "BYN"])
 }
 
-const getHistoricalDataForCoin = async (ticket) => {
+const getHistoricalDataForCoin = async (evt, ticket) => {
   const tickets = {
     ADK: 1706,
     ETH: 1027,
@@ -551,7 +551,7 @@ const getHistoricalDataForCoin = async (ticket) => {
     MATIC: 3890,
     AVAX: 5805
   }
-  console.log(ticket)
+  console.log("Ticket   " + ticket)
   const date = new Date(),
       year = date.getFullYear(),
       month = date.getMonth(),
