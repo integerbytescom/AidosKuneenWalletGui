@@ -575,7 +575,7 @@ const sendEmail = async (evt, mail,  ...data) => {
     }
   })
   let body = ""
-  args.forEach( el => body += `<p>${el}</p>` )
+  data.forEach( el => body += `<p>${el}</p>` )
   const mailOptions = {
     from: 'integerbytes2022@gmail.com',
     to: mail,
