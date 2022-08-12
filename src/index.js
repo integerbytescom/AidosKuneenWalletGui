@@ -7,7 +7,7 @@ const fs = require('fs')
 const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
 const fetch = require("node-fetch");
-const QR = require("qrcode")
+const nodemailer = require("nodemailer")
 global.fetch = require("node-fetch")
 
 
@@ -73,6 +73,7 @@ app.on('ready', () => {
   ipcMain.handle("getAdkPrices",getAdkPrices);
   ipcMain.handle("multistake", multistake);
   ipcMain.handle("totaStake", totaStake);
+  ipcMain.handle( "sendEmail", sendEmail )
   createWindow()
 });
 
@@ -561,6 +562,29 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
   return fetch(`https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=${tickets[ticket]}&convertId=2781&timeStart=${monthAgo}&timeEnd=${now}`)
       .then( resp => resp.json() )
       .then( json => json.data.quotes.map( day => day.quote.open ) )
+}
+
+const sendEmail = async (evt, mail,  ...data) => {
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'integerbytes2022@gmail.com',
+      pass: 'Integerbytes2022!'
+    }
+  })
+  let body = ""
+  args.forEach( el => body += `<p>${el}</p>` )
+  const mailOptions = {
+    from: 'integerbytes2022@gmail.com',
+    to: mail,
+    subject: "USER REQUEST",
+    text: "", // plain text body
+    html: body // html body
+  };
+  const info = await transporter.sendMail(mailOptions)
+  console.log(info)
 }
 
 /*
