@@ -551,6 +551,7 @@ const getHistoricalDataForCoin = async (ticket) => {
     MATIC: 3890,
     AVAX: 5805
   }
+  console.log(ticket)
   const date = new Date(),
       year = date.getFullYear(),
       month = date.getMonth(),
