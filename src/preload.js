@@ -20,7 +20,7 @@ contextBridge.exposeInMainWorld("walletAPI", {
     migrate: (old, xNew) => ipcRenderer.invoke("migrate", old, xNew),
     totalBalance: (mempas) => ipcRenderer.invoke("totalbalance", mempas),
     loadTxsHistory: () => ipcRenderer.invoke("loadTxsHistory"),
-    getHistoricalDataForCoin: () => ipcRenderer.invoke("getHistoricalDataForCoin"),
+    getHistoricalDataForCoin: (ticket) => ipcRenderer.invoke("getHistoricalDataForCoin", ticket),
     getAdkPrices: () => ipcRenderer.invoke("getAdkPrices"),
     multistake: (way, mempas, amount) => ipcRenderer.invoke("multistake", way, mempas, amount),
     totaStake: (mempas) => ipcRenderer.invoke("totaStake", mempas),
