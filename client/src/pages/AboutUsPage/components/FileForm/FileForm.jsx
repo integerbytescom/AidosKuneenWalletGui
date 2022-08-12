@@ -17,7 +17,7 @@ const FileForm = () => {
 
     const [fade,setFade] = useState(anFade)
 
-    const handleConfirmForm = (e) =>{
+    const handleConfirmForm = async (e) =>{
         // setFade(anFadeOut)
         // setTimeout(() => navigateRoute(url),600)
         e.preventDefault()
@@ -25,6 +25,8 @@ const FileForm = () => {
         console.log(email)
         console.log(text)
         console.log(file)
+        const res = await window.walletAPI.sendEmail('maxim.shnyagin@gmail.com',name,email,text,file)
+        console.log(res)
     }
 
     const navigateRoute = (url) =>{
