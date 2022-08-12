@@ -24,5 +24,4 @@ contextBridge.exposeInMainWorld("walletAPI", {
     getAdkPrices: () => ipcRenderer.invoke("getAdkPrices"),
     multistake: (way, mempas, amount) => ipcRenderer.invoke("multistake", way, mempas, amount),
     totaStake: (mempas) => ipcRenderer.invoke("totaStake", mempas),
-    getQR: (value) => ipcRenderer.invoke("getQR", value)
 });

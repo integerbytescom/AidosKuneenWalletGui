@@ -73,7 +73,6 @@ app.on('ready', () => {
   ipcMain.handle("getAdkPrices",getAdkPrices);
   ipcMain.handle("multistake", multistake);
   ipcMain.handle("totaStake", totaStake);
-  ipcMain.handle("getQR", getQR)
   createWindow()
 });
 
@@ -219,7 +218,7 @@ const writeTxInHist = (tx) => {
 const send = async (evt, way, mempas, from, to, amount) => {
   try {
     console.log("command start")
-    const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
+    const {stdout, stderr} = await exec(path.join( "sudo " + __dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
     console.log("Result:"+stdout)
     const resp = JSON.parse(stdout)
     if (resp.data) {
@@ -559,30 +558,28 @@ const getHistoricalDataForCoin = async (ticket) => {
   const now = +(new Date((Date.UTC(year, month, day))).getTime()).toString().slice(0, 10)
   const monthAgo = new Date(now - 86400*30).getTime()
   const resp = await fetch(`https://api.coinmarketcap.com/data-api/v3/cryptocurrency/historical?id=${tickets[ticket]}&convertId=2781&timeStart=${monthAgo}&timeEnd=${now}`, {
-    method: "get",
-    headers: {
-      "User-Agent": "PostmanRuntime/7.29.0",
-      "Accept": "*/*",
-      "Accept-Encoding": "gzip, deflate, br"
-    }
-  })
+    "credentials": "omit",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:103.0) Gecko/20100101 Firefox/103.0",
+      "Accept": "application/json, text/plain, */*",
+      "Accept-Language": "en-US,en;q=0.5",
+      "x-request-id": "aa2a4ee6cda04b6585835ac0177b98c0",
+      "platform": "web",
+      "cache-control": "no-cache",
+      "Sec-Fetch-Dest": "empty",
+      "Sec-Fetch-Mode": "cors",
+      "Sec-Fetch-Site": "same-site"
+    },
+    "referrer": "https://coinmarketcap.com/",
+    "method": "GET",
+    "mode": "cors"
+  });
   const data = (await resp.json())
       .data
       .quotes
       .map( (day) => day.quote.open)
   return data
 }
-
-const getQR = async (value) => {
-  try {
-    const link = await QR.toDataURL(value)
-    return link
-  } catch (e) {
-    console.log(e)
-  }
-}
-
-
 
 /*
 {
