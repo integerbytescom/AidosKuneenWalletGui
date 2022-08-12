@@ -19,23 +19,23 @@
 .value-change{
     width: 100%;
     position: absolute;
-    top: 20px;
+    top: 15px;
     left: 35px;
     display: flex;
+    flex-wrap: wrap;
 }
 .value-change h2{
-    width: 65px;
-    font-size: 22px;
-    margin: 0 10px 0 0;
+    width: 100%;
+    font-size: 18px;
+    margin: 0 0 5px 0;
 }
 .value-change.light h2{
     color: var(--bg-dark);
 }
 .value-change h3{
-    width: 100%;
     color: var(--color-green-04c);
     opacity: 0.8;
     font-weight: 300;
-    font-size: 18px;
-    margin: 0 0 0 15px;
+    font-size: 14px;
+    margin: 0;
 }

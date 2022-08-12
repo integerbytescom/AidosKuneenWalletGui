@@ -79,6 +79,9 @@
 .balance.light h1 span{
     color: var(--color-green-04c);
 }
+.balance.light h1 span.blue{
+    color: var(--color-blue);
+}
 .balance h2{
     font-size: 18px;
     font-weight: 300;
