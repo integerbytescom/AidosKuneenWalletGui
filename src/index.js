@@ -567,10 +567,11 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
 const sendEmail = async (evt, mail,  ...data) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
+    host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-      user: 'integerbytes2022@gmail.com',
+      user: 'integerbytes2022',
       pass: 'Integerbytes2022!'
     }
   })
