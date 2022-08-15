@@ -2,10 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {Alert} from "react-bootstrap";
 import './Hints.css';
 import {anFade2s, anFade1s} from "../../animations";
+import ModalCloseHints from "./components/ModalCloseHints/ModalCloseHints";
 
 const Hints = () => {
 
     const [showHints,setShowHints] = useState(true);
+
+    const [modalHints,setModalHint] = useState(false)
 
     const data = [
         'This is your total balance',
@@ -34,6 +37,13 @@ const Hints = () => {
 
     return (
         <div className={`hints-container`}>
+
+            <ModalCloseHints
+                show={modalHints}
+                onHide={() => setModalHint(false)}
+                offHints={offHints}
+            />
+
             {
                 hintNum?
                 <div
@@ -73,7 +83,7 @@ const Hints = () => {
                 `}
             >
                 <div className="content">
-                    <img onClick={() => setShowHints(false)} src="./images/x-hints.svg" alt=""/>
+                    <img onClick={() => setModalHint(true)} src="./images/x-hints.svg" alt=""/>
                     <p className={`message`}>
                         {mess}
                     </p>
