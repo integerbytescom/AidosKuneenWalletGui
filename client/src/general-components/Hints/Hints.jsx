@@ -1,48 +1,93 @@
 import React, {useEffect, useState} from 'react';
 import {Alert} from "react-bootstrap";
 import './Hints.css';
-import {anFade, anFade1s, anFade2sSlow} from "../../animations";
+import {anFade2s, anFade1s} from "../../animations";
 
 const Hints = () => {
 
     const [showHints,setShowHints] = useState(true);
 
     const data = [
-        'На главной странице кошелька вы можете увидеть график изменения стоимости монетки, калькулятор и баланс кошелька.',
-        'С помощью калькулятора вы можете посмотреть стоимость определенного количества монеток в разных валютах.',
-        'Также в верхней части экрана расположены две кнопки которые ведут на страницы Send и Deposit',
-        'Нажав на кнопку Show all ы можете увидеть последние транзакции вашего кошелька',
+        'This is your total balance',
+        'This is your amount that is in Staking',
+        'Here is the main navigation menu',
+        'This button for going to the ADK staking page',
+        'This button for going to the transaction information page',
+        'This button for going to the ADK sending page',
+        'Here you can see the cost of the ADK course in different currency',
+        'Here you can see the ADK course change schedule',
+        'Here you can see your latest transactions',
     ];
 
-    const [indMess,setIndMess] = useState(0)
-    const [mess,setMess] = useState(data[indMess])
-
-    useEffect(() =>{
-        const nextMessage = (value) =>{
-            if (value>=data.length){
-                value=0
-            }
-            setMess(data[value])
-            setTimeout(() => nextMessage(value+1), 10000)
-        }
-        nextMessage(0)
-    },[])
+    const [hintNum,setHintNum] = useState(1)
+    const [mess,setMess] = useState(data[hintNum-1])
 
     const offHints = () =>{
+        setHintNum(null)
         window.localStorage.setItem('hints',false)
         setShowHints(false)
     }
 
+    const nextHint = () =>{
+        setHintNum(hintNum+1)
+    }
+
     return (
-        <Alert show={showHints} className={`hints-block ${anFade2sSlow}`} variant={`info`}>
-           <div className="content">
-               <img onClick={() => setShowHints(false)} src="./images/x-hints.svg" alt=""/>
-                <p className={`message`}>
-                    {mess}
-                </p>
-               <button onClick={offHints}>Don't show hints</button>
-           </div>
-        </Alert>
+        <div className={`hints-container`}>
+            {
+                hintNum?
+                <div
+                    className={`
+                        bg-hint-block
+                        ${anFade1s}
+                        ${hintNum===1?'onePos':
+                            hintNum===2?'twoPos':
+                                hintNum===3?'thrPos':
+                                    hintNum===4?'fourPos':
+                                        hintNum===5?'fivePos':
+                                            hintNum===6?'sixPos':
+                                                hintNum===7?'sevPos':
+                                                    hintNum===8?'eigPos':
+                                                        hintNum===9?'ninPos':'none'}
+                        `}
+
+                />
+                :''
+            }
+
+            <Alert
+                show={showHints}
+                className={`
+                    hints-block
+                    ${anFade2s}
+                    ${hintNum === 1 ? 'onePosAl' :
+                    hintNum === 2 ? 'twoPosAl' :
+                        hintNum === 3 ? 'thrPosAl' :
+                            hintNum === 4 ? 'fourPosAl' :
+                                hintNum === 5 ? 'fivePosAl' :
+                                    hintNum === 6 ? 'sixPosAl' :
+                                        hintNum === 7 ? 'sevPosAl' :
+                                            hintNum === 8 ? 'eigPosAl' :
+                                                hintNum===9? 'ninPosAl' : 'none'}
+                        \`}
+                `}
+            >
+                <div className="content">
+                    <img onClick={() => setShowHints(false)} src="./images/x-hints.svg" alt=""/>
+                    <p className={`message`}>
+                        {mess}
+                    </p>
+                    <footer>
+                        <p>{hintNum} / 9</p>
+                        {
+                            hintNum !== 9?
+                                <button onClick={nextHint}>Next prompt</button>:
+                                <button onClick={offHints}>Close</button>
+                        }
+                    </footer>
+                </div>
+            </Alert>
+        </div>
     );
 };
 

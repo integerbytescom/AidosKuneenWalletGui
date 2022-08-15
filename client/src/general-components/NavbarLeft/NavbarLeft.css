@@ -1,7 +1,6 @@
 .navbar-left{
     width: 160px;
     height: 100vh;
-    z-index: 100;
     position: absolute;
     background: var(--bg-nav-left);
     display: flex;
@@ -9,11 +8,11 @@
     flex-wrap: wrap;
     align-content: space-between;
     padding: 15px 0 15px;
+    z-index: 100;
 }
 .navbar-left.light{
     background: var(--color-white);
 }
-
 .navbar-left header{
     width: 100%;
     display: inherit;
@@ -68,7 +67,7 @@
 .navbar-left footer a img{
     margin-right: 12px;
     opacity: .50;
- }
+}
 
 .navbar-left header .menu a:hover,
 .navbar-left footer a:hover,

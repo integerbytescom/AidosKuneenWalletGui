@@ -60,7 +60,7 @@ const NavbarLeft = () => {
 
 
                 <div className="menu">
-                    <Link  to={`/wallet`} className={path==='/wallet' || path==='/wallet/send' || path==='/wallet/receive'?'active':''}>
+                    <Link id={'link-two'}  to={`/wallet`} className={path==='/wallet' || path==='/wallet/send' || path==='/wallet/receive'?'active':''}>
                         {checkLightTheme()?
                             <img src="./images/navbar-left/black-icons/credit-card.svg" alt=""/>:
                             <img src="./images/navbar-left/credit-card.svg" alt=""/>
