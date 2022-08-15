@@ -8,5 +8,6 @@
     color: var(--color-white);
     font-size: 12px;
     padding: 10px 20px;
-    font-weight: 500;
+    font-weight: 300;
+    z-index: 500;
 }

@@ -59,11 +59,11 @@ const Send = (props) => {
     const handleSend = async (e) =>{
         e.preventDefault()
         if (to.length !== 42){
-            setErrorFun('Введите правильный адрес')
+            setErrorFun('Address incorrect. Please enter the correct address.')
         }else if(adkValue > getBalance){
-            setErrorFun('У вас нет столько денег')
+            setErrorFun('Send error. You do not have enough money to send.')
         }else if(checkValue === 0){
-            setErrorFun('Выберите способ отправки')
+            setErrorFun('Send error. You need to choose a sending method.')
         }
         else {
             const openModalConsfirm = async () =>{
@@ -78,7 +78,7 @@ const Send = (props) => {
     const handleStake = async (e) =>{
         e.preventDefault()
         if (stakeValue > getBalance){
-            setErrorFun('У вас нет столько денег')
+            setErrorFun('Stak error. You do not have enough money to stak.')
         }else {
             setDispalyButState(false)
             const adress = localStorage.getItem('adress')
@@ -87,7 +87,7 @@ const Send = (props) => {
             // console.log(stake.ok)
             let dataTransStake = await sendTrans('stake')
             if (stake.ok===false){
-                setErrorFun("Stake не прошел, попробуйте позже")
+                setErrorFun("Stak is not completed. Please try it later.")
                 setTimeout(() => navigateOut('/wallet/staking'),3000)
             }else {
                 if (dataTransStake[0]===null){
@@ -110,7 +110,7 @@ const Send = (props) => {
     const handleUnstake = async (e) =>{
         e.preventDefault()
         if (stakeValue > getBalanceStake){
-            setErrorFun('У вас нет столько денег')
+            setErrorFun('Unstak error. You do not have enough money to unstak.')
         }else {
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
@@ -121,7 +121,7 @@ const Send = (props) => {
             // console.log(stakeValue)
             // console.log(unstake)
             if (unstake.ok===false){
-                setErrorFun("unstake не прошел, попробуйте позже")
+                setErrorFun("Unstak is not completed. Please try it later.")
                 setTimeout(() => navigateOut('/wallet/staking'),3000)
             }else {
                 await window.walletAPI.updateBalance()

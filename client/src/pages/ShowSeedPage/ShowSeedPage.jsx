@@ -21,9 +21,9 @@ const ShowSeedPage = () => {
     const handleSuccessSeed = (event,url) =>{
         event.preventDefault()
         if (seedInp !== GLOBAL_SEED){
-            setErrorFun('SEED не совпадает')
+            setErrorFun('SEED incorrect. Please try again.')
         }else if(seedInp !== seedInpCopy){
-            setErrorFun('Введите одинаковые фразы SEED')
+            setErrorFun('SEED does not match. Please Try Again.')
         }else{
             setFadeSlow(anFadeOut)
             setFadeLeft(anFadeLeftOut)

@@ -23,9 +23,9 @@ const CreatePassword = () => {
     const handleCreatePass = async (url,event) =>{
         event.preventDefault()
         if (pass !== passCopy){
-            setErrorFun('Пароли не совпадают')
+            setErrorFun('Passwords does not match. Please Try Again.')
         }else if(pass.length < 8){
-            setErrorFun('Пароль должен быть не менее 8 символов')
+            setErrorFun('The password should consist of at least 8 characters.')
         }else{
             const seed = window.localStorage.getItem('seedMnemonic')
             const recoverResp = JSON.parse(await window.walletAPI.createWalletFromMnemonic(`"${seed}"`,pass))
@@ -40,7 +40,7 @@ const CreatePassword = () => {
                 setFadeLeft(anFadeLeftOut)
                 setTimeout(() => navigateRoute(url),1000)
             }else {
-                setError('Проблемы с фразой')
+                setErrorFun('SEED incorrect. Please try again.')
             }
         }
     }

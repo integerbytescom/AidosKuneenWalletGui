@@ -25,7 +25,7 @@ const AuthorizationPage = () => {
     const handleCreate = (url,e) => {
         e.preventDefault()
         if (userPass !== window.localStorage.getItem('password')){
-            setErrorFun('Пароль не подходит')
+            setErrorFun('The password is incorrect')
             setUserPass('')
         }else {
             setFadeSlow(anFadeOut)
@@ -110,13 +110,13 @@ const AuthorizationPage = () => {
                                     <hr/>
                                 </div>
                                 <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
-                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => setErrorFun('Пока что недоступно')}>Connect MetaMask</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => setErrorFun('Metamask error. Please try it later.')}>Connect MetaMask</button>
                             </>
                             :
                             <>
                                 <button className={`blue-button`} onClick={event => handleCreateNoPass('/createWallet',event)}>Create wallet</button>
                                 <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
-                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => setErrorFun('Пока что недоступно')}>Connect MetaMask</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => setErrorFun('Metamask error. Please try it later.')}>Connect MetaMask</button>
                             </>
                         }
                     </div>

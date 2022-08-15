@@ -30,11 +30,11 @@ const CreateWalletPage = () => {
         // window.walletAPI.createWalletNew()
         event.preventDefault()
         if (pass.length<8){
-            setErrorFun('Длинна пароля должны быть не менее 8 символов')
+            setErrorFun('The password should consist of at least 8 characters.')
             setPass('')
             setPassCopy('')
         }else if (pass !== passCopy){
-            setErrorFun('Пароли не совпадают')
+            setErrorFun('Passwords does not match. Please Try Again.')
             setPass('')
             setPassCopy('')
         }else {
