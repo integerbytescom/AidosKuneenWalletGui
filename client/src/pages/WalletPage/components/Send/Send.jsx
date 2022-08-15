@@ -38,7 +38,7 @@ const Send = (props) => {
     const [error,setError] = useState('')
     const setErrorFun = (text) =>{
         setError(text)
-        setTimeout(() => setError(''),3000)
+        setTimeout(() => setError(''),4000)
     }
 
     const handleCloseSend = () =>{

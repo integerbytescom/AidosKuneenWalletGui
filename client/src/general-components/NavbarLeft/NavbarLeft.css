@@ -89,7 +89,7 @@
 .navbar-left.light header .menu a.active img,
 .navbar-left.light footer a.active img {
     opacity: 1;
-    background: #dadada;
+    background: #F4F4F4;
 }
 
 .navbar-left footer{
@@ -105,7 +105,7 @@
     background: #1B1C26;
 }
 .nav-bal-stack.light{
-    background: #dadada;
+    background: #F4F4F4;
 }
 .nav-bal-stack div{
     padding: 15px 20px;

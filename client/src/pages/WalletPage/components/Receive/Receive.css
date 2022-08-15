@@ -28,7 +28,7 @@
     background: rgba(255, 255, 255, 0.15);
 }
 .rec-code-container.light{
-    background: #dadada;
+    background: #F4F4F4;
 }
 .rec-code-container .code p{
     color: var(--color-green-04c);

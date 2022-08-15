@@ -6,6 +6,7 @@ const anDel2s = 'animate__delay-2s ';
 
 //fade
 export const anFade = anOn + 'animate__fadeIn ';
+export const anFadeFaster = anOn + 'animate__fadeIn ' + 'animate__faster ';
 export const anFadeSlow = anOn + 'animate__fadeIn ' + 'animate__slow';
 export const anFade1s = anOn + 'animate__fadeIn ' + anDel1s;
 export const anFade2s = anOn + 'animate__fadeIn ' + anDel2s;

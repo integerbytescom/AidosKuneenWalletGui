@@ -10,4 +10,5 @@
     padding: 10px 20px;
     font-weight: 300;
     z-index: 500;
+    transition: .3s;
 }

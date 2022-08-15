@@ -123,7 +123,7 @@
     background: #1B1C26;
 }
 .transactions.light .trans-container:nth-child(odd){
-    background: #dadada;
+    background: #F4F4F4;
 }
 
 .transactions .trans-container .from-to,

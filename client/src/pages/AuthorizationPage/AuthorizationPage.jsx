@@ -36,7 +36,7 @@ const AuthorizationPage = () => {
 
     const setErrorFun = (text) =>{
         setError(text)
-        setTimeout(() => setError(''),3000)
+        setTimeout(() => setError(''),4000)
     }
 
     const handleCreateNoPass = (url,e) => {

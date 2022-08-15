@@ -42,7 +42,10 @@
     color: var(--bg-dark);
 }
 .butt-container-wallet.light button:hover{
-    background: var(--bg-light);
+    background: rgba(255, 255, 255, 0.3);
+}
+.butt-container-wallet button:hover{
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .balance{
