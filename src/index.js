@@ -269,6 +269,9 @@ const listWalletAddress = async (evt, mempas, numAddr=50) => {
 }
 
 const addAddress = async (evt, password) => {
+
+  console.log(path.join(__dirname, `${prefix[plm]} addaddress ${password}`))
+
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} addaddress ${password}`))
     return stdout
@@ -568,17 +571,17 @@ const sendEmail = async (evt, mail,  ...data) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     host: 'imp.gmail.com',
-    port: 465,
+    port: 993,
     secure: true,
     auth: {
-      user: 'integerbytes2022@gmail.com',
-      pass: 'Integerbytes2022!'
+      user: '',
+      pass: ''
     }
   })
   let body = ""
   data.forEach( el => body += `<p>${el}</p>` )
   const mailOptions = {
-    from: 'integerbytes2022@gmail.com',
+    from: '',
     to: mail,
     subject: "USER REQUEST",
     text: "", // plain text body
