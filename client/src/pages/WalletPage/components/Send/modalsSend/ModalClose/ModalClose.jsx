@@ -26,12 +26,12 @@ const ModalClose = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <p>
-                    Вы уверены что хотите выйти?
+                    Are you sure you want to return to the previous page?
                 </p>
             </Modal.Body>
             <Modal.Footer>
-                <button className={`border-button ${checkLightTheme()}`} onClick={handleOut}>Да</button>
-                <button className={`gray-button modal-close ${checkLightTheme()}`} onClick={props.onHide}>Отменить</button>
+                <button className={`border-button ${checkLightTheme()}`} onClick={handleOut}>Yes</button>
+                <button className={`gray-button modal-close ${checkLightTheme()}`} onClick={props.onHide}>No</button>
             </Modal.Footer>
         </Modal>
     );

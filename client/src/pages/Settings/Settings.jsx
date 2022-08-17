@@ -70,10 +70,10 @@ const Settings = () => {
             <div className={`container-setting ${checkLightTheme()}`}>
                 <img src="./images/settings/luna.svg" alt=""/>
                 <div className="content-settings">
-                    <h3>Light Mode</h3>
+                    <h3>Light theme</h3>
                     <span>
                         <input checked={lightTheme} onChange={() => handleChangeTheme(!lightTheme)} type="checkbox"/>
-                        <p>Use light scheme</p>
+                        <p>Use light theme</p>
                     </span>
                 </div>
             </div>
@@ -81,14 +81,14 @@ const Settings = () => {
             <div className={`container-setting ${checkLightTheme()}`}>
                 <img src="./images/settings/chrome.svg" alt=""/>
                 <div className="content-settings">
-                    <h3>Hints</h3>
+                    <h3>Onboarding</h3>
                     <span>
                         <input
                             type="checkbox"
                             checked={hints}
                             onChange={() => changeHints(!hints)}
                         />
-                        <p>Show hints</p>
+                        <p>Show onboarding when starting the program</p>
                     </span>
                 </div>
             </div>

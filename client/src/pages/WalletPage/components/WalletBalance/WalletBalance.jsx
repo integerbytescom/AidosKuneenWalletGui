@@ -39,7 +39,8 @@ const WalletBalance = (props) => {
         const showBalanceStake = async () =>{
             const adress = localStorage.getItem('adress')
             const balance = JSON.parse(await window.walletAPI.stakedBalance(adress))
-            console.log(balance.data[adress].substr(0, 17)/1000000000000000000)
+            // console.log(balance)
+            // console.log(balance.data[adress].substr(0, 17)/1000000000000000000)
             setBalanceStake(balance.data[adress].substr(0, 17)/1000000000000000000)
         }
         showBalanceStake()

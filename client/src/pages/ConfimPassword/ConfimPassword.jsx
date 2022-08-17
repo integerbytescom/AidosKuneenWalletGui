@@ -25,10 +25,6 @@ const ConfirmPassword = (props) => {
     return (
             <div className={`block-container ${checkLightTheme()}`}>
 
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow} ${checkLightTheme()}`}>
-                    Cancel
-                </button>
-
                 {props.path === 'mm'?'':
                     <div className={`dots-create ${fadeSlow}`}>
                         <div className="dot active"></div>

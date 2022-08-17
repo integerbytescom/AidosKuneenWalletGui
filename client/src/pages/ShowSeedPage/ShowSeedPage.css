@@ -5,16 +5,18 @@
 }
 
 .seed-first-show h2{
+    font-weight: 500;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
-.seed-first-show h2 span{
+.seed-first-show h2 p{
+    padding-top: 10px;
     font-size: 15px;
     font-weight: 200;
 }
 .seed-first-show h2.light,
-.seed-first-show h2.light span{
-    color: var(--bg-dark);
+.seed-first-show h2.light p{
+    color: var(--bg-black);
 }
 
 /*seed container*/
@@ -46,7 +48,13 @@
 
 /*button*/
 .seed-first-show button{
-    width: 70%;
+    width: 49%;
     margin-top: -10px;
     padding: 8px 0;
+}
+
+.form-create-pass footer{
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
 }

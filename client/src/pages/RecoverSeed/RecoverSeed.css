@@ -1,7 +1,8 @@
 .rec-seed-form-container{}
 
 .rec-seed-form-container h2{
-    margin-bottom: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 .rec-seed-form-container h2.light{
     color: var(--bg-dark);
@@ -9,7 +10,19 @@
 .rec-seed-form-container form{
     width: 400px;
 }
-.rec-seed-form-container form button{
+
+.rec-seed-form-container form .footer{
+    display: flex;
+    justify-content: space-between;
+}
+.rec-seed-form-container form .footer button{
+    width: 49%;
     padding: 8px 0;
     margin-top: 30px;
+}
+
+.rec-seed-form-container form .footer button.blue-button.light:disabled{
+    background: var(--bg-black-opac-03);
+    color: var(--bg-black-opac-35);
+    cursor: default;
 }

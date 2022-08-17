@@ -52,21 +52,6 @@
 .rec-button-container{
     margin-top: 20px;
 }
-.rec-button-container button{
-    font-size: 11px;
-    margin: 0 10px;
-    background: none;
-    border: none;
-    color: var(--color-white);
-    opacity: .7;
-    transition: .3s;
-}
-.rec-button-container.light button{
-    color: var(--bg-dark);
-}
-.rec-button-container button:hover{
-    opacity: 1;
-}
 
 .rec-transactions{
     width: 100%;
@@ -75,6 +60,15 @@
     position: absolute;
     bottom: 0;
 }
+.rec-button-container{
+    display: flex;
+}
+.rec-button-container button{
+    margin: 0 5px;
+    padding: 7px 0;
+    font-size: 12px;
+}
+
 /*header*/
 .rec-transactions header{
     display: flex;

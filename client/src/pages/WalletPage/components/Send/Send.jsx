@@ -41,7 +41,9 @@ const Send = (props) => {
         setTimeout(() => setError(''),4000)
     }
 
-    const handleCloseSend = () =>{
+    const handleCloseSend = (e) =>{
+        e.preventDefault()
+        setErrorFun('')
         setModalClose(true)
     }
 
@@ -166,10 +168,6 @@ const Send = (props) => {
                 blue={props.blue}
             />
 
-            <button onClick={handleCloseSend} className={`close-button ${checkLightTheme()}`}>
-                Cancel
-            </button>
-
             <div className={`send-content ${props.blue}`}>
                 {
                     props.blue?
@@ -199,7 +197,10 @@ const Send = (props) => {
                             <div className="butt-container">
                                 {
                                     displayButState?
-                                        <button type={"submit"} className={`border-button blue ${checkLightTheme()}`}>Stake</button>:
+                                        <>
+                                            <button onClick={handleCloseSend} className={`gray-button ${checkLightTheme()}`}>Cancel</button>
+                                            <button type={"submit"} className={`border-button blue ${checkLightTheme()}`}>Stake</button>
+                                        </>:
                                         <Spinner animation="grow" variant={checkLightTheme()==='light'?"secondary":"light"} />
                                 }
                             </div>
@@ -222,7 +223,10 @@ const Send = (props) => {
                                 <div className="butt-container">
                                     {
                                         displayButState?
-                                            <button type={"submit"} className={`border-button blue ${checkLightTheme()}`}>Unstake</button>:
+                                            <>
+                                                <button onClick={handleCloseSend} className={`gray-button ${checkLightTheme()}`}>Cancel</button>
+                                                <button type={"submit"} className={`border-button blue ${checkLightTheme()}`}>Unstake</button>
+                                            </>:
                                             <Spinner animation="grow" variant={checkLightTheme()==='light'?"secondary":"light"} />
                                     }
                                 </div>
@@ -268,6 +272,7 @@ const Send = (props) => {
                             </p>
 
                             <div className="butt-container">
+                                <button onClick={handleCloseSend} className={`gray-button ${checkLightTheme()}`}>Cancel</button>
                                 <button onClick={handleSend} className={`border-button ${checkLightTheme()}`}>Send</button>
                             </div>
                         </form>

@@ -12,19 +12,26 @@ const CreatePassword = () => {
 
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
 
+    //errors
     const [error,setError] = useState('');
+    const [invalidInp,setInvalidInp] = useState('')
 
+    //pass
     const [pass,setPass] = useState('');
     const [passCopy,setPassCopy] = useState('');
 
+
+    //anim
     const [fade,setFade] = useState(anFade);
     const [fadeLeft,setFadeLeft] = useState(anFadeRight);
 
     const handleCreatePass = async (url,event) =>{
         event.preventDefault()
         if (pass !== passCopy){
+            setInvalidInp('invalid')
             setErrorFun('Passwords does not match. Please Try Again.')
         }else if(pass.length < 8){
+            setInvalidInp('invalid')
             setErrorFun('The password should consist of at least 8 characters.')
         }else{
             const seed = window.localStorage.getItem('seedMnemonic')
@@ -64,10 +71,6 @@ const CreatePassword = () => {
 
                 {error!==''?<Errors error={error} />:''}
 
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fade} ${checkLightTheme()}`}>
-                    Cancel
-                </button>
-
                 <div className={`dots-create ${fadeSlow}`}>
                     <div className="dot active"></div>
                     <div className="dot active"></div>
@@ -78,28 +81,40 @@ const CreatePassword = () => {
                     <h2 className={checkLightTheme()}>Create password</h2>
                     <form>
 
-                        <div className="pass-first">
+                        <div className="pass-auth">
                             <input
-                                className={`input-gray ${checkLightTheme()}`}
+                                className={`input-gray ${checkLightTheme()} ${invalidInp} ${passShow?'act':''}`}
                                 type={passShow?'text':'password'}
                                 placeholder={`password min .8 ch.`}
                                 value={pass}
                                 onChange={event => setPass(event.target.value)}
                             />
-                            <div><img onClick={handleShowPass} src="./images/eye.svg" alt=""/></div>
+                            <div className={checkLightTheme()}>
+                                {
+                                    checkLightTheme()?
+                                        <img onClick={handleShowPass} className={passShow?'act':''} src="./images/eye-dark.svg" alt=""/>:
+                                        <img onClick={handleShowPass} className={passShow?'act':''} src="./images/eye.svg" alt=""/>
+                                }
+                            </div>
                         </div>
 
                         <input
-                            className={`input-gray ${checkLightTheme()}`}
+                            className={`input-gray ${checkLightTheme()} ${invalidInp}`}
                             type="password"
                             placeholder={`insert again`}
                             value={passCopy}
                             onChange={event => setPassCopy(event.target.value)}
                         />
 
-                        <button className={'blue-button'} onClick={event => handleCreatePass('/localWalletSuccess',event)}>
-                            Create
-                        </button>
+                        <footer>
+                            <button className={'blue-button'} onClick={event => handleCreatePass('/localWalletSuccess',event)}>
+                                Create
+                            </button>
+                            <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>
+                                Cancel
+                            </button>
+                        </footer>
+
                     </form>
                 </div>
             </div>

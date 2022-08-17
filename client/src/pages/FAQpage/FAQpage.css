@@ -79,6 +79,7 @@
     color: var(--color-white);
     text-decoration: none;
     transition: .3s;
+    opacity: .5;
 }
 .faq-bottom-text.light a{
     color: var(--bg-dark);
@@ -88,7 +89,8 @@
 }
 .faq-bottom-text a:hover,
 .faq-bottom-text a.active{
-    color: var(--color-white-opac-6);
+    color: var(--color-white);
+    opacity: 1;
 }
 .faq-bottom-text.light a:hover,
 .faq-bottom-text.light a.active{

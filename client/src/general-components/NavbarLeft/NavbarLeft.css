@@ -116,7 +116,7 @@
 .nav-bal-stack p{
     color: var(--color-white);
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 400;
     margin: 0;
     opacity: .8;
 }
@@ -125,7 +125,7 @@
 }
 .nav-bal-stack h5{
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     margin: 0;
     color: var(--color-blue);
@@ -138,10 +138,6 @@
     width: 80%;
     margin: auto;
     background: var(--color-white);
-}
-.nav-bal-stack hr.light,
-.logout-but-cont hr.light{
-    background: var(--bg-dark);
 }
 
 /*logout button container*/

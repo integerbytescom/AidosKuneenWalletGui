@@ -22,10 +22,13 @@ const AuthorizationPage = () => {
 
     const [userPass,setUserPass] = useState('')
 
+    const [invalidInp,setInvalidInp] = useState('')
+
     const handleCreate = (url,e) => {
         e.preventDefault()
         if (userPass !== window.localStorage.getItem('password')){
             setErrorFun('The password is incorrect')
+            setInvalidInp('invalid')
             setUserPass('')
         }else {
             setFadeSlow(anFadeOut)
@@ -52,8 +55,13 @@ const AuthorizationPage = () => {
     }
     useEffect(() =>{
         window.sessionStorage.setItem('userVideo',true)
-        setTimeout(() => setDisplay('none'),16800)
+        setTimeout(() => setDisplay('none'),7000)
     })
+
+    const [passShow,setPassShow] = useState(false)
+    const handleShowPass = () =>{
+        setPassShow(!passShow)
+    }
 
     const navigatePage = (url) => {
         navigate(url)
@@ -64,9 +72,10 @@ const AuthorizationPage = () => {
             {window.sessionStorage.getItem('userVideo')?'':
                 <div onClick={closeVideo} style={{display:display}} className={`video-wrapper`}>
                     <video playsInline autoPlay muted loop>
+
                         <source
-                            src="./videos/1.webm"
-                            type="video/webm"
+                            src={checkLightTheme()?"./videos/white-video.mp4":"./videos/black-video.mp4"}
+                            type="video/mp4"
                         />
                     </video>
                 </div>
@@ -77,7 +86,7 @@ const AuthorizationPage = () => {
                 bgImageCheck() === 'lines'?
                 {backgroundImage:`url('./images/auth-page/waves.svg')`}:
                     bgImageCheck() === 'gradient'?
-                        {backgroundImage:`url('./images/bgs/grdient-bg-bottom.svg')`,backgroundPosition:'0 150px'}:
+                        {backgroundImage:`url('./images/bgs/gradient-main.svg')`,backgroundPosition:'-150px -15%',backgroundSize:'150%'}:
                         {backgroundImage:`url('./images/bgs/honeycomb-bottom.svg')`}
                 }
                 className={`block-container bottom-waves ${fadeSlow} ${checkLightTheme()}`}
@@ -85,23 +94,37 @@ const AuthorizationPage = () => {
 
                 {error===''?'':<Errors error={error} />}
 
-                    {/*auth container start*/}
+                {/*auth container start*/}
                 <div className={`auth-content`}>
                     <div className="img-auth-container">
-                        <img className={`card-auth ${fadeSlow}`} src="./images/auth-page/card2.png" alt={``}/>
+                        <img
+                            className={`card-auth ${fadeSlow}`}
+                            src={checkLightTheme()?"./images/auth-page/card-white.png":"./images/auth-page/card2.png"}
+                            alt={``}
+                        />
                     </div>
 
                     <div className={`buttons-container ${fade1s}`}>
                         {user?
                             <>
                                 <form className="form-create-pass">
-                                    <input
-                                        className={`input-gray ${checkLightTheme()}`}
-                                        type="password"
-                                        placeholder={`enter password`}
-                                        value={userPass}
-                                        onChange={event => setUserPass(event.target.value)}
-                                    />
+
+                                    <div className="pass-auth">
+                                        <input
+                                            className={`input-gray ${checkLightTheme()} ${invalidInp} ${passShow?'act':''}`}
+                                            type={passShow?'text':'password'}
+                                            placeholder={`enter password`}
+                                            value={userPass}
+                                            onChange={event => setUserPass(event.target.value)}
+                                        />
+                                        <div className={checkLightTheme()}>
+                                            {checkLightTheme()?
+                                                <img onClick={handleShowPass} className={passShow?'act':''} src="./images/eye-dark.svg" alt=""/>:
+                                                <img onClick={handleShowPass} className={passShow?'act':''} src="./images/eye.svg" alt=""/>
+                                            }
+                                        </div>
+                                    </div>
+
                                     <button className={`blue-button`} onClick={event => handleCreate('/wallet',event)}>Login</button>
                                 </form>
                                 <div className={`hr-or ${checkLightTheme()}`}>

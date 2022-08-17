@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './NavbarLeft.css';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
-import {anFade, anFadeLeft, anFadeLeft2s} from "../../animations";
+import {anFadeLeft} from "../../animations";
 import {checkLightTheme} from "../../lightThemeCheck";
 
 const NavbarLeft = () => {
@@ -14,13 +14,6 @@ const NavbarLeft = () => {
 
     useEffect(() =>{
         const getTotalBalance = async () =>{
-            // const seed = `"${localStorage.getItem('seed')}"`
-            // const totalBalance = await JSON.parse(await window.walletAPI.totalBalance(seed));
-            // const totalStake = await JSON.parse(await window.walletAPI.totaStake(seed));
-            // console.log(totalBalance)
-            // console.log(totalStake)
-            // setTotalBal(totalBalance.data)
-            // setTotalStake(totalStake.data)
             setTotalBal('Load...')
             setTotalStake('Load...')
             const adress = localStorage.getItem('adress')
@@ -51,7 +44,7 @@ const NavbarLeft = () => {
                         <p>Total balance</p>
                         <h5 className={`green`}>{totalBal?totalBal:0}</h5>
                     </div>
-                    <hr className={checkLightTheme()}/>
+                    {checkLightTheme()?'':<hr />}
                     <div>
                         <p>Total staked</p>
                         <h5>{totalStake?totalStake:0}</h5>

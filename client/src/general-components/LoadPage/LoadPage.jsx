@@ -30,10 +30,10 @@ const LoadPage = () => {
     }, []);
 
     return (
-        <div className={`block-container load-page ${fadeSlow}`}>
-            <button onClick={event => handleConfirmSeed('/',event)} className={`close-button ${fadeSlow}`}>
-                Cancel
-            </button>
+        <div
+            className={`block-container load-page ${fadeSlow}`}
+            onClick={event => handleConfirmSeed('/',event)}
+        >
 
             <header>
                 <div className="monetka">

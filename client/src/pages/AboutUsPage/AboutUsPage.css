@@ -42,6 +42,7 @@
 .links-top-about a{
     transition: .3s;
     text-decoration: none;
+    opacity: .5;
     color: var(--color-white);
 }
 .links-top-about.light a{
@@ -52,12 +53,13 @@
 }
 .links-top-about a.active,
 .links-top-about a:hover{
-    color: var(--color-white-opac-5);
+    color: var(--color-white);
+    opacity: 1;
 }
 .links-top-about.light a.active,
 .links-top-about.light a:hover{
-    color: var(--bg-dark);
-    opacity: .5;
+    color: var(--bg-black);
+    opacity: 1;
 }
 
 .about-us-page .container-info{

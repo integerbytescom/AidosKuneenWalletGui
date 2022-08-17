@@ -42,7 +42,7 @@
     border-bottom: 1px solid var(--color-white-opac-3);
 }
 .calc-inp-but-container .but-container.light{
-    border-bottom: 1px solid var(--bg-dark);
+    border-bottom: 1px solid var(--bg-black-opac-25);
 }
 .calc-inp-but-container .but-container button{
     border: 1px solid var(--color-white-opac-3);
@@ -52,7 +52,7 @@
     font-size: 10px;
 }
 .calc-inp-but-container .but-container.light button{
-    border: 1px solid var(--bg-dark);
+    border: 1px solid var(--bg-black-opac-25);
     color: var(--bg-dark);
 }
 
