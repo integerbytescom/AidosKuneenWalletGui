@@ -33,6 +33,13 @@ const Receive = () => {
         setGrayColor('')
     }
 
+    //create new address
+    const handleNewAdr = async () =>{
+        const pass = window.localStorage.getItem('password')
+        const data = await window.walletAPI.addAddress(pass)
+        console.log(data)
+    }
+
     //state with all transactions
     const recTrans = TransData.filter(trans => trans.adk.startsWith('+'))
     const [transactions,setTransactions] = useState(recTrans)
@@ -53,10 +60,6 @@ const Receive = () => {
 
     return (
         <div className={`block-container menu receive ${fade}`}>
-
-            <button onClick={handleCloseReceive} className={`close-button ${checkLightTheme()}`}>
-                Cancel
-            </button>
 
             <div className={`block-container ${checkLightTheme()}`}>
 
@@ -88,7 +91,8 @@ const Receive = () => {
                     </div>
 
                     <div className={`rec-button-container ${checkLightTheme()}`}>
-                        <button>Create New Address</button>
+                        <button onClick={handleCloseReceive} className={`gray-button`}>Back</button>
+                        <button className={`blue-button`} onClick={handleNewAdr}>Create New Address</button>
                     </div>
                 </div>
 

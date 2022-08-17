@@ -1,6 +1,7 @@
 .auth-content{
     width: auto;
     height: auto;
+    margin-top: -30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -10,12 +11,12 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: -30px;
+    margin-bottom: -10px;
 }
 
 /*card image*/
 img.card-auth{
-    margin-right: 50px;
+    margin-right: 20px;
 }
 
 /*buttons container*/
@@ -28,7 +29,6 @@ img.card-auth{
 /*buttons spec styles*/
 .auth-content .buttons-container button{
     width: 100%;
-    font-weight: 300;
     margin-top: 12px;
     padding: 8px 0;
 }
@@ -52,14 +52,14 @@ img.card-auth{
     background: var(--bg-dark);
 }
 .hr-or p{
-    font-size: 14px;
-    font-weight: 200;
+    font-size: 13px;
+    font-weight: 400;
     color: var(--color-white-opac-3);
-    margin: -4px 0 0 0;
+    margin: -3px 0 0 0;
     padding: 0;
 }
 .hr-or.light p{
-    color: var(--bg-dark);
+    color: var(--bg-black-opac-65);
 }
 
 /*video*/
@@ -77,4 +77,35 @@ video {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: .3s;
+}
+
+.pass-auth{
+    display: flex;
+    align-items: flex-end;
+}
+.pass-auth input{
+    width: calc(100% - 20px);
+}
+.pass-auth div{
+    height: 100%;
+    width: 20px;
+    transition: .3s;
+    border-bottom: 1px solid var(--color-white-opac-3);
+}
+.pass-auth div.light{
+    border-bottom: 1px solid var(--bg-black-opac-25);
+}
+.pass-auth div img{
+    width: 18px;
+    margin-bottom: 5px;
+    transition: .3s;
+    opacity: .2;
+    cursor: pointer;
+}
+.pass-auth div img:hover{
+    opacity: .65;
+}
+.pass-auth div img.act{
+    opacity: 1;
 }

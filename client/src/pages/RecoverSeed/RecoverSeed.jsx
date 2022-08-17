@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './RecoverSeed.css';
 import {useNavigate} from "react-router-dom";
 import {anFade, anFadeLeftOut, anFadeOut, anFadeRight} from "../../animations";
@@ -13,6 +13,8 @@ const RecoverSeed = () => {
 
     const [seedInp,setSeedInp] = useState('')
 
+    const [disEnterSeed,setDisEnterSeed] = useState(true)
+
     const handleRecoverSeed = (url,event) =>{
         window.localStorage.setItem('seedMnemonic',seedInp)
         event.preventDefault()
@@ -25,11 +27,19 @@ const RecoverSeed = () => {
         navigate(url)
     }
 
+    useEffect(() =>{
+        const checkDisable = () =>{
+            if (seedInp === ''){
+                setDisEnterSeed(true)
+            }else {
+                setDisEnterSeed(false)
+            }
+        }
+        checkDisable()
+    })
+
     return (
             <div className={`block-container ${checkLightTheme()}`}>
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fade} ${checkLightTheme()}`}>
-                    Cancel
-                </button>
 
                 <div className={`dots-create ${fade}`}>
                     <div className="dot active"></div>
@@ -49,9 +59,14 @@ const RecoverSeed = () => {
                             onChange={event => setSeedInp(event.target.value)}
                         />
 
-                        <button className={'blue-button'} onClick={event => handleRecoverSeed('/createPass',event)}>
-                            Enter seed words
-                        </button>
+                        <div className="footer">
+                            <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>
+                                Cancel
+                            </button>
+                            <button disabled={disEnterSeed} className={`blue-button ${checkLightTheme()}`} onClick={event => handleRecoverSeed('/createPass',event)}>
+                                Enter seed words
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>

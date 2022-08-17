@@ -25,15 +25,18 @@ const CreateWalletPage = () => {
 
     //errors
     const [error,setError] = useState('')
+    const [invalidInp,setInvalidInp] = useState('')
 
     const handleRoute = async (url,event) =>{
         // window.walletAPI.createWalletNew()
         event.preventDefault()
         if (pass.length<8){
+            setInvalidInp('invalid')
             setErrorFun('The password should consist of at least 8 characters.')
             setPass('')
             setPassCopy('')
         }else if (pass !== passCopy){
+            setInvalidInp('invalid')
             setErrorFun('Passwords does not match. Please Try Again.')
             setPass('')
             setPassCopy('')
@@ -72,10 +75,6 @@ const CreateWalletPage = () => {
 
     return (
             <div className={`block-container ${checkLightTheme()}`}>
-                
-                <button onClick={() => navigatePage('/')} className={`close-button ${fadeSlow} ${checkLightTheme()}`}>
-                    Cancel
-                </button>
 
                 <div className={`dots-create ${fadeSlow}`}>
                     <div className="dot active"></div>
@@ -88,7 +87,7 @@ const CreateWalletPage = () => {
                     <form>
                         <div className="pass-first">
                             <input
-                                className={`input-gray ${checkLightTheme()}`}
+                                className={`input-gray ${checkLightTheme()} ${invalidInp}`}
                                 type={passShow?'text':'password'}
                                 placeholder={`password min .8 ch.`}
                                 value={pass}
@@ -104,7 +103,7 @@ const CreateWalletPage = () => {
                         </div>
 
                         <input
-                            className={`input-gray ${checkLightTheme()}`}
+                            className={`input-gray ${checkLightTheme()} ${invalidInp}`}
                             type="password"
                             placeholder={`Repeat your Password`}
                             value={passCopy}
@@ -112,6 +111,7 @@ const CreateWalletPage = () => {
                         />
 
                         <button className={`blue-button`} onClick={(event) => handleRoute('/showSeed',event)}>Next</button>
+                        <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigatePage('/')}>Cancel</button>
                     </form>
                 </div>
 

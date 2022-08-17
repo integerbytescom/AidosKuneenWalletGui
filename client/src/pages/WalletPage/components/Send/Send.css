@@ -181,6 +181,9 @@
     display: flex;
     justify-content: center;
 }
+.send-content form .butt-container button{
+    padding: 7px 0;
+}
 .send-content form .butt-container button.light{
     color: var(--bg-dark);
 }

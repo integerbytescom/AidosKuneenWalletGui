@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import { anFadeLeftOut, anFadeOut, anFadeRight, anFadeSlow} from "../../animations";
 import './WalletSuccess.css';
+import {checkLightTheme} from "../../lightThemeCheck";
 
 const WalletSuccess = (props) => {
 
@@ -22,11 +23,7 @@ const WalletSuccess = (props) => {
     }
 
     return (
-        <div className={`block-container wallet-success`}>
-
-            <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow}`}>
-                Cancel
-            </button>
+        <div className={`block-container wallet-success ${checkLightTheme()}`}>
 
             {props.path === 'mm'?'':
                 <div className={`dots-create ${fadeSlow}`}>
@@ -38,8 +35,8 @@ const WalletSuccess = (props) => {
 
             <div className={`conf-pass-container ${fadeLeft}`}>
 
-                <h2>Congratulations!</h2>
-                <p>Your wallet is successfully restored by SEED</p>
+                <h2 className={checkLightTheme()}>Congratulations!</h2>
+                <p className={checkLightTheme()}>Your wallet is successfully restored by SEED</p>
 
                 <button className={`blue-button`} onClick={event => handleConfirmPass('/',event)} >
                     Start <img src="./images/preview-page/arrow.svg" alt="arrow"/>

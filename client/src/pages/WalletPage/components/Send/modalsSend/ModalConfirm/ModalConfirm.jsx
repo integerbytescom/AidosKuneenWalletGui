@@ -26,13 +26,13 @@ const ModalConfirm = (props) => {
                 dataTransSend.push({from: props.from, to:props.to, adk: `- ${props.adkValue}`, status: 'Confirmed'})
             }
             window.localStorage.setItem('send',JSON.stringify(dataTransSend))
-            setMessage('Отправлено')
+            setMessage('Sended')
             await window.walletAPI.updateBalance()
             console.log(trans,'TRANS')
             setSpinnerDisplay('none')
             setDisplayText(false)
         }else {
-            alert('Произошла ошибка попробуйте позже')
+            alert('An error has occurred, please try again later')
         }
     }
 
@@ -58,9 +58,9 @@ const ModalConfirm = (props) => {
             <Modal.Body>
                 {displayText?
                     <p>
-                        Вы уверены что хотите отправить
+                        You are sure that you want to send
                         <span> {props.adkValue}ADK </span>
-                        на адрес
+                        to the address
                         <span> {props.to} </span>?
                     </p>:
                     <div className={'send-success'}>
@@ -73,8 +73,8 @@ const ModalConfirm = (props) => {
             <Modal.Footer style={{alignItems:'flex-end'}}>
                 {display===false?
                     <>
-                        <button className={'border-button'} onClick={handleSend}>Да</button>
-                        <button className={'gray-button modal-close'} onClick={props.onHide}>Нет</button>
+                        <button className={'border-button'} onClick={handleSend}>Yes</button>
+                        <button className={'gray-button modal-close'} onClick={props.onHide}>No</button>
                     </>:''
                 }
             </Modal.Footer>

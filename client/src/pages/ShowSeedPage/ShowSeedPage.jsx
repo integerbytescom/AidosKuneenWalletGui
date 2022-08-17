@@ -5,16 +5,23 @@ import {useNavigate} from "react-router-dom";
 import {GLOBAL_SEED} from "../CreateWalletPage/CreateWalletPage";
 import Errors from "../../general-components/Errors/Errors";
 import {checkLightTheme} from "../../lightThemeCheck";
+import CancelAuthModal from "./CancelAuthModal/CancelAuthModal";
 
 const ShowSeedPage = () => {
 
     const navigate = useNavigate()
 
+    //errors
     const [error,setError] = useState('')
 
+    //modal
+    const [cancelModal,setCancelModal] = useState(false)
+
+    //animate
     const [fadeSlow,setFadeSlow] = useState(anFadeSlow)
     const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
+    //seed inp check
     const [seedInp,setSeedInp] = useState('')
     const [seedInpCopy,setSeedInpCopy] = useState('')
 
@@ -40,14 +47,29 @@ const ShowSeedPage = () => {
         navigate(url)
     }
 
+    const cancelAuth = () =>{
+        window.localStorage.removeItem('adress')
+        window.localStorage.removeItem('seed')
+        window.localStorage.removeItem('password')
+        window.localStorage.removeItem('user')
+        navigate('/')
+    }
+
+    const openModal = (e) => {
+        e.preventDefault()
+        setCancelModal(true)
+    }
+
     return (
             <div className={`block-container ${checkLightTheme()}`}>
 
-                {error!==''?<Errors error={error} />:''}
+                <CancelAuthModal
+                    show={cancelModal}
+                    onHide={() => setCancelModal(false)}
+                    cancelAuth={cancelAuth}
+                />
 
-                <button onClick={() => navigateRoute('/')} className={`close-button ${fadeSlow} ${checkLightTheme()}`}>
-                    Cancel
-                </button>
+                {error!==''?<Errors error={error} />:''}
 
                 <div className={`dots-create ${fadeSlow}`}>
                     <div className="dot active"></div>
@@ -58,7 +80,7 @@ const ShowSeedPage = () => {
                 <div className={`seed-first-show ${fadeLeft}`}>
                     <h2 className={`h2-seed ${checkLightTheme()}`}>
                         Your Seed<br />
-                        <span>Don't Share it with Anyone and Store it offline </span>
+                        <p>Don't Share it with Anyone and Store it offline </p>
                     </h2>
 
                     <div className={`seed-container`}>
@@ -81,15 +103,23 @@ const ShowSeedPage = () => {
                             rows="2"
                             style={{resize: 'none'}}
                             className={`input-gray ${checkLightTheme()}`}
-                            placeholder={`enter seed`}
+                            placeholder={`enter seed again`}
                             value={seedInpCopy}
                             onChange={event => setSeedInpCopy(event.target.value)}
                         />
                         <br />
-                        <button
-                            onClick={event => handleSuccessSeed(event,'/confirmPass')}
-                            className={`gray-button ${checkLightTheme()}`}
-                        >Finish</button>
+                        <footer>
+                            <button
+                                onClick={event => openModal(event)}
+                                className={`gray-button ${checkLightTheme()}`}
+                            >Cancel</button>
+
+                            <button
+                                id={`button-kierill`}
+                                onClick={event => handleSuccessSeed(event,'/confirmPass')}
+                                className={`blue-button ${checkLightTheme()}`}
+                            >Finish</button>
+                        </footer>
                     </form>
                 </div>
 
