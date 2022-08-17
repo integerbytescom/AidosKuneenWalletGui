@@ -48,9 +48,7 @@ const Send = (props) => {
     }
 
     const getBalance = async () =>{
-        const adress = localStorage.getItem('adress')
-        const balance = JSON.parse(await window.walletAPI.balance(adress))
-        return balance.data[adress]/1000000000000000000
+        return window.localStorage.getItem('totalBalance')
     }
     const getBalanceStake = async () =>{
         const adress = localStorage.getItem('adress')

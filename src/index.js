@@ -423,52 +423,57 @@ const sendError = JSON.stringify({
 })
 
 const multisend = async (evt, way, mempas, to, amount) => {
-  console.log( way, mempas, to, amount )
   try {
-    const resp = await listWalletAddress(evt, mempas, 50),
+    const resp = await listWalletAddress(evt, mempas, 10),
           adrs = JSON.parse(resp).data,
           balTable = {};
 
     let totlSum = 0;
     for (let adr of adrs) {
-      const bal = +JSON.parse(await balance(evt, adr)).data[adr]
+      const bal = +JSON.parse(await balance(evt, adr)).data[adr]/1000000000000000000
+      console.log(bal)
+      if (bal <= GAS) continue
+      console.log(bal)
       if (way === "pow") {
-        balTable[adr] = bal
-        totlSum += bal
+        balTable[adr] = +bal
+        totlSum += +bal
       }
       if (way === "gas") {
-        balTable[adr] = bal - GAS
-        totlSum += bal - GAS
+        balTable[adr] = bal - +GAS
+        totlSum += bal - +GAS
       }
     }
-    if (totlSum < amount) {
+    if (totlSum < +amount) {
       return JSON.stringify({
             ok: false,
             msg: "not enough ADK to send",
             data: null
           })
     }
-
-    const mainAdr = Object.values(balTable)[0]
-
+    console.log(balTable)
+    const mainAdr = Object.keys(balTable)[0]
+//cjdsv2233
     const txs = []
-    let leftToSend = amount;
+    let leftToSend = +amount;
     for (let adr in balTable) {
-      const sum = balTable[adr]
-      if (leftToSend >= sum) {
+      const sum = +balTable[adr]
+      console.log(sum)
+      if (leftToSend >= sum && sum > GAS) {
         const json = await send(evt, way, mempas, adr, mainAdr, sum)
         const resp = JSON.parse(json)
+        console.log(resp.ok)
         if (resp.ok) {
-          leftToSend -= sum
+          leftToSend -= +sum
+          if (leftToSend <= 0) break
           txs.push(resp.data[0])
         } else return sendError
       } else if (leftToSend < sum) {
-        const part = sum - leftToSend;
-        const json = await send(evt, way, mempas, adr, mainAdr, part)
+        const json = await send(evt, way, mempas, adr, mainAdr, leftToSend)
         const resp = JSON.parse(json)
-        if (resp.ok) {
-          txs.push(resp.data[0])
-        } else return sendError
+        txs.push(resp.data[0])
+        break
+      } else {
+        break
       }
     }
     const result = await send(evt, way, mempas, mainAdr, to, amount)

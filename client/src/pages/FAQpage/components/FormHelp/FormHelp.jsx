@@ -12,9 +12,26 @@ const FormHelp = () => {
 
     const [fade,setFade] = useState(anFade)
 
-    const handleConfirmForm = (url) =>{
-        setFade(anFadeOut)
-        setTimeout(() => navigateRoute(url),600)
+    //form values
+    const [name,setName] = useState('')
+    const [email,setEmail] = useState('')
+    const [text,setText] = useState('')
+
+    const handleConfirmForm = async (e) =>{
+        e.preventDefault();
+        await fetch("http://79.126.43.85:80/mail", {
+            method: "POST",
+            body: `"{name:${name},mail: \"${email}\",\n" +
+                " text: \"${text}\",\n" +
+                " img: \"${undefined}\"\n" +
+                "}"`,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        console.log(name)
+        console.log(email);
+        console.log(text);
     }
 
     const navigateRoute = (url) =>{
@@ -24,13 +41,32 @@ const FormHelp = () => {
     return (
         <div className={`block-container menu form ${fade} ${checkLightTheme()}`}>
 
-            <form className={`help-form ${checkLightTheme()}`}>
+            <form onSubmit={handleConfirmForm} className={`help-form ${checkLightTheme()}`}>
                 <h3>Describe the problem you have encountered</h3>
-                <input className={`input-gray help-form ${checkLightTheme()}`} type="text" placeholder={'Enter your name'}/>
-                <input className={`input-gray help-form ${checkLightTheme()}`} type="text" placeholder={'Enter your E-mail'}/>
+                <input
+                    className={`input-gray help-form ${checkLightTheme()}`}
+                    type="text"
+                    placeholder={'Enter your name'}
+                    value={name}
+                    onChange={event => setName(event.target.value)}
+                />
+
+                <input
+                    className={`input-gray help-form ${checkLightTheme()}`}
+                    type="text"
+                    placeholder={'Enter your E-mail'}
+                    value={email}
+                    onChange={event => setEmail(event.target.value)}
+                />
                 <p className={`form-text`}>The problem associated with sending coins</p>
-                <textarea cols="30" rows="10" placeholder={'Describe your problem in detail'}></textarea>
-                <button className="blue-button">Send</button>
+                <textarea
+                    cols="30"
+                    rows="10"
+                    placeholder={'Describe your problem in detail'}
+                    value={text}
+                    onChange={event => setText(event.target.value)}
+                />
+                <button type={"submit"} className="blue-button">Send</button>
             </form>
 
             <div className={`faq-bottom-text ${checkLightTheme()}`}>
