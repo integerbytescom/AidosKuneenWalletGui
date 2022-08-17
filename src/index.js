@@ -568,22 +568,24 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
       .then( json => json.data.quotes.map( day => day.quote.open ) )
 }
 
-const sendEmail = async (evt, mail,  ...data) => {
+const sendEmail = async (evt, { mail, name, text, img }) => {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    host: 'imp.gmail.com',
-    port: 993,
+    host: "smtp.yandex.ru",
+    port: 465,
     secure: true,
     auth: {
-      user: '',
-      pass: ''
+      user: 'aaidoswallet.supp0rt@yandex.ru',
+      pass: 'nGBcgvqi7x7Z87A'
     }
   })
-  let body = ""
+  let body = `<h1>${name}</h1>
+<p>${mail}</p>
+<p>${text}</p>
+    `
   data.forEach( el => body += `<p>${el}</p>` )
   const mailOptions = {
-    from: '',
-    to: "",
+    from: 'aaidoswallet.supp0rt@yandex.ru',
+    to: "a.denisov@integerbytes.com",
     subject: "USER REQUEST",
     text: "", // plain text body
     html: body // html body
