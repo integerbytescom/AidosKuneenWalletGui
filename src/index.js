@@ -440,7 +440,7 @@ const multisend = async (evt, way, mempas, to, amount) => {
         totlSum += bal - GAS
       }
     }
-    if (totlBal < amount) {
+    if (totlSum < amount) {
       return JSON.stringify({
             ok: false,
             msg: "not enough ADK to send",
@@ -582,7 +582,7 @@ const sendEmail = async (evt, mail,  ...data) => {
   data.forEach( el => body += `<p>${el}</p>` )
   const mailOptions = {
     from: '',
-    to: mail,
+    to: "",
     subject: "USER REQUEST",
     text: "", // plain text body
     html: body // html body
