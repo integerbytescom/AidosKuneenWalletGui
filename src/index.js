@@ -162,7 +162,7 @@ const balance = async (evt, address) => {
 
 const totalBalance = async (evt, mempas) => {
   try {
-    const json = await listWalletAddress(evt, mempas, 50)
+    const json = await listWalletAddress(evt, mempas, 10)
     const resp = JSON.parse(json)
     const adrs = resp.data
     let totlBal = 0
@@ -218,9 +218,7 @@ const writeTxInHist = (tx) => {
 
 const send = async (evt, way, mempas, from, to, amount) => {
   try {
-    console.log("command start")
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
-    console.log("Result:"+stdout)
     const resp = JSON.parse(stdout)
     if (resp.data) {
       writeTxInHist(resp.data[0])
@@ -423,7 +421,6 @@ const sendError = JSON.stringify({
 })
 
 const multisend = async (evt, way, mempas, to, amount) => {
-  console.log( way, mempas, to, amount )
   try {
     const resp = await listWalletAddress(evt, mempas, 50),
           adrs = JSON.parse(resp).data,
@@ -593,13 +590,3 @@ const sendEmail = async (evt, { mail, name, text, img }) => {
   const info = await transporter.sendMail(mailOptions)
   console.log(info)
 }
-
-/*
-{
-  "ok": true,
-  "msg": "TX sent and mined",
-  "data": [
-    "0x97f22edf676c9e8e0973fcd48188ab5a7b0d878f15ee131b6dc1d62160a3a333"
-  ]
-}
-* */
