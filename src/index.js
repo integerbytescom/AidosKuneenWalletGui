@@ -418,7 +418,7 @@ const sendError = JSON.stringify({
 
 const multisend = async (evt, way, mempas, to, amount) => {
   try {
-    const resp = await listWalletAddress(evt, mempas, 50),
+    const resp = await listWalletAddress(evt, mempas, 10),
           adrs = JSON.parse(resp).data,
           balTable = {};
 
