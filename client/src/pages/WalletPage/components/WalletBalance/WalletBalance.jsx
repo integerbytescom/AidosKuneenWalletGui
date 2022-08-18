@@ -29,18 +29,22 @@ const WalletBalance = (props) => {
     useEffect(() => {
 
         const showBalance = async () =>{
-            const adress = localStorage.getItem('adress')
-            const balance = JSON.parse(await window.walletAPI.balance(adress))
-            // console.log(balance)
-            setBalance(balance.data[adress]/1000000000000000000)
+            const seed = window.localStorage.getItem('seed');
+            await setBalance(window.localStorage.getItem('totalBalance'));
+            const balance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`));
+            setBalance(balance.data/1000000000000000000);
         }
         showBalance()
+
+        const getNewBalance = async () =>{
+            await setBalance(window.localStorage.getItem('totalBalance'))
+            setTimeout(getNewBalance,5000)
+        }
+        getNewBalance()
 
         const showBalanceStake = async () =>{
             const adress = localStorage.getItem('adress')
             const balance = JSON.parse(await window.walletAPI.stakedBalance(adress))
-            // console.log(balance)
-            // console.log(balance.data[adress].substr(0, 17)/1000000000000000000)
             setBalanceStake(balance.data[adress].substr(0, 17)/1000000000000000000)
         }
         showBalanceStake()
@@ -77,8 +81,8 @@ const WalletBalance = (props) => {
                 {
                     blueClass === 'blue'?
                         <div className={'money-container'}>
-                            <h1 className={blueClass}>{balanceStake}<span className={blueClass}>ADK</span></h1>
-                            <h2 className={blueClass}>{balanceStake * usdValue} $</h2>
+                            <h1 className={blueClass}>{balanceStake?balanceStake:0}<span className={blueClass}>ADK</span></h1>
+                            <h2 className={blueClass}>{balanceStake?balanceStake * usdValue:0} $</h2>
                         </div>:
                         <div className={'money-container'}>
                             <h1 className={blueClass}>{balance}<span>ADK</span></h1>

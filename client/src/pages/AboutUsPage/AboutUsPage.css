@@ -55,6 +55,7 @@
 .links-top-about a:hover{
     color: var(--color-white);
     opacity: 1;
+    cursor: default;
 }
 .links-top-about.light a.active,
 .links-top-about.light a:hover{

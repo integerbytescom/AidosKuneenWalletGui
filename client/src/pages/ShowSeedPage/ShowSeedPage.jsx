@@ -13,6 +13,9 @@ const ShowSeedPage = () => {
 
     //errors
     const [error,setError] = useState('')
+    //stake for invalid input
+    const [invalidInp,setInvalidInp] = useState(false)
+    const [invalidInpBot,setInvalidInpBot] = useState(false)
 
     //modal
     const [cancelModal,setCancelModal] = useState(false)
@@ -28,8 +31,10 @@ const ShowSeedPage = () => {
     const handleSuccessSeed = (event,url) =>{
         event.preventDefault()
         if (seedInp !== GLOBAL_SEED){
+            setInvalidInp(true)
             setErrorFun('SEED incorrect. Please try again.')
         }else if(seedInp !== seedInpCopy){
+            setInvalidInpBot(true)
             setErrorFun('SEED does not match. Please Try Again.')
         }else{
             setFadeSlow(anFadeOut)
@@ -94,7 +99,7 @@ const ShowSeedPage = () => {
                         <textarea
                             rows="2"
                             style={{resize: 'none'}}
-                            className={`input-gray ${checkLightTheme()}`}
+                            className={`input-gray ${checkLightTheme()} ${invalidInp?'invalid':''}`}
                             placeholder={`enter seed`}
                             value={seedInp}
                             onChange={event => setSeedInp(event.target.value)}
@@ -102,7 +107,7 @@ const ShowSeedPage = () => {
                         <textarea
                             rows="2"
                             style={{resize: 'none'}}
-                            className={`input-gray ${checkLightTheme()}`}
+                            className={`input-gray ${checkLightTheme()} ${setInvalidInpBot?'invalid':''}`}
                             placeholder={`enter seed again`}
                             value={seedInpCopy}
                             onChange={event => setSeedInpCopy(event.target.value)}
