@@ -29,6 +29,7 @@ const NavbarLeft = () => {
             const totalStacked = JSON.parse(await window.walletAPI.stakedBalance(adress))
             await setTotalStake(totalStacked.data[adress].substr(0, 17)/1000000000000000000)
             window.localStorage.setItem('totalStake',totalStacked.data[adress].substr(0, 17)/1000000000000000000)
+            setTimeout(getTotalStake,5000)
         }
         getTotalStake()
     },[])
