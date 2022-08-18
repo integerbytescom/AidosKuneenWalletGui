@@ -33,30 +33,57 @@ const Receive = () => {
         setGrayColor('')
     }
 
+    const [adresses,setAdresses] = useState([])
+    const [adrsLen,setAdrsLen] = useState(window.localStorage.getItem('adrsRec'))
     //create new address
     const handleNewAdr = async () =>{
         const pass = window.localStorage.getItem('password')
         const data = await window.walletAPI.addAddress(pass)
-        console.log(data)
+        let nowLen = window.localStorage.getItem('adrsRec');
+        await window.localStorage.setItem('adrsRec',+nowLen + 1)
+        setAdrsLen(window.localStorage.getItem('adrsRec'))
     }
 
     //state with all transactions
     const recTrans = TransData.filter(trans => trans.adk.startsWith('+'))
-    const [transactions,setTransactions] = useState(recTrans)
+    // const [transactions,setTransactions] = useState(recTrans)
 
     //states for pagination
     const [currentPage,setCurrentPage] = useState(1)
-    const [transactionsAmount] = useState(7)
+    const [transactionsAmount] = useState(6)
 
-    const pageAmount = Math.ceil(transactions.length / transactionsAmount);
+    const pageAmount = Math.ceil(adresses.length / transactionsAmount);
     const lastTransactionIndex = currentPage * transactionsAmount;//высчитываем индекс последней страны
     const firstTransactionIndex = lastTransactionIndex - transactionsAmount;//высчитываем индекс страны стоящей первой на странице
-    const transactionsOnePage = transactions.slice(firstTransactionIndex,lastTransactionIndex)//отображение определенного кол-ва стран на странице
+    const transactionsOnePage = adresses.slice(firstTransactionIndex,lastTransactionIndex)//отображение определенного кол-ва стран на странице
 
     const paginate = pageNumber => setCurrentPage(pageNumber)
 
     const prevPage = () => setCurrentPage(prev => prev - 1)
     const nextPage = () => setCurrentPage(prev => prev + 1)
+
+    useEffect(() =>{
+        const checkAdrs = () =>{
+            if (!window.localStorage.getItem('adrsRec')){
+                window.localStorage.setItem('adrsRec',1)
+            }
+        }
+        checkAdrs()
+
+
+        const getListAdress = async () =>{
+            const seed = window.localStorage.getItem('seed')
+            const data = JSON.parse(await window.walletAPI.listWalletAddress(`"${seed}"`, adrsLen))
+            let arrValues = []
+            for (let item in data.data){
+                const dataBal = JSON.parse(await window.walletAPI.balance(data.data[item]))
+                let balLast = dataBal["data"][data.data[item]]/1000000000000000000;
+                arrValues.push([data.data[item],balLast])
+            }
+            setAdresses(arrValues)
+        }
+        getListAdress()
+    })
 
     return (
         <div className={`block-container menu receive ${fade}`}>
@@ -103,6 +130,8 @@ const Receive = () => {
                     </header>
 
                     <ReceiveTrans
+                        adrs={adresses}
+                        adrsLen={adrsLen}
                         transactionsOnePage={transactionsOnePage}
                     />
 
