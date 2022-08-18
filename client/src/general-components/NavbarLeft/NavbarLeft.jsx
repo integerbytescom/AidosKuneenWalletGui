@@ -3,43 +3,34 @@ import './NavbarLeft.css';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {anFadeLeft} from "../../animations";
 import {checkLightTheme} from "../../lightThemeCheck";
+import {getBalance} from "../../getBalance";
 
 const NavbarLeft = () => {
 
     const navigate = useNavigate();
     const path = useLocation().pathname;
 
-    const [totalBal,setTotalBal] = useState(null)
-    const [totalStake,setTotalStake] = useState(null)
+    const [totalBal,setTotalBal] = useState(window.localStorage.getItem('totalBalance'))
+    const [totalStake,setTotalStake] = useState(window.localStorage.getItem('totalStake'))
 
     useEffect(() =>{
-        const getTotalBalance = async () =>{
-            await setTotalBal(window.localStorage.getItem('totalBalance'))
+
+        const checkBal = async () => {
+            const newBal = await getBalance()
+            setTotalBal(newBal)
+            window.localStorage.setItem('totalBalance',newBal)
+            setTimeout(checkBal(),10000)
+        }
+        checkBal()
+
+        const getTotalStake = async () =>{
             await setTotalStake(window.localStorage.getItem('totalStake'))
             const adress = localStorage.getItem('adress')
-            const seed = localStorage.getItem('seed')
-            const totalBalance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`))
             const totalStacked = JSON.parse(await window.walletAPI.stakedBalance(adress))
-            // console.log(totalBalance);
-            // console.log(totalStacked);
-            await setTotalBal(totalBalance.data/1000000000000000000)
             await setTotalStake(totalStacked.data[adress].substr(0, 17)/1000000000000000000)
-            window.localStorage.setItem('totalBalance',totalBalance.data/1000000000000000000)
             window.localStorage.setItem('totalStake',totalStacked.data[adress].substr(0, 17)/1000000000000000000)
         }
-        getTotalBalance()
-
-        const getNewBalance = async () =>{
-            let value = JSON.parse(await window.walletAPI.updateBalance())
-            // console.log(value)
-            const seed = localStorage.getItem('seed')
-            const totalBalance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`))
-            let newBal = totalBalance.data/1000000000000000000;
-            window.localStorage.setItem('totalBalance',newBal)
-            await setTotalBal(newBal)
-            setTimeout(getNewBalance,3000)
-        }
-        getNewBalance()
+        getTotalStake()
     },[])
 
     return (
