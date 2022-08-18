@@ -8,7 +8,7 @@ const WalletBalance = (props) => {
 
     const [blueClass,setBlueClass] = useState('')
 
-    const [balance,setBalance] = useState(null)
+    const [balance,setBalance] = useState(window.localStorage.getItem('totalBalance'))
 
     const [balanceStake,setBalanceStake] = useState(null)
 
@@ -28,19 +28,11 @@ const WalletBalance = (props) => {
 
     useEffect(() => {
 
-        const showBalance = async () =>{
-            const seed = window.localStorage.getItem('seed');
-            await setBalance(window.localStorage.getItem('totalBalance'));
-            const balance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`));
-            setBalance(balance.data/1000000000000000000);
+        const updateBal = () =>{
+            setBalance(window.localStorage.getItem('totalBalance'))
+            setTimeout(updateBal,1000)
         }
-        showBalance()
-
-        const getNewBalance = async () =>{
-            await setBalance(window.localStorage.getItem('totalBalance'))
-            setTimeout(getNewBalance,5000)
-        }
-        getNewBalance()
+        updateBal()
 
         const showBalanceStake = async () =>{
             const adress = localStorage.getItem('adress')
