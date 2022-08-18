@@ -14,9 +14,9 @@ const CalculatorPage = () => {
         return balance.data[adress]/1000000000000000000
     }
 
-    const setAllADK = async (e) =>{
+    const setAllADK = (e) =>{
         e.preventDefault()
-        const value = await getBalance()
+        const value = window.localStorage.getItem('totalBalance')
         setAdkValue(value)
     }
 

@@ -6,6 +6,12 @@
     font-weight: 300;
 }
 
+.settings-modal.confirm .modal-body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .send-success{
     width: 100%;
     display: flex;

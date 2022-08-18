@@ -91,7 +91,7 @@ const Receive = () => {
                     </div>
 
                     <div className={`rec-button-container ${checkLightTheme()}`}>
-                        <button onClick={handleCloseReceive} className={`gray-button`}>Back</button>
+                        <button onClick={handleCloseReceive} className={`gray-button ${checkLightTheme()}`}>Back</button>
                         <button className={`blue-button`} onClick={handleNewAdr}>Create New Address</button>
                     </div>
                 </div>

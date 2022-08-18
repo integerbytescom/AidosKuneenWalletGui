@@ -116,12 +116,12 @@
 .nav-bal-stack p{
     color: var(--color-white);
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 500;
     margin: 0;
     opacity: .8;
 }
 .nav-bal-stack.light p{
-    color: var(--bg-dark);
+    color: var(--bg-black);
 }
 .nav-bal-stack h5{
     width: 100%;
@@ -131,7 +131,7 @@
     color: var(--color-blue);
 }
 .nav-bal-stack h5.green{
-    color: #05B969;
+    color: var(--color-green-04c);
 }
 .nav-bal-stack hr,
 .logout-but-cont hr{

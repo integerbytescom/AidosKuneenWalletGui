@@ -24,9 +24,21 @@ const Settings = () => {
     const [lightTheme,setLightTheme] = useState(checkLightTheme())
 
     const handleChangeSecurity = (value) =>{
-        window.localStorage.setItem('security',value)
-        setSecur(window.localStorage.getItem('security'))
-        setSetModal(true)
+        // window.localStorage.setItem('security',value)
+        console.log(typeof value)
+        if (+value===0){
+            setSecur(1)
+            window.localStorage.setItem('security',1)
+        }else if(+value>999){
+            setSecur(999)
+            window.localStorage.setItem('security',999)
+        }else {
+            setSecur(+value)
+            window.localStorage.setItem('security',value)
+        }
+    }
+    const reloadPage = () =>{
+        window.location.reload()
     }
 
     const handleChangeTheme = (value) =>{
@@ -47,7 +59,7 @@ const Settings = () => {
     }
 
     useEffect(() =>{
-        setSecur(window.localStorage.getItem('security')==='true')
+        setSecur(window.localStorage.getItem('security'))
         setHints(window.localStorage.getItem('hints')==='true')
     },[])
 
@@ -61,8 +73,19 @@ const Settings = () => {
                 <div className="content-settings">
                     <h3>Security</h3>
                     <span>
-                        <input checked={secur} onChange={() => handleChangeSecurity(!secur)} type="checkbox"/>
-                        <p>Automatically block the screen after 15 minutes of inaction</p>
+                        <p style={{marginLeft:0}}>
+                            Automatically block the screen after
+                            <input
+                                type={"number"}
+                                style={{minWidth:40,margin:'0 5px'}}
+                                className={`secur-inp ${checkLightTheme()}`}
+                                value={secur}
+                                onChange={event => handleChangeSecurity(event.target.value)}
+                                onBlur={reloadPage}
+
+                            />
+                            minutes of inaction
+                        </p>
                     </span>
                 </div>
             </div>

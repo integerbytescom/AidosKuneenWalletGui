@@ -14,18 +14,32 @@ const NavbarLeft = () => {
 
     useEffect(() =>{
         const getTotalBalance = async () =>{
-            setTotalBal('Load...')
-            setTotalStake('Load...')
+            await setTotalBal(window.localStorage.getItem('totalBalance'))
+            await setTotalStake(window.localStorage.getItem('totalStake'))
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
             const totalBalance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`))
             const totalStacked = JSON.parse(await window.walletAPI.stakedBalance(adress))
             // console.log(totalBalance);
             // console.log(totalStacked);
-            setTotalBal(totalBalance.data/1000000000000000000)
-            setTotalStake(totalStacked.data[adress].substr(0, 17)/1000000000000000000)
+            await setTotalBal(totalBalance.data/1000000000000000000)
+            await setTotalStake(totalStacked.data[adress].substr(0, 17)/1000000000000000000)
+            window.localStorage.setItem('totalBalance',totalBalance.data/1000000000000000000)
+            window.localStorage.setItem('totalStake',totalStacked.data[adress].substr(0, 17)/1000000000000000000)
         }
         getTotalBalance()
+
+        const getNewBalance = async () =>{
+            let value = JSON.parse(await window.walletAPI.updateBalance())
+            // console.log(value)
+            const seed = localStorage.getItem('seed')
+            const totalBalance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`))
+            let newBal = totalBalance.data/1000000000000000000;
+            window.localStorage.setItem('totalBalance',newBal)
+            await setTotalBal(newBal)
+            setTimeout(getNewBalance,3000)
+        }
+        getNewBalance()
     },[])
 
     return (

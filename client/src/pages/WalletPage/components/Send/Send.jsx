@@ -35,6 +35,9 @@ const Send = (props) => {
     const [stakeValue,setStakeValue] = useState(null)
     const [displayButState,setDispalyButState] = useState(true)
 
+    //stake for invalid input
+    const [invalidInp,setInvalidInp] = useState(false)
+
     const [error,setError] = useState('')
     const setErrorFun = (text) =>{
         setError(text)
@@ -48,9 +51,7 @@ const Send = (props) => {
     }
 
     const getBalance = async () =>{
-        const adress = localStorage.getItem('adress')
-        const balance = JSON.parse(await window.walletAPI.balance(adress))
-        return balance.data[adress]/1000000000000000000
+        return window.localStorage.getItem('totalBalance')
     }
     const getBalanceStake = async () =>{
         const adress = localStorage.getItem('adress')
@@ -61,10 +62,16 @@ const Send = (props) => {
     const handleSend = async (e) =>{
         e.preventDefault()
         if (to.length !== 42){
+            setInvalidInp(true)
             setErrorFun('Address incorrect. Please enter the correct address.')
         }else if(adkValue > getBalance){
+            setInvalidInp(true)
             setErrorFun('Send error. You do not have enough money to send.')
+        } else if(!adkValue){
+            setInvalidInp(true)
+            setErrorFun('Send error. Enter the number of coins.')
         }else if(checkValue === 0){
+            setInvalidInp(true)
             setErrorFun('Send error. You need to choose a sending method.')
         }
         else {
@@ -182,7 +189,7 @@ const Send = (props) => {
                         <form onSubmit={event => handleStake(event)} className="form-create-pass blue">
                             <div className={`adk-value ${checkLightTheme()}`}>
                                 <input
-                                    className={`input-gray blue ${checkLightTheme()}`}
+                                    className={`input-gray blue ${checkLightTheme()} ${invalidInp?'invalid':''}`}
                                     type="text"
                                     placeholder={`0.00`}
                                     value={stakeValue}
@@ -208,7 +215,7 @@ const Send = (props) => {
                             <form onSubmit={event => handleUnstake(event)} className="form-create-pass blue">
                                 <div className={`adk-value ${checkLightTheme()}`}>
                                     <input
-                                        className={`input-gray blue ${checkLightTheme()}`}
+                                        className={`input-gray blue ${checkLightTheme()} ${invalidInp?'invalid':''}`}
                                         type="text"
                                         placeholder={`0.00`}
                                         value={stakeValue}
@@ -235,7 +242,7 @@ const Send = (props) => {
                         //send standart
                         <form onSubmit={handleSend}>
                             <input
-                                className={`input-gray send ${checkLightTheme()}`}
+                                className={`input-gray send ${checkLightTheme()} ${invalidInp?'invalid':''}`}
                                 type="text"
                                 placeholder={`Enter Address`}
                                 value={to}
@@ -244,7 +251,7 @@ const Send = (props) => {
 
                             <div className={`adk-value ${checkLightTheme()}`}>
                                 <input
-                                    className={`input-gray ${checkLightTheme()}`}
+                                    className={`input-gray ${checkLightTheme()} ${invalidInp?'invalid':''}`}
                                     type="text"
                                     placeholder={''}
                                     value={adkValue}

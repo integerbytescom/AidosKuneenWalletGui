@@ -91,6 +91,7 @@
 .faq-bottom-text a.active{
     color: var(--color-white);
     opacity: 1;
+    cursor: default;
 }
 .faq-bottom-text.light a:hover,
 .faq-bottom-text.light a.active{

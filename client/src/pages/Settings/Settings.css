@@ -56,3 +56,26 @@
 .container-setting.light .content-settings span p{
     color: var(--bg-dark);
 }
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.secur-inp{
+    color: var(--color-white);
+    outline: none;
+    font-size: 11px;
+    font-weight: 600;
+    border:none;
+    background: none;
+    text-align: center;
+    border-bottom: 1px solid var(--color-green-04c);
+}
+.secur-inp.light{
+    color: var(--bg-dark);
+}

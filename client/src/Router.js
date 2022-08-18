@@ -30,9 +30,9 @@ const Router = () => {
     const handleOnIdle = () => {
         navigate('/loadPage')
     }
-    const [lsSecur] = useState(window.localStorage.getItem('security') === 'true');
+    const [lsSecur] = useState(Number(window.localStorage.getItem('security')));
     const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-        timeout: lsSecur?(1000 * 60 * 15):(9999 * 9999 * 9999 * 9999),
+        timeout: 1000 * 60 * (lsSecur?lsSecur:1),
         onIdle: handleOnIdle,
         debounce: 200
     })

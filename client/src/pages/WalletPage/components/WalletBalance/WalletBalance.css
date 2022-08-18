@@ -67,20 +67,16 @@
     color: var(--color-green);
     text-align: center;
 }
+.balance.light h1{
+    color: var(--color-green-04c);
+}
 .balance h1 span{
     color: inherit;
     margin-left: 3px;
     font-size: 20px;
-    font-weight: 200;
 }
 .balance h1.blue{
     color: var(--color-blue);
-}
-.balance.light h1{
-    color: var(--bg-dark);
-}
-.balance.light h1 span{
-    color: var(--color-green-04c);
 }
 .balance.light h1 span.blue{
     color: var(--color-blue);

@@ -15,8 +15,12 @@ const ModalConfirm = (props) => {
     const [spinnerDisplay,setSpinnerDisplay] = useState('block')
 
     const handleSend = async () =>{
+        console.log(props.way,'way')
+        console.log(props.mempas,'mempas');
+        console.log(props.to,'to');
+        console.log(props.adkValue,'adkValue');
         setDisplay(true)
-        const trans = JSON.parse(await window.walletAPI.send(props.way,`"${props.mempas}"`,props.from,props.to,props.adkValue))
+        const trans = JSON.parse(await window.walletAPI.multisend(props.way,`"${props.mempas}"`,props.to,props.adkValue))
         console.log(trans,'TRANS')
         if (trans.ok === true){
             let dataTransSend = await sendTrans('send')
