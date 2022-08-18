@@ -19,7 +19,7 @@ const NavbarLeft = () => {
             const newBal = await getBalance()
             setTotalBal(newBal)
             window.localStorage.setItem('totalBalance',newBal)
-            setTimeout(checkBal(),10000)
+            setTimeout(checkBal,10000)
         }
         checkBal()
 
