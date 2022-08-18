@@ -73,20 +73,20 @@ const NavbarLeft = () => {
                         }
                         Staking
                     </Link>
-                    <Link to={`/wallet/aboutUs`} className={path==='/wallet/aboutUs' || path==='/wallet/fileForm'?'active':''}>
+                    <Link to={`/wallet/fileForm`} className={path==='/wallet/fileForm'?'active':''}>
                         {checkLightTheme()?
                             <img src="./images/navbar-left/black-icons/edit-3.svg" alt=""/>:
                             <img src="./images/navbar-left/edit-3.svg" alt=""/>
                         }
-                        About us
-                    </Link>
-                    <Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ' || path==='/wallet/form'?'active':''}>
-                        {checkLightTheme()?
-                            <img src="./images/navbar-left/black-icons/support.svg" alt=""/>:
-                            <img src="./images/navbar-left/support.svg" alt=""/>
-                        }
                         Support
                     </Link>
+                    {/*<Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ' || path==='/wallet/form'?'active':''}>*/}
+                    {/*    {checkLightTheme()?*/}
+                    {/*        <img src="./images/navbar-left/black-icons/support.svg" alt=""/>:*/}
+                    {/*        <img src="./images/navbar-left/support.svg" alt=""/>*/}
+                    {/*    }*/}
+                    {/*    Support*/}
+                    {/*</Link>*/}
                 </div>
             </header>
 

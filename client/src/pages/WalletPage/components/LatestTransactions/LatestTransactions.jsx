@@ -4,6 +4,7 @@ import TransData from "./TransData";
 import AllTrans from "../AllTrans/AllTrans";
 import {anFadeUp} from "../../../../animations";
 import {checkLightTheme} from "../../../../lightThemeCheck";
+import sendTrans from "../../../../sendTrans";
 
 const LatestTransactions = (props) => {
 
@@ -15,17 +16,17 @@ const LatestTransactions = (props) => {
     const handleShow = () => setShowTrans('show');
     const handleClose = () => setShowTrans('hide');
 
-    //state with all transactions
-    const [transactions,setTransactions] = useState(TransData)
-
     //states for pagination
     const [currentPage,setCurrentPage] = useState(1)
     const [transactionsAmount] = useState(9)
 
-    const pageAmount = Math.ceil(transactions.length / transactionsAmount);
+    const pageAmount = Math.ceil(sendTrans('stake').length / transactionsAmount);
     const lastTransactionIndex = currentPage * transactionsAmount;//высчитываем индекс последней страны
     const firstTransactionIndex = lastTransactionIndex - transactionsAmount;//высчитываем индекс страны стоящей первой на странице
-    const transactionsOnePage = transactions.slice(firstTransactionIndex,lastTransactionIndex)//отображение определенного кол-ва стран на странице
+    const transactionsOnePageStake = sendTrans('stake').slice(firstTransactionIndex,lastTransactionIndex)//отображение определенного кол-ва стран на странице
+
+    const pageAmountSend = Math.ceil(sendTrans('send').length / transactionsAmount);
+    const transactionsOnePageSend = sendTrans('send').slice(firstTransactionIndex,lastTransactionIndex)
 
     const paginate = pageNumber => setCurrentPage(pageNumber)
 
@@ -65,10 +66,11 @@ const LatestTransactions = (props) => {
 
                 <div className={`transactions ${checkLightTheme()}`}>
                     <AllTrans
+                        stakeTr={transactionsOnePageStake}
+                        sendTr={transactionsOnePageSend}
                         blueClass={blueClass}
-                        transactionsOnePage={transactionsOnePage}
                         countriesAmount={transactionsAmount}
-                        totalCountries={transactions.length}
+                        totalSend={sendTrans('send')}
                         paginate={paginate}
                     />
                 </div>
@@ -83,7 +85,7 @@ const LatestTransactions = (props) => {
                                         <img src="./images/arrow-right.svg" alt=""/>
                                     }
                                 </button>
-                                <p>{currentPage} / {pageAmount}</p>
+                                <p>{currentPage} / {blueClass?pageAmount:pageAmountSend}</p>
                                 <button className={`right`} disabled={currentPage===pageAmount} onClick={nextPage}>
                                     {checkLightTheme()?
                                         <img src="./images/wallet-page/arrow-right.svg" alt=""/>:

@@ -31,10 +31,15 @@
     margin-top: 0;
     padding: 15px;
     font-size: 13px;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0);
     outline: none;
     margin-bottom: 20px;
     resize: none;
+    transition: .3s;
+}
+.help-form textarea.invalid,
+.help-form.light textarea.invalid{
+    border-bottom: 1px solid var(--error-bg);
 }
 .help-form.light textarea{
     color: var(--bg-dark);

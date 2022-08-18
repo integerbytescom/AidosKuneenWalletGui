@@ -114,6 +114,12 @@ const Receive = () => {
                                 src={checkLightTheme()?"./images/receive/copy-bl.svg":"./images/receive/copy.svg"}
                                 alt="copy"
                             />
+                            <a target="_blank" href={`https://explorer.aidoskuneen.com/?searchhash=${window.localStorage.getItem('adress')}&page=search&submitbtn=`}>
+                                <img
+                                    src="./images/receive/ar-b.svg" alt=""
+                                    className={'img-brows'}
+                                />
+                            </a>
                         </div>
                     </div>
 
