@@ -32,7 +32,7 @@ const Router = () => {
     }
     const [lsSecur] = useState(Number(window.localStorage.getItem('security')));
     const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-        timeout: 1000 * 60 * (+lsSecur),
+        timeout: 1000 * 60 * (lsSecur?lsSecur:1),
         onIdle: handleOnIdle,
         debounce: 200
     })
