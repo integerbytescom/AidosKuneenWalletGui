@@ -127,6 +127,7 @@ const Send = (props) => {
         if (+stakeValue > +getBalanceStake){
             setErrorFun('Unstak error. You do not have enough money to unstak.')
         }else {
+            setDispalyButState(false)
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
             const unstake = JSON.parse(await window.walletAPI.unstake('gas',`"${seed}"`,adress,stakeValue))
