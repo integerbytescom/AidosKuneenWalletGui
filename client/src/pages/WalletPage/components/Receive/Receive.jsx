@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './Receive.css';
 import {useNavigate} from "react-router-dom";
-import {anFade, anFade1s, anFadeOut} from "../../../../animations";
+import {anFade, anFade1s, anFade2s, anFadeOut} from "../../../../animations";
 import TransData from "../LatestTransactions/TransData";
 import ReceiveTrans from "../ReceiveTrans/ReceiveTrans";
 import QRCodeSVG from "qrcode.react";
@@ -130,7 +130,7 @@ const Receive = () => {
                 </div>
 
 
-                <div className={`rec-transactions ${checkLightTheme()}`}>
+                <div className={`rec-transactions ${checkLightTheme()} ${anFade2s}`}>
                     <header>
                         <h3>Addresses</h3>
                     </header>

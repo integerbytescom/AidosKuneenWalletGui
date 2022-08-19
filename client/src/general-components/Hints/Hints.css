@@ -78,15 +78,15 @@
 /*menu*/
 .bg-hint-block.thrPos{
     left: 0;
-    top: 212px;
+    top: 210px;
     width: 160px;
-    height: 168px;
+    height: 122px;
     background: rgba(255, 255, 255, 0.07);
 }
 /*stacking menu*/
 .bg-hint-block.fourPos{
     left: 0;
-    top: 253px;
+    top: 250px;
     width: 160px;
     height: 42px;
     background: rgba(255, 255, 255, 0.07);

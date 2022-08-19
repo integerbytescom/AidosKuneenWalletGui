@@ -117,7 +117,7 @@ const AuthorizationPage = () => {
                                             value={userPass}
                                             onChange={event => setUserPass(event.target.value)}
                                         />
-                                        <div className={checkLightTheme()}>
+                                        <div className={`${checkLightTheme()} ${invalidInp}`}>
                                             {checkLightTheme()?
                                                 <img onClick={handleShowPass} className={passShow?'act':''} src="./images/eye-dark.svg" alt=""/>:
                                                 <img onClick={handleShowPass} className={passShow?'act':''} src="./images/eye.svg" alt=""/>

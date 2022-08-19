@@ -89,7 +89,7 @@ const CreatePassword = () => {
                                 value={pass}
                                 onChange={event => setPass(event.target.value)}
                             />
-                            <div className={checkLightTheme()}>
+                            <div className={`${checkLightTheme()} ${invalidInp}`}>
                                 {
                                     checkLightTheme()?
                                         <img onClick={handleShowPass} className={passShow?'act':''} src="./images/eye-dark.svg" alt=""/>:

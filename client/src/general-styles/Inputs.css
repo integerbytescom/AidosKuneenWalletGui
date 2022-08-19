@@ -46,9 +46,6 @@
     color: var(--bg-black);
     border-bottom: 1px solid var(--bg-black-opac-65);
 }
-.input-gray.light.act{
-    color: var(--bg-black);
-}
 .input-gray:focus::placeholder{
     opacity: 0;
 }
@@ -66,6 +63,19 @@
 .pass-auth div.light,
 .pass-first div.light{
     border-bottom: 1px solid var(--bg-black-opac-25);
+}
+.pass-auth div.invalid.light,
+.pass-first div.invalid.light,
+.pass-auth div.invalid,
+.pass-first div.invalid,
+.form-create-wallet-container form .pass-first div.light.invalid,
+.form-create-wallet-container form .pass-first div.invalid{
+    border-bottom: 1px solid var(--error-bg);
+}
+.pass-auth div,
+.pass-first div,
+.form-create-wallet-container form .pass-first div{
+    transition: .3s;
 }
 
 /*textarea*/

@@ -72,7 +72,7 @@
 
 .transactions{
     width: 100%;
-    height: 77%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -135,13 +135,28 @@
 .transactions .trans-container .from-to{
     width: 65%;
 }
+.transactions .trans-container .from-to.all{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transactions .trans-container .from-to.all .from,
+.transactions .trans-container .from-to.all .to,
+.transactions .trans-container .from-to.all .hash{
+    width: 30%;
+}
+
 .transactions .trans-container .dollar-adk{
     width: 20%;
 }
 
 .transactions .trans-container .dollar,
 .transactions .trans-container .from{
-    margin-right: 50px;
+    margin-right: 30px;
+}
+.transactions .trans-container .hash{
+    margin-left: 30px;
 }
 
 .latest-transactions footer,

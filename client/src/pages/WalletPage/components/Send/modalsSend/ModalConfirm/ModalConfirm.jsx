@@ -25,9 +25,9 @@ const ModalConfirm = (props) => {
         if (trans.ok === true){
             let dataTransSend = await sendTrans('send')
             if (dataTransSend[0]===null){
-                dataTransSend = [{from: props.from, to:props.to, adk: `- ${props.adkValue}`, status: 'Confirmed'}]
+                dataTransSend = [{from: props.from, to:props.to, hash:trans.data[0], adk: `- ${props.adkValue}`, status: 'Confirmed'}]
             }else {
-                dataTransSend.push({from: props.from, to:props.to, adk: `- ${props.adkValue}`, status: 'Confirmed'})
+                dataTransSend.push({from: props.from, to:props.to, hash:trans.data[0], adk: `- ${props.adkValue}`, status: 'Confirmed'})
             }
             window.localStorage.setItem('send',JSON.stringify(dataTransSend))
             setMessage('Sended')

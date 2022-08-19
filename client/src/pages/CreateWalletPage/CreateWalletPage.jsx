@@ -83,7 +83,7 @@ const CreateWalletPage = () => {
                 </div>
 
                 <div className={`form-create-wallet-container ${fadeLeft}`}>
-                    <h2 className={`${checkLightTheme()}`}>Enter Password</h2>
+                    <h2 className={`${checkLightTheme()}`}>Password</h2>
                     <form>
                         <div className="pass-first">
                             <input
@@ -93,7 +93,7 @@ const CreateWalletPage = () => {
                                 value={pass}
                                 onChange={event => setPass(event.target.value)}
                             />
-                            <div className={checkLightTheme()}>
+                            <div className={`${checkLightTheme()} ${invalidInp}`}>
                                 <img
                                     onClick={handleShowPass}
                                     src={checkLightTheme()?"./images/eye-dark.svg":"./images/eye.svg"}

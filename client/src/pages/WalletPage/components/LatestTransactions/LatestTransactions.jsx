@@ -18,7 +18,7 @@ const LatestTransactions = (props) => {
 
     //states for pagination
     const [currentPage,setCurrentPage] = useState(1)
-    const [transactionsAmount] = useState(9)
+    const [transactionsAmount] = useState(10)
 
     const pageAmount = Math.ceil(sendTrans('stake').length / transactionsAmount);
     const lastTransactionIndex = currentPage * transactionsAmount;//высчитываем индекс последней страны
@@ -53,16 +53,16 @@ const LatestTransactions = (props) => {
                     }
                 </header>
 
-                {
-                    showTrans==='hide'?'':
-                        props.path !== '/wallet'?'':
-                        <div className="set-page">
-                            <p className={`active`}>All</p>
-                            <p>Sent</p>
-                            <p>Receive</p>
-                            <p className={`last`}></p>
-                        </div>
-                }
+                {/*{*/}
+                {/*    showTrans==='hide'?'':*/}
+                {/*        props.path !== '/wallet'?'':*/}
+                {/*        <div className="set-page">*/}
+                {/*            <p className={`active`}>All</p>*/}
+                {/*            <p>Sent</p>*/}
+                {/*            <p>Receive</p>*/}
+                {/*            <p className={`last`}></p>*/}
+                {/*        </div>*/}
+                {/*}*/}
 
                 <div className={`transactions ${checkLightTheme()}`}>
                     <AllTrans

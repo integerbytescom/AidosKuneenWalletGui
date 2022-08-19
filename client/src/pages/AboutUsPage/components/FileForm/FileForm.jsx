@@ -76,6 +76,7 @@ const FileForm = () => {
                 />
 
                 <input
+                    style={{marginBottom:15}}
                     className={`input-gray ${checkLightTheme()} ${invalidInp===3?'invalid':''}`}
                     type="text"
                     placeholder={'Subject'}
@@ -83,7 +84,6 @@ const FileForm = () => {
                     onChange={event => setSubject(event.target.value)}
                 />
 
-                <p className={`form-text`}>The problem associated with sending coins</p>
                 <textarea
                     className={`${invalidInp===4?'invalid':''}`}
                     cols="30"

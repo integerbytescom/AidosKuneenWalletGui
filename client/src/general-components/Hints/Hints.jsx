@@ -23,7 +23,6 @@ const Hints = () => {
     ];
 
     const [hintNum,setHintNum] = useState(1)
-    const [mess,setMess] = useState(data[hintNum-1])
 
     const offHints = () =>{
         setHintNum(null)
@@ -85,7 +84,7 @@ const Hints = () => {
                 <div className="content">
                     <img onClick={() => setModalHint(true)} src="./images/x-hints.svg" alt=""/>
                     <p className={`message`}>
-                        {mess}
+                        {data[hintNum-1]}
                     </p>
                     <footer>
                         <p>{hintNum} / 9</p>
