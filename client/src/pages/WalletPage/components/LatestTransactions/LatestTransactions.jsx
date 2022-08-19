@@ -86,7 +86,7 @@ const LatestTransactions = (props) => {
                                     }
                                 </button>
                                 <p>{currentPage} / {blueClass?pageAmount:pageAmountSend}</p>
-                                <button className={`right`} disabled={currentPage===pageAmount} onClick={nextPage}>
+                                <button className={`right`} disabled={blueClass?currentPage===pageAmount:currentPage===pageAmountSend} onClick={nextPage}>
                                     {checkLightTheme()?
                                         <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
                                         <img src="./images/arrow-right.svg" alt=""/>
