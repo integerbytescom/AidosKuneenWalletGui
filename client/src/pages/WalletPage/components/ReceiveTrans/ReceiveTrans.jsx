@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import './ReceiveTrans.css';
 import {checkLightTheme} from "../../../../lightThemeCheck";
+import BufferSuccess from "../../../../general-components/BufferSuccess/BufferSuccess";
 
 const ReceiveTrans = (props) => {
 
     const handleCopy = (adress) =>{
         navigator.clipboard.writeText(adress)
+        props.dispCopy()
     }
 
     return (
         <>
+
             {props.transactionsOnePage.map((trans,idx) => (
                 <div className={`rec-trans-container ${checkLightTheme()}`} key={idx}>
                     <span>

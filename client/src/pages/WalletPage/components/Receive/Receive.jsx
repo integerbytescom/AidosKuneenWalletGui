@@ -6,6 +6,7 @@ import TransData from "../LatestTransactions/TransData";
 import ReceiveTrans from "../ReceiveTrans/ReceiveTrans";
 import QRCodeSVG from "qrcode.react";
 import {checkLightTheme} from "../../../../lightThemeCheck";
+import BufferSuccess from "../../../../general-components/BufferSuccess/BufferSuccess";
 
 const Receive = () => {
 
@@ -13,6 +14,8 @@ const Receive = () => {
 
     const [fade,setFade] = useState(anFade)
     const [fade1s,setFade1s] = useState(anFade1s)
+
+    const [displayCopy,setDisplayCopy] = useState(false)
 
     const handleCloseReceive = () =>{
         setFade(anFadeOut)
@@ -27,10 +30,20 @@ const Receive = () => {
     const handleCopy = async (adress) =>{
         await navigator.clipboard.writeText(adress)
         setGrayColor('gray')
+        setDisplayCopy(true)
+        setTimeout(changeCopyDisp,3000)
         setTimeout(handleChangeColor,1000)
     }
+    const handleCopyTrans = () =>{
+        setDisplayCopy(true)
+        setTimeout(changeCopyDisp,3000)
+    }
+
     const handleChangeColor = () =>{
         setGrayColor('')
+    }
+    const changeCopyDisp = () =>{
+        setDisplayCopy(false)
     }
 
     const [adresses,setAdresses] = useState([])
@@ -88,6 +101,10 @@ const Receive = () => {
     return (
         <div className={`block-container menu receive ${fade}`}>
 
+            {displayCopy?
+                <BufferSuccess />:''
+            }
+
             <div className={`block-container ${checkLightTheme()}`}>
 
                 <div className="rec-container">
@@ -116,7 +133,7 @@ const Receive = () => {
                             />
                             <a target="_blank" href={`https://explorer.aidoskuneen.com/?searchhash=${window.localStorage.getItem('adress')}&page=search&submitbtn=`}>
                                 <img
-                                    src="./images/receive/ar-b.svg" alt=""
+                                    src={checkLightTheme()?"./images/receive/ar-b.svg":"./images/receive/ar-w.svg"} alt=""
                                     className={'img-brows'}
                                 />
                             </a>
@@ -136,6 +153,7 @@ const Receive = () => {
                     </header>
 
                     <ReceiveTrans
+                        dispCopy={handleCopyTrans}
                         adrs={adresses}
                         adrsLen={adrsLen}
                         transactionsOnePage={transactionsOnePage}

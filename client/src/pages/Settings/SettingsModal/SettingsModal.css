@@ -27,6 +27,13 @@
 .settings-modal.light .modal-footer button.gray-button{
     color: var(--color-white-opac-8);
 }
+.settings-modal.light .modal-footer button.gray-button.light{
+    color: var(--bg-dark);
+}
+.settings-modal.light .modal-footer button.gray-button.light:hover{
+    color: var(--bg-black);
+    background: var(--bg-black-opac-25);
+}
 .settings-modal .modal-footer button:hover{
     border: 1px solid var(--color-white);
     background: none;

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Modal, Spinner} from "react-bootstrap";
+import {CloseButton, Modal, Spinner} from "react-bootstrap";
 import './ModalConfirm.css'
 import {useNavigate} from "react-router-dom";
 import {checkLightTheme} from "../../../../../../lightThemeCheck";
@@ -51,13 +51,13 @@ const ModalConfirm = (props) => {
             show={props.show}
             onHide={props.onHide}
             // size="lg"
-            className={'settings-modal confirm'}
+            className={`settings-modal confirm ${checkLightTheme()}`}
             aria-labelledby="contained-modal-title-vcenter"
             centered
         >
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                </Modal.Title>
+            <Modal.Header>
+                <Modal.Title id="contained-modal-title-vcenter"></Modal.Title>
+                <CloseButton onClick={props.onHide} variant={checkLightTheme()?"":"white"} />
             </Modal.Header>
             <Modal.Body>
                 {displayText?
@@ -72,13 +72,13 @@ const ModalConfirm = (props) => {
                         <button onClick={() => navigate(`/wallet`)} className={`border-button ${checkLightTheme()}`}>Ok</button>
                     </div>
                 }
-                {display===false?'':<Spinner style={{marginTop:10,display:spinnerDisplay}} animation="grow" variant="light" />}
+                {display===false?'':<Spinner style={{marginTop:10,display:spinnerDisplay}} animation="grow" variant={checkLightTheme()?"dark":"light"} />}
             </Modal.Body>
             <Modal.Footer style={{alignItems:'flex-end'}}>
                 {display===false?
                     <>
                         <button className={'border-button'} onClick={handleSend}>Yes</button>
-                        <button className={'gray-button modal-close'} onClick={props.onHide}>No</button>
+                        <button className={`gray-button modal-close ${checkLightTheme()}`} onClick={props.onHide}>No</button>
                     </>:''
                 }
             </Modal.Footer>

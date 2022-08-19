@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal} from "react-bootstrap";
+import {CloseButton, Modal} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import './ModalClose.css';
 import {checkLightTheme} from "../../../../../../lightThemeCheck";
@@ -21,8 +21,9 @@ const ModalClose = (props) => {
             className={`settings-modal close ${checkLightTheme()}`}
             centered
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter"></Modal.Title>
+                <CloseButton onClick={props.onHide} variant={checkLightTheme()?"":"white"} />
             </Modal.Header>
             <Modal.Body>
                 <p>

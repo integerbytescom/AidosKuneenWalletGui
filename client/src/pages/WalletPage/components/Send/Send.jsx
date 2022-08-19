@@ -28,6 +28,7 @@ const Send = (props) => {
     const [mempasState,setMempasState] = useState('')
     const [fromState,setFromState] = useState('')
     const [adkValue,setAdkValue] = useState(null)
+    const [adkValueValidate,setAdkValidate] = useState('')
     const [checkValue,setCheckValue] = useState(0)
     console.log(checkValue,'checkValue')
 
@@ -129,18 +130,20 @@ const Send = (props) => {
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
             const unstake = JSON.parse(await window.walletAPI.unstake('gas',`"${seed}"`,adress,stakeValue))
+            console.log(unstake)
+            setStakeValue('')
             // console.log(unstake.ok)
             // console.log(seed)
             // console.log(adress)
             // console.log(stakeValue)
             // console.log(unstake)
             if (unstake.ok===false){
-                setErrorFun("Unstak is not completed. Please try it later.")
+                setErrorFun("Unstake is not completed. Please try it later.")
                 setTimeout(() => navigateOut('/wallet/staking'),3000)
             }else {
                 await window.walletAPI.updateBalance()
                 setDispalyButState(true)
-                navigate('/wallet/staking')
+                navigate('/wallet')
             }
         }
     }
@@ -257,7 +260,7 @@ const Send = (props) => {
                             <div className={`adk-value ${checkLightTheme()}`}>
                                 <input
                                     className={`input-gray ${checkLightTheme()} ${invalidInpAdk?'invalid':''}`}
-                                    type="text"
+                                    type="number"
                                     placeholder={''}
                                     value={adkValue}
                                     onChange={event => setAdkValue(event.target.value)}

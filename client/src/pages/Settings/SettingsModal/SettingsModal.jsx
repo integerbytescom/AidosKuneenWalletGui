@@ -1,6 +1,7 @@
 import React from 'react';
 import './SettingsModal.css';
-import {Modal} from "react-bootstrap";
+import {CloseButton, Modal} from "react-bootstrap";
+import {checkLightTheme} from "../../../lightThemeCheck";
 
 const SettingsModal = (props) => {
     return (
@@ -12,8 +13,9 @@ const SettingsModal = (props) => {
             centered
             className={'settings-modal'}
         >
-            <Modal.Header closeButton>
+            <Modal.Header>
                 <Modal.Title id="contained-modal-title-vcenter"></Modal.Title>
+                <CloseButton onClick={props.onHide} variant={checkLightTheme()?"":"white"} />
             </Modal.Header>
             <Modal.Body>
                 <p>{props.mess}</p>
