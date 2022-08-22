@@ -35,9 +35,8 @@ const WalletBalance = (props) => {
         updateBal()
 
         const showBalanceStake = async () =>{
-            const adress = localStorage.getItem('adress')
-            const balance = JSON.parse(await window.walletAPI.stakedBalance(adress))
-            setBalanceStake(balance.data[adress].substr(0, 17)/1000000000000000000)
+            const totSt = JSON.parse(await window.walletAPI.totaStake(`"${window.localStorage.getItem('seed')}"`))
+            setBalanceStake(totSt.data/10000000000000000000000)
         }
         showBalanceStake()
 
@@ -73,8 +72,8 @@ const WalletBalance = (props) => {
                 {
                     blueClass === 'blue'?
                         <div className={'money-container'}>
-                            <h1 className={blueClass}>{balanceStake?balanceStake:0}<span className={blueClass}>ADK</span></h1>
-                            <h2 className={blueClass}>{balanceStake?balanceStake * usdValue:0} $</h2>
+                            <h1 className={blueClass}>{balanceStake?String(balanceStake).slice(0,10):0}<span className={blueClass}>ADK</span></h1>
+                            <h2 className={blueClass}>{balanceStake?String(balanceStake * usdValue).slice(0,10):0} $</h2>
                         </div>:
                         <div className={'money-container'}>
                             <h1 className={blueClass}>{balance}<span>ADK</span></h1>

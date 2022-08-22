@@ -17,6 +17,8 @@ const Receive = () => {
 
     const [displayCopy,setDisplayCopy] = useState(false)
 
+    const [activeAdress,setActiveAdress] = useState('')
+
     const handleCloseReceive = () =>{
         setFade(anFadeOut)
         setTimeout(() => navigateRoute('/wallet'),1000)
@@ -50,8 +52,9 @@ const Receive = () => {
     const [adrsLen,setAdrsLen] = useState(window.localStorage.getItem('adrsRec'))
     //create new address
     const handleNewAdr = async () =>{
-        const pass = window.localStorage.getItem('password')
-        const data = await window.walletAPI.addAddress(pass)
+        const seed = window.localStorage.getItem('seed')
+        const data = JSON.parse(await window.walletAPI.addAddress(`"${seed}"`))
+        console.log(data)
         let nowLen = window.localStorage.getItem('adrsRec');
         await window.localStorage.setItem('adrsRec',+nowLen + 1)
         setAdrsLen(window.localStorage.getItem('adrsRec'))
@@ -91,9 +94,10 @@ const Receive = () => {
             for (let item in data.data){
                 const dataBal = JSON.parse(await window.walletAPI.balance(data.data[item]))
                 let balLast = dataBal["data"][data.data[item]]/1000000000000000000;
-                arrValues.push([data.data[item],balLast])
+                arrValues.unshift([data.data[item],balLast])
             }
-            setAdresses(arrValues)
+            await setAdresses(arrValues)
+            setActiveAdress(arrValues[0][0])
         }
         getListAdress()
     })
@@ -116,22 +120,22 @@ const Receive = () => {
                             bgColor={"rgba(255, 255, 255, 0)"}
                             fgColor={checkLightTheme()?"rgba(24,24,24,0.8)":"rgba(255, 255, 255, 0.8)"}
                             className={'qr-code'}
-                            value={window.localStorage.getItem('adress')}
+                            value={activeAdress}
                         />
                     </div>
 
                     <div className={`rec-code-container ${checkLightTheme()}`}>
 
                         <div className="code">
-                            <p className={grayColor}>{window.localStorage.getItem('adress')}</p>
+                            <p className={grayColor}>{activeAdress}</p>
                         </div>
                         <div className="copy">
                             <img
-                                onClick={() => handleCopy(window.localStorage.getItem('adress'))}
+                                onClick={() => handleCopy(activeAdress)}
                                 src={checkLightTheme()?"./images/receive/copy-bl.svg":"./images/receive/copy.svg"}
                                 alt="copy"
                             />
-                            <a target="_blank" href={`https://explorer.aidoskuneen.com/?searchhash=${window.localStorage.getItem('adress')}&page=search&submitbtn=`}>
+                            <a target="_blank" href={`https://explorer.aidoskuneen.com/?searchhash=${activeAdress}&page=search&submitbtn=`}>
                                 <img
                                     src={checkLightTheme()?"./images/receive/ar-b.svg":"./images/receive/ar-w.svg"} alt=""
                                     className={'img-brows'}

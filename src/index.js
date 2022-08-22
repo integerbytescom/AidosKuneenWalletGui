@@ -187,14 +187,12 @@ const totalBalance = async (evt, mempas) => {
 
 const totaStake = async (evt, mempas) => {
   try {
-    const json = await listWalletAddress(evt, mempas, 50)
+    const json = await listWalletAddress(evt, mempas, 5)
     const resp = JSON.parse(json)
     const adrs = resp.data
-
     let totlBal = 0
     for (let adr of adrs) {
-      let n = +(JSON.parse(await stakedBalance(evt, adr)).data[adr])
-      console.log(n)
+      let n = (JSON.parse(await stakedBalance(evt, adr)).data[adr]).split(";")[0]
       totlBal += n
     }
     return JSON.stringify({
@@ -480,51 +478,50 @@ const existWalletJSON = (evt) => {
 
 const multistake = async (evt, way, mempas, amount) => {
   try {
-    const resp = await listWalletAddress(evt, mempas, 10),
+    const resp = await listWalletAddress(evt, mempas, 50),
         adrs = JSON.parse(resp).data,
         balTable = {};
 
     let totlSum = 0;
     for (let adr of adrs) {
-      const bal = +JSON.parse(await balance(evt, adr)).data[adr]/1000000000000000000
-      if (bal <= GAS) continue
+      const bal = +JSON.parse(await balance(evt, adr)).data[adr]
       if (way === "pow") {
-        balTable[adr] = +bal
-        totlSum += +bal
+        balTable[adr] = bal
+        totlSum += bal
       }
       if (way === "gas") {
-        balTable[adr] = bal - +GAS
-        totlSum += bal - +GAS
+        balTable[adr] = bal - GAS
+        totlSum += bal - GAS
       }
     }
-    if (totlSum < +amount) {
+    if (totlBal < amount) {
       return JSON.stringify({
         ok: false,
         msg: "not enough ADK to send",
         data: null
       })
     }
-    const mainAdr = Object.keys(balTable)[0]
+
+    const mainAdr = Object.values(balTable)[0]
 
     const txs = []
-    let leftToSend = +amount;
+    let leftToSend = amount;
     for (let adr in balTable) {
       const sum = +balTable[adr]
-      if (leftToSend >= sum && sum > GAS) {
+      if (leftToSend >= sum) {
         const json = await send(evt, way, mempas, adr, mainAdr, sum)
         const resp = JSON.parse(json)
         if (resp.ok) {
-          leftToSend -= +sum
-          if (leftToSend <= 0) break
+          leftToSend -= sum
           txs.push(resp.data[0])
         } else return sendError
       } else if (leftToSend < sum) {
-        const json = await send(evt, way, mempas, adr, mainAdr, leftToSend)
+        const part = sum - leftToSend;
+        const json = await send(evt, way, mempas, adr, mainAdr, part)
         const resp = JSON.parse(json)
-        txs.push(resp.data[0])
-        break
-      } else {
-        break
+        if (resp.ok) {
+          txs.push(resp.data[0])
+        } else return sendError
       }
     }
     const result = await stake(evt, way, mempas, mainAdr, amount)
