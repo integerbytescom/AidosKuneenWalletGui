@@ -72,7 +72,8 @@ app.on('ready', () => {
   ipcMain.handle("getAdkPrices",getAdkPrices);
   ipcMain.handle("multistake", multistake);
   ipcMain.handle("totaStake", totaStake);
-  ipcMain.handle( "sendEmail", sendEmail )
+  ipcMain.handle( "sendEmail", sendEmail );
+  ipcMain.handle("existWalletJSON ", existWalletJSON)
   createWindow()
 });
 
@@ -471,6 +472,9 @@ const multisend = async (evt, way, mempas, to, amount) => {
   }
 }
 
+const existWalletJSON = (evt) => {
+  return fs.existsSync("../wallet.json")
+}
 
 const multistake = async (evt, way, mempas, amount) => {
   try {
@@ -583,6 +587,7 @@ const sendEmail = async (evt, { mail, name, text, img }) => {
   };
   const info = await transporter.sendMail(mailOptions)
 }
+
 
 /*
 {
