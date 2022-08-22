@@ -6,5 +6,5 @@ export const getBalance = async () =>{
     const bal = +balance.data/1000000000000000000;
     const checkBal = bal?bal:localStorage.getItem('totalBalance')
     window.localStorage.setItem('totalBalance',checkBal)
-    return checkBal
+    return checkBal?checkBal:0
 }

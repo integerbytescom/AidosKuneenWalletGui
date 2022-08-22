@@ -132,7 +132,7 @@ const AuthorizationPage = () => {
                                     <p>or</p>
                                     <hr/>
                                 </div>
-                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Enter Seed</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Forgot password</button>
                                 <button className={`gray-button ${checkLightTheme()}`} onClick={() => setErrorFun('Metamask error. Please try it later.')}>Connect MetaMask</button>
                             </>
                             :

@@ -187,14 +187,12 @@ const totalBalance = async (evt, mempas) => {
 
 const totaStake = async (evt, mempas) => {
   try {
-    const json = await listWalletAddress(evt, mempas, 50)
+    const json = await listWalletAddress(evt, mempas, 5)
     const resp = JSON.parse(json)
     const adrs = resp.data
-
     let totlBal = 0
-    for (let adr in adrs) {
-      let n = +(JSON.parse(await stakedBalance(evt, adr)).data[adr])
-      console.log(n)
+    for (let adr of adrs) {
+      let n = (JSON.parse(await stakedBalance(evt, adr)).data[adr]).split(";")[0]
       totlBal += n
     }
     return JSON.stringify({

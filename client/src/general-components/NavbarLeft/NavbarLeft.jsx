@@ -25,10 +25,9 @@ const NavbarLeft = () => {
 
         const getTotalStake = async () =>{
             await setTotalStake(window.localStorage.getItem('totalStake'))
-            const adress = localStorage.getItem('adress')
-            const totalStacked = JSON.parse(await window.walletAPI.stakedBalance(adress))
-            await setTotalStake(totalStacked.data[adress].substr(0, 17)/1000000000000000000)
-            window.localStorage.setItem('totalStake',totalStacked.data[adress].substr(0, 17)/1000000000000000000)
+            const totSt = JSON.parse(await window.walletAPI.totaStake(`"${window.localStorage.getItem('seed')}"`))
+            await setTotalStake(totSt.data/10000000000000000000000)
+            window.localStorage.setItem('totalStake',totSt.data/10000000000000000000000)
             setTimeout(getTotalStake,5000)
         }
         getTotalStake()
@@ -53,7 +52,7 @@ const NavbarLeft = () => {
                     {checkLightTheme()?'':<hr />}
                     <div>
                         <p>Total staked</p>
-                        <h5>{totalStake?totalStake:0}</h5>
+                        <h5>{totalStake?String(totalStake).slice(0,10):0}</h5>
                     </div>
                 </div>
 

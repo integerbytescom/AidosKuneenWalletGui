@@ -28,9 +28,9 @@ const Send = (props) => {
     const [mempasState,setMempasState] = useState('')
     const [fromState,setFromState] = useState('')
     const [adkValue,setAdkValue] = useState(null)
-    const [adkValueValidate,setAdkValidate] = useState('')
     const [checkValue,setCheckValue] = useState(0)
-    console.log(checkValue,'checkValue')
+    // console.log(checkValue,'checkValue')
+    console.log(adkValue,'adlValue')
 
     //state for stake
     const [stakeValue,setStakeValue] = useState(null)
@@ -61,6 +61,13 @@ const Send = (props) => {
         return +balance.data[adress].substr(0, 17)/1000000000000000000
     }
 
+    // const setAdkValueFunc = (value) =>{
+    //     setAdkValue(value)
+    //     setAdkValidate(value)
+    //     console.log(value,'adkValue')
+    //     console.log(Number(value).toLocaleString('ru-RU'),'adkValidate')
+    // }
+
     const handleSend = async (e) =>{
         e.preventDefault()
         if (to.length !== 42){
@@ -71,7 +78,7 @@ const Send = (props) => {
             setInvalidInp(false)
             setInvalidInpAdk(true)
             setErrorFun('Send error. You do not have enough money to send.')
-        } else if(!adkValue){
+        } else if(adkValue===null || adkValue==='' || isNaN(adkValue)){
             setInvalidInp(false)
             setInvalidInpAdk(true)
             setErrorFun('Send error. Enter the number of coins.')
@@ -260,8 +267,8 @@ const Send = (props) => {
 
                             <div className={`adk-value ${checkLightTheme()}`}>
                                 <input
-                                    className={`input-gray ${checkLightTheme()} ${invalidInpAdk?'invalid':''}`}
-                                    type="number"
+                                    className={`input-gray ${checkLightTheme()} ${invalidInpAdk?'invalid':''} sendADK`}
+                                    type="text"
                                     placeholder={''}
                                     value={adkValue}
                                     onChange={event => setAdkValue(event.target.value)}
@@ -270,7 +277,13 @@ const Send = (props) => {
                                     <button onClick={setAllADK} className={'all-send'}>All</button>
                                     <h3 className={`${invalidInpAdk?'invalid':''}`}>ADK</h3>
                                 </div>
+                                <h2 className={'inp-value-h2'}>
+                                    {adkValue===null || adkValue===''?'':
+                                        isNaN(adkValue)?'Incorreact Amount':
+                                            Number(adkValue).toLocaleString('en-EN')}
+                                </h2>
                             </div>
+
                             {checkValue===1?
                                 <p>Fees: 0.021 ADK</p>:
                                 checkValue===2?

@@ -59,7 +59,7 @@ const Settings = () => {
     }
 
     useEffect(() =>{
-        setSecur(window.localStorage.getItem('security'))
+        setSecur(Number(window.localStorage.getItem('security')))
         setHints(window.localStorage.getItem('hints')==='true')
     },[])
 

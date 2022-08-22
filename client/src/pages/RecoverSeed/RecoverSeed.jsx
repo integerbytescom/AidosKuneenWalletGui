@@ -3,6 +3,7 @@ import './RecoverSeed.css';
 import {useNavigate} from "react-router-dom";
 import {anFade, anFadeLeftOut, anFadeOut, anFadeRight} from "../../animations";
 import {checkLightTheme} from "../../lightThemeCheck";
+import Errors from "../../general-components/Errors/Errors";
 
 const RecoverSeed = () => {
 
@@ -11,14 +12,39 @@ const RecoverSeed = () => {
     const [fade,setFade] = useState(anFade)
     const [fadeLeft,setFadeLeft] = useState(anFadeRight)
 
+    //errors
+    const [error,setError] = useState('');
+    const [invalid,setInvalid] = useState('');
+
     const [seedInp,setSeedInp] = useState('')
 
+    //count words in seed
+    String.prototype.countWords = function(){
+        return this.split(/\s+/).length;
+    }
+
     const handleRecoverSeed = (url,event) =>{
-        window.localStorage.setItem('seedMnemonic',seedInp)
         event.preventDefault()
-        setFade(anFadeOut)
-        setFadeLeft(anFadeLeftOut)
-        setTimeout(() => navigateRoute(url),1000)
+        if (!seedInp){
+            setInvalid('invalid')
+            setErrorFun('Please enter SEED')
+            setSeedInp('')
+            return 0
+        }else if(seedInp.match(/(\w+)/g).length === 12 || seedInp.match(/(\w+)/g).length === 24){
+            window.localStorage.setItem('seedMnemonic',seedInp)
+            setFade(anFadeOut)
+            setFadeLeft(anFadeLeftOut)
+            setTimeout(() => navigateRoute(url),1000)
+        }else {
+            setInvalid('invalid')
+            setErrorFun('SEED must contain 12 or 24 words.')
+            setSeedInp('')
+        }
+    }
+
+    const setErrorFun = (text) =>{
+        setError(text)
+        setTimeout(() => setError(''),4000)
     }
 
     const navigateRoute = (url) =>{
@@ -27,6 +53,8 @@ const RecoverSeed = () => {
 
     return (
             <div className={`block-container ${checkLightTheme()}`}>
+
+                {error!==''?<Errors error={error} />:''}
 
                 <div className={`dots-create ${fade}`}>
                     <div className="dot active"></div>
@@ -40,7 +68,7 @@ const RecoverSeed = () => {
                         <textarea
                             rows="3"
                             style={{resize: 'none'}}
-                            className={`input-gray ${checkLightTheme()}`}
+                            className={`input-gray ${checkLightTheme()} ${invalid}`}
                             placeholder={`enter 12/24 mnemonic seed words `}
                             value={seedInp}
                             onChange={event => setSeedInp(event.target.value)}

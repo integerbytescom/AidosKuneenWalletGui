@@ -32,19 +32,22 @@ const Router = () => {
     }
     const [lsSecur] = useState(Number(window.localStorage.getItem('security')));
     const { getRemainingTime, getLastActiveTime } = useIdleTimer({
-        timeout: 1000 * 60 * (lsSecur?lsSecur:1),
+        timeout: 1000 * 60 * (lsSecur?Number(lsSecur):15),
         onIdle: handleOnIdle,
         debounce: 200
     })
 
     useEffect(() => {
+        //secure
         const getSecure = () =>{
             const lsNow = window.localStorage.getItem('security')
             if (lsNow === null){
-                window.localStorage.setItem('security',true)
+                window.localStorage.setItem('security',15)
             }
         }
         getSecure()
+
+        //hints
         const getHints = () =>{
             const lsNow = window.localStorage.getItem('hints')
             if (lsNow === null){
@@ -52,6 +55,14 @@ const Router = () => {
             }
         }
         getHints()
+
+        //receive addresses
+        const checkAdrs = () =>{
+            if (!window.localStorage.getItem('adrsRec')){
+                window.localStorage.setItem('adrsRec',1)
+            }
+        }
+        checkAdrs()
     },[])
 
     return (

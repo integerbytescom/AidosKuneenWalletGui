@@ -18,6 +18,13 @@
 
 .send-content form .adk-value{
     display: flex;
+    position: relative;
+}
+.send-content form .adk-value h2.inp-value-h2{
+    position: absolute;
+    top: 5px;
+    font-weight: 300;
+    color: var(--color-green);
 }
 .send-content form input.send{
     margin-bottom: 20px;
@@ -79,6 +86,10 @@
     font-size: 18px;
     color: var(--color-green);
     border-bottom: 1px solid var(--color-green);
+}
+.send-content form .adk-value input.sendADK{
+    color: rgba(255, 255, 255, 0);
+    caret-color: var(--color-green);
 }
 .send-content form .adk-value input.invalid{
     border-bottom: 1px solid var(--error-bg);
