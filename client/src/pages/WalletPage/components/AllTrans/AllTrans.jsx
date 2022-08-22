@@ -10,10 +10,10 @@ const AllTrans = (props) => {
     return (
         <>
             {path==='/wallet'?
-            sendTrans('send')[0]===null?'':
-                sendTrans('send').map((trans,idx) => (
+            props.sendTr[0]===null?'':
+                props.sendTr.map((trans,idx) => (
                 <div className={'trans-container'} key={idx}>
-                    <div className="from-to">
+                    <div className="from-to all">
                         <div className="from">
                             <p style={{opacity:1,fontWeight:600}}>From</p>
                             <p>{trans.from}</p>
@@ -21,6 +21,10 @@ const AllTrans = (props) => {
                         <div className="to">
                             <p style={{opacity:1,fontWeight:600}}>To</p>
                             <p className={props.blueClass}>{trans.to}</p>
+                        </div>
+                        <div className="hash">
+                            <p style={{opacity:1,fontWeight:600}}>TX</p>
+                            <p className={props.blueClass}>{trans.hash}</p>
                         </div>
                     </div>
 
@@ -38,8 +42,8 @@ const AllTrans = (props) => {
                     </div>
                 </div>
             )):
-                sendTrans('stake')[0]===null?'':
-                    sendTrans('stake').map((trans,idx) => (
+                props.stakeTr[0]===null?'':
+                    props.stakeTr.map((trans,idx) => (
                         <div className={'trans-container'} key={idx}>
                             <div style={{justifyContent:'flex-start'}} className="from-to">
                                 <div className="from">

@@ -13,8 +13,6 @@ const RecoverSeed = () => {
 
     const [seedInp,setSeedInp] = useState('')
 
-    const [disEnterSeed,setDisEnterSeed] = useState(true)
-
     const handleRecoverSeed = (url,event) =>{
         window.localStorage.setItem('seedMnemonic',seedInp)
         event.preventDefault()
@@ -26,17 +24,6 @@ const RecoverSeed = () => {
     const navigateRoute = (url) =>{
         navigate(url)
     }
-
-    useEffect(() =>{
-        const checkDisable = () =>{
-            if (seedInp === ''){
-                setDisEnterSeed(true)
-            }else {
-                setDisEnterSeed(false)
-            }
-        }
-        checkDisable()
-    })
 
     return (
             <div className={`block-container ${checkLightTheme()}`}>
@@ -63,7 +50,7 @@ const RecoverSeed = () => {
                             <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>
                                 Cancel
                             </button>
-                            <button disabled={disEnterSeed} className={`blue-button ${checkLightTheme()}`} onClick={event => handleRecoverSeed('/createPass',event)}>
+                            <button className={`blue-button ${checkLightTheme()}`} onClick={event => handleRecoverSeed('/createPass',event)}>
                                 Enter seed words
                             </button>
                         </div>

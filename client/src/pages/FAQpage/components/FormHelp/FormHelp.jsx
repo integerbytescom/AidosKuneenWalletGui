@@ -32,6 +32,9 @@ const FormHelp = () => {
         console.log(name)
         console.log(email);
         console.log(text);
+        setName('')
+        setEmail('')
+        setText('')
     }
 
     const navigateRoute = (url) =>{

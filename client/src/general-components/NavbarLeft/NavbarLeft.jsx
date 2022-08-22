@@ -29,6 +29,7 @@ const NavbarLeft = () => {
             const totalStacked = JSON.parse(await window.walletAPI.stakedBalance(adress))
             await setTotalStake(totalStacked.data[adress].substr(0, 17)/1000000000000000000)
             window.localStorage.setItem('totalStake',totalStacked.data[adress].substr(0, 17)/1000000000000000000)
+            setTimeout(getTotalStake,5000)
         }
         getTotalStake()
     },[])
@@ -72,20 +73,20 @@ const NavbarLeft = () => {
                         }
                         Staking
                     </Link>
-                    <Link to={`/wallet/aboutUs`} className={path==='/wallet/aboutUs' || path==='/wallet/fileForm'?'active':''}>
+                    <Link to={`/wallet/fileForm`} className={path==='/wallet/fileForm'?'active':''}>
                         {checkLightTheme()?
                             <img src="./images/navbar-left/black-icons/edit-3.svg" alt=""/>:
                             <img src="./images/navbar-left/edit-3.svg" alt=""/>
                         }
-                        About us
-                    </Link>
-                    <Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ' || path==='/wallet/form'?'active':''}>
-                        {checkLightTheme()?
-                            <img src="./images/navbar-left/black-icons/support.svg" alt=""/>:
-                            <img src="./images/navbar-left/support.svg" alt=""/>
-                        }
                         Support
                     </Link>
+                    {/*<Link to={`/wallet/FAQ`} className={path==='/wallet/FAQ' || path==='/wallet/form'?'active':''}>*/}
+                    {/*    {checkLightTheme()?*/}
+                    {/*        <img src="./images/navbar-left/black-icons/support.svg" alt=""/>:*/}
+                    {/*        <img src="./images/navbar-left/support.svg" alt=""/>*/}
+                    {/*    }*/}
+                    {/*    Support*/}
+                    {/*</Link>*/}
                 </div>
             </header>
 

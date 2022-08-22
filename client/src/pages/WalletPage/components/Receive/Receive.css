@@ -1,5 +1,5 @@
 .rec-container{
-    width: 390px;
+    width: 410px;
     position: absolute;
     top: 7%;
     display: flex;
@@ -28,7 +28,7 @@
     background: rgba(255, 255, 255, 0.15);
 }
 .rec-code-container.light{
-    background: #F4F4F4;
+    background: var(--bg-black-opac-05);
 }
 .rec-code-container .code p{
     color: var(--color-green-04c);
@@ -40,6 +40,9 @@
 .rec-code-container .code p.gray{
     color: var(--color-white-opac-5);
 }
+.rec-code-container .copy{
+    margin-right: -5px;
+}
 .rec-code-container .copy img{
     opacity: .4;
     margin: -4px 0 0 5px;
@@ -48,6 +51,15 @@
 .rec-code-container .copy img:hover{
     opacity: 1;
 }
+.rec-code-container .copy img.img-brows{
+    margin: -6px 0 0 5px;
+}
+.rec-code-container .copy a{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
 
 .rec-button-container{
     margin-top: 20px;

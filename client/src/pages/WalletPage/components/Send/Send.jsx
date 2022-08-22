@@ -28,6 +28,7 @@ const Send = (props) => {
     const [mempasState,setMempasState] = useState('')
     const [fromState,setFromState] = useState('')
     const [adkValue,setAdkValue] = useState(null)
+    const [adkValueValidate,setAdkValidate] = useState('')
     const [checkValue,setCheckValue] = useState(0)
     console.log(checkValue,'checkValue')
 
@@ -37,6 +38,7 @@ const Send = (props) => {
 
     //stake for invalid input
     const [invalidInp,setInvalidInp] = useState(false)
+    const [invalidInpAdk,setInvalidInpAdk] = useState(false)
 
     const [error,setError] = useState('')
     const setErrorFun = (text) =>{
@@ -50,27 +52,31 @@ const Send = (props) => {
         setModalClose(true)
     }
 
-    const getBalance = async () =>{
-        return window.localStorage.getItem('totalBalance')
+    const getBalance = () =>{
+        return +window.localStorage.getItem('totalBalance')
     }
     const getBalanceStake = async () =>{
         const adress = localStorage.getItem('adress')
         const balance = JSON.parse(await window.walletAPI.stakedBalance(adress))
-        return balance.data[adress].substr(0, 17)/1000000000000000000
+        return +balance.data[adress].substr(0, 17)/1000000000000000000
     }
 
     const handleSend = async (e) =>{
         e.preventDefault()
         if (to.length !== 42){
             setInvalidInp(true)
+            setInvalidInpAdk(false)
             setErrorFun('Address incorrect. Please enter the correct address.')
-        }else if(adkValue > getBalance){
-            setInvalidInp(true)
+        }else if(+adkValue > +window.localStorage.getItem('totalBalance')){
+            setInvalidInp(false)
+            setInvalidInpAdk(true)
             setErrorFun('Send error. You do not have enough money to send.')
         } else if(!adkValue){
-            setInvalidInp(true)
+            setInvalidInp(false)
+            setInvalidInpAdk(true)
             setErrorFun('Send error. Enter the number of coins.')
         }else if(checkValue === 0){
+            setInvalidInp(false)
             setInvalidInp(true)
             setErrorFun('Send error. You need to choose a sending method.')
         }
@@ -86,7 +92,7 @@ const Send = (props) => {
 
     const handleStake = async (e) =>{
         e.preventDefault()
-        if (stakeValue > getBalance){
+        if (+stakeValue > +window.localStorage.getItem('totalBalance')){
             setErrorFun('Stak error. You do not have enough money to stak.')
         }else {
             setDispalyButState(false)
@@ -118,24 +124,27 @@ const Send = (props) => {
 
     const handleUnstake = async (e) =>{
         e.preventDefault()
-        if (stakeValue > getBalanceStake){
+        if (+stakeValue > +getBalanceStake){
             setErrorFun('Unstak error. You do not have enough money to unstak.')
         }else {
+            setDispalyButState(false)
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
             const unstake = JSON.parse(await window.walletAPI.unstake('gas',`"${seed}"`,adress,stakeValue))
+            console.log(unstake)
+            setStakeValue('')
             // console.log(unstake.ok)
             // console.log(seed)
             // console.log(adress)
             // console.log(stakeValue)
             // console.log(unstake)
             if (unstake.ok===false){
-                setErrorFun("Unstak is not completed. Please try it later.")
+                setErrorFun("Unstake is not completed. Please try it later.")
                 setTimeout(() => navigateOut('/wallet/staking'),3000)
             }else {
                 await window.walletAPI.updateBalance()
                 setDispalyButState(true)
-                navigate('/wallet/staking')
+                navigate('/wallet')
             }
         }
     }
@@ -195,7 +204,7 @@ const Send = (props) => {
                                     value={stakeValue}
                                     onChange={event => setStakeValue(event.target.value)}
                                 />
-                                <div className="but-container blue">
+                                <div className={`but-container blue`}>
                                     <button onClick={setAllADKStake} className={`all-send ${checkLightTheme()}`}>All</button>
                                     <h3>ADK</h3>
                                 </div>
@@ -251,15 +260,15 @@ const Send = (props) => {
 
                             <div className={`adk-value ${checkLightTheme()}`}>
                                 <input
-                                    className={`input-gray ${checkLightTheme()} ${invalidInp?'invalid':''}`}
-                                    type="text"
+                                    className={`input-gray ${checkLightTheme()} ${invalidInpAdk?'invalid':''}`}
+                                    type="number"
                                     placeholder={''}
                                     value={adkValue}
                                     onChange={event => setAdkValue(event.target.value)}
                                 />
-                                <div className="but-container">
+                                <div className={`but-container ${invalidInpAdk?'invalid':''}`}>
                                     <button onClick={setAllADK} className={'all-send'}>All</button>
-                                    <h3>ADK</h3>
+                                    <h3 className={`${invalidInpAdk?'invalid':''}`}>ADK</h3>
                                 </div>
                             </div>
                             {checkValue===1?

@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './Receive.css';
 import {useNavigate} from "react-router-dom";
-import {anFade, anFade1s, anFadeOut} from "../../../../animations";
+import {anFade, anFade1s, anFade2s, anFadeOut} from "../../../../animations";
 import TransData from "../LatestTransactions/TransData";
 import ReceiveTrans from "../ReceiveTrans/ReceiveTrans";
 import QRCodeSVG from "qrcode.react";
 import {checkLightTheme} from "../../../../lightThemeCheck";
+import BufferSuccess from "../../../../general-components/BufferSuccess/BufferSuccess";
 
 const Receive = () => {
 
@@ -13,6 +14,8 @@ const Receive = () => {
 
     const [fade,setFade] = useState(anFade)
     const [fade1s,setFade1s] = useState(anFade1s)
+
+    const [displayCopy,setDisplayCopy] = useState(false)
 
     const handleCloseReceive = () =>{
         setFade(anFadeOut)
@@ -27,39 +30,80 @@ const Receive = () => {
     const handleCopy = async (adress) =>{
         await navigator.clipboard.writeText(adress)
         setGrayColor('gray')
+        setDisplayCopy(true)
+        setTimeout(changeCopyDisp,3000)
         setTimeout(handleChangeColor,1000)
     }
+    const handleCopyTrans = () =>{
+        setDisplayCopy(true)
+        setTimeout(changeCopyDisp,3000)
+    }
+
     const handleChangeColor = () =>{
         setGrayColor('')
     }
+    const changeCopyDisp = () =>{
+        setDisplayCopy(false)
+    }
 
+    const [adresses,setAdresses] = useState([])
+    const [adrsLen,setAdrsLen] = useState(window.localStorage.getItem('adrsRec'))
     //create new address
     const handleNewAdr = async () =>{
         const pass = window.localStorage.getItem('password')
         const data = await window.walletAPI.addAddress(pass)
-        console.log(data)
+        let nowLen = window.localStorage.getItem('adrsRec');
+        await window.localStorage.setItem('adrsRec',+nowLen + 1)
+        setAdrsLen(window.localStorage.getItem('adrsRec'))
     }
 
     //state with all transactions
     const recTrans = TransData.filter(trans => trans.adk.startsWith('+'))
-    const [transactions,setTransactions] = useState(recTrans)
+    // const [transactions,setTransactions] = useState(recTrans)
 
     //states for pagination
     const [currentPage,setCurrentPage] = useState(1)
-    const [transactionsAmount] = useState(7)
+    const [transactionsAmount] = useState(6)
 
-    const pageAmount = Math.ceil(transactions.length / transactionsAmount);
+    const pageAmount = Math.ceil(adresses.length / transactionsAmount);
     const lastTransactionIndex = currentPage * transactionsAmount;//высчитываем индекс последней страны
     const firstTransactionIndex = lastTransactionIndex - transactionsAmount;//высчитываем индекс страны стоящей первой на странице
-    const transactionsOnePage = transactions.slice(firstTransactionIndex,lastTransactionIndex)//отображение определенного кол-ва стран на странице
+    const transactionsOnePage = adresses.slice(firstTransactionIndex,lastTransactionIndex)//отображение определенного кол-ва стран на странице
 
     const paginate = pageNumber => setCurrentPage(pageNumber)
 
     const prevPage = () => setCurrentPage(prev => prev - 1)
     const nextPage = () => setCurrentPage(prev => prev + 1)
 
+    useEffect(() =>{
+        const checkAdrs = () =>{
+            if (!window.localStorage.getItem('adrsRec')){
+                window.localStorage.setItem('adrsRec',1)
+            }
+        }
+        checkAdrs()
+
+
+        const getListAdress = async () =>{
+            const seed = window.localStorage.getItem('seed')
+            const data = JSON.parse(await window.walletAPI.listWalletAddress(`"${seed}"`, adrsLen))
+            let arrValues = []
+            for (let item in data.data){
+                const dataBal = JSON.parse(await window.walletAPI.balance(data.data[item]))
+                let balLast = dataBal["data"][data.data[item]]/1000000000000000000;
+                arrValues.push([data.data[item],balLast])
+            }
+            setAdresses(arrValues)
+        }
+        getListAdress()
+    })
+
     return (
         <div className={`block-container menu receive ${fade}`}>
+
+            {displayCopy?
+                <BufferSuccess />:''
+            }
 
             <div className={`block-container ${checkLightTheme()}`}>
 
@@ -87,6 +131,12 @@ const Receive = () => {
                                 src={checkLightTheme()?"./images/receive/copy-bl.svg":"./images/receive/copy.svg"}
                                 alt="copy"
                             />
+                            <a target="_blank" href={`https://explorer.aidoskuneen.com/?searchhash=${window.localStorage.getItem('adress')}&page=search&submitbtn=`}>
+                                <img
+                                    src={checkLightTheme()?"./images/receive/ar-b.svg":"./images/receive/ar-w.svg"} alt=""
+                                    className={'img-brows'}
+                                />
+                            </a>
                         </div>
                     </div>
 
@@ -97,12 +147,15 @@ const Receive = () => {
                 </div>
 
 
-                <div className={`rec-transactions ${checkLightTheme()}`}>
+                <div className={`rec-transactions ${checkLightTheme()} ${anFade2s}`}>
                     <header>
                         <h3>Addresses</h3>
                     </header>
 
                     <ReceiveTrans
+                        dispCopy={handleCopyTrans}
+                        adrs={adresses}
+                        adrsLen={adrsLen}
                         transactionsOnePage={transactionsOnePage}
                     />
 

@@ -29,6 +29,10 @@
     justify-content: flex-end;
     align-items: center;
 }
+.send-content form .adk-value .but-container.invalid,
+.send-content form .adk-value .but-container.blue.invalid{
+    border-bottom: 1px solid var(--error-bg);
+}
 .send-content.blue form .adk-value .but-container{
     width: 55%;
 }
@@ -59,10 +63,14 @@
     margin: 0;
     font-size: 18px;
     font-weight: 300;
+    transition: .3s;
     color: var(--color-green);
 }
 .send-content form .adk-value .but-container.blue h3{
     color: var(--color-blue);
+}
+.send-content form .adk-value .but-container h3.invalid{
+    color: var(--error-bg);
 }
 
 .send-content form .adk-value input{
@@ -71,6 +79,9 @@
     font-size: 18px;
     color: var(--color-green);
     border-bottom: 1px solid var(--color-green);
+}
+.send-content form .adk-value input.invalid{
+    border-bottom: 1px solid var(--error-bg);
 }
 .send-content form .adk-value input::placeholder{
     font-weight: 400;

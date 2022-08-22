@@ -1,0 +1,14 @@
+{
+ "WalletName": "default",
+ "MnemonicEncoded": "",
+ "Accounts": [
+  {
+   "Id": -1,
+   "PubKey": "",
+   "PrivKeyEncoded": "",
+   "LastBalance": ""
+  }
+ ],
+ "PasswordHash": "",
+ "Initialized": false
+}
