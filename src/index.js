@@ -71,7 +71,7 @@ app.on('ready', () => {
   ipcMain.handle("getHistoricalDataForCoin", getHistoricalDataForCoin);
   ipcMain.handle("getAdkPrices",getAdkPrices);
   ipcMain.handle("multistake", multistake);
-  ipcMain.handle("totaStake", totaStake);
+  ipcMain.handle("totaStake", totalStake);
   ipcMain.handle( "sendEmail", sendEmail );
   ipcMain.handle("existWalletJSON ", existWalletJSON)
   createWindow()
@@ -185,7 +185,7 @@ const totalBalance = async (evt, mempas) => {
   }
 }
 
-const totaStake = async (evt, mempas) => {
+const totalStake = async (evt, mempas) => {
   try {
     const json = await listWalletAddress(evt, mempas, 5)
     const resp = JSON.parse(json)

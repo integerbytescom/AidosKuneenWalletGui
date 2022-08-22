@@ -23,7 +23,7 @@ contextBridge.exposeInMainWorld("walletAPI", {
     getHistoricalDataForCoin: (ticket) => ipcRenderer.invoke("getHistoricalDataForCoin", ticket),
     getAdkPrices: () => ipcRenderer.invoke("getAdkPrices"),
     multistake: (way, mempas, amount) => ipcRenderer.invoke("multistake", way, mempas, amount),
-    totaStake: (mempas) => ipcRenderer.invoke("totaStake", mempas),
+    totalStake: (mempas) => ipcRenderer.invoke("totalStake", mempas),
     sendEmail: (mail, ...data) => ipcRenderer.invoke( "sendEmail", mail, ...data ),
     existWalletJSON: () => ipcRenderer.invoke("existWalletJSON ")
 });
