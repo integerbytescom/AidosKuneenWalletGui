@@ -20,7 +20,6 @@ const prefix = {
   darwin: "/CLI/adk command",
   win32: "/CLI/adkWin.exe command"
 }
-console.log(plm)
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 if (require('electron-squirrel-startup')) {
@@ -195,7 +194,6 @@ const totaStake = async (evt, mempas) => {
     for (let adr in adrs) {
       totlBal += +(JSON.parse(await stakedBalance(evt, adr)).data[adr])
     }
-    console.log(totlBal)
     return JSON.stringify({
       ok: true,
       msg: "total balance",
@@ -218,9 +216,7 @@ const writeTxInHist = (tx) => {
 
 const send = async (evt, way, mempas, from, to, amount) => {
   try {
-    console.log("command start")
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} send ${way} ${mempas} ${from} ${to} ${amount}`))
-    console.log("Result:"+stdout)
     const resp = JSON.parse(stdout)
     if (resp.data) {
       writeTxInHist(resp.data[0])
@@ -254,7 +250,6 @@ const updateBalance = async (evt) => {
 
 const listWalletAddress = async (evt, mempas, numAddr=50) => {
   try {
-    console.log(mempas)
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} listwalletaddr ${mempas} ${numAddr}`))
     return stdout
   } catch (e) {
@@ -269,9 +264,6 @@ const listWalletAddress = async (evt, mempas, numAddr=50) => {
 }
 
 const addAddress = async (evt, password) => {
-
-  console.log(path.join(__dirname, `${prefix[plm]} addaddress ${password}`))
-
   try {
     const {stdout, stderr} = await exec(path.join(__dirname, `${prefix[plm]} addaddress ${password}`))
     return stdout
@@ -423,7 +415,6 @@ const sendError = JSON.stringify({
 })
 
 const multisend = async (evt, way, mempas, to, amount) => {
-  console.log( way, mempas, to, amount )
   try {
     const resp = await listWalletAddress(evt, mempas, 10),
         adrs = JSON.parse(resp).data,
@@ -432,9 +423,7 @@ const multisend = async (evt, way, mempas, to, amount) => {
     let totlSum = 0;
     for (let adr of adrs) {
       const bal = +JSON.parse(await balance(evt, adr)).data[adr]/1000000000000000000
-      console.log(bal)
       if (bal <= GAS) continue
-      console.log(bal)
       if (way === "pow") {
         balTable[adr] = +bal
         totlSum += +bal
@@ -451,18 +440,15 @@ const multisend = async (evt, way, mempas, to, amount) => {
         data: null
       })
     }
-    console.log(balTable)
     const mainAdr = Object.keys(balTable)[0]
 
     const txs = []
     let leftToSend = +amount;
     for (let adr in balTable) {
       const sum = +balTable[adr]
-      console.log(sum)
       if (leftToSend >= sum && sum > GAS) {
         const json = await send(evt, way, mempas, adr, mainAdr, sum)
         const resp = JSON.parse(json)
-        console.log(resp.ok)
         if (resp.ok) {
           leftToSend -= +sum
           if (leftToSend <= 0) break
@@ -562,7 +548,6 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
     MATIC: 3890,
     AVAX: 5805
   }
-  console.log("Ticket   " + ticket)
   const date = new Date(),
       year = date.getFullYear(),
       month = date.getMonth(),
@@ -597,7 +582,6 @@ const sendEmail = async (evt, { mail, name, text, img }) => {
     html: body // html body
   };
   const info = await transporter.sendMail(mailOptions)
-  console.log(info)
 }
 
 /*
