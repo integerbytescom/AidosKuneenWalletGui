@@ -35,7 +35,7 @@ const WalletBalance = (props) => {
         updateBal()
 
         const showBalanceStake = async () =>{
-            const totSt = JSON.parse(await window.walletAPI.totaStake(`"${window.localStorage.getItem('seed')}"`))
+            const totSt = JSON.parse(await window.walletAPI.totalStake(`"${window.localStorage.getItem('seed')}"`))
             setBalanceStake(totSt.data/10000000000000000000000)
         }
         showBalanceStake()

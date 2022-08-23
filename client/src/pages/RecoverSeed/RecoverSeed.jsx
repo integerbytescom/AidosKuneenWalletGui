@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {anFade, anFadeLeftOut, anFadeOut, anFadeRight} from "../../animations";
 import {checkLightTheme} from "../../lightThemeCheck";
 import Errors from "../../general-components/Errors/Errors";
+import ModalForgotSeed from "./ModalForgotSeed/ModalForgotSeed";
 
 const RecoverSeed = () => {
 
@@ -16,6 +17,10 @@ const RecoverSeed = () => {
     const [error,setError] = useState('');
     const [invalid,setInvalid] = useState('');
 
+    //modal state
+    const [modalForgot,setModalForgot] = useState(false)
+
+    //input state
     const [seedInp,setSeedInp] = useState('')
 
     //count words in seed
@@ -54,6 +59,11 @@ const RecoverSeed = () => {
     return (
             <div className={`block-container ${checkLightTheme()}`}>
 
+                <ModalForgotSeed
+                    show={modalForgot}
+                    onHide={() => setModalForgot(false)}
+                />
+
                 {error!==''?<Errors error={error} />:''}
 
                 <div className={`dots-create ${fade}`}>
@@ -78,9 +88,14 @@ const RecoverSeed = () => {
                             <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>
                                 Cancel
                             </button>
+
                             <button className={`blue-button ${checkLightTheme()}`} onClick={event => handleRecoverSeed('/createPass',event)}>
                                 Enter seed words
                             </button>
+
+                            <p className={`but-fg-pass ${checkLightTheme()}`} onClick={() => setModalForgot(true)}>
+                                Forgot Seed
+                            </p>
                         </div>
                     </form>
                 </div>

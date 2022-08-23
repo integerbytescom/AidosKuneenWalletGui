@@ -107,7 +107,7 @@ const ShowSeedPage = () => {
                         <textarea
                             rows="2"
                             style={{resize: 'none'}}
-                            className={`input-gray ${checkLightTheme()} ${setInvalidInpBot?'invalid':''}`}
+                            className={`input-gray ${checkLightTheme()} ${invalidInpBot?'invalid':''}`}
                             placeholder={`enter seed again`}
                             value={seedInpCopy}
                             onChange={event => setSeedInpCopy(event.target.value)}

@@ -89,7 +89,7 @@ const CreateWalletPage = () => {
                             <input
                                 className={`input-gray ${checkLightTheme()} ${invalidInp}`}
                                 type={passShow?'text':'password'}
-                                placeholder={`password min .8 ch.`}
+                                placeholder={`Password min .8 ch.`}
                                 value={pass}
                                 onChange={event => setPass(event.target.value)}
                             />

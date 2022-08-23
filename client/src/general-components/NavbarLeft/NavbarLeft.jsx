@@ -19,13 +19,13 @@ const NavbarLeft = () => {
             const newBal = await getBalance()
             setTotalBal(newBal)
             window.localStorage.setItem('totalBalance',newBal)
-            setTimeout(checkBal,10000)
+            setTimeout(checkBal,5000)
         }
         checkBal()
 
         const getTotalStake = async () =>{
             await setTotalStake(window.localStorage.getItem('totalStake'))
-            const totSt = JSON.parse(await window.walletAPI.totaStake(`"${window.localStorage.getItem('seed')}"`))
+            const totSt = JSON.parse(await window.walletAPI.totalStake(`"${window.localStorage.getItem('seed')}"`))
             await setTotalStake(totSt.data/10000000000000000000000)
             window.localStorage.setItem('totalStake',totSt.data/10000000000000000000000)
             setTimeout(getTotalStake,5000)

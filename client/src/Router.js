@@ -19,6 +19,7 @@ import LoadPage from "./general-components/LoadPage/LoadPage";
 import { useIdleTimer } from 'react-idle-timer'
 import WalletSuccess from "./pages/WalletSuccess/WalletSuccess";
 import FileForm from "./pages/AboutUsPage/components/FileForm/FileForm";
+import MetaMaskPass from "./pages/MetaMaskPass/MetaMaskPass";
 
 
 const Router = () => {
@@ -75,6 +76,7 @@ const Router = () => {
                 <Route path='/confirmPass' element={ <ConfirmPassword /> } />
                 <Route path='/recoverSeed' element={ <RecoverSeed /> } />
                 <Route path='/createPass' element={ <CreatePassword /> } />
+                <Route path='/mmPass' element={ <MetaMaskPass /> } />
                 <Route path='/wallet' element={ <WalletPage /> } />
                 <Route path='/wallet/send' element={ <Send /> } />
                 <Route path='/wallet/receive' element={ <Receive /> } />

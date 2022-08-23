@@ -56,9 +56,7 @@ const Send = (props) => {
         return +window.localStorage.getItem('totalBalance')
     }
     const getBalanceStake = async () =>{
-        const adress = localStorage.getItem('adress')
-        const balance = JSON.parse(await window.walletAPI.stakedBalance(adress))
-        return +balance.data[adress].substr(0, 17)/1000000000000000000
+        return +window.localStorage.getItem('totalStake')
     }
 
     // const setAdkValueFunc = (value) =>{
@@ -105,8 +103,8 @@ const Send = (props) => {
             setDispalyButState(false)
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
-            const stake = JSON.parse(await window.walletAPI.stake('gas',`"${seed}"`,adress,stakeValue))
-            // console.log(stake.ok)
+            const stake = JSON.parse(await window.walletAPI.multistake('gas',`"${seed}"`,stakeValue))
+            console.log(stake,'STAKE TRANS')
             let dataTransStake = await sendTrans('stake')
             if (stake.ok===false){
                 setErrorFun("Stak is not completed. Please try it later.")
