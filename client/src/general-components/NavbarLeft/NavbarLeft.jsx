@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './NavbarLeft.css';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
-import {anFadeLeft} from "../../animations";
+import {anFadeLeft, anFadeLeftOut} from "../../animations";
 import {checkLightTheme} from "../../lightThemeCheck";
 import {getBalance} from "../../getBalance";
+import {getStackedBalance} from "../../getStackedBalance";
+import {Spinner} from "react-bootstrap";
 
 const NavbarLeft = () => {
 
@@ -12,9 +14,22 @@ const NavbarLeft = () => {
 
     const [totalBal,setTotalBal] = useState(window.localStorage.getItem('totalBalance'))
     const [totalStake,setTotalStake] = useState(window.localStorage.getItem('totalStake'))
+    const [stakedAllow,setStakedAllow] = useState([null])
+
+    const [fadeStakeDiv,setFadeStakeDiv] = useState(1)
+
+    console.log(stakedAllow,'stakedAllow')
 
     useEffect(() =>{
 
+        //slider state balance
+        const sliderState = (value) =>{
+            setFadeStakeDiv(value)
+            setTimeout(() => sliderState(value===3?1:value + 1),3000)
+        }
+        sliderState(fadeStakeDiv)
+
+        //update balance
         const checkBal = async () => {
             const newBal = await getBalance()
             setTotalBal(newBal)
@@ -23,6 +38,17 @@ const NavbarLeft = () => {
         }
         checkBal()
 
+        //state balance (last updates)
+        const getStBal = async () =>{
+            const adress = window.localStorage.getItem('adress')
+            let data = await getStackedBalance()
+            let dataNums = String(data.data[adress])
+            let arrNums = dataNums.split(';')
+            setStakedAllow([arrNums[1],arrNums[2]])
+        }
+        getStBal()
+
+        //total stake
         const getTotalStake = async () =>{
             await setTotalStake(window.localStorage.getItem('totalStake'))
             const totSt = JSON.parse(await window.walletAPI.totalStake(`"${window.localStorage.getItem('seed')}"`))
@@ -50,9 +76,21 @@ const NavbarLeft = () => {
                         <h5 className={`green`}>{totalBal?totalBal:0}</h5>
                     </div>
                     {checkLightTheme()?'':<hr />}
-                    <div>
-                        <p>Total staked</p>
-                        <h5>{totalStake?String(totalStake).slice(0,10):0}</h5>
+                    <div className={`stake-container`}>
+                        <div className={`stake-div ${fadeStakeDiv!==1?'opac':''}`}>
+                            <p>Total staked</p>
+                            <h5>{totalStake?String(totalStake).slice(0,10):0}</h5>
+                        </div>
+
+                        <div className={`stake-div ${fadeStakeDiv!==2?'opac':''}`}>
+                            <p>Locked Till</p>
+                            <h5>{stakedAllow[0]?stakedAllow[0]:0}</h5>
+                        </div>
+
+                        <div className={`stake-div ${fadeStakeDiv!==3?'opac':''}`}>
+                            <p>Current Mielstone</p>
+                            <h5>{stakedAllow[1]?stakedAllow[1]:0}</h5>
+                        </div>
                     </div>
                 </div>
 

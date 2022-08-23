@@ -140,6 +140,32 @@
     background: var(--color-white);
 }
 
+/*allow stake*/
+.nav-bal-stack .allow-stake p{
+    font-weight: 300;
+}
+.nav-bal-stack .allow-stake h5{
+    color: var(--color-white-opac-8);
+    margin: 0;
+}
+.nav-bal-stack .allow-stake.light h5{
+    color: var(--bg-black-opac-75);
+}
+.nav-bal-stack .stake-container{
+    height: 64px;
+}
+.nav-bal-stack .stake-div{
+    position: absolute;
+    min-width: 100%;
+    padding: 0;
+    transition: .3s;
+}
+.nav-bal-stack .stake-div.opac{
+    opacity: 0;
+}
+
+
+
 /*logout button container*/
 .logout-but-cont{
     width: 100%;
