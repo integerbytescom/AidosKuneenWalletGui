@@ -44,7 +44,7 @@ const MetaMaskPass = () => {
                 await getBalance()
                 navigateRoute('/wallet')
             }else {
-                setErrorFun('Incorrect MetaMask password')
+                setErrorFun(data.msg)
             }
         }
     }
@@ -66,14 +66,14 @@ const MetaMaskPass = () => {
             {error!==''?<Errors error={error} />:''}
 
             <div className={`form-create-wallet-container ${fadeLeft}`}>
-                <h2 className={checkLightTheme()}>Create password</h2>
+                <h2 className={checkLightTheme()}>Enter password</h2>
                 <form>
 
                     <div className="pass-auth">
                         <input
                             className={`input-gray ${checkLightTheme()} ${invalidInp} ${passShow?'act':''}`}
                             type={passShow?'text':'password'}
-                            placeholder={`password min .8 ch.`}
+                            placeholder={``}
                             value={pass}
                             onChange={event => setPass(event.target.value)}
                         />
