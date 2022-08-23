@@ -1,8 +1,16 @@
 .input-file-span{
+    position: relative;
     display: flex;
     align-items: center;
     transition: .3s;
     max-width: 50%;
+}
+p.file-p{
+    font-weight: 200;
+    top: 23px;
+    position: absolute;
+    left: 160px;
+    color: var(--color-green);
 }
 .input-file-span:hover{
     opacity: .6;
@@ -14,7 +22,7 @@
     visibility: hidden;
 }
 .custom-file-input::before {
-    content: 'Subscribe screenshot';
+    content: 'Attach Screenshot';
     display: flex;
     border: none;
     border-radius: 3px;

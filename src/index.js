@@ -35,6 +35,7 @@ const createWindow = () => {
     minHeight: 680,
     maxWidth: 1200,
     maxHeight: 680,
+    icon: __dirname + 'logoNow.svg',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },

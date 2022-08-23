@@ -32,11 +32,11 @@ const FileForm = () => {
         }else if(text===''){
             setInvalidInp(4)
         }else {
-            console.log(name)
-            console.log(email)
-            console.log(subject)
-            console.log(text)
-            console.log(file)
+            console.log(name,'name')
+            console.log(email,'email')
+            console.log(subject,'subject')
+            console.log(text,'text')
+            console.log(file,'file')
             const res = await window.walletAPI.sendEmail('maxim.shnyagin@gmail.com',name,email,text,file)
             console.log(res)
             setFade(anFadeOut)
@@ -104,8 +104,9 @@ const FileForm = () => {
                         value={file}
                         onChange={event => setFile(event.target.value)}
                     />
+                    <p className={'file-p'}>{file.slice(String(file).lastIndexOf("\\")+1,file.length)}</p>
                 </span>
-                <button type={"submit"} className="blue-button">Attach a screenshot</button>
+                <button type={"submit"} className="blue-button">Send</button>
             </form>
 
         </div>

@@ -59,11 +59,6 @@ const RecoverSeed = () => {
     return (
             <div className={`block-container ${checkLightTheme()}`}>
 
-                <ModalForgotSeed
-                    show={modalForgot}
-                    onHide={() => setModalForgot(false)}
-                />
-
                 {error!==''?<Errors error={error} />:''}
 
                 <div className={`dots-create ${fade}`}>
@@ -92,10 +87,6 @@ const RecoverSeed = () => {
                             <button className={`blue-button ${checkLightTheme()}`} onClick={event => handleRecoverSeed('/createPass',event)}>
                                 Enter seed words
                             </button>
-
-                            <p className={`but-fg-pass ${checkLightTheme()}`} onClick={() => setModalForgot(true)}>
-                                Forgot Seed
-                            </p>
                         </div>
                     </form>
                 </div>

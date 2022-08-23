@@ -4,6 +4,7 @@ import Errors from "../../general-components/Errors/Errors";
 import {anFade, anFadeRight} from "../../animations";
 import {useNavigate} from "react-router-dom";
 import {getBalance} from "../../getBalance";
+import {Spinner} from "react-bootstrap";
 
 const MetaMaskPass = () => {
 
@@ -12,6 +13,9 @@ const MetaMaskPass = () => {
     //errors
     const [error,setError] = useState('');
     const [invalidInp,setInvalidInp] = useState('')
+
+    //spinner
+    const [spinner,setSpinner] = useState(false)
 
     //anim
     const [fade,setFade] = useState(anFade);
@@ -33,6 +37,7 @@ const MetaMaskPass = () => {
             setErrorFun('Enter your MetaMask password')
             return 0
         }else {
+            setSpinner(true)
             let data = JSON.parse(await window.walletAPI.loadMetamaskMnemonics(`"${pass}"`))
             console.log(data)
             if (data.ok){
@@ -42,8 +47,10 @@ const MetaMaskPass = () => {
                 window.localStorage.setItem('seed',seed)
                 window.localStorage.setItem('password',pass)
                 await getBalance()
+                setSpinner(false)
                 navigateRoute('/wallet')
             }else {
+                setSpinner(false)
                 setErrorFun(data.msg)
             }
         }
@@ -87,12 +94,17 @@ const MetaMaskPass = () => {
                     </div>
 
                     <footer>
-                        <button className={'blue-button'} onClick={event => handleCheckMM('/localWalletSuccess',event)}>
-                            Continue
-                        </button>
-                        <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>
-                            Cancel
-                        </button>
+                        {spinner?
+                            <Spinner style={{margin:"20px calc(50% - 10px) 0"}} animation="grow" variant={checkLightTheme()?"dark":"light"} />:
+                            <>
+                                <button className={'blue-button'} onClick={event => handleCheckMM('/localWalletSuccess',event)}>
+                                    Continue
+                                </button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => navigateRoute('/')}>
+                                    Cancel
+                                </button>
+                            </>
+                        }
                     </footer>
 
                 </form>

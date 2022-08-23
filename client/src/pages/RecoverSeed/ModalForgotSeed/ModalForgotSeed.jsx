@@ -8,7 +8,8 @@ const ModalForgotSeed = (props) => {
 
     const navigate = useNavigate()
 
-    const handleDeleteUser = async () =>{
+    const handleDeleteUser = async (e) =>{
+        e.preventDefault()
         window.localStorage.clear();
         window.localStorage.setItem('hints',true)
         window.localStorage.setItem('security',15)
@@ -16,7 +17,8 @@ const ModalForgotSeed = (props) => {
         window.localStorage.setItem('totalStake',0)
         window.localStorage.setItem('totalBalance',0)
         await getBalance()
-        navigate('/createWallet')
+        navigate('/')
+        window.location.reload();
     }
 
     return (
@@ -35,9 +37,8 @@ const ModalForgotSeed = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <p>
-                        Сurrent user profile will be deleted,
-                        and he need to use the seed to restore
-                        his wallet or start new wallet.
+                        The current user profile will be deleted to restore your wallet,
+                        use your seed, or you can start a new wallet.
                     </p>
                 </Modal.Body>
                 <Modal.Footer>

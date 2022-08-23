@@ -5,6 +5,8 @@ import {useNavigate} from "react-router-dom";
 import Errors from "../../general-components/Errors/Errors";
 import {checkLightTheme} from "../../lightThemeCheck";
 import {bgImageCheck} from "../../bgImageCheck";
+import {getBalance} from "../../getBalance";
+import ModalForgotSeed from "../RecoverSeed/ModalForgotSeed/ModalForgotSeed";
 
 const AuthorizationPage = () => {
 
@@ -23,6 +25,8 @@ const AuthorizationPage = () => {
     const [userPass,setUserPass] = useState('')
 
     const [invalidInp,setInvalidInp] = useState('')
+
+    const [modalForgot,setModalForgot] = useState(false)
 
     const handleCreate = (url,e) => {
         e.preventDefault()
@@ -81,6 +85,11 @@ const AuthorizationPage = () => {
                 </div>
             }
 
+            <ModalForgotSeed
+                show={modalForgot}
+                onHide={() => setModalForgot(false)}
+            />
+
             <div
                 style={
                 bgImageCheck() === 'lines'?
@@ -132,7 +141,7 @@ const AuthorizationPage = () => {
                                     <p>or</p>
                                     <hr/>
                                 </div>
-                                <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/recoverSeed',event)}>Forgot password</button>
+                                <button className={`gray-button ${checkLightTheme()}`} onClick={() => setModalForgot(true)}>Forgot password</button>
                                 <button className={`gray-button ${checkLightTheme()}`} onClick={event => handleCreateNoPass('/mmPass',event)}>Connect MetaMask</button>
                             </>
                             :
