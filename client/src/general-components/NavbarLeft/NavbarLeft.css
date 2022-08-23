@@ -133,6 +133,12 @@
 .nav-bal-stack h5.green{
     color: var(--color-green-04c);
 }
+.nav-bal-stack h5.white{
+    color: var(--color-white-opac-8);
+}
+.nav-bal-stack h5.white.light{
+    color: var(--bg-black-opac-75);
+}
 .nav-bal-stack hr,
 .logout-but-cont hr{
     width: 80%;
@@ -140,17 +146,6 @@
     background: var(--color-white);
 }
 
-/*allow stake*/
-.nav-bal-stack .allow-stake p{
-    font-weight: 300;
-}
-.nav-bal-stack .allow-stake h5{
-    color: var(--color-white-opac-8);
-    margin: 0;
-}
-.nav-bal-stack .allow-stake.light h5{
-    color: var(--bg-black-opac-75);
-}
 .nav-bal-stack .stake-container{
     height: 64px;
 }

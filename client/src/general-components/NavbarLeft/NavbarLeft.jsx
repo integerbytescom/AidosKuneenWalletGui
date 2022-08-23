@@ -84,12 +84,12 @@ const NavbarLeft = () => {
 
                         <div className={`stake-div ${fadeStakeDiv!==2?'opac':''}`}>
                             <p>Locked Till</p>
-                            <h5>{stakedAllow[0]?stakedAllow[0]:0}</h5>
+                            <h5 className={`white ${checkLightTheme()}`}>{stakedAllow[0]?stakedAllow[0]:0}</h5>
                         </div>
 
                         <div className={`stake-div ${fadeStakeDiv!==3?'opac':''}`}>
                             <p>Current Mielstone</p>
-                            <h5>{stakedAllow[1]?stakedAllow[1]:0}</h5>
+                            <h5 className={`white ${checkLightTheme()}`}>{stakedAllow[1]?stakedAllow[1]:0}</h5>
                         </div>
                     </div>
                 </div>
