@@ -33,7 +33,7 @@ const MetaMaskPass = () => {
             setErrorFun('Enter your MetaMask password')
             return 0
         }else {
-            let data = JSON.parse(await window.walletAPI.loadMetamaskMnemonics(pass))
+            let data = JSON.parse(await window.walletAPI.loadMetamaskMnemonics(`"${pass}"`))
             console.log(data)
             if (data.ok){
                 const adr = Object.keys(data.data)[0]
