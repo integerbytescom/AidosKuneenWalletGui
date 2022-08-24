@@ -30,11 +30,11 @@
 }
 .alert.hints-block.fivePosAl{
     right: 10px;
-    top: 110px;
+    top: 120px;
 }
 .alert.hints-block.sixPosAl{
     right: 150px;
-    top: 110px;
+    top: 120px;
 }
 .alert.hints-block.sevPosAl{
     right: 300px;
@@ -46,7 +46,7 @@
 }
 .alert.hints-block.ninPosAl{
     left: 170px;
-    bottom: 200px;
+    bottom: 210px;
 }
 .alert.hints-block.none{
     display: none;
@@ -70,9 +70,9 @@
 /*total stacked*/
 .bg-hint-block.twoPos{
     left: 0;
-    top: 135px;
+    top: 134px;
     width: 160px;
-    height: 66px;
+    height: 65px;
     background: rgba(255, 255, 255, 0.07);
 }
 /*menu*/
@@ -94,18 +94,18 @@
 /*deposit button*/
 .bg-hint-block.fivePos{
     right: 12px;
-    top: 57px;
+    top: 67px;
     width: 176px;
-    height: 40px;
+    height: 42px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.07);
 }
 /*send button*/
 .bg-hint-block.sixPos{
     right: 190px;
-    top: 57px;
+    top: 67px;
     width: 176px;
-    height: 40px;
+    height: 42px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.07);
 }
@@ -122,7 +122,7 @@
     left:180px;
     top: 111px;
     width: 716px;
-    height: 280px;
+    height: 285px;
     background: rgba(255, 255, 255, 0.07);
 }
 /*latest trans*/
@@ -130,7 +130,7 @@
     left:165px;
     bottom: 0;
     width: 1010px;
-    height: 190px;
+    height: 200px;
     background: rgba(255, 255, 255, 0.07);
 }
 .bg-hint-block.none{

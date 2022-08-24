@@ -69,7 +69,10 @@ const Settings = () => {
             <SettingsModal mess={message} show={setModal} onHide={() =>setSetModal(false)} />
 
             <div className={`container-setting ${checkLightTheme()}`}>
-                <img src="./images/settings/security.svg" alt=""/>
+                <img
+                    src={checkLightTheme()?"./images/settings/block-w.svg":"./images/settings/security.svg"}
+                    alt=""
+                />
                 <div className="content-settings">
                     <h3>Security</h3>
                     <span>
@@ -91,18 +94,24 @@ const Settings = () => {
             </div>
 
             <div className={`container-setting ${checkLightTheme()}`}>
-                <img src="./images/settings/luna.svg" alt=""/>
+                <img
+                    src={checkLightTheme()?"./images/settings/light-w.svg":"./images/settings/luna.svg"}
+                    alt=""
+                />
                 <div className="content-settings">
                     <h3>Light theme</h3>
                     <span>
-                        <input checked={lightTheme} onChange={() => handleChangeTheme(!lightTheme)} type="checkbox"/>
+                        <input checked={lightTheme} onChange={() => handleChangeTheme(!lightTheme)} type="checkbox" className={checkLightTheme()}/>
                         <p>Use light theme</p>
                     </span>
                 </div>
             </div>
 
             <div className={`container-setting ${checkLightTheme()}`}>
-                <img src="./images/settings/chrome.svg" alt=""/>
+                <img
+                    src={checkLightTheme()?"./images/settings/chr-w.svg":"./images/settings/chrome.svg"}
+                    alt=""
+                />
                 <div className="content-settings">
                     <h3>Onboarding</h3>
                     <span>
@@ -110,6 +119,7 @@ const Settings = () => {
                             type="checkbox"
                             checked={hints}
                             onChange={() => changeHints(!hints)}
+                            className={checkLightTheme()}
                         />
                         <p>Show onboarding when starting the program</p>
                     </span>
@@ -117,20 +127,38 @@ const Settings = () => {
             </div>
 
             <div className={`container-setting ${checkLightTheme()}`}>
-                <img src="./images/settings/chrome.svg" alt=""/>
+                <img
+                    src={checkLightTheme()?"./images/settings/bg-w.svg":"./images/settings/bg-rep.svg"}
+                    alt=""
+                />
                 <div className="content-settings select-image">
                     <h3>Select background image</h3>
                     <div>
                         <span>
-                            <input checked={bgImage==='lines'} onChange={() => handleChangeBgImage('lines')} type="checkbox"/>
+                            <input
+                                className={checkLightTheme()}
+                                checked={bgImage==='lines'}
+                                onChange={() => handleChangeBgImage('lines')}
+                                type="checkbox"
+                            />
                             <p>Lines</p>
                         </span>
                         <span>
-                            <input checked={bgImage==='gradient'} onChange={() => handleChangeBgImage('gradient')} type="checkbox"/>
+                            <input
+                                className={checkLightTheme()}
+                                checked={bgImage==='gradient'}
+                                onChange={() => handleChangeBgImage('gradient')}
+                                type="checkbox"
+                            />
                             <p>Gradient</p>
                         </span>
                         <span>
-                            <input checked={bgImage==='honeycomb'} onChange={() => handleChangeBgImage('honeycomb')} type="checkbox"/>
+                            <input
+                                className={checkLightTheme()}
+                                checked={bgImage==='honeycomb'}
+                                onChange={() => handleChangeBgImage('honeycomb')}
+                                type="checkbox"
+                            />
                             <p>Honeycombs</p>
                         </span>
                     </div>

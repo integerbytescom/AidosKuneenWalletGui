@@ -35,7 +35,11 @@ const CalculatorPage = () => {
     return (
         <div className={`calculator ${checkLightTheme()}`}>
             <div className="calc-content">
-                <img className={'dollar'} src="./images/calculator/dollar.svg" alt=""/>
+                <img
+                    className={'dollar'}
+                    src={checkLightTheme()?"./images/calculator/dollar-w.svg":"./images/calculator/dollar.svg"}
+                    alt=""
+                />
 
                 <form className={`form-calc`} onSubmit={handleCalculate}>
                     <div className={'calc-inp-but-container'}>

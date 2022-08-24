@@ -24,7 +24,7 @@
     justify-content: center;
 }
 .bal-container img{
-    margin: 0 0 0 10px;
+    margin: 15px 0 0 10px;
     padding-bottom: 7px;
 }
 .bal-container img:first-child{
@@ -51,7 +51,7 @@
 .balance{
     position: absolute;
     padding: 0 10px;
-    top: 8vh;
+    top: 9vh;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;

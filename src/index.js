@@ -35,16 +35,19 @@ const createWindow = () => {
     minHeight: 680,
     maxWidth: 1200,
     maxHeight: 680,
-    icon: __dirname + 'logoNow.svg',
+    resizable:false,
+    icon:'/icon.ico',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
   });
+  mainWindow.setIcon(path.join(__dirname,'/icon2.ico'))
+  mainWindow.removeMenu()
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
