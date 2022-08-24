@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Alert} from "react-bootstrap";
 import './BufferSuccess.css';
 
-const BufferSuccess = () => {
+const BufferSuccess = (props) => {
 
     return (
         <Alert
@@ -10,7 +10,7 @@ const BufferSuccess = () => {
             variant={'success'}
             className={`alert-buffer`}
         >
-            Copied!
+            {props.migr?props.migr:"Copied!"}
         </Alert>
     );
 };

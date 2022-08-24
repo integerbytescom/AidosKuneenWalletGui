@@ -83,6 +83,7 @@ const Router = () => {
                 <Route path='/wallet/staking' element={ <Staking /> } />
                 <Route path='/wallet/stake' element={ <Send blue={'blue'} /> } />
                 <Route path='/wallet/unstake' element={ <Send blue={'blue'} /> } />
+                <Route path='/wallet/azSeed' element={ <Send /> } />
                 {/*<Route path='/wallet/aboutUs' element={ <AboutUsPage /> } />*/}
                 <Route path='/connectMM/confirmPassword' element={ <ConfirmPassword path={'mm'} /> } />
                 {/*<Route path='/wallet/FAQ' element={ <FAQpage /> } />*/}

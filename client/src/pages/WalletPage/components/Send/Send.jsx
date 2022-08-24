@@ -8,6 +8,7 @@ import ModalClose from "./modalsSend/ModalClose/ModalClose";
 import {checkLightTheme} from "../../../../lightThemeCheck";
 import {Spinner} from "react-bootstrap";
 import sendTrans from "../../../../sendTrans";
+import BufferSuccess from "../../../../general-components/BufferSuccess/BufferSuccess";
 
 const Send = (props) => {
 
@@ -29,8 +30,10 @@ const Send = (props) => {
     const [fromState,setFromState] = useState('')
     const [adkValue,setAdkValue] = useState(null)
     const [checkValue,setCheckValue] = useState(0)
-    // console.log(checkValue,'checkValue')
-    console.log(adkValue,'adlValue')
+    const [migrateSeed,setMigrateSeed] = useState('')
+
+    //copy alert state
+    const [displayCopy,setDisplayCopy] = useState(false)
 
     //state for stake
     const [stakeValue,setStakeValue] = useState(null)
@@ -46,6 +49,7 @@ const Send = (props) => {
         setTimeout(() => setError(''),4000)
     }
 
+    //close send page
     const handleCloseSend = (e) =>{
         e.preventDefault()
         setErrorFun('')
@@ -59,13 +63,7 @@ const Send = (props) => {
         return +window.localStorage.getItem('totalStake')
     }
 
-    // const setAdkValueFunc = (value) =>{
-    //     setAdkValue(value)
-    //     setAdkValidate(value)
-    //     console.log(value,'adkValue')
-    //     console.log(Number(value).toLocaleString('ru-RU'),'adkValidate')
-    // }
-
+    //SEND
     const handleSend = async (e) =>{
         e.preventDefault()
         if (to.length !== 42){
@@ -95,6 +93,7 @@ const Send = (props) => {
         }
     }
 
+    //STAKE
     const handleStake = async (e) =>{
         e.preventDefault()
         if (+stakeValue > +window.localStorage.getItem('totalBalance')){
@@ -123,10 +122,7 @@ const Send = (props) => {
         }
     }
 
-    const navigateOut = (path) =>{
-        navigate(path)
-    }
-
+    //UNSTAKE
     const handleUnstake = async (e) =>{
         e.preventDefault()
         if (+stakeValue > +getBalanceStake){
@@ -154,6 +150,35 @@ const Send = (props) => {
         }
     }
 
+    //MIGRATE
+    const migrateADK = async (e) =>{
+        e.preventDefault()
+        if (migrateSeed === ''){
+            setInvalidInp('invalid')
+            setErrorFun('Enter seed')
+            return 0
+        }
+        setDispalyButState(false)
+        const adress = window.localStorage.getItem('adress')
+        const data = JSON.parse(await window.walletAPI.migrate(`"${migrateSeed}"`,adress))
+        if (data.ok){
+            setDisplayCopy(true)
+            setTimeout(changeCopyDisp,3000)
+        }else {
+            setErrorFun('Migrate error.')
+        }
+        setMigrateSeed('')
+        await window.walletAPI.updateBalance()
+        setDispalyButState(true)
+    }
+
+
+    //navigate for setTimeout
+    const navigateOut = (path) =>{
+        navigate(path)
+    }
+
+    //for button ALL
     const setAllADK = async (e) =>{
         e.preventDefault()
         const value = await getBalance()
@@ -170,9 +195,17 @@ const Send = (props) => {
         setStakeValue(value)
     }
 
+    //for change copy alert
+    const changeCopyDisp = () =>{
+        setDisplayCopy(false)
+    }
+
     return (
         <div className={`block-container menu ${fade} ${checkLightTheme()}`}>
 
+            {displayCopy?
+                <BufferSuccess migr={"Migrate success"} />:''
+            }
             {error!==''?<Errors error={error} />:''}
             <ModalConfirm
                 show={modalConfirm}
@@ -254,6 +287,7 @@ const Send = (props) => {
                             </form>
                         :
                         //send standart
+                        path==='/wallet/send'?
                         <form onSubmit={handleSend}>
                             <input
                                 className={`input-gray send ${checkLightTheme()} ${invalidInp?'invalid':''}`}
@@ -302,7 +336,29 @@ const Send = (props) => {
                                 <button onClick={handleCloseSend} className={`gray-button ${checkLightTheme()}`}>Cancel</button>
                                 <button onClick={handleSend} className={`border-button ${checkLightTheme()}`}>Send</button>
                             </div>
-                        </form>
+                        </form>:
+                            //az seed form
+                            <form onSubmit={handleSend}>
+                                <textarea
+                                    style={{resize:"none"}}
+                                    rows={3}
+                                    className={`input-gray send ${checkLightTheme()} ${invalidInp?'invalid':''}`}
+                                    placeholder={`Enter old seed`}
+                                    value={migrateSeed}
+                                    onChange={event => setMigrateSeed(event.target.value)}
+                                />
+
+                                <div className="butt-container">
+                                    {
+                                        displayButState?
+                                            <>
+                                                <button onClick={handleCloseSend} className={`gray-button ${checkLightTheme()}`}>Cancel</button>
+                                                <button onClick={migrateADK} className={`border-button ${checkLightTheme()}`}>Migrate</button>
+                                            </>:
+                                            <Spinner animation="grow" variant={checkLightTheme()==='light'?"secondary":"light"} />
+                                    }
+                                </div>
+                            </form>
                 }
             </div>
         </div>

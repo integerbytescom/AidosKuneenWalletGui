@@ -93,6 +93,7 @@ const WalletBalance = (props) => {
                                 <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/unstake')}>Unstake</button>
                             </>:
                             <>
+                                <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/azSeed')}>AZ Seed</button>
                                 <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/send')}>Send</button>
                                 <button className={`border-button ${blueClass}`} onClick={() => handleCloseWallet('/wallet/receive')}>Receive</button>
                             </>

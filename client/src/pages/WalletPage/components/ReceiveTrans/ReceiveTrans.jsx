@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './ReceiveTrans.css';
 import {checkLightTheme} from "../../../../lightThemeCheck";
-import BufferSuccess from "../../../../general-components/BufferSuccess/BufferSuccess";
 
 const ReceiveTrans = (props) => {
 
