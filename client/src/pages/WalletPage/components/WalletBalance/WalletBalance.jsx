@@ -79,8 +79,8 @@ const WalletBalance = (props) => {
                             {
                                 balance==='Load'?'':
                                     <>
-                                        <h1 className={blueClass}>{balance.slice(0,10)}<span>ADK</span></h1>
-                                        <h2 className={blueClass}>{(balance * usdValue).slice(0,10)} $</h2>
+                                        <h1 className={blueClass}>{String(balance).slice(0,10)}<span>ADK</span></h1>
+                                        <h2 className={blueClass}>{String(balance * usdValue).slice(0,10)} $</h2>
                                     </>
                             }
                         </div>
