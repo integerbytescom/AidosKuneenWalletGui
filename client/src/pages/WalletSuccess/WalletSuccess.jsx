@@ -13,6 +13,7 @@ const WalletSuccess = (props) => {
 
     const handleConfirmPass = (url,event) =>{
         event.preventDefault()
+        window.localStorage.setItem('totalBalance','Load')
         setFadeSlow(anFadeOut)
         setFadeLeft(anFadeLeftOut)
         setTimeout(() => navigateRoute(url),1000)

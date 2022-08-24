@@ -18,8 +18,6 @@ const NavbarLeft = () => {
 
     const [fadeStakeDiv,setFadeStakeDiv] = useState(1)
 
-    console.log(stakedAllow,'stakedAllow')
-
     useEffect(() =>{
 
         //slider state balance
@@ -45,6 +43,7 @@ const NavbarLeft = () => {
             let dataNums = String(data.data[adress])
             let arrNums = dataNums.split(';')
             setStakedAllow([arrNums[1],arrNums[2]])
+            setTimeout(getStBal,5000)
         }
         getStBal()
 
@@ -73,7 +72,19 @@ const NavbarLeft = () => {
                 <div className={`nav-bal-stack ${checkLightTheme()}`}>
                     <div>
                         <p>Total balance</p>
-                        <h5 className={`green`}>{totalBal?totalBal:0}</h5>
+                        <h5 className={`green`}>
+                            {
+                                totalBal==='Load'?
+                                    <Spinner
+                                        variant={checkLightTheme()?"dark":"light"}
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />:totalBal?totalBal:0
+                            }
+                        </h5>
                     </div>
                     {checkLightTheme()?'':<hr />}
                     <div className={`stake-container`}>
@@ -83,13 +94,13 @@ const NavbarLeft = () => {
                         </div>
 
                         <div className={`stake-div ${fadeStakeDiv!==2?'opac':''}`}>
-                            <p>Locked Till</p>
-                            <h5 className={`white ${checkLightTheme()}`}>{stakedAllow[0]?stakedAllow[0]:0}</h5>
+                            <p>Current Mielstone</p>
+                            <h5>{stakedAllow[1]?stakedAllow[1]:0}</h5>
                         </div>
 
                         <div className={`stake-div ${fadeStakeDiv!==3?'opac':''}`}>
-                            <p>Current Mielstone</p>
-                            <h5 className={`white ${checkLightTheme()}`}>{stakedAllow[1]?stakedAllow[1]:0}</h5>
+                            <p>Locked Till</p>
+                            <h5>{stakedAllow[0]?stakedAllow[0]:0}</h5>
                         </div>
                     </div>
                 </div>

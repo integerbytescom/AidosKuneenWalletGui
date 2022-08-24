@@ -133,12 +133,6 @@
 .nav-bal-stack h5.green{
     color: var(--color-green-04c);
 }
-.nav-bal-stack h5.white{
-    color: var(--color-white-opac-8);
-}
-.nav-bal-stack h5.white.light{
-    color: var(--bg-black-opac-75);
-}
 .nav-bal-stack hr,
 .logout-but-cont hr{
     width: 80%;

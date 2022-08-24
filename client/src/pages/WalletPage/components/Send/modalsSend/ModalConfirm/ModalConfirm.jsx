@@ -30,7 +30,7 @@ const ModalConfirm = (props) => {
                 dataTransSend.push({from: props.from, to:props.to, hash:trans.data[0], adk: `- ${props.adkValue}`, status: 'Confirmed'})
             }
             window.localStorage.setItem('send',JSON.stringify(dataTransSend))
-            setMessage('Sended')
+            setMessage('Sent')
             await window.walletAPI.updateBalance()
             console.log(trans,'TRANS')
             setSpinnerDisplay('none')

@@ -46,6 +46,7 @@ const MetaMaskPass = () => {
                 window.localStorage.setItem('adress',adr)
                 window.localStorage.setItem('seed',seed)
                 window.localStorage.setItem('password',pass)
+                window.localStorage.setItem('totalBalance','Load')
                 await getBalance()
                 setSpinner(false)
                 navigateRoute('/wallet')

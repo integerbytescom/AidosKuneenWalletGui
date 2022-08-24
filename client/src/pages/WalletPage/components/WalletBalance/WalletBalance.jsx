@@ -76,8 +76,13 @@ const WalletBalance = (props) => {
                             <h2 className={blueClass}>{balanceStake?String(balanceStake * usdValue).slice(0,10):0} $</h2>
                         </div>:
                         <div className={'money-container'}>
-                            <h1 className={blueClass}>{balance}<span>ADK</span></h1>
-                            <h2 className={blueClass}>{balance * usdValue} $</h2>
+                            {
+                                balance==='Load'?'':
+                                    <>
+                                        <h1 className={blueClass}>{balance}<span>ADK</span></h1>
+                                        <h2 className={blueClass}>{balance * usdValue} $</h2>
+                                    </>
+                            }
                         </div>
                 }
                 <div className={`butt-container-wallet ${checkLightTheme()}`}>

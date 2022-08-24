@@ -15,7 +15,7 @@ const ModalForgotSeed = (props) => {
         window.localStorage.setItem('security',15)
         window.localStorage.setItem('adrsRec',1)
         window.localStorage.setItem('totalStake',0)
-        window.localStorage.setItem('totalBalance',0)
+        window.localStorage.setItem('totalBalance','Load')
         await getBalance()
         navigate('/')
         window.location.reload();

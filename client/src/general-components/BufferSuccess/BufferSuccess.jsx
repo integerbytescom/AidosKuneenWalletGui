@@ -10,7 +10,7 @@ const BufferSuccess = () => {
             variant={'success'}
             className={`alert-buffer`}
         >
-            Copy to buffer
+            Copied!
         </Alert>
     );
 };

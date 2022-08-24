@@ -66,6 +66,7 @@
     margin: 0 0 0 10px;
     color: var(--color-green);
     text-align: center;
+    transition: .3s;
 }
 .balance.light h1{
     color: var(--color-green-04c);
@@ -86,6 +87,7 @@
     font-weight: 300;
     margin: 0 0 3px 20px;
     color: var(--color-white-opac-6);
+    transition: .3s;
 }
 .balance.light h2{
     color: var(--bg-dark);
