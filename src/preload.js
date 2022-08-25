@@ -24,6 +24,6 @@ contextBridge.exposeInMainWorld("walletAPI", {
     getAdkPrices: () => ipcRenderer.invoke("getAdkPrices"),
     multistake: (way, mempas, amount) => ipcRenderer.invoke("multistake", way, mempas, amount),
     totalStake: (mempas) => ipcRenderer.invoke("totalStake", mempas),
-    sendEmail: (mail, ...data) => ipcRenderer.invoke( "sendEmail", mail, ...data ),
+    sendEmail: (data) => ipcRenderer.invoke( "sendEmail", data ),
     existWalletJSON: () => ipcRenderer.invoke("existWalletJSON ")
 });
