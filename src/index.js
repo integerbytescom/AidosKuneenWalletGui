@@ -78,7 +78,8 @@ app.on('ready', () => {
   ipcMain.handle("multistake", multistake);
   ipcMain.handle("totalStake", totalStake);
   ipcMain.handle( "sendEmail", sendEmail );
-  ipcMain.handle("existWalletJSON ", existWalletJSON)
+  ipcMain.handle("existWalletJSON ", existWalletJSON);
+  ipcMain.handle("getLastTx", getLastTx)
   createWindow()
 });
 
