@@ -82,8 +82,19 @@
     height: auto;
     max-height: 85vh;
     overflow-y: scroll;
-    background: rgba(255, 255, 255, 0.07);
+    /*background: rgba(255, 255, 255, 0.07);*/
 }
+.transactions.send-tr::-webkit-scrollbar {
+    width: 4px;
+}
+.transactions.send-tr::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+}
+.transactions.send-tr::-webkit-scrollbar-thumb {
+    background-color: rgba(85, 85, 85, 0.35);
+    border-radius: 4px;
+}
+
 .transactions .trans-container{
     width: 100%;
     max-height: 65px;

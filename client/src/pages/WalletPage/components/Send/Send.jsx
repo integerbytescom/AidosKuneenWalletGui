@@ -231,7 +231,7 @@ const Send = (props) => {
 
                 {
                     props.blue ?
-                        //check stake or unstake
+                        //STAKE
                         path==='/wallet/stake'?
                         <form onSubmit={event => handleStake(event)} className="form-create-pass blue">
                             <div className={`adk-value ${checkLightTheme()}`}>
@@ -259,6 +259,7 @@ const Send = (props) => {
                                 }
                             </div>
                         </form>:
+                            //UNSTAKE
                             <form onSubmit={event => handleUnstake(event)} className="form-create-pass blue">
                                 <div className={`adk-value ${checkLightTheme()}`}>
                                     <input
@@ -286,7 +287,7 @@ const Send = (props) => {
                                 </div>
                             </form>
                         :
-                        //send standart
+                        //SEND
                         path==='/wallet/send'?
                         <form onSubmit={handleSend}>
                             <input
@@ -349,7 +350,7 @@ const Send = (props) => {
                                 <button onClick={handleSend} className={`border-button ${checkLightTheme()}`}>Send</button>
                             </div>
                         </form>:
-                            //az seed form
+                            //AZ SEED
                             <form onSubmit={handleSend}>
                                 <textarea
                                     style={{resize:"none"}}
