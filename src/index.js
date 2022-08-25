@@ -9,6 +9,8 @@ const cc = require("cryptocompare")
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer")
 const Web3 = require("web3")
+const SibApiV3Sdk = require('sib-api-v3-sdk');
+SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';
 global.fetch = require("node-fetch")
 
 
@@ -622,29 +624,19 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
       .then( json => json.data.quotes.map( day => day.quote.open ) )
 }
 
-// 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
-
 const sendEmail = async (evt, { mail, name, text, img }) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.yandex.ru",
-    port: 465,
-    secure: true,
-    auth: {
-      user: 'aaidoswallet.supp0rt@yandex.ru',
-      pass: 'nGBcgvqi7x7Z87A'
-    }
-  })
-  let body = `<h1>${name}</h1>
-<p>${mail}</p>
-<p>${text}</p>
-    `
-  data.forEach( el => body += `<p>${el}</p>` )
-  const mailOptions = {
-    from: 'aaidoswallet.supp0rt@yandex.ru',
-    to: "a.denisov@integerbytes.com",
-    subject: "USER REQUEST",
-    text: "", // plain text body
-    html: body // html body
-  };
-  const info = await transporter.sendMail(mailOptions)
+  new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail(
+      {
+        'subject': "User Request",
+        'sender' : {'email':'api@sendinblue.com', 'name':'Sendinblue'},
+        'replyTo' : {'email':'api@sendinblue.com', 'name':'Sendinblue'},
+        'to' : [{'name': 'Andrew', 'email':'a.denisov@integerbytes.com'}],
+        'htmlContent' : `<html><body><h1>User mail: ${mail}</h1><p>Text: ${text}</p><p>Name: ${name}</p><img src="${img}"></body></html>`,
+        'params' : {'bodyMessage':'User Request'}
+      }
+  ).then(function(data) {
+    console.log(data);
+  }, function(error) {
+    console.error(error);
+  });
 }
