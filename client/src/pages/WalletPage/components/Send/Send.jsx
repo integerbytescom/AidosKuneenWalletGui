@@ -259,6 +259,7 @@ const Send = (props) => {
                                 }
                             </div>
                         </form>:
+                            //UNSTAKE
                             <form onSubmit={event => handleUnstake(event)} className="form-create-pass blue">
                                 <div className={`adk-value ${checkLightTheme()}`}>
                                     <input
@@ -318,13 +319,10 @@ const Send = (props) => {
                                     <button onClick={setAllADK} className={'all-send'}>All</button>
                                     <h3 className={`${invalidInpAdk?'invalid':''}`}>ADK</h3>
                                 </div>
-                                <h2
-                                    className={'inp-value-h2'}
-                                >
+                                <h2 className={'inp-value-h2'}>
                                     {adkValue===null || adkValue===''?'':
                                         isNaN(adkValue)?'Incorreact Amount':
-                                            Number(adkValue).toLocaleString('en-EN')
-                                    }
+                                            Number(adkValue).toLocaleString('en-EN')}
                                 </h2>
                             </div>
 

@@ -36,7 +36,9 @@ const ModalConfirm = (props) => {
             setSpinnerDisplay('none')
             setDisplayText(false)
         }else {
-            alert('An error has occurred, please try again later')
+            setMessage('An error has occurred, please try again later')
+            setSpinnerDisplay('none')
+            setDisplayText(false)
         }
     }
 
