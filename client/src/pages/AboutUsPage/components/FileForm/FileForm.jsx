@@ -3,11 +3,15 @@ import {anFade, anFadeOut} from "../../../../animations";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import './FileForm.css';
 import {checkLightTheme} from "../../../../lightThemeCheck";
+import Errors from "../../../../general-components/Errors/Errors";
 
 const FileForm = () => {
 
     const navigate = useNavigate()
     const path = useLocation().pathname;
+
+    //error
+    const [error,setError] = useState('')
 
     //states for form
     const [name,setName] = useState('')
@@ -21,27 +25,42 @@ const FileForm = () => {
 
     const [fade,setFade] = useState(anFade)
 
+    const changeFile = (e) =>{
+        e.preventDefault()
+        setFile(e.target.files[0])
+    }
+    // console.log(file)
+
     const handleConfirmForm = async (e) =>{
         e.preventDefault()
         if (name===''){
+            setErrorFun('Enter your name')
             setInvalidInp(1)
         }else if(email===''){
+            setErrorFun('Enter your email')
             setInvalidInp(2)
         }else if(subject===''){
+            setErrorFun('Enter subject')
             setInvalidInp(3)
         }else if(text===''){
+            setErrorFun('Enter text')
             setInvalidInp(4)
         }else {
-            console.log(name,'name')
-            console.log(email,'email')
-            console.log(subject,'subject')
-            console.log(text,'text')
-            console.log(file,'file')
-            const res = await window.walletAPI.sendEmail('maxim.shnyagin@gmail.com',name,email,text,file)
+            // console.log(name,'name')
+            // console.log(email,'email')
+            // console.log(subject,'subject')
+            // console.log(text,'text')
+            // console.log(file,'file')
+            const res = await window.walletAPI.sendEmail({name,email,subject,text,file})
             console.log(res)
             setFade(anFadeOut)
             setTimeout(() => navigateRoute('/wallet'),600)
         }
+    }
+
+    const setErrorFun = (text) =>{
+        setError(text)
+        setTimeout(() => setError(''),4000)
     }
 
     const navigateRoute = (url) =>{
@@ -55,6 +74,8 @@ const FileForm = () => {
             {/*    <Link to={'/wallet/aboutUs'} className={path==='/wallet/aboutUs'?'active':''}>Information</Link>*/}
             {/*    <Link to={'/wallet/fileForm'} className={path==='/wallet/fileForm'?'active':''}>Bugs</Link>*/}
             {/*</span>*/}
+
+            {error===''?'':<Errors error={error} />}
 
             <form onSubmit={handleConfirmForm} className={`help-form file ${checkLightTheme()}`}>
                 <h3>Bug Reporting Form</h3>
@@ -101,10 +122,9 @@ const FileForm = () => {
                     <input
                         className={`custom-file-input ${checkLightTheme()}`}
                         type="file"
-                        value={file}
-                        onChange={event => setFile(event.target.value)}
+                        onChange={event => changeFile(event)}
                     />
-                    <p className={'file-p'}>{file.slice(String(file).lastIndexOf("\\")+1,file.length)}</p>
+                    <p className={'file-p'}>{file.name}</p>
                 </span>
                 <button type={"submit"} className="blue-button">Send</button>
             </form>

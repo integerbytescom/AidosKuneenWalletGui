@@ -15,13 +15,13 @@ const ModalConfirm = (props) => {
     const [spinnerDisplay,setSpinnerDisplay] = useState('block')
 
     const handleSend = async () =>{
-        console.log(props.way,'way')
-        console.log(props.mempas,'mempas');
-        console.log(props.to,'to');
-        console.log(props.adkValue,'adkValue');
+        // console.log(props.way,'way')
+        // console.log(props.mempas,'mempas');
+        // console.log(props.to,'to');
+        // console.log(props.adkValue,'adkValue');
         setDisplay(true)
         const trans = JSON.parse(await window.walletAPI.multisend(props.way,`"${props.mempas}"`,props.to,props.adkValue))
-        console.log(trans,'TRANS')
+        // console.log(trans,'TRANS')
         if (trans.ok === true){
             let dataTransSend = await sendTrans('send')
             if (dataTransSend[0]===null){
@@ -32,7 +32,7 @@ const ModalConfirm = (props) => {
             window.localStorage.setItem('send',JSON.stringify(dataTransSend))
             setMessage('Sent')
             await window.walletAPI.updateBalance()
-            console.log(trans,'TRANS')
+            // console.log(trans,'TRANS')
             setSpinnerDisplay('none')
             setDisplayText(false)
         }else {

@@ -103,7 +103,7 @@ const Send = (props) => {
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
             const stake = JSON.parse(await window.walletAPI.multistake('gas',`"${seed}"`,stakeValue))
-            console.log(stake,'STAKE TRANS')
+            // console.log(stake,'STAKE TRANS')
             let dataTransStake = await sendTrans('stake')
             if (stake.ok===false){
                 setErrorFun("Stak is not completed. Please try it later.")
@@ -132,7 +132,7 @@ const Send = (props) => {
             const adress = localStorage.getItem('adress')
             const seed = localStorage.getItem('seed')
             const unstake = JSON.parse(await window.walletAPI.unstake('gas',`"${seed}"`,adress,stakeValue))
-            console.log(unstake)
+            // console.log(unstake)
             setStakeValue('')
             // console.log(unstake.ok)
             // console.log(seed)

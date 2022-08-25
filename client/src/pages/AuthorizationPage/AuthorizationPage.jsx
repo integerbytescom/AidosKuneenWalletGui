@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 import Errors from "../../general-components/Errors/Errors";
 import {checkLightTheme} from "../../lightThemeCheck";
 import {bgImageCheck} from "../../bgImageCheck";
-import {getBalance} from "../../getBalance";
 import ModalForgotSeed from "../RecoverSeed/ModalForgotSeed/ModalForgotSeed";
 
 const AuthorizationPage = () => {

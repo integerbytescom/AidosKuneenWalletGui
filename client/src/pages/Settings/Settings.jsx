@@ -25,7 +25,7 @@ const Settings = () => {
 
     const handleChangeSecurity = (value) =>{
         // window.localStorage.setItem('security',value)
-        console.log(typeof value)
+        // console.log(typeof value)
         if (+value===0){
             setSecur(1)
             window.localStorage.setItem('security',1)
@@ -53,7 +53,7 @@ const Settings = () => {
     }
 
     const changeHints = (value) =>{
-        console.log(value)
+        // console.log(value)
         setHints(value)
         window.localStorage.setItem('hints',value)
     }
