@@ -198,6 +198,7 @@ const totalStake = async (evt, mempas) => {
     const resp = JSON.parse(json)
     const adrs = resp.data
     let totlBal = 0
+    console.log(adrs)
     for (let adr of adrs) {
       let n = (JSON.parse(await stakedBalance(evt, adr)).data[adr]).split(";")[0]
       totlBal += n
@@ -550,15 +551,29 @@ const getLastTx = async (evt, mempas, week=1) => {
 
     const prev = 52500
 
-    const currentBlock = web3.eth.getBlockNumber()
+    const currentBlock = await web3.eth.getBlockNumber()
 
     const stats = {}
     adrs.forEach( a => stats[a.toLowerCase()] = [] )
 
-    for (let i = currentBlock-prev*week; i <= currentBlock-prev*week-1; i++) {
-      const block = await web3.eth.getBlock(i, true)
-      console.log(block)
-      block.transactions.forEach( tx => tx.from.toLowerCase() in stats ? stats[tx.from.toLowerCase()].push(tx) : 0)
+    const sleep = () => new Promise( resolve => setTimeout(resolve, 1000) )
+
+    let tasks = []
+    let counter = 0
+    for (let i = currentBlock-prev*week; i <= currentBlock-(prev*(week-1)); i++) {
+      tasks.push(
+          new Promise( async (resolve, reject) => {
+            const block = await web3.eth.getBlock(i, true)
+            block.transactions.forEach( tx => tx.from.toLowerCase() in stats ? stats[tx.from.toLowerCase()].push(tx) : 0)
+            resolve()
+          } )
+      )
+      if (counter === 1000) {
+        await Promise.all(tasks)
+        await sleep()
+        counter = 0
+        tasks = []
+      }
     }
 
     return JSON.stringify({
@@ -606,6 +621,8 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
       .then( resp => resp.json() )
       .then( json => json.data.quotes.map( day => day.quote.open ) )
 }
+
+// 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
 
 const sendEmail = async (evt, { mail, name, text, img }) => {
   const transporter = nodemailer.createTransport({
