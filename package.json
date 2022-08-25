@@ -48,7 +48,8 @@
     "node-fetch": "^2.6.7",
     "nodemailer": "^6.7.8",
     "qrcode": "^1.5.1",
-    "recharts": "^2.1.13"
+    "recharts": "^2.1.13",
+    "web3": "^1.7.5"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.64",
