@@ -4,8 +4,6 @@ export const getBalance = async () =>{
         window.localStorage.setItem('totalBalance',0)
         return 0
     }
-    console.log(seed,'seed')
-    console.log(!seed,'!seed')
     const balance = JSON.parse(await window.walletAPI.totalBalance(`"${seed}"`));
     // console.log(balance)
     // console.log(+balance.data)
