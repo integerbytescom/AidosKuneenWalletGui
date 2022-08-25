@@ -7,8 +7,8 @@ const fs = require('fs')
 const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
 const fetch = require("node-fetch");
-const nodemailer = require("nodemailer")
-const Web3 = require("web3")
+//const nodemailer = require("nodemailer")
+//const Web3 = require("web3")
 const SibApiV3Sdk = require('sib-api-v3-sdk');
 SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';
 global.fetch = require("node-fetch")
@@ -544,7 +544,7 @@ const multistake = async (evt, way, mempas, amount) => {
 }
 
 
-const getLastTx = async (evt, mempas, week=1) => {
+/*const getLastTx = async (evt, mempas, week=1) => {
   try {
     const resp = await listWalletAddress(evt, mempas, 10),
           adrs = JSON.parse(resp).data
@@ -590,7 +590,7 @@ const getLastTx = async (evt, mempas, week=1) => {
       data: err.message
     } )
   }
-}
+}*/
 
 
 // Далее идут взаимодействия с внешними API
