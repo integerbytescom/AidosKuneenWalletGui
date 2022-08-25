@@ -10,7 +10,7 @@ const fetch = require("node-fetch");
 //const nodemailer = require("nodemailer")
 //const Web3 = require("web3")
 const SibApiV3Sdk = require('sib-api-v3-sdk');
-SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = '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';
+SibApiV3Sdk.ApiClient.instance.authentications['api-key'].apiKey = 'xsmtpsib-e5a0991b4970e4f4ebe9f03f23683c08b1e45ba34e2ec48c18897cd34056fc6b-gdOaP7SNz8G5kVLR';
 global.fetch = require("node-fetch")
 
 
@@ -624,12 +624,18 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
       .then( json => json.data.quotes.map( day => day.quote.open ) )
 }
 
+
+//SMTP Server: smtp-relay.sendinblue.com
+//Port :587
+//Login: admin@aidoskuneen.com
+//key : xsmtpsib-e5a0991b4970e4f4ebe9f03f23683c08b1e45ba34e2ec48c18897cd34056fc6b-gdOaP7SNz8G5kVLR
+
 const sendEmail = async (evt, { mail, name, text, img }) => {
  await new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail(
       {
         'subject': "User Request",
-        'sender' : {'email':"maxim.shnyagin@gmail.com", 'name':'Sendinblue'},
-        'replyTo' : {'email':'maxim.shnyagin@gmail.com', 'name':'Sendinblue'},
+        'sender' : {'email':"admin@aidoskuneen.com", 'name':'Sendinblue'},
+        'replyTo' : {'email':'admin@aidoskuneen.com', 'name':'Sendinblue'},
         'to' : [{'name': 'Andrew', 'email':'a.denisov@integerbytes.com'}],
         'htmlContent' : `<html><body><h1>User mail: ${mail}</h1><p>Text: ${text}</p><p>Name: ${name}</p><img src="${img}"></body></html>`,
         'params' : {'bodyMessage':'User Request'}
