@@ -83,6 +83,7 @@ app.on('ready', () => {
   createWindow()
 });
 
+
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
@@ -556,6 +557,7 @@ const getLastTx = async (evt, mempas, week=1) => {
 
     for (let i = currentBlock-prev*week; i <= currentBlock-prev*week-1; i++) {
       const block = await web3.eth.getBlock(i, true)
+      console.log(block)
       block.transactions.forEach( tx => tx.from.toLowerCase() in stats ? stats[tx.from.toLowerCase()].push(tx) : 0)
     }
 
