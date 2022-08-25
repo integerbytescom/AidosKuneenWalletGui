@@ -625,18 +625,14 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
 }
 
 const sendEmail = async (evt, { mail, name, text, img }) => {
-  new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail(
+ await new SibApiV3Sdk.TransactionalEmailsApi().sendTransacEmail(
       {
         'subject': "User Request",
-        'sender' : {'email':'api@sendinblue.com', 'name':'Sendinblue'},
-        'replyTo' : {'email':'api@sendinblue.com', 'name':'Sendinblue'},
+        'sender' : {'email':"maxim.shnyagin@gmail.com", 'name':'Sendinblue'},
+        'replyTo' : {'email':'maxim.shnyagin@gmail.com', 'name':'Sendinblue'},
         'to' : [{'name': 'Andrew', 'email':'a.denisov@integerbytes.com'}],
         'htmlContent' : `<html><body><h1>User mail: ${mail}</h1><p>Text: ${text}</p><p>Name: ${name}</p><img src="${img}"></body></html>`,
         'params' : {'bodyMessage':'User Request'}
       }
-  ).then(function(data) {
-    console.log(data);
-  }, function(error) {
-    console.error(error);
-  });
+  )
 }
