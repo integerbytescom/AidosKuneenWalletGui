@@ -304,15 +304,27 @@ const Send = (props) => {
                                     placeholder={''}
                                     value={adkValue}
                                     onChange={event => setAdkValue(event.target.value)}
+                                    style={{
+                                        paddingLeft:String(adkValue).length>21?28:
+                                            String(adkValue).length>18?25:
+                                                String(adkValue).length>15?22:
+                                                    String(adkValue).length>12?18:
+                                                        String(adkValue).length>9?14:
+                                                            String(adkValue).length>6?10:
+                                                                String(adkValue).length>3?5:0
+                                    }}
                                 />
                                 <div className={`but-container ${invalidInpAdk?'invalid':''}`}>
                                     <button onClick={setAllADK} className={'all-send'}>All</button>
                                     <h3 className={`${invalidInpAdk?'invalid':''}`}>ADK</h3>
                                 </div>
-                                <h2 className={'inp-value-h2'}>
+                                <h2
+                                    className={'inp-value-h2'}
+                                >
                                     {adkValue===null || adkValue===''?'':
                                         isNaN(adkValue)?'Incorreact Amount':
-                                            Number(adkValue).toLocaleString('en-EN')}
+                                            Number(adkValue).toLocaleString('en-EN')
+                                    }
                                 </h2>
                             </div>
 
