@@ -8,7 +8,6 @@ const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
 const fetch = require("node-fetch");
 const nodemailer = require("nodemailer")
-const Web3 = require("web3")
 global.fetch = require("node-fetch")
 
 
@@ -48,7 +47,7 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -78,11 +77,9 @@ app.on('ready', () => {
   ipcMain.handle("multistake", multistake);
   ipcMain.handle("totalStake", totalStake);
   ipcMain.handle( "sendEmail", sendEmail );
-  ipcMain.handle("existWalletJSON ", existWalletJSON);
-  ipcMain.handle("getLastTx", getLastTx)
+  ipcMain.handle("existWalletJSON ", existWalletJSON)
   createWindow()
 });
-
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -540,42 +537,6 @@ const multistake = async (evt, way, mempas, amount) => {
   }
 }
 
-
-const getLastTx = async (evt, mempas, week=1) => {
-  try {
-    const resp = await listWalletAddress(evt, mempas, 10),
-          adrs = JSON.parse(resp).data
-
-    const web3 = new Web3("http://api1.mainnet.aidoskuneen.com:9545")
-
-    const prev = 52500
-
-    const currentBlock = web3.eth.getBlockNumber()
-
-    const stats = {}
-    adrs.forEach( a => stats[a.toLowerCase()] = [] )
-
-    for (let i = currentBlock-prev*week; i <= currentBlock-prev*week-1; i++) {
-      const block = await web3.eth.getBlock(i, true)
-      console.log(block)
-      block.transactions.forEach( tx => tx.from.toLowerCase() in stats ? stats[tx.from.toLowerCase()].push(tx) : 0)
-    }
-
-    return JSON.stringify({
-      ok: true,
-      data: stats
-    })
-
-  } catch (err) {
-    console.log(err)
-    return JSON.stringify( {
-      ok: false,
-      data: err.message
-    } )
-  }
-}
-
-
 // Далее идут взаимодействия с внешними API
 cc.setApiKey("a825a2d13195e4c2ddf536fd2e16ab8516d961e56b5b526d04cf6b4342d1dcd1")
 
@@ -631,3 +592,14 @@ const sendEmail = async (evt, { mail, name, text, img }) => {
   };
   const info = await transporter.sendMail(mailOptions)
 }
+
+
+/*
+{
+  "ok": true,
+  "msg": "TX sent and mined",
+  "data": [
+    "0x97f22edf676c9e8e0973fcd48188ab5a7b0d878f15ee131b6dc1d62160a3a333"
+  ]
+}
+* */

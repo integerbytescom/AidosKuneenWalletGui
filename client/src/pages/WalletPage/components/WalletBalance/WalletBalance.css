@@ -27,12 +27,12 @@
     margin: 15px 0 0 10px;
     padding-bottom: 7px;
 }
-.bal-container img:first-child{
-    border-bottom: 2px solid var(--color-white-opac-5);
-}
-.bal-container img:first-child{
-    border-bottom: 2px solid var(--color-green-04c);
-}
+/*.bal-container img:first-child{*/
+/*    border-bottom: 2px solid var(--color-white-opac-5);*/
+/*}*/
+/*.bal-container img:first-child{*/
+/*    border-bottom: 2px solid var(--color-green-04c);*/
+/*}*/
 
 .butt-container-wallet{
     padding-top: 15px;

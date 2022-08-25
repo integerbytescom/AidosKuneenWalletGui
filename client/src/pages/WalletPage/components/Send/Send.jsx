@@ -231,7 +231,7 @@ const Send = (props) => {
 
                 {
                     props.blue ?
-                        //STAKE
+                        //check stake or unstake
                         path==='/wallet/stake'?
                         <form onSubmit={event => handleStake(event)} className="form-create-pass blue">
                             <div className={`adk-value ${checkLightTheme()}`}>
@@ -287,7 +287,7 @@ const Send = (props) => {
                                 </div>
                             </form>
                         :
-                        //SEND
+                        //send standart
                         path==='/wallet/send'?
                         <form onSubmit={handleSend}>
                             <input
@@ -319,13 +319,10 @@ const Send = (props) => {
                                     <button onClick={setAllADK} className={'all-send'}>All</button>
                                     <h3 className={`${invalidInpAdk?'invalid':''}`}>ADK</h3>
                                 </div>
-                                <h2
-                                    className={'inp-value-h2'}
-                                >
+                                <h2 className={'inp-value-h2'}>
                                     {adkValue===null || adkValue===''?'':
                                         isNaN(adkValue)?'Incorreact Amount':
-                                            Number(adkValue).toLocaleString('en-EN')
-                                    }
+                                            Number(adkValue).toLocaleString('en-EN')}
                                 </h2>
                             </div>
 
@@ -350,7 +347,7 @@ const Send = (props) => {
                                 <button onClick={handleSend} className={`border-button ${checkLightTheme()}`}>Send</button>
                             </div>
                         </form>:
-                            //AZ SEED
+                            //az seed form
                             <form onSubmit={handleSend}>
                                 <textarea
                                     style={{resize:"none"}}

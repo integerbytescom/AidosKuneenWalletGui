@@ -64,7 +64,7 @@ const WalletBalance = (props) => {
                             <img src="./images/wallet-page/logoKrugBlue.svg" alt=""/>:
                             <img src="./images/wallet-page/logoKrug.svg" alt=""/>
                     }
-                    <img src="./images/wallet-page/lisa.svg" alt=""/>
+                    {/*<img src="./images/wallet-page/lisa.svg" alt=""/>*/}
                 </div>
             </div>
 

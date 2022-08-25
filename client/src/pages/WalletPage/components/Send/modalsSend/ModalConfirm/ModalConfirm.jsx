@@ -23,8 +23,16 @@ const ModalConfirm = (props) => {
         const trans = JSON.parse(await window.walletAPI.multisend(props.way,`"${props.mempas}"`,props.to,props.adkValue))
         console.log(trans,'TRANS')
         if (trans.ok === true){
+            let dataTransSend = await sendTrans('send')
+            if (dataTransSend[0]===null){
+                dataTransSend = [{from: props.from, to:props.to, hash:trans.data[0], adk: `- ${props.adkValue}`, status: 'Confirmed'}]
+            }else {
+                dataTransSend.push({from: props.from, to:props.to, hash:trans.data[0], adk: `- ${props.adkValue}`, status: 'Confirmed'})
+            }
+            window.localStorage.setItem('send',JSON.stringify(dataTransSend))
             setMessage('Sent')
             await window.walletAPI.updateBalance()
+            console.log(trans,'TRANS')
             setSpinnerDisplay('none')
             setDisplayText(false)
         }else {
