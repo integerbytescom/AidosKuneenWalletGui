@@ -1,12 +1,14 @@
 import React,{useState,useEffect} from 'react';
 import './LatestTransactions.css';
-import TransData from "./TransData";
 import AllTrans from "../AllTrans/AllTrans";
 import {anFadeUp} from "../../../../animations";
 import {checkLightTheme} from "../../../../lightThemeCheck";
 import sendTrans from "../../../../sendTrans";
+import {useLocation} from "react-router-dom";
 
 const LatestTransactions = (props) => {
+
+    const path = useLocation().pathname;
 
     //for classes blue color
     const [blueClass,setBlueClass] = useState('')
@@ -39,7 +41,15 @@ const LatestTransactions = (props) => {
         }else {
             setBlueClass('blue')
         }
-    })
+
+        //get transactions backend
+        const getLastTx = async () =>{
+            const seed = window.localStorage.getItem('seed')
+            const data = JSON.parse(await window.walletAPI.getLastTx(`"${seed}"`,1))
+            console.log(data)
+        }
+        getLastTx()
+    },[])
 
     return (
         <>
@@ -53,48 +63,47 @@ const LatestTransactions = (props) => {
                     }
                 </header>
 
-                {/*{*/}
-                {/*    showTrans==='hide'?'':*/}
-                {/*        props.path !== '/wallet'?'':*/}
-                {/*        <div className="set-page">*/}
-                {/*            <p className={`active`}>All</p>*/}
-                {/*            <p>Sent</p>*/}
-                {/*            <p>Receive</p>*/}
-                {/*            <p className={`last`}></p>*/}
-                {/*        </div>*/}
-                {/*}*/}
 
-                <div className={`transactions ${checkLightTheme()}`}>
-                    <AllTrans
-                        stakeTr={transactionsOnePageStake}
-                        sendTr={transactionsOnePageSend}
-                        blueClass={blueClass}
-                        countriesAmount={transactionsAmount}
-                        totalSend={sendTrans('send')}
-                        paginate={paginate}
-                    />
-                </div>
+                {
+                    path==='/wallet'?
+                        <div className={`transactions wallet-tr ${checkLightTheme()}`}>
 
-                <footer>
-                    {
-                        pageAmount!==0?
-                            <>
-                                <button className={`left`} disabled={currentPage===1} onClick={prevPage}>
-                                    {checkLightTheme()?
-                                        <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
-                                        <img src="./images/arrow-right.svg" alt=""/>
-                                    }
-                                </button>
-                                <p>{currentPage} / {blueClass?pageAmount:pageAmountSend}</p>
-                                <button className={`right`} disabled={blueClass?currentPage===pageAmount:currentPage===pageAmountSend} onClick={nextPage}>
-                                    {checkLightTheme()?
-                                        <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
-                                        <img src="./images/arrow-right.svg" alt=""/>
-                                    }
-                                </button>
-                            </>:''
-                    }
-                </footer>
+                        </div>:
+                        <div className={`transactions ${checkLightTheme()}`}>
+                            <AllTrans
+                                stakeTr={transactionsOnePageStake}
+                                sendTr={transactionsOnePageSend}
+                                blueClass={blueClass}
+                                countriesAmount={transactionsAmount}
+                                totalSend={sendTrans('send')}
+                                paginate={paginate}
+                            />
+                        </div>
+                }
+
+                {
+                    path==='/wallet'?'':
+                        <footer>
+                            {
+                                pageAmount!==0?
+                                    <>
+                                        <button className={`left`} disabled={currentPage===1} onClick={prevPage}>
+                                            {checkLightTheme()?
+                                                <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                                                <img src="./images/arrow-right.svg" alt=""/>
+                                            }
+                                        </button>
+                                        <p>{currentPage} / {blueClass?pageAmount:pageAmountSend}</p>
+                                        <button className={`right`} disabled={blueClass?currentPage===pageAmount:currentPage===pageAmountSend} onClick={nextPage}>
+                                            {checkLightTheme()?
+                                                <img src="./images/wallet-page/arrow-right.svg" alt=""/>:
+                                                <img src="./images/arrow-right.svg" alt=""/>
+                                            }
+                                        </button>
+                                    </>:''
+                            }
+                        </footer>
+                }
             </div>
         </>
     );
