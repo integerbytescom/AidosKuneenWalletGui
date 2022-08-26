@@ -7,8 +7,8 @@ const fs = require('fs')
 const fsProm = require("fs/promises")
 const cc = require("cryptocompare")
 const fetch = require("node-fetch");
-const nodemailer = require("nodemailer")
-//const Web3 = require("web3")
+//const nodemailer = require("nodemailer")
+const Web3 = require("web3")
 
 
 /*const SibApiV3Sdk = require('sib-api-v3-sdk');
@@ -43,10 +43,10 @@ const createWindow = () => {
     resizable:false,
     //icon:'/icon.ico',
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: 'preload.js',
     },
   });
-  mainWindow.setIcon(path.join(__dirname,'./icon2.ico'))
+  //mainWindow.setIcon('./icon2.icns')
   mainWindow.removeMenu()
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
@@ -83,7 +83,7 @@ app.on('ready', () => {
   ipcMain.handle("totalStake", totalStake);
   //ipcMain.handle( "sendEmail", sendEmail );
   ipcMain.handle("existWalletJSON ", existWalletJSON);
- // ipcMain.handle("getLastTx", getLastTx)
+  ipcMain.handle("getLastTx", getLastTx)
   createWindow()
 });
 
@@ -545,15 +545,14 @@ const multistake = async (evt, way, mempas, amount) => {
   }
 }
 
-
-/*const getLastTx = async (evt, mempas, week=1) => {
+const getLastTx = async (evt, mempas, day=1) => {
   try {
     const resp = await listWalletAddress(evt, mempas, 10),
           adrs = JSON.parse(resp).data
 
     const web3 = new Web3("http://api1.mainnet.aidoskuneen.com:9545")
 
-    const prev = 52500
+    const prev = 500
 
     const currentBlock = await web3.eth.getBlockNumber()
 
@@ -564,7 +563,7 @@ const multistake = async (evt, way, mempas, amount) => {
 
     let tasks = []
     let counter = 0
-    for (let i = currentBlock-prev*week; i <= currentBlock-(prev*(week-1)); i++) {
+    for (let i = currentBlock-prev*day; i <= currentBlock-(prev*(day-1)); i++) {
       tasks.push(
           new Promise( async (resolve, reject) => {
             const block = await web3.eth.getBlock(i, true)
@@ -572,7 +571,7 @@ const multistake = async (evt, way, mempas, amount) => {
             resolve()
           } )
       )
-      if (counter === 1000) {
+      if (counter === 5) {
         await Promise.all(tasks)
         await sleep()
         counter = 0
@@ -592,7 +591,8 @@ const multistake = async (evt, way, mempas, amount) => {
       data: err.message
     } )
   }
-}*/
+}
+
 
 
 // Далее идут взаимодействия с внешними API
@@ -625,4 +625,3 @@ const getHistoricalDataForCoin = async (evt, ticket) => {
       .then( resp => resp.json() )
       .then( json => json.data.quotes.map( day => day.quote.open ) )
 }
-
