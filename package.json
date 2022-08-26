@@ -51,7 +51,8 @@
     "nodemailer": "^6.7.8",
     "qrcode": "^1.5.1",
     "recharts": "^2.1.13",
-    "sib-api-v3-sdk": "^8.4.2"
+    "sib-api-v3-sdk": "^8.4.2",
+    "web3": "^1.7.5"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.64",
