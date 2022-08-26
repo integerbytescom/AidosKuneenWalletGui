@@ -1,14 +1,14 @@
 import React,{useState} from 'react';
-import {anFade, anFadeOut} from "../../../../animations";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import {anFade} from "../../../../animations";
+import {useNavigate} from "react-router-dom";
 import './FileForm.css';
 import {checkLightTheme} from "../../../../lightThemeCheck";
 import Errors from "../../../../general-components/Errors/Errors";
+import BufferSuccess from "../../../../general-components/BufferSuccess/BufferSuccess";
 
 const FileForm = () => {
 
     const navigate = useNavigate()
-    const path = useLocation().pathname;
 
     //error
     const [error,setError] = useState('')
@@ -19,6 +19,9 @@ const FileForm = () => {
     const [subject,setSubject] = useState('')
     const [text,setText] = useState('')
     const [file,setFile] = useState('')
+
+    //display success
+    const [displayCopy,setDisplayCopy] = useState(false)
 
     //state for invalid input
     const [invalidInp,setInvalidInp] = useState(null)
@@ -46,16 +49,27 @@ const FileForm = () => {
             setErrorFun('Enter text')
             setInvalidInp(4)
         }else {
-            // console.log(name,'name')
-            // console.log(email,'email')
-            // console.log(subject,'subject')
-            // console.log(text,'text')
-            // console.log(file,'file')
-            const res = await window.walletAPI.sendEmail({name,email,subject,text,file})
-            console.log(res)
-            setFade(anFadeOut)
-            setTimeout(() => navigateRoute('/wallet'),600)
+            console.log(name,'name')
+            console.log(email,'email')
+            console.log(subject,'subject')
+            console.log(text,'text')
+            console.log(file,'file')
+            // const res = await window.walletAPI.sendEmail({name,email,subject,text,file})
+            // console.log(res)
+            // setFade(anFadeOut)
+            setName('')
+            setEmail('')
+            setSubject('')
+            setText('')
+            setFile('')
+            setDisplayCopy(true)
+            setTimeout(changeCopyDisp,3000)
+            setTimeout(() => navigateRoute('/wallet'),3000)
         }
+    }
+
+    const changeCopyDisp = () =>{
+        setDisplayCopy(false)
     }
 
     const setErrorFun = (text) =>{
@@ -70,10 +84,9 @@ const FileForm = () => {
     return (
         <div className={`block-container menu form ${fade} ${checkLightTheme()}`}>
 
-            {/*<span className={`links-top-about ${checkLightTheme()}`}>*/}
-            {/*    <Link to={'/wallet/aboutUs'} className={path==='/wallet/aboutUs'?'active':''}>Information</Link>*/}
-            {/*    <Link to={'/wallet/fileForm'} className={path==='/wallet/fileForm'?'active':''}>Bugs</Link>*/}
-            {/*</span>*/}
+            {displayCopy?
+                <BufferSuccess migr={'Thank you! Your message is sent successfully.'} />:''
+            }
 
             {error===''?'':<Errors error={error} />}
 
