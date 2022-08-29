@@ -36,7 +36,7 @@ const createWindow = () => {
     resizable:false,
     //icon:'/icon.ico',
     webPreferences: {
-      preload: 'preload.js',
+      preload: path.join(__dirname,'preload.js'),
     },
   });
   //mainWindow.setIcon('./icon2.icns')
@@ -45,7 +45,7 @@ const createWindow = () => {
   mainWindow.loadURL(`file://${path.join(__dirname, '../client/build/index.html')}`);
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished

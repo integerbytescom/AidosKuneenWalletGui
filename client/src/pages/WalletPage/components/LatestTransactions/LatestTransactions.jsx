@@ -41,14 +41,6 @@ const LatestTransactions = (props) => {
         }else {
             setBlueClass('blue')
         }
-
-        //get transactions backend
-        const getLastTx = async () =>{
-            const seed = window.localStorage.getItem('seed')
-            const data = JSON.parse(await window.walletAPI.getLastTx(`"${seed}"`,1))
-            console.log(data)
-        }
-        getLastTx()
     },[])
 
     return (
